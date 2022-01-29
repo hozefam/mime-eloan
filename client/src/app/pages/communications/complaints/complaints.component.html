@@ -1,0 +1,30 @@
+<div class="col-sm-12">
+    <nav aria-label="breadcrumb" class="breadcrumbCustomOverall">
+        <ol class="breadcrumb breadcrumbCustomItem">
+            <li class="breadcrumb-item">{{ "DASHBOARD.Communications" | translate }}</li>
+            <li class="breadcrumb-item active">{{ "COMMUNICATIONS.COMPLAINTS" | translate }}</li>
+        </ol>
+    </nav>
+
+    <nb-card accent="success">
+
+        <nb-card-header>{{ "COMMUNICATIONS.COMPLAINTS" | translate }}</nb-card-header>
+
+        <nb-card-body style="text-align: center;">
+
+            <div style="text-align: center; margin-bottom: 20px;">
+
+                <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;"
+                    class="btn btn-success" (click)="createNewComplaintModel()">{{
+                "COMMUNICATIONS.newcase" | translate }}</button>
+
+            </div>
+
+            <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onView($event)"></ng2-smart-table>
+
+
+        </nb-card-body>
+
+    </nb-card>
+
+</div>

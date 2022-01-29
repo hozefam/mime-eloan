@@ -1,0 +1,39 @@
+.fot { 
+z-index: 99;    
+width: 100%;
+}
+.rtl {
+    @import "assets/styles/styles-ltr.scss";
+}
+   
+.ltr {
+    @import "assets/styles/styles-ltr.scss";
+}
+.footer__socials {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    margin-bottom: 0;
+}
+.footer__socialIcon {
+    display: block;
+    position: relative;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    -webkit-transition: color .3s,-webkit-transform .3s;
+    transition: color .3s,transform .3s,-webkit-transform .3s;
+    color: #00000085!important;
+}
+.footer__socials li {
+    padding-right: 0;
+    padding-left: 8px;
+    list-style-type: none;
+}

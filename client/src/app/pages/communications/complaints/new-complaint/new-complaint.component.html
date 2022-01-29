@@ -1,0 +1,225 @@
+<div class="col-sm-12">
+    <nav aria-label="breadcrumb" class="breadcrumbCustomOverall">
+        <ol class="breadcrumb breadcrumbCustomItem">
+            <li class="breadcrumb-item">{{ "DASHBOARD.Communications" | translate }}</li>
+            <li class="breadcrumb-item">
+                <a (click)="commonService.navToPrevPageBreadcrumbs('/pages/communications/complaints')"
+                    class="breadcrumbNavigATag">
+                    {{ "COMMUNICATIONS.COMPLAINTS" | translate }}
+                </a>
+            </li>
+            <li class="breadcrumb-item active">{{ "COMMUNICATIONS.newcase" | translate }}</li>
+        </ol>
+    </nav>
+
+    <nb-card accent="success">
+
+        <nb-card-header>{{ "COMMUNICATIONS.newcase" | translate }}</nb-card-header>
+
+        <nb-card-body>
+
+            <form class="form-horizontal" [formGroup]="complaintForm">
+
+                <div class="form-group row">
+                    <label for="inputName" class="col-md-2 form-control-label"><span class="required-pf">*
+                        </span>{{ "CONTACTUS.lName" | translate}}</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="inputName" formControlName="inputName"
+                            [ngClass]="{'is-invalid' : next1 && complaintData.inputName.errors}"
+                            placeholder='{{"CONTACTUS.lName" | translate}}'>
+                    </div>
+                    <label for="inputEmail" class="col-md-2 form-control-label"><span class="required-pf">*
+                        </span>{{ "CONTACTUS.lEmail" | translate}}</label>
+                    <div class="col-md-4">
+                        <input type="email" class="form-control" id="inputEmail"
+                            placeholder='{{ "CONTACTUS.lEmail" | translate}}' formControlName="inputEmail"
+                            [ngClass]="{'is-invalid' : next1 && complaintData.inputEmail.errors}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputmobile" class="col-md-2 form-control-label"><span class="required-pf">*
+                        </span>{{ "CONTACTUS.lMobileNo" | translate}}</label>
+                    <div class="col-md-1" *ngIf="commonService.defaultLanguage === 'en'">
+                        <!-- <input type="text" class="form-control" id="inputmobcode" value="+966"
+                        formControlName="inputmobcode"
+                        [ngClass]="{'is-invalid' : next1 && complaintData.inputmobcode.errors}"> -->
+
+                        <select style="height: 100%; width: 175%;" [(ngModel)]="selectedmobcode" id="inputmobcode"
+                            name="inputmobcode" formControlName="inputmobcode" class="form-control">
+                            <option *ngFor="let country of sortCountryKey(countryList)" [value]="country.CountryKey">
+                                {{country.CountryKey}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3" *ngIf="commonService.defaultLanguage === 'en'">
+                        <input type="text" class="form-control" id="inputmobile" style="float: right; width: 90%;"
+                            placeholder='{{ "CONTACTUS.lMobileNo" | translate}}' formControlName="inputmobile"
+                            [ngClass]="{'is-invalid' : next1 && (complaintData.inputmobile.errors || is_mobnumber_valid)}"
+                            (change)="is_mobnumber_valid = false">
+                    </div>
+
+
+                    <div class="col-md-3" *ngIf="commonService.defaultLanguage === 'ar'" style="direction: ltr;">
+                        <input type="text" class="form-control" id="inputmobile" style="float: right; width: 90%;"
+                            placeholder='{{ "CONTACTUS.lMobileNo" | translate}}' formControlName="inputmobile"
+                            [ngClass]="{'is-invalid' : next1 && (complaintData.inputmobile.errors || is_mobnumber_valid)}"
+                            (change)="is_mobnumber_valid = false">
+                    </div>
+                    <div class="col-md-1" *ngIf="commonService.defaultLanguage === 'ar'" style="direction: ltr;">
+                        <!-- <input type="text" class="form-control" id="inputmobcode" value="+966"
+                        formControlName="inputmobcode"
+                        [ngClass]="{'is-invalid' : next1 && complaintData.inputmobcode.errors}"> -->
+
+                        <select style="height: 100%; width: 175%;" [(ngModel)]="selectedmobcode" id="inputmobcode"
+                            name="inputmobcode" formControlName="inputmobcode" class="form-control">
+                            <option *ngFor="let country of sortCountryKey(countryList)" [value]="country.CountryKey">
+                                {{country.CountryKey}}</option>
+                        </select>
+                    </div>
+
+                    <label for="inputtelephone"
+                        class="col-md-2 form-control-label">{{ "CONTACTUS.lTelephoneNo" | translate}}</label>
+                    <div class="col-md-1" *ngIf="commonService.defaultLanguage === 'en'">
+                        <!-- <input type="text" class="form-control" id="inputtelcode" value="+966"
+                        formControlName="inputtelcode"> -->
+
+                        <select style="height: 100%; width: 175%;" [(ngModel)]="selectedtelcode" id="inputtelcode"
+                            name="inputtelcode" formControlName="inputtelcode" class="form-control">
+                            <option *ngFor="let country of sortCountryKey(countryList)" [value]="country.CountryKey">
+                                {{country.CountryKey}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3" *ngIf="commonService.defaultLanguage === 'en'">
+                        <input type="text" class="form-control" id="inputtelephone" style="float: right; width: 90%;"
+                            placeholder='{{ "CONTACTUS.lTelephoneNo" | translate}}' formControlName="inputtelephone"
+                            [ngClass]="{'is-invalid' : next1 && (is_telnumber_valid)}"
+                            (change)="is_telnumber_valid = false">
+                    </div>
+
+                    <div class="col-md-3" *ngIf="commonService.defaultLanguage === 'ar'" style="direction: ltr;">
+                        <input type="text" class="form-control" id="inputtelephone" style="float: right; width: 90%;"
+                            placeholder='{{ "CONTACTUS.lTelephoneNo" | translate}}' formControlName="inputtelephone"
+                            [ngClass]="{'is-invalid' : next1 && (is_telnumber_valid)}"
+                            (change)="is_telnumber_valid = false">
+                    </div>
+                    <div class="col-md-1" *ngIf="commonService.defaultLanguage === 'ar'" style="direction: ltr;">
+
+                        <select style="height: 100%; width: 175%;" [(ngModel)]="selectedtelcode" id="inputtelcode"
+                            name="inputtelcode" formControlName="inputtelcode" class="form-control">
+                            <option *ngFor="let country of sortCountryKey(countryList)" [value]="country.CountryKey">
+                                {{country.CountryKey}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputMessagePurpose1" class="col-md-2 form-control-label"><span class="required-pf">*
+                        </span>{{ "CONTACTUS.lMessagePurpose" | translate}}</label>
+                    <div class="col-md-4">
+                        <select [(ngModel)]="msgPurposeSelected" name="msgpurpose" class="form-control"
+                            [ngModelOptions]="{standalone: true}" (change)="onMessagePurposeSelect()"
+                            placeholder="Select Message Purpose" [ngClass]="{'is-invalid' : is_msgPurposeSelected}">
+                            <option value="" disabled selected hidden>
+                                {{'COMMON.Select' | translate }}
+                                {{ "CONTACTUS.lMessagePurpose" | translate}}</option>
+                            <option *ngFor="let msgpurpose of msgpurpose_list" [value]="msgpurpose.Id">
+                                {{commonService.defaultLanguage === 'en' ? msgpurpose.Desc : msgpurpose.DescAr }}
+                            </option>
+                        </select>
+                    </div>
+                    <label for="inputMessagePurpose2" class="col-md-2 form-control-label"><span class="required-pf">*
+                        </span>{{ "CONTACTUS.lReason" | translate}}</label>
+                    <div class="col-md-4">
+                        <select [(ngModel)]="reasonOptionSelected" name="reason" [ngModelOptions]="{standalone: true}"
+                            class="form-control" (change)="onreasonOptionSelect()" placeholder="Select Reason"
+                            [ngClass]="{'is-invalid' : is_reasonOptionSelected}">
+                            <option value="" disabled selected hidden>
+                                {{'COMMON.Select' | translate }}
+                                {{ "CONTACTUS.lReason" | translate}}</option>
+                            <option *ngFor="let reason of reason_list" [value]="reason.Id">
+                                {{ commonService.defaultLanguage === 'en' ? reason.Desc : reason.DescAr }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputFactoryName"
+                        class="col-md-2 form-control-label">{{ "CONTACTUS.lFactoryName" | translate}}</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="inputFactoryName"
+                            placeholder='{{ "CONTACTUS.lFactoryName" | translate}}' formControlName="inputFactoryName">
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label for="inputSubject" class="col-md-2 form-control-label"><span class="required-pf">*
+                        </span>{{ "CONTACTUS.lSubject" | translate}}</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="inputSubject"
+                            placeholder='{{ "CONTACTUS.lSubject" | translate}}' formControlName="inputSubject"
+                            [ngClass]="{'is-invalid' : next1 && complaintData.inputSubject.errors}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputmessage" class="col-md-2 form-control-label"><span class="required-pf">*
+                        </span>{{ "CONTACTUS.lMessage" | translate}}</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" id="inputmessage"
+                            placeholder='{{ "CONTACTUS.lMessage" | translate}}' formControlName="inputmessage"
+                            [ngClass]="{'is-invalid' : next1 && complaintData.inputmessage.errors}"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-5 col-sm-5 col-xs-5"></div>
+
+                    <div>
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                            style="margin-right: 10px; cursor: pointer;" class="btnCnl btn btn-danger"
+                            (click)="onCancel(cancel_modal)">{{ "COMMON.Back" | translate}}</button>
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                            style="margin-right: 10px; cursor: pointer;" class="btn btn-danger"
+                            (click)="onSend()">{{ "COMMON.Submit" | translate}}</button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </nb-card-body>
+
+    </nb-card>
+
+</div>
+
+<ng-template #cancel_modal let-modal>
+
+    <div class="modal-header">
+
+        <span>{{"COMMON.AlertModalTitle" | translate }}</span>
+
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;" class="close"
+            aria-label="Close" (click)="onCloseCancelModal()">
+            <span aria-hidden="true" class="ion-close-round"></span>
+        </button>
+
+    </div>
+
+    <div class="modal-body">
+        <h6>{{ "COMMON.BackError" | translate }}</h6>
+    </div>
+
+    <div class="modal-footer">
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" type="button" class="btnCnl btn btn-danger"
+            (click)="onCloseCancelModal()">{{
+            "COMMON.Cancel" | translate }}</button>
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" type="button"
+            class="btn btn-success" (click)="onCancelConfirm()">{{
+            "COMMON.Yes" | translate }}</button>
+    </div>
+
+</ng-template>

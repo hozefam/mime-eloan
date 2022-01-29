@@ -1,0 +1,224 @@
+@import '../../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/typography/typography';
+.ant-tabs-ink-bar {
+    color: #000000;
+}
+
+@include nb-install-component() {
+    // nb-card-header {
+    //     display: flex;
+    //     align-items: center;
+    //     height: 5rem;
+    //     justify-content: space-between;
+    // }
+    // nb-card-body {
+    //     padding: 0;
+    // }
+    // .dropdown {
+    //     min-width: 120px;
+    //     float: right;
+    // }
+    // .ghost-dropdown {
+    //     border: none;
+    // }
+}
+
+@import '~@nebular/theme/components/card/card.component.theme';
+@import '~@nebular/theme/styles/global/typography/typography';
+@import '~bootstrap/scss/mixins/breakpoints';
+@include nb-install-component() {
+    overflow: auto;
+    // nb-card-body {
+    //     padding: 0;
+    //     position: relative;
+    //     display: flex;
+    //     flex-direction: column;
+    // }
+    .traffic-list {
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        list-style: none;
+        display: flex;
+        justify-content: inherit;
+        align-items: left;
+        height: 3.5rem;
+        font-size: 1rem;
+        position: relative;
+        color: nb-theme(color-fg);
+        padding: 1rem nb-theme(card-padding);
+        border-bottom: nb-theme(list-item-border-width) nb-theme(card-header-border-type) nb-theme(separator);
+        &:hover {
+            background-color: nb-theme(layout-bg);
+            &::before {
+                position: absolute;
+                content: '';
+                height: 100%;
+                width: 5px;
+                left: 0;
+                top: 0;
+                background-color: nb-theme(color-success);
+                border-radius: nb-theme(radius);
+            }
+        }
+        >* {
+            flex: 2;
+        }
+        ngx-traffic-bar {
+            flex: 1;
+        }
+    }
+    .date {
+        @include nb-for-theme(corporate) {
+            color: nb-theme(color-fg-heading);
+        }
+    }
+    .value {
+        color: nb-theme(color-fg-heading);
+    }
+    .delta {
+        display: flex;
+        padding-left: 0.5rem;
+        font-size: 1rem;
+        align-items: center;
+        &::before {
+            content: '';
+            right: 100%;
+            margin-right: 0.7rem;
+            @include nb-rtl(margin-left, 0.7rem);
+            @include nb-rtl(margin-right, 0);
+            border-left: 2px solid transparent;
+            border-right: 2px solid transparent;
+        }
+        &.down {
+            color: text-danger();
+            &::before {
+                bottom: 5px;
+                border-top: 3px solid text-danger();
+            }
+        }
+        &.up {
+            color: text-success();
+            &::before {
+                top: 5px;
+                border-bottom: 3px solid text-success();
+            }
+        }
+    }
+    @include nb-for-theme(cosmic) {
+        .traffic-list li {
+            &:hover {
+                &::before {
+                    $color-top: nb-theme(btn-success-bg);
+                    $color-bottom: btn-hero-success-left-color();
+                    background-image: linear-gradient(to top, $color-top, $color-bottom);
+                    box-shadow: 0 0 16px -2px btn-hero-success-middle-color();
+                }
+            }
+        }
+    }
+    @include nb-for-theme(corporate) {
+        .traffic-list li {
+            border-color: nb-theme(tabs-separator);
+            &:first-child {
+                border-top: nb-theme(list-item-border-width) nb-theme(card-header-border-type) nb-theme(separator);
+            }
+            &:hover {
+                &::before {
+                    background-color: nb-theme(color-primary);
+                }
+            }
+        }
+        .date {
+            color: nb-theme(color-fg-heading);
+        }
+        .delta {
+            &.up {
+                color: text-primary();
+                &::before {
+                    border-bottom-color: text-primary();
+                }
+            }
+        }
+    }
+}
+
+.statusImage {
+    height: 25px;
+    width: 25px;
+}
+
+.btn-success{
+    color: #fff;
+    background-color: #006e42;
+    border-color: #006e42;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+
+
+
+body {font-family: "DroidKufi"!important;}
+.wizard2 {display: inline-block; margin-right: 5px;  margin-top: 5px; cursor: pointer; padding: 0px 0px 0px 0px; border-radius: 10px;
+    width: 13.2%; font-size: 13px;  font-family: "DroidKufi"!important;
+    }
+    .wiz-select {background-color: rgba(21, 136, 116, 1)!important;}  
+.mat-expansion-panel-header-title {font-family: "DroidKufi"!important;}
+.row {font-family: "DroidKufi"!important; }
+
+    /*--Remove nb-card--*/
+    .nb-theme-default nb-card-header {padding: 0px !important;}
+    .nb-theme-default nb-card.accent-success {border-top-color:#fff !important;}
+    .nb-theme-default nb-card.accent {border-top-color:0px !important;}
+    .nb-theme-default nb-card.accent-success {border-top-color: #8dd27a!important;}
+    .nb-theme-default nb-card {border-radius:0!important; margin-top: 5px;}
+    
+    .nb-card-header {
+        background-color: #f9f9f9 !important;
+        -webkit-box-shadow: 0!important;
+        box-shadow: 0!important;
+    }
+    /*----*/
+    
+    .header-bg {
+        background-color: rgba(21, 136, 116, 0.7) !important;
+            height: 60px; line-height: 60px; 
+    margin-bottom: 15PX !important; width: 98%;}
+        .pen{display:inline-block;width:40px;height:91%;background-image:url(assets/images/senaee/pen.png);background-size:contain;background-repeat:no-repeat;background-position:28%;}
+    
+    .title-header {
+        font-family:"DroidKufi"; 
+        color:#ffffff;font-size:25px;
+        display:inline-block;
+        vertical-align:text-bottom;
+        padding-right:15px;}
+.title-header span{border-right:2px solid #fff;padding-right:25px;margin-right:21px;font-size:22px;letter-spacing:1px;}
+    .header-bg {
+        width: 100% !important;
+        margin-bottom: 15PX !important;
+    }
+    .more {
+        display: block;
+        width: auto;
+        text-align: center;
+        height: 44px;
+        line-height: 40px;
+        color: #fff;
+        text-decoration: none;
+        margin-top: 25px;
+        transition: all 0.3s;
+        border: 0px;
+        padding-right: 15px; padding-left: 15px; margin: 0 auto;
+        background-color: rgba(21, 136, 116, 0.7)
+    }
+    
+    .more:hover { background-color: rgba(21, 136, 116, 1)}
+    
+    .nb-theme-default .btn.btn-success {background-color:#8dd27a!important;}
+    .nb-theme-default .nb-list-item {font-family: "DroidKufi"!important;}

@@ -1,0 +1,150 @@
+@import '../../../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/typography/typography';
+.ant-tabs-ink-bar {
+    color: #000000;
+}
+
+@include nb-install-component() {
+    // nb-card-header {
+    //     display: flex;
+    //     align-items: center;
+    //     height: 5rem;
+    //     justify-content: space-between;
+    // }
+    // nb-card-body {
+    //     padding: 0;
+    // }
+    // .dropdown {
+    //     min-width: 120px;
+    //     float: right;
+    // }
+    // .ghost-dropdown {
+    //     border: none;
+    // }
+}
+
+@import '~@nebular/theme/components/card/card.component.theme';
+@import '~@nebular/theme/styles/global/typography/typography';
+@import '~bootstrap/scss/mixins/breakpoints';
+@include nb-install-component() {
+    overflow: auto;
+    // nb-card-body {
+    //     padding: 0;
+    //     position: relative;
+    //     display: flex;
+    //     flex-direction: column;
+    // }
+    .traffic-list {
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        list-style: none;
+        display: flex;
+        justify-content: inherit;
+        align-items: left;
+        height: 3.5rem;
+        font-size: 1rem;
+        position: relative;
+        color: nb-theme(color-fg);
+        padding: 1rem nb-theme(card-padding);
+        border-bottom: nb-theme(list-item-border-width) nb-theme(card-header-border-type) nb-theme(separator);
+        &:hover {
+            background-color: nb-theme(layout-bg);
+            &::before {
+                position: absolute;
+                content: '';
+                height: 100%;
+                width: 5px;
+                left: 0;
+                top: 0;
+                background-color: nb-theme(color-success);
+                border-radius: nb-theme(radius);
+            }
+        }
+        >* {
+            flex: 2;
+        }
+        ngx-traffic-bar {
+            flex: 1;
+        }
+    }
+    .date {
+        @include nb-for-theme(corporate) {
+            color: nb-theme(color-fg-heading);
+        }
+    }
+    .value {
+        color: nb-theme(color-fg-heading);
+    }
+    .delta {
+        display: flex;
+        padding-left: 0.5rem;
+        font-size: 1rem;
+        align-items: center;
+        &::before {
+            content: '';
+            right: 100%;
+            margin-right: 0.7rem;
+            @include nb-rtl(margin-left, 0.7rem);
+            @include nb-rtl(margin-right, 0);
+            border-left: 2px solid transparent;
+            border-right: 2px solid transparent;
+        }
+        &.down {
+            color: text-danger();
+            &::before {
+                bottom: 5px;
+                border-top: 3px solid text-danger();
+            }
+        }
+        &.up {
+            color: text-success();
+            &::before {
+                top: 5px;
+                border-bottom: 3px solid text-success();
+            }
+        }
+    }
+    @include nb-for-theme(cosmic) {
+        .traffic-list li {
+            &:hover {
+                &::before {
+                    $color-top: nb-theme(btn-success-bg);
+                    $color-bottom: btn-hero-success-left-color();
+                    background-image: linear-gradient(to top, $color-top, $color-bottom);
+                    box-shadow: 0 0 16px -2px btn-hero-success-middle-color();
+                }
+            }
+        }
+    }
+    @include nb-for-theme(corporate) {
+        .traffic-list li {
+            border-color: nb-theme(tabs-separator);
+            &:first-child {
+                border-top: nb-theme(list-item-border-width) nb-theme(card-header-border-type) nb-theme(separator);
+            }
+            &:hover {
+                &::before {
+                    background-color: nb-theme(color-primary);
+                }
+            }
+        }
+        .date {
+            color: nb-theme(color-fg-heading);
+        }
+        .delta {
+            &.up {
+                color: text-primary();
+                &::before {
+                    border-bottom-color: text-primary();
+                }
+            }
+        }
+    }
+}
+
+.statusImage {
+    height: 25px;
+    width: 25px;
+}

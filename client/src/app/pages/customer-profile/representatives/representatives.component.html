@@ -1,0 +1,92 @@
+
+<nb-card accent="success">
+    <nb-card-header>{{ "MY_PROFILE.Representatives" | translate}}</nb-card-header>
+    <nb-card-body>
+        <div class="form-group row" style="text-align: center">
+
+            <label for="Type" style="margin-top: 1%; text-align: center;"
+                class="col-sm-2 col-form-label;">{{ "MY_PROFILE.ChooseProfile" | translate}}
+            </label>
+            <div id="tourStep1" class="col-sm-6" style="margin-top: -4px; margin-bottom: 5px;">
+                <select (ngModelChange)="onRepresentativeChange($event)" [(ngModel)]="selectedRepresentativeBpName"
+                    name="repddid" class="form-control">
+                    <option *ngFor="let repValue of representativeDropDown" [value]="repValue.BpName">
+                        {{repValue.BpName}}</option>
+                </select>
+            </div>
+
+            <div *ngIf="isEdit == 'X'" class="col-sm-2" style="text-align: center">
+                <button id="tourStep2" matRipple matRippleColor="rgba(255,239,20,0.15)"
+                    style="cursor: pointer; margin-bottom: 10px" type="button" class="btn btn-success"
+                    (click)="onAddRepresentatives()">
+                    {{ "MY_PROFILE.AddRepresentatives" | translate}}</button>
+            </div>
+            <div class="col-sm-2">
+                <span *ngIf="showTour" id="startTour" [ngbTooltip]="StartTour" placement="left"
+                    style="color: #006e42; cursor: pointer; font-size: 35px; font-weight: 600;" class="nb-help"
+                    (click)="startTour()"></span>
+            </div>
+
+        </div>
+
+        <div style="text-align: center">
+            <ng2-smart-table id="tourStep3" *ngIf="isEdit == ''"
+                [settings]="settings_representatives" [source]="source_representatives"
+                (delete)="onDeleteRepresentatives($event, delete_cancel_modal)">
+            </ng2-smart-table>
+
+            <!-- <ng2-smart-table id="tourStep3" *ngIf="isEdit == '' && commonService.defaultLanguage == 'ar'"
+                [settings]="settings_representatives_ar" [source]="source_representatives"
+                (delete)="onDeleteRepresentatives($event, delete_cancel_modal)">
+            </ng2-smart-table> -->
+
+            <ng2-smart-table id="tourStep3" *ngIf="isEdit == 'X'"
+                [settings]="settings_representatives_isEdit" [source]="source_representatives"
+                (delete)="onDeleteRepresentatives($event, delete_cancel_modal)">
+            </ng2-smart-table>
+
+            <!-- <ng2-smart-table id="tourStep3" *ngIf="isEdit == 'X' && commonService.defaultLanguage == 'ar'"
+                [settings]="settings_representatives_isEdit_ar" [source]="source_representatives"
+                (delete)="onDeleteRepresentatives($event, delete_cancel_modal)">
+            </ng2-smart-table> -->
+        </div>
+
+
+        <div class="col-md-12" style="text-align:center;">
+            <button id="tourStep4" matRipple matRippleColor="rgba(255,239,20,0.15)" type="submit" class="btn btn-danger"
+                style="margin-left:5px; margin-right:5px; margin-top: 10px"
+                (click)="toCustomerProfile()">{{ 'COMMON.Back' | translate }}</button>
+            <!-- <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="submit" class="btn btn-danger"  style="margin-left:5px; margin-right:5px;" (click)="submitConditions(questions)">{{ 'COMMON.Submit' | translate }}</button> -->
+        </div>
+    </nb-card-body>
+</nb-card>
+
+<ng-template #delete_cancel_modal let-modal>
+
+    <div class="modal-header">
+
+        <span>{{deleteCancelModalReference.action}} {{deleteCancelModalReference.table_name_display}}</span>
+
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" class="close"
+            aria-label="Close" (click)="onCloseDeleteCancelModal()">
+            <span aria-hidden="true" class="ion-close-round"></span>
+        </button>
+
+    </div>
+
+    <div class="modal-body">
+        <h6>{{ "TECHNICAL_INFORMATION.Areyousure" | translate}}</h6>
+    </div>
+
+    <div class="modal-footer">
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+            style="cursor: pointer; margin-left: 5px; margin-right: 5px;" type="button" class="btn btn-success"
+            (click)="onCloseDeleteCancelModal()">{{
+                "TECHNICAL_INFORMATION.Cancel" | translate}}</button>
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+            style="cursor: pointer; margin-left: 5px; margin-right: 5px;" type="button" class="btn btn-success"
+            (click)="onDeleteConfirm()">{{
+                "TECHNICAL_INFORMATION.Yes" | translate}}</button>
+    </div>
+
+</ng-template>

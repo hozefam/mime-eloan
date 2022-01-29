@@ -1,0 +1,474 @@
+
+<div class="col-md-12">
+    <!--Start bread crumbs-->
+    <div class="container bread_crumbs">
+          <div class="row">
+            <div class="col">
+              <a href="#"><span>{{ "DASHBOARD.Home" | translate}}</span></a>
+              <span><img src="assets/images/arrow-l.png" alt="img"></span>
+              <span>{{ "DASHBOARD.ApplicationDetails" | translate}}</span>
+            </div>
+          </div>
+        </div>
+        <!--End bread crumbs-->
+        
+        <!--Start Title-->
+        <div class="container-fulid margwid">
+          <div class="row title_01">
+              <div class="col">
+              <img src="assets/images/pen.png" alt="img">
+              {{ "DASHBOARD.ApplicationDetails" | translate}}
+              </div>
+          </div>
+        </div>  
+        <!--End Title-->  
+
+  <nb-card accent="success">
+
+      <!-- <nb-card-header>Create Loan Application</nb-card-header> -->
+
+      <nb-card-body>
+
+          <!-- <h5 *ngIf="requestId != 0" style="margin-bottom: 20px;">Request ID - {{requestId}}</h5> -->
+
+          <!-- <h5 *ngIf="inputs.ProjId != 0" style="margin-bottom: 20px;">Project ID - {{inputs.ProjId}}</h5> -->
+
+          <div class="col-xxxl-12 col-xxl-12 col-md-12" style="text-align: center; margin-bottom: 20px;">
+
+              <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" 
+                  (click)="onClickLoanApplicationTab(0)">
+                  <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                          {{ 'COMMON.ProjectInformation' | translate }}
+                  </div>
+                  <div style="width: 80%;
+                              margin: 0 auto;
+                              margin-bottom: 10px;">
+                      <nb-progress-bar [value]="GenInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                  </div>
+                  <!--<div style="padding-bottom: 20px; text-align: center;">
+                      <span aria-hidden="true" class="ion-information"></span>
+                  </div>--> 
+              </div>
+
+              <div  class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" 
+                  (click)="onClickLoanApplicationTab(1)">
+                  <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                          {{ 'COMMON.MarketingInformation' | translate }}
+                  </div>
+                  <div style="width: 80%;
+                              margin: 0 auto;
+                              margin-bottom: 10px;">
+                      <nb-progress-bar [value]="MarkInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                  </div>
+              </div>
+
+              <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" 
+                  (click)="onClickLoanApplicationTab(2)">
+                  <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                          {{ 'COMMON.TechnicalInformation' | translate }}
+                  </div>
+                  <div style="width: 80%;
+                              margin: 0 auto;
+                              margin-bottom: 10px;">
+                      <nb-progress-bar [value]="TechInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                  </div>
+    
+              </div>
+
+              <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" 
+                  (click)="onClickLoanApplicationTab(3)">
+                  <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                          {{ 'COMMON.FinancialInformation' | translate }}
+                  </div>
+                  <div style="width: 80%;
+                              margin: 0 auto;
+                              margin-bottom: 10px;">
+                      <nb-progress-bar [value]="FinInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                  </div>
+                 
+              </div>
+
+              <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select" 
+              (click)="onClickLoanApplicationTab(5)">
+              <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                      {{ "DASHBOARD.LandRequirments" | translate}}
+              </div>
+              <div style="width: 80%;
+                          margin: 0 auto;
+                          margin-bottom: 10px;">
+                  <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+
+              </div>
+          
+          </div>
+          <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" 
+          (click)="onClickLoanApplicationTab(6)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ "DASHBOARD.Survey" | translate}} 
+          </div>
+          <div style="width: 80%;
+                      margin: 0 auto;
+                      margin-bottom: 10px;">
+               <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar> 
+          </div>
+
+      </div>
+              <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" 
+                  (click)="onClickLoanApplicationTab(4)">
+                  <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                          {{ 'COMMON.Checklist' | translate }}
+                  </div>
+                  <div style="width: 80%;
+                              margin: 0 auto;
+                              margin-bottom: 10px;">
+                      <nb-progress-bar [value]="ChecklistPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                  </div>
+                 
+              </div>
+
+          </div>
+
+          <nb-card accent="success" style="border-top-width:2px !important; border-radius: 0; border-color: #8dd27a">
+
+              <nb-card-header style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;">{{ "DASHBOARD.LandRequirments" | translate}} </nb-card-header>
+
+              <nb-card-body style="text-align: center;">
+
+                  <div style="margin-bottom: 20px; text-align: right;">
+
+                      <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === false" class="more"
+                          (click)="expandAllPanels(0);">{{'COMMON.ExpandAllPanels' | translate }}</button>
+                      <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === true" class="more"
+                          (click)="expandAllPanels(1);">{{ 'COMMON.CollapseAllPanels' | translate }}</button>
+                      <!-- <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === false" class="more"
+                          (click)="expandAllPanels(0);">Expand All Panels</button>
+                      <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === true" class="more"
+                          (click)="expandAllPanels(1);">Collapse All Panels</button> -->
+
+                  </div>
+
+                  <mat-accordion multi="true">
+
+                      <!-- <mat-expansion-panel [expanded]="panelStep === 1 || allPanelsExpanded === true" (opened)="setPanelStep(1)"> -->
+                      <mat-expansion-panel [expanded]="true">
+
+                          <mat-expansion-panel-header>
+
+                              <mat-panel-title>
+                                {{ "DASHBOARD.LandRequirments" | translate}}
+                              </mat-panel-title>
+
+                          </mat-expansion-panel-header>
+                          <form>
+
+                              <!-- <div class="form-group row">
+
+                                  <label for="model.Position" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                          class="required-pf">* </span>{{ "RCJ_Information.Position" | translate}} </label>
+                                  <div class="col-sm-3 input-group">
+                                      <input [(ngModel)]="model.Position" maxlength="100" type="text" class="form-control" name="Position"
+                                          />
+                                  </div>
+                                  <label for="model.InvesterTelephone" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                      class="required-pf">* </span>{{ "RCJ_Information.Invester_Telephone" | translate}} </label>
+                              <div class="col-sm-3 input-group">
+                                  <input [(ngModel)]="model.InvesterTelephone" maxlength="50"  type="number" class="form-control" name="InvesterTelephone"
+                                      />
+                              </div>
+                 
+                              </div>
+
+                              <div class="form-group row">
+
+                                  <label for="model.Ext" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                          class="required-pf">* </span>{{ "RCJ_Information.Invester_Ext" | translate}}</label>
+                                  <div class="col-sm-3 input-group">
+                                      <input [(ngModel)]="model.Ext" maxlength="10"  type="number" class="form-control" name="Ext"
+                                         />
+                                  </div>
+                                  <label for="model.Mobile" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                      class="required-pf">* </span>{{ "RCJ_Information.Invester_Mobile" | translate}}</label>
+                              <div class="col-sm-3 input-group">
+                                  <input [(ngModel)]="model.Mobile" maxlength="20"  type="number" class="form-control" name="Mobile"
+                                     />
+                              </div>
+                 
+                              </div> -->
+                      
+
+                              <div class="form-group row">
+
+                                  <!-- <label for="model.InvesterEmail" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                          class="required-pf">* </span>{{ "RCJ_Information.Invester_Email" | translate}}</label>
+                                  <div class="col-sm-3 input-group">
+                                      <input [(ngModel)]="model.InvesterEmail" maxlength="200" type="text" class="form-control" name="InvesterEmail"
+                                         />
+                                  </div> -->
+
+                                  <label for="model.Location" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                      class="required-pf">* </span>{{ "RCJ_Information.Location" | translate}}</label>
+                              <div class="col-sm-3 input-group">
+                                      <select [disabled]="add_edit_delete_show" required [(ngModel)]="model.Location" name="LocationItem" class="form-control" [ngModelOptions]="{standalone: true}"   placeholder="Select Location ">
+                                              <option *ngFor="let LocationItem of Location" [value]="LocationItem.code">{{LocationItem.name | translate}}</option>
+                                          </select>
+                              </div>
+
+                              <label for="model.ProjectClassification" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                  class="required-pf">* </span>{{ "RCJ_Information.Project_Classification" | translate}}</label>
+                          <div class="col-sm-3 input-group">
+                                  <select [disabled]="add_edit_delete_show" required [(ngModel)]="model.ProjectClassification" name="ProjectClassificationItem" class="form-control" [ngModelOptions]="{standalone: true}" placeholder="Select Classification">
+                                          <option *ngFor="let ProjectClassificationItem of ProjectClassificationAll" [value]="ProjectClassificationItem.code">{{ProjectClassificationItem.name | translate}}</option>
+                                      </select>
+                          
+                          </div>
+                              </div>
+                           
+                              <div class="form-group row">
+
+                                  <label for="model.TotalAreaRequired" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                      class="required-pf">* </span>{{ "RCJ_Information.Total_Area_Required" | translate}}</label>
+                              <div class="col-sm-3 input-group">
+                                  <input [disabled]="add_edit_delete_show" [(ngModel)]="model.TotalAreaRequired" maxlength="50"  type="number" class="form-control" name="TotalAreaRequired"
+                                     />
+                                     <div class="input-group-append"> <span _ngcontent-c12="" class="input-group-text">{{ "RCJ_Information.M2" | translate}} </span></div>
+
+                              </div>
+                              <label for="model.Power" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                  class="required-pf">* </span>{{ "RCJ_Information.Power" | translate}} </label>
+                          <div class="col-sm-3 input-group">
+                              <input [disabled]="add_edit_delete_show" [(ngModel)]="model.Power" maxlength="50"  type="number" class="form-control col-sm-11" name="Power"
+                                />
+                                <div class="input-group-append"> <span _ngcontent-c12="" class="input-group-text">{{ "RCJ_Information.KVA" | translate}} </span></div>
+                          </div>
+                              </div>
+                            
+                                  <div class="form-group row">
+
+
+
+                                          <label for="model.PotableWater" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                              class="required-pf">* </span>{{ "RCJ_Information.Potable_Water" | translate}} </label>
+                                      <div class="col-sm-3 input-group">
+                                          <input [disabled]="add_edit_delete_show" [(ngModel)]="model.PotableWater" maxlength="50"  type="number" class="form-control" name="PotableWater"
+                                              />
+                                              <div class="input-group-append"> <span _ngcontent-c12="" class="input-group-text">{{ "RCJ_Information.M3PerDay" | translate}} </span></div>
+                                      </div>
+                                      <label for="model.SanitaryWasteWater" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                          class="required-pf">* </span>{{ "RCJ_Information.Sanitary_Waste_Water" | translate}}</label>
+                                  <div class="col-sm-3 input-group">
+                                      <input [disabled]="add_edit_delete_show" [(ngModel)]="model.SanitaryWasteWater" maxlength="50"  type="number" class="form-control" name="SanitaryWasteWater"
+                                       />
+                                       <div class="input-group-append"> <span _ngcontent-c12="" class="input-group-text">{{ "RCJ_Information.M3PerDay" | translate}} </span></div>
+
+                                  </div>
+
+                                      </div>
+                                     
+                                          <div class="form-group row">
+
+                                                 
+                                                  <label for="model.MunicipalWaste" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                                      class="required-pf">* </span>{{ "RCJ_Information.Municipal_Waste" | translate}}</label>
+                                              <div class="col-sm-3 input-group">
+                                                  <input [disabled]="add_edit_delete_show" [(ngModel)]="model.MunicipalWaste" maxlength="50"  type="number" class="form-control" name="MunicipalWaste"
+                                                    />
+                                                    <div class="input-group-append"> <span _ngcontent-c12="" class="input-group-text">{{ "RCJ_Information.TPY" | translate}} </span></div>
+
+                                              </div>
+                                              <label for="model.HazardousWaste" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                                  class="required-pf">* </span>{{ "RCJ_Information.Hazardous_Waste" | translate}}</label>
+                                          <div class="col-sm-3 input-group">
+                                              <input [disabled]="add_edit_delete_show" [(ngModel)]="model.HazardousWaste" maxlength="50"  type="number" class="form-control" name="HazardousWaste"
+                                              />
+                                              <div class="input-group-append"> <span _ngcontent-c12="" class="input-group-text">{{ "RCJ_Information.TPY" | translate}} </span></div>
+
+                                          </div>
+                                              </div>
+                                             
+                                                  <div class="form-group row">
+
+                                                        
+                      
+                                                          <label for="model.IndustrialNonHazWaste" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                                              class="required-pf">* </span>{{ "RCJ_Information.Industrial_NonHazWaste" | translate}}</label>
+                                                      <div class="col-sm-3 input-group">
+                                                          <input [disabled]="add_edit_delete_show" [(ngModel)]="model.IndustrialNonHazWaste" maxlength="50"   type="number" class="form-control" name="IndustrialNonHazWaste"
+                                                              />
+                                                              <div class="input-group-append"> <span _ngcontent-c12="" class="input-group-text">{{ "RCJ_Information.TPY" | translate}} </span></div>
+                                                      </div>
+
+                                                      
+                                                      </div>
+
+                                                      <div class="form-group row">
+                                                          
+                                                          <label for="ConceptualSitePlan" class="col-sm-2 col-form-label" style="text-align: left"><span class="required-pf">*
+                                                          </span> {{ "COMMON.Siteplan" | translate}} </label>
+                                                          
+                                                          <div class="col-sm-3 input-group">
+                                                          
+                                                              <input [disabled]="add_edit_delete_show" [(ngModel)]="model.ConceptualSitePlan" type="file" required class="form-control"
+                                                                  name="ConceptualSitePlan"
+                                                                  (change)="uploadFile($event , 'ConceptualSitePlan')">
+                                                      </div>
+                                                      </div>
+                                                      <div class="form-group row">
+                                                          <label class="col-sm-10 col-form-label-2"
+                                                          style="text-align: left">{{"RCJ_Information.Product_Services" | translate}}</label>
+                                                          <table class="table table-bordered table-striped text-center">
+                                                                  <thead>
+                                                                      <tr>
+                                                                          <th>{{ "RCJ_Information.Description" | translate }}
+                                                                          </th>
+                                                                          <th>{{ "RCJ_Information.MartketingDestination" | translate }}</th>
+                                                                          <th>{{ "RCJ_Information.Unit" | translate }}</th>
+                                                                          <th>{{ "RCY_Information.Quantity" | translate }}</th>
+
+                                                                      </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                      <tr *ngFor="let item of product_services_object; let i = index">
+                                                                          <td>
+                                                                              <input [disabled]="add_edit_delete_show" class="form-control col-md-10" type="text" name="{{'product_services_description_object-'+ i}}"  maxlength="50" [(ngModel)]="item.Description"/>
+                                                                          </td>
+
+                                                                          <td>
+                                                                                  <select [disabled]="add_edit_delete_show"  *ngIf="commonService.defaultLanguage == 'ar'" required [(ngModel)]="item.MarketDestination" name="{{'product_services_marketdestination_object-'+ i}}" class="form-control col-md-10" [ngModelOptions]="{standalone: true}"   placeholder="Select Country ">
+                                                                                          <option [disabled]="add_edit_delete_show" *ngFor="let country of countries" [value]="country.code">{{country.value_ar}}</option>
+                                                                                      </select>
+                                                                                      <select [disabled]="add_edit_delete_show"  *ngIf="commonService.defaultLanguage == 'en'" required [(ngModel)]="item.MarketDestination" name="{{'product_services_marketdestination_object-'+ i}}" class="form-control col-md-10" [ngModelOptions]="{standalone: true}"   placeholder="Select Country ">
+                                                                                        <option [disabled]="add_edit_delete_show" *ngFor="let country of countries" [value]="country.code">{{country.value_en}}</option>
+                                                                                    </select>
+                                                                              <!-- <input type="text" name="{{'product_services_marketdestination_object-'+ i}}" maxlength="50" [(ngModel)]="item.MarketDestination"/> -->
+                                                                      </td>
+                                                                      <td>
+                                                                              <!-- <input [disabled]="add_edit_delete_show" onkeydown="return false;" [(ngModel)]="item.Unit" 
+                                                                              class="form-control col-md-10" #greg_date="bsDatepicker" bsDatepicker placement="right" name="{{'product_services_year_object-'+ i}}"
+                                                                              [bsConfig]="{ dateInputFormat: 'YYYY', showWeekNumbers:false, minMode: 'year' }" placeholder="YYYY"> -->
+                                                                           <input type="number" class="form-control col-md-10" name="{{'product_services_quantity_object-'+ i}}" maxlength="50" [(ngModel)]="item.Unit"/> 
+                                                                  </td>
+                                                                  <td>
+                                                                    <input [disabled]="add_edit_delete_show" class="form-control col-md-10" type="text" name="{{'product_services_quantity_object-'+ i}}"  maxlength="50" [(ngModel)]="item.Quantity"/>
+                                                                </td>
+                                                                      </tr>
+                                                                  </tbody>
+                                                                 
+                                                              </table>
+                                                              <button [disabled]="add_edit_delete_show" class="more" (click)="addRowProduct(product_services_object)">{{ "RCJ_Information.Add" | translate }}</button>
+                      
+                                                  
+                                                  </div>
+                                                  <div class="form-group row">
+                                                          <label class="col-sm-10 col-form-label-2"
+                                                          style="text-align: left">{{"RCJ_Information.Materials" | translate}}</label>
+                                                        
+                                                      <table class="table table-bordered table-striped text-center">
+                                                              <thead>
+                                                                  <tr>
+                                                                      <th>{{ "RCJ_Information.RawMaterial" | translate }}
+                                                                      </th>
+                                                                      <th>{{ "RCJ_Information.Source" | translate }}</th>
+                                                                      <th>{{ "RCJ_Information.Unit" | translate }}</th>
+                                                                      <th>{{ "RCY_Information.Quantity" | translate }}</th>
+
+                                                                  </tr>
+                                                              </thead>
+                                                              <tbody>
+                                                                  <tr *ngFor="let item of material_object; let i = index">
+                                                                      <td>
+                                                                          <input [disabled]="add_edit_delete_show" class="form-control col-md-10" type="text" name="{{'material_raw_object-'+ i}}"  maxlength="50" [(ngModel)]="item.RawMaterial"/>
+                                                                      </td>
+
+                                                                      <td>
+                                                                              <select [disabled]="add_edit_delete_show" *ngIf="commonService.defaultLanguage == 'ar'" required [(ngModel)]="item.Source" name="{{'material_source_object-'+ i}}" class="form-control col-md-10" [ngModelOptions]="{standalone: true}"   placeholder="Select Country ">
+                                                                                      <option *ngFor="let country of countries" [value]="country.code">{{country.value_ar}}</option>
+                                                                                  </select>
+                                                                                  <select [disabled]="add_edit_delete_show" *ngIf="commonService.defaultLanguage == 'en'" required [(ngModel)]="item.Source" name="{{'material_source_object-'+ i}}" class="form-control col-md-10" [ngModelOptions]="{standalone: true}"   placeholder="Select Country ">
+                                                                                    <option *ngFor="let country of countries" [value]="country.code">{{country.value_en}}</option>
+                                                                                </select>
+                                                                          <!-- <input type="text" name="{{'material_source_object-'+ i}}" maxlength="50" [(ngModel)]="item.Source"/> -->
+                                                                  </td>
+                                                                  <td>
+                                                                         <!-- <input [disabled]="add_edit_delete_show" onkeydown="return false;" [(ngModel)]="item.Unit" 
+                                                                          class="form-control col-md-10" #greg_date="bsDatepicker" bsDatepicker placement="right" name="{{'material_unit_object-'+ i}}"
+                                                                          [bsConfig]="{ dateInputFormat: 'YYYY', showWeekNumbers:false, minMode: 'year' }" placeholder="YYYY"> -->
+                                                                       <input type="number" class="form-control col-md-10" name="{{'material_unit_object-'+ i}}" maxlength="50" [(ngModel)]="item.Unit"/> 
+                                                              </td>
+                                                              <td>
+                                                                <input [disabled]="add_edit_delete_show" class="form-control col-md-10" type="text" name="{{'material_quantity_object-'+ i}}"  maxlength="50" [(ngModel)]="item.Quantity"/>
+                                                            </td>
+                                                                  </tr>
+                                                              </tbody>
+                                                             
+                                                          </table>
+                                                          <button [disabled]="add_edit_delete_show" class="more" (click)="addRowMaterial(material_object)">{{ "RCJ_Information.Add" | translate }}</button>
+                  
+                                              
+                                              </div>
+              <!--
+                                     
+
+
+
+
+
+
+
+
+
+
+
+
+
+Country
+MaterialLaf
+Source
+
+                                 -->
+
+                          </form>
+
+                          <mat-action-row>
+                                  <!-- <button type="button" style="cursor: pointer;" class="more" (click)="onSave();">حفظ</button> -->
+
+                              <button type="button" style="margin-right: 10px; cursor: pointer;" *ngIf="allPanelsExpanded === false"
+                                  class="more" (click)="nextPanelStep();">{{'COMMON.Next' | translate }}</button>
+                              <!-- <button type="button" style="margin-right: 10px; cursor: pointer;" *ngIf="allPanelsExpanded === false"
+                                  class="btn btn-success" (click)="nextPanelStep();">Next</button> -->
+                          </mat-action-row>
+
+                      </mat-expansion-panel>
+
+                      <!-- <mat-expansion-panel [expanded]="panelStep === 2 || allPanelsExpanded === true" (opened)="setPanelStep(2)">
+
+                          <mat-expansion-panel-header>
+
+                              <mat-panel-title>
+                                  Project Profile
+                              </mat-panel-title>
+
+                          </mat-expansion-panel-header>
+                          </mat-expansion-panel> -->
+
+                 
+
+
+                  </mat-accordion>
+
+                  <div *ngIf="!add_edit_delete_show" style="margin-top: 20px;">
+
+                      <button type="button" style="cursor: pointer;" class="more" (click)="onSave();">{{ 'COMMON.Save' | translate }}</button>
+
+                  </div>
+
+              </nb-card-body>
+
+          </nb-card>
+
+      </nb-card-body>
+
+  </nb-card>
+
+
+
+</div>

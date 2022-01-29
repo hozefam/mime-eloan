@@ -1,0 +1,871 @@
+.progressive-2 ,.step2,.step3,.step4,.step5,a.register,a.cancel-reg,.grey-header{
+    display: none;
+}
+#first-section{
+    background:#fff;
+}
+.nav-container{
+    box-shadow: 0px 3px 10px #cecece;
+}
+a.navbar-brand.order-md-last {
+    color: #047b65;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #666;
+    text-shadow: none;
+}
+span.welcome-sign-title {
+    color: #222;
+    font-size: 25px;
+    text-align: center;
+    display: block;
+}
+span.welcome-sign-desc {
+    display: block;
+    color: #626262;
+    text-align: center;
+    font-family:"DroidKufi" !important;
+}
+.pro-icon{
+    background-size: contain;
+    background-position: bottom;
+    background-position-x: left;
+    background-repeat: no-repeat;
+    display: block;
+    height: 110px;
+    position: absolute;
+    width: 160px;
+    bottom: 0;
+    left: 25px;
+    /* transition: all 0.3s; */
+
+}
+.profile-1,.profile-2,.profile-3 {    
+    
+    box-shadow: 0px 0px 10px #cecece;
+    border-radius: 5px;
+    height: 150px;
+    padding: 10px;
+    padding-top: 23px;
+    transition: all 0.3s !important;
+    cursor: pointer;
+}
+
+.welcome-content {
+    width: 900px;
+}
+
+span.profile-title {
+    color: #222;
+    font-size: 17px;
+    display: block;
+    width: 54%;
+    margin-left: auto;
+    /* transition: all 0.3s; */
+    font-family: DroidKufi-bold;
+}
+
+ul.navbar-sign-nav li.nav-item a {
+    text-shadow: none;
+    color: #000;
+}
+
+/*ul.navbar-nav.mr-auto.sign-nav {
+    margin-left: auto;
+    direction: ltr;
+}*/
+.profile-1 .pro-icon{
+    background-image:url('../img/sidf2.png');
+}
+.profile-1:hover .pro-icon{
+    background-image:url('../img/sidfw.png');
+}
+.profile-2 .pro-icon{
+    background-image:url('../img/sidf1.png');
+}
+.profile-2:hover .pro-icon{
+    background-image:url('../img/sidfw1.png');
+}
+.profile-3 .pro-icon{
+    background-image:url('../img/sidf.png');
+}
+.profile-3:hover .pro-icon{
+    background-image:url('../img/sidfw2.png');
+}
+
+a.nav-link.en-link {
+    border: 1px #96db5e solid !important;
+    color: #96db5e !important;
+    margin-right:0;
+    margin-top:13px;
+}
+/*ul.navbar-nav.mr-auto.sign-nav li{
+    width: auto;
+}*/
+a.navbar-brand.order-md-last{
+    border-color:#cecece;
+}
+.profile-1:hover, .profile-2:hover, .profile-3:hover {
+    background: rgb(13,138,116);
+    background: -moz-linear-gradient(45deg, rgba(13,138,116,1) 0%, rgba(118,205,80,1) 100%);
+    background: -webkit-linear-gradient(45deg, rgba(13,138,116,1) 0%,rgba(118,205,80,1) 100%);
+    background: linear-gradient(45deg, rgba(13,138,116,1) 0%,rgba(118,205,80,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d8a74', endColorstr='#76cd50',GradientType=1 );
+}
+.profile-3:hover span.profile-title,.profile-1:hover span.profile-title,.profile-2:hover span.profile-title{
+    color:#fff;
+}
+
+/* Form Progress */
+.progress {
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+    height: 65px;
+    background: transparent;
+    margin-top: 35px;
+  }
+  .progress .circle,
+  .progress .bar {
+    display: inline-block;
+    background: #d5d5d5;
+    width: 10px;
+    height: 10px;
+    border-radius: 40px;
+    transition: all 0.3s;
+    /* border: 1px solid #d5d5da; */
+  }
+  .progress .bar {
+    position: relative;
+    width: 17.7%;
+    height: 2px;
+    top: 13.5px;
+    margin-left: -15px;
+    margin-right: -15px;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
+  .progress .circle .label {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 32px;
+    margin-top: 3px;
+    color: #b5b5ba;
+    font-size: 17px;
+  }
+  .progress .circle .title {
+    color: #b5b5ba;
+    font-size: 13px;
+    line-height: 30px;
+    margin-left: -5px;
+  }
+  
+  /* Done / Active */
+  
+  .progress .bar.active {
+    background: linear-gradient(to right, #EEE 40%, #FFF 60%);
+  }
+  .progress .circle.done .label {
+    color: #FFF;
+    background: #8bc435;
+    box-shadow: inset 0 0 2px rgba(0,0,0,.2);
+  }
+  .progress .circle.done .title {
+    color: #444;
+  }
+  .progress .circle.active .label {
+    color: #FFF;
+    background: #0c95be;
+    box-shadow: inset 0 0 2px rgba(0,0,0,.2);
+  }
+  .progress .circle.active .title {
+    color: #0c95be;
+  }
+  .grey-header {
+    background: #f2f2f2;
+    padding: 30px;
+
+}
+.progress .circle {
+    width: 30px;
+    height: 30px;
+    top: 0;
+    background-color: transparent;
+    z-index: 1;
+}
+.circle.active {
+    background-color: #84d749;
+}
+.circle:not(.done):before{
+    content:'';
+    display:block;
+    background-color:#d5d5d5;
+    width:20%;
+    height:20%;
+    border-radius:50%;
+    position:relative;
+    top:40%;
+    left:40%;
+}
+.circle.active:before{
+    background-color:#fff;
+}
+
+
+
+.circle.active,.circle.done {
+    height: 30px;
+    width: 30px;
+    top: 0;
+}
+
+.circle {
+    top: 9.5px;
+    position: relative;
+}
+.circle.done:before {
+    content:'';
+    position:relative;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    display:block;
+    background-image:url('../img/tick.png');
+    background-size: 14px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+span#account-type {
+    color: #28998b;
+}
+.pen-edit{
+    display: inline-block;
+    width: 30px;
+    height: 22px;
+    background: url(../img/edit.png);
+    background-size: contain;
+    top: 6px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: right;
+    cursor: pointer;
+}
+
+.progressive-2 .container.welcome-content {
+    width: 100%;
+    margin-top: 10px;
+    padding: 0;
+}
+.progressive-2 .welcome-content label {
+    color: #000;
+}
+.progressive-2 .welcome-content input{
+    background-color:#fff;
+    border:1px #cecece solid;
+    border-radius:3px
+}
+span.form-instructions {
+    color: #7d7d7e;
+}
+.progressive-2 .welcome-content .form-control:focus {
+    box-shadow: 0px 0px 10px #d2d2d2;
+}
+.next-prog {
+    color: #c1c1c1;
+    border: 1px solid #c1c1c1;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 3px;
+    background-image: url('../img/back.png');
+    background-size: 14px;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-position-x: 8px;
+    margin-top: 3vh;
+    cursor: pointer;
+    transition: all 0.3s;
+    float: left;
+}
+span.asteris {
+    color: #28998b;
+    font-weight: bold;
+}
+
+input {
+    text-align: right;
+}
+
+
+.dropdown {
+    text-align: left;
+    color: #343C3F;
+    border: 1px solid #cecece;
+    border-radius: 3px;
+  }
+  .dropdown.closed .dropdown-menu {
+    margin-top: 0px;
+    padding: 0;
+    border: none;
+  }
+  .dropdown.closed .dropdown-menu li {
+    height: 0px;
+  }
+  .dropdown.closed .title {
+    border-bottom: none;
+    text-align: right;
+  }
+  .dropdown.closed .title:after {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  .dropdown .title {
+    width: 100%;
+    position: relative;
+    height: 47px;
+    padding: 12px;
+    cursor: pointer;
+    text-align: right;
+  }
+  .dropdown .title:after {
+    display: block;
+    content: "";
+    position: relative;
+    left: 6px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    height: 30px;
+    top: -27px;
+    width: 17px;
+    background: url('../img/down-arrow.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .dropdown .dropdown-menu {
+    position: relative;
+    overflow: hidden;
+    max-height: 200px;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+    -webkit-box-sizing: "border-box";
+    -moz-box-sizing: "border-box";
+    box-sizing: "border-box";
+    display: block;
+    width: 100%;
+  }
+  .dropdown ul {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: right;
+    padding: 0;
+  }
+  .dropdown ul li {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #D9E1E4;
+    padding: 0 12px;
+    vertical-align: top;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+    -webkit-transition: margin-top 0.5s, height 0.5s;
+    -moz-transition: margin-top 0.5s, height 0.5s;
+  }
+  .dropdown ul li:hover {
+    background-color: #D9E1E4;
+    color: #343C3F;
+  }
+  input[type=date] {
+    background-image: url('../img/small-calendar.png');
+    background-size: 21px;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-position-x: 17px;
+}
+.next-prog:hover {
+    color: #299b8d;
+    border: 1px solid #299b8d;
+    background-image: url(../img/left-arrow-green.png);
+}
+.form-group.subinput-cc {
+    width: 77%;
+    display: inline-block;
+    margin-right: 3%;
+    font-family: "DroidKufi" !important;
+}
+
+.form-group.subinput-pn {
+    width: 18%;
+    display: inline-block;
+    font-family: "DroidKufi" !important;
+}
+.prev-prog {
+    color: #2c9a8c;
+    float: right;
+    width: 200px;
+    text-align: right;
+    padding: 10px;
+    border-radius: 3px;
+    background-image: url(../img/right-arrow-green.png);
+    background-size: 15px;
+    background-position: right;
+    background-repeat: no-repeat;
+    margin-top: 3vh;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding-right: 30px;
+}
+span.remarque {
+    display: block;
+    background-color: #fffad2;
+    color: #616559;
+    font-size: 12px;
+    padding: 7px;
+    padding-right: 34px;
+    background-image: url('../img/warning.png');
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    margin-top:10px;
+    font-family:"DroidKufi" !important;
+}
+.form-group.subinput-half {
+    width: 47.2%;
+    display: inline-block;
+    margin: 0;
+    font-family: "DroidKufi" !important;
+}
+
+.form-group.subinput-half:nth-child(1) {
+    margin-right: 4%;
+    font-family: "DroidKufi" !important;
+}
+.step4 .col-md-6 ,.step5 .col-md-6 {
+    margin-right: 0;
+    margin-left: auto;
+}
+span.send-again {
+    color: #087;
+    cursor: pointer;
+}
+.circle:after {
+    content: "hellohello";
+    display: block;
+    position: absolute;
+    top: 40px;
+    color: #000;
+    text-align: center;
+    width: max-content;
+    font-size:16px;
+    transition: all 0.3s;
+}
+.circle.active:after,.circle.done:after{
+  top: 40px;
+  color:#28998b;
+}
+.bar5:after{
+    content: "معلومات عن الرخصة";
+    left:-160%
+}
+.bar4:after{
+    content: "بيانات المستخدم";
+    /* left:-460% */
+}
+.bar3:after{
+    content: "العنوان الوطني";
+    /* left:-460% */
+}
+.bar2:after{
+    content: "التحقق";
+    /* left:-180% */
+}
+.bar1:after{
+    content: "كلمة السر";
+    /* left:-350% */
+}
+
+.step-container {
+    border-bottom: 1px solid #cecece;
+    min-height: 40vh;
+    padding: 0;
+}
+a.register,a.cancel-reg {
+    /* display: inline-block; */
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    margin-top: 3vh;
+    border-radius:2px;
+    color:#fff;
+    background: rgb(13,138,116);
+    background: -moz-linear-gradient(45deg, rgba(13,138,116,1) 0%, rgba(118,205,80,1) 100%);
+    background: -webkit-linear-gradient(45deg, rgba(13,138,116,1) 0%,rgba(118,205,80,1) 100%);
+    background: linear-gradient(45deg, rgba(13,138,116,1) 0%,rgba(118,205,80,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d8a74', endColorstr='#76cd50',GradientType=1 );
+    box-shadow:0px 0px 10px #cecece;
+    float:left;
+    text-decoration: none;
+}
+a.cancel-reg{
+    background:#fff;
+    color:#087;
+    border:1px solid #087;
+    margin-left:15px
+}
+.bar4.active:after, .bar4.done:after {
+    left: -150%;
+}
+.bar3.active:after, .bar3.done:after {
+    left: -150%;
+}
+.bar2.active:after, .bar2.done:after {
+    left: -35%;
+}
+.bar1.active:after, .bar1.done:after {
+    left: -65%;
+}
+.bar4:after, .bar4:after {
+    left: -150%;
+}
+.bar3:after, .bar3:after {
+    left: -150%;
+}
+.bar2:after, .bar2:after {
+    left: -35%;
+}
+.bar1:after, .bar1:after {
+    left: -65%;
+}
+@media(max-width:450px){
+    
+    .welcome-content {
+        width:400px;
+        margin-top:4vh
+    }
+    .profile-1, .profile-2, .profile-3{
+        margin-bottom:20px
+    }
+    a.navbar-brand.order-md-last {
+        padding:0
+    }
+   /* ul.navbar-nav.mr-auto:not(.sign-nav){
+        display:none;
+    }*/
+    .navbar-collapse:before{
+        height:auto;
+    }
+    div#navbarSupportedContent{
+        /*padding-top:5px;
+        position:absolute;
+        top:80px;
+        width:100%;
+        box-shadow:0px 3px 3px #cecece;*/
+    }
+    .nav-container>.container{
+        padding:0;
+    }
+    .circle:after{
+        font-size:10px;
+        top:30px;
+        max-width:50px;
+    }
+    .circle.active:after, .circle.done:after{
+        font-size:10px;
+        top:30px;
+        max-width:50px;
+        left: -50%;
+    }
+    .bar2.active:after, .bar2.done:after {
+        left: -35%;
+    }
+    .bar5:after{
+        left:-40%;
+    }
+    span.form-instructions{
+        padding-right:15px
+    }
+    .step-container{
+        height:auto;
+        border-bottom:none;
+    }
+    .next-prog,.prev-prog{
+        margin:auto;
+        position: relative;
+        float: unset;
+        width:50%;
+        text-align:center;
+    }
+    .prev-prog{
+        background:unset;
+        padding:10px;
+    }
+    .bar4:after{
+        left:-45%
+    }
+    .bar3:after{
+        left:-45%
+    }
+    .bar2:after{
+        left:-15%
+    }
+    .circle.active, .circle.done{
+        width:25px;
+        height:25px;
+        border-radius:12px;
+    }
+    .progress .bar{
+        width:17.7%;
+    }
+    footer.form-footer {
+        position: relative;
+        height: 180px;
+    }
+    
+    footer.form-footer .col-md-3, footer.form-footer .col-md-9 {
+        text-align: center;
+    }
+    
+    footer.form-footer .col-md-9 {
+        line-height: 24px;
+    }
+    .container.progressive-1 {
+        height: auto !important;
+    }
+    .pro-icon {
+        bottom: 20px;
+    }
+    .container.progressive-1 {
+        height: auto;
+    }
+    
+    .pro-icon {
+        bottom: 20px;
+    }
+    a.register,a.cancel-reg {
+        display: block !important;
+        margin: auto;
+        position: relative;
+        width: 50%;
+        float: unset;
+        margin-bottom: 15px;
+    }
+    
+    .regbox.container {
+        position: relative;
+    }
+    
+    .regbox.container {
+        height: auto;
+    }
+}
+
+
+/* DATE PICKER */
+
+.date-picker {
+}
+
+.date-picker {
+  width: 100%;
+  height: auto;
+  max-height: 50px;
+  background: white;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s 0s ease-in-out;
+}
+.date-picker .input {
+  width: 100%;
+  height: 50px;
+  font-size: 0;
+  cursor: pointer;
+  border: 1px solid #cecece;
+  border-radius: 3px;
+}
+.date-picker .input .result, .date-picker .input button {
+  display: inline-block;
+  vertical-align: top;
+}
+.date-picker .input .result {
+  width: calc(100% - 50px);
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  padding: 0 10px;
+  color: grey;
+  box-sizing: border-box;
+}
+.date-picker .input button {
+  width: 50px;
+  height: 100%;
+  background-color: #ffffff;
+  color: white;
+  line-height: 50px;
+  border: 0;
+  font-size: 18px;
+  padding: 0;
+}
+.date-picker .input button:hover {
+  background-color: #68768A;
+}
+.date-picker .input button:focus {
+  outline: 0;
+}
+.date-picker .calendar {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 0px;
+  overflow: hidden;
+  font-family: blogger;
+  box-shadow: 0px 0px 10px #cecece;
+}
+.date-picker .ui-datepicker-inline {
+  position: relative;
+  width: 100%;
+}
+.date-picker .ui-datepicker-header {
+  height: 45px;
+  line-height: 50px;
+  background: #f2f2f2;
+  color: #03186e;
+  margin-bottom: 10px;
+  padding: 0 30px;
+}
+.date-picker .ui-datepicker-prev, .date-picker .ui-datepicker-next {
+  width: 20px;
+  height: 20px;
+  text-indent: 9999px;
+  border: 2px solid #102770;
+  border-radius: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  margin-top: 12px;
+  transition: all 0.3s;
+}
+.date-picker .ui-datepicker-prev {
+  float: left;
+  margin-left: 12px;
+}
+.date-picker .ui-datepicker-prev:after {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  margin: -44px 0px 0px 6px;
+}
+.date-picker .ui-datepicker-next {
+  float: right;
+  margin-right: 12px;
+}
+.date-picker .ui-datepicker-next:after {
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+  margin: -45px 0px 0px 5px;
+}
+.date-picker .ui-datepicker-prev:after, .date-picker .ui-datepicker-next:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-left: 2px solid #041f6a;
+  border-bottom: 2px solid #041f6a;
+}
+.date-picker .ui-datepicker-prev:hover, .date-picker .ui-datepicker-next:hover, .date-picker .ui-datepicker-prev:hover:after, .date-picker .ui-datepicker-next:hover:after {
+  border-color: #001349;
+  box-shadow: 0px 0px 10px #929292;
+}
+.date-picker .ui-datepicker-title {
+  text-align: center;
+}
+.date-picker .ui-datepicker-calendar {
+  width: 100%;
+  text-align: center;
+  padding: 0 30px;
+}
+.date-picker .ui-datepicker-calendar thead tr th span {
+  display: block;
+  width: 100%;
+  color: #172f6f;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.date-picker .ui-state-default {
+  display: block;
+  text-decoration: none;
+  color: #b5b5b5;
+  line-height: 40px;
+  font-size: 12px;
+}
+.date-picker .ui-state-default:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+.date-picker .ui-state-highlight {
+  color: #68768A;
+}
+.date-picker .ui-state-active {
+  color: #68768A;
+  background-color: rgba(131, 146, 167, 0.12);
+  font-weight: 600;
+}
+.date-picker .ui-datepicker-unselectable .ui-state-default {
+  color: #eee;
+  border: 2px solid transparent;
+}
+.date-picker.open {
+  max-height: 400px;
+  overflow: visible;
+}
+.date-picker .input {
+  background: url('../img/small-calendar.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-position-x: 15px;
+  font-family: 'blogger';
+}
+.regbox.container {
+    display: block;
+    height: 100px;
+}
+.container.progressive-1 {
+    height: calc(100vh - 218px);
+}
+/* END DATE PICKER */
+
+#icon,#icon2 {
+    color: #acacac;
+    font-size: 21px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.group2 ,.group3 {
+    position: absolute;
+    top: 40px;
+    padding-left: 14px;
+}
+.form-group{
+    position: relative;
+    font-family: "DroidKufi" !important;
+}
+.circle.done {
+    background: rgb(13,138,116);
+    background: -moz-linear-gradient(45deg, rgba(13,138,116,1) 0%, rgba(118,205,80,1) 100%);
+    background: -webkit-linear-gradient(45deg, rgba(13,138,116,1) 0%,rgba(118,205,80,1) 100%);
+    background: linear-gradient(45deg, rgba(13,138,116,1) 0%,rgba(118,205,80,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d8a74', endColorstr='#76cd50',GradientType=1 );
+}

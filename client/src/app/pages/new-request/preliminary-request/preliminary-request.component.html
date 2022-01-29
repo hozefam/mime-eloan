@@ -1,0 +1,51 @@
+<div class="col-md-12">
+
+
+  <!--Start bread crumbs-->
+  <div class="container-fulid margwid bread_crumbs">
+    <div class="row">
+      <div class="col">
+        <a href="#"  class="breada"><span>{{"DASHBOARD.Home" | translate}}</span></a>
+        <span><img src="assets/images/arrow-l.png" alt="img"></span>
+        <span>{{"COMMON.ApprovedPreliminaryRequest" | translate}}</span>
+      </div>
+    </div>
+  </div>
+  <!--End bread crumbs-->
+
+  <!--Start Title-->
+  <div class="container-fulid margwid bread_crumbs">
+    <div class="row title_01">
+      <div class="col">
+        <img src="assets/images/pen.png" alt="img">
+        {{"COMMON.ApprovedPreliminaryRequest" | translate}}
+      </div>
+    </div>
+  </div>
+  <!--End Title-->
+
+
+
+
+
+
+
+  <div style="text-align: center;">
+
+    <button style="margin-bottom: 20px; margin-top: 30px; cursor: pointer;" class="more"
+      (click)="createPRQ()">{{"COMMON.CreatePreliminaryRequest" | translate}}</button>
+
+  </div>
+  <div style="background: #fff;">
+    <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEdit($event)">
+    </ng2-smart-table>
+  </div>
+  <!-- </nb-card-body>
+
+            </nb-card> -->
+
+  <!-- </nb-card-body> -->
+
+  <!-- </nb-card> -->
+
+</div>

@@ -1,0 +1,58 @@
+body {font-family: "DroidKufi"!important;}
+.wizard2 {display: inline-block; margin-right: 5px;  margin-top: 5px; cursor: pointer; padding: 0px 0px 0px 0px; border-radius: 10px;
+    width: 13.2%; font-size: 13px;  font-family: "DroidKufi"!important;
+    }
+    .wiz-select {background-color: rgba(21, 136, 116, 1)!important;}
+.mat-expansion-panel-header-title {font-family: "DroidKufi"!important;}
+.row {font-family: "DroidKufi"!important;}
+
+    /*--Remove nb-card--*/
+    .nb-theme-default nb-card-header {padding: 0px !important;}
+    .nb-theme-default nb-card.accent-success {border-top-color:#fff !important;}
+    .nb-theme-default nb-card.accent {border-top-color:0px !important;}
+    .nb-theme-default nb-card.accent-success {border-top-color: #8dd27a!important;}
+    .nb-theme-default nb-card {border-radius:0!important; margin-top: 5px;}
+    
+    .nb-card-header {
+        background-color: #f9f9f9 !important;
+        -webkit-box-shadow: 0!important;
+        box-shadow: 0!important;
+    }
+    /*----*/
+    
+
+    .header-bg {
+        background-color: rgba(21, 136, 116, 0.7) !important;
+            height: 60px; line-height: 60px; 
+    margin-bottom: 15PX !important; width: 98%;}
+        .pen{display:inline-block;width:40px;height:91%;background-image:url(assets/images/senaee/pen.png);background-size:contain;background-repeat:no-repeat;background-position:28%;}
+    .title-header {
+        font-family:"DroidKufi"; 
+        color:#ffffff;font-size:25px;
+        display:inline-block;
+        vertical-align:text-bottom;
+        padding-right:15px;}
+            .title-header span{border-right:2px solid #fff;padding-right:25px;margin-right:21px;font-size:22px;letter-spacing:1px;}
+    .header-bg {
+        width: 100% !important;
+        margin-bottom: 15PX !important;
+    }
+  /*  .more {
+        display: block;
+        width: auto;
+        text-align: center;
+        height: 44px;
+        line-height: 40px;
+        color: #fff;
+        text-decoration: none;
+        margin-top: 25px;
+        transition: all 0.3s;
+        border: 0px;
+        padding-right: 15px; padding-left: 15px; margin: 0 auto;
+        background-color: rgba(21, 136, 116, 0.7)
+    }
+    
+    .more:hover { background-color: rgba(21, 136, 116, 1)}*/
+    
+    .nb-theme-default .btn.btn-success {background-color:#8dd27a!important;}
+    .nb-theme-default .nb-list-item {font-family: "DroidKufi"!important;}

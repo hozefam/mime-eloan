@@ -1,0 +1,35 @@
+@font-face{font-family:'DroidKufi-bold';
+    src:url('assets/fonts/DroidKufi-Bold.ttf') format('truetype'),    
+url('assets/fonts/DroidArabicKufi-Bold.woff') format('woff'), 
+url('assets/fonts/DroidArabicKufi-Bold.otf') format('opentype'),
+   url('assets/fonts/DroidKufi-Bold.woff2') format('woff2');} 
+
+   @font-face{font-family:'DroidKufi';
+src:url('assets/fonts/DroidKufi-Regular.ttf') format('truetype'),    
+url('assets/fonts/DroidArabicKufi.woff') format('woff'), 
+url('assets/fonts/DroidArabicKufi.otf') format('opentype'),
+url('assets/fonts/DroidKufi-Regular.woff2') format('woff2');}  
+
+@import "assets/styles/aos.css";
+@import "assets/styles/svganimation.css";
+
+.rtl {
+    @import "assets/styles/styles.scss";
+}
+   
+.ltr {
+    @import "assets/styles/styles-ltr.scss";
+}
+
+@import '/../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/typography/typography'; 
+
+body{
+     overflow: scroll !important;
+}
+#ihome{ 
+    overflow: auto !important;
+}
+body {overflow:auto !important;}
+
+

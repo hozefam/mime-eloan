@@ -1,0 +1,163 @@
+<div class="col-md-12">
+
+    <nb-card accent="success">
+
+        <nb-card-header>{{'COMMON.CreateLoanApplication' | translate}}</nb-card-header>
+
+        <nb-card-body>
+
+            <h5 *ngIf="screen_number == 2" style="margin-bottom: 20px;">{{ 'COMMON.PreliminaryRequestNo' | translate }} - {{requestId}}</h5>
+
+            <nb-card *ngIf="screen_number == 1" accent="success">
+                <nb-card-header>{{ 'COMMON.ApprovedPreliminaryRequest' | translate }}</nb-card-header>
+
+                <nb-card-body style="text-align: center;">
+                    <nb-alert status="warning">
+                        {{ 'COMMON.ApprovedPreliminaryRequestAlert' | translate }}
+                         </nb-alert>
+
+                    <ng2-smart-table [settings]="approved_prql_settings" [source]="approved_prql_source"
+                        (edit)="onEdit($event)">
+                    </ng2-smart-table>
+
+                </nb-card-body>
+
+            </nb-card>
+
+            <nb-card *ngIf="screen_number == 2" accent="success">
+
+                <nb-card-header>{{ 'COMMON.PrivacyStatement' | translate }}</nb-card-header>
+
+                <nb-card-body >
+<h1 style="text-align: center;">  
+    <strong> {{ 'COMMON.TermsUse' | translate }}  </strong> </h1>
+<br><br>
+                    <strong *ngIf="commonService.defaultLanguage == 'ar'"> 
+                        1- عزيزي المستثمر، يجب توفير نسخ إلكترونية من الوثائق التالية قبل الشروع بالتقديم على طلب قرض: 
+
+                        -  دراسة الجدوى الاقتصادية 
+                        
+                    <br><br>
+                        
+                        2- يتضمن طلب القرض بيان بالممتلكات الشخصية 
+                        
+                    <br><br>
+                    3- لن يتم النظر في الطلب إلا بعد الضغط على زر إرسال الطلب 
+                
+                        
+                    <br><br>
+                        4- سيقوم النظام تلقائياً بحذف الطلبات الغير مكتملة بعد مضي 30 يوما من بدء عملية التقديم 
+                        
+                    <br><br>
+                        5- سوف يتم استكمال الطلب باللغة المختارة 
+                    </strong>
+
+                    <br><br>
+<strong *ngIf="commonService.defaultLanguage == 'ar'">
+     
+    <h1 style="text-align: center;"><strong>أحكام الاستخدام</strong> </h1>
+
+<br><br>
+أؤكد بموجب هذا أنني المالك / الممثل المفوض عن العميل للتعامل مع الصندوق فيما يتعلق بطلب القرض هذا، واستناداً على الصلاحيات المخول بها، فإنني أوافق وأتعهد بموجب هذا على ما يلي: 
+<br><br>
+1- حصول صندوق التنمية الصناعية السعودي (الصندوق) على ما يراه ضرورياً من معلومات وبكافة أشكالها وأنواعها لتقييم الملاءة والجدارة الائتمانية للعميل. 
+<br><br>
+2 - تزويد الصندوق بكل ما يطلب من معلومات في هذا الخصوص.  
+<br><br>
+3- قيام الصندوق بالإفصاح عن وتبادل المعلومات الخاصة بالعميل/ المتقدم مع الشركة السعودية للمعلومات الائتمانية (سمة) و/أو أي جهة معتمدة لدى مؤسسة النقد العربي السعودي بما في ذلك مؤسسة النقد نفسها، وأي جهة حكومية أخرى. 
+<br><br>
+4- اطلاع الصندوق على القوائم المالية للعميل والمعلومات المتوفرة عنه عبر بوابة (قوائم) التابعة لوزارة التجارة والاستثمار
+</strong>
+<strong *ngIf="commonService.defaultLanguage == 'en'">
+    1- Dear Investor, you must provide electronic copies of the following documents before applying for a loan:
+
+    Economic feasibility study
+    
+<br> <br>
+    
+    2- The loan application includes a statement of personal assets
+    
+<br> <br>
+3- The application will not be considered until after pressing the "Submit request" button
+
+    
+<br> <br>
+    4- The system will automatically delete incomplete applications after 30 days from the start of the application process
+    
+<br> <br>
+    5- The application will be completed in the chosen language
+</strong>
+
+<br> <br>
+<strong *ngIf="commonService.defaultLanguage == 'en'">
+
+<h1 style = "text-align: center;"> <strong> Terms of use </strong> </h1>
+
+<br> <br>
+I hereby confirm that I am the owner / authorized representative of the client to deal with the Fund in relation to this loan application, and based on the powers authorized, I hereby agree and undertake the following:
+<br> <br>
+1- The Saudi Industrial Development Fund (the Fund) obtains what it deems necessary in terms of information, in all its forms and types, to assess the creditworthiness and creditworthiness of the client.
+<br> <br>
+2 - Providing the fund with all the information requested in this regard.
+<br> <br>
+3- The fund discloses and exchanges information about the client / applicant with the Saudi Credit Information Company (SIMAH) and / or any body approved by the Saudi Arabian Monetary Agency, including the Monetary Agency itself, and any other government agency.
+<br> <br>
+4- The fund's review of the client's financial statements and the information available about him through the (Qawaem) portal of the Ministry of Commerce and Investment
+</strong>
+<br><br>
+                    <nb-checkbox        
+                    style="cursor: pointer;" id="checkcolor" [(ngModel)]="agreementAccepted">
+                    <p *ngIf="commonService.defaultLanguage == 'ar'">
+                        أقر بأني أطلعت على كافة البنود أعلاه وأوافق عليها.
+                    </p>
+                    <p *ngIf="commonService.defaultLanguage == 'en'">
+                        I acknowledge that I have read and agree to all of the above terms.
+                    </p>
+                    </nb-checkbox>
+
+                    <br><br>
+
+                    
+                </nb-card-body>
+
+            </nb-card>
+<div class="row">
+            <div style="text-align: center;" class="col-sm-6">
+                <button *ngIf="screen_number == 2" 
+                    [disabled]="!agreementAccepted" class="more" (click)="onAcceptAndContinue();"> 
+                    {{'COMMON.AcceptAndContinue' | translate}}</button>
+                </div><div style="text-align: center;" class="col-sm-6">
+                <button style="cursor: pointer;" class="more"
+                    (click)="onBack();">{{'COMMON.Back' | translate}}</button>
+            </div>
+        </div>
+        </nb-card-body>
+
+    </nb-card>
+
+    <ng-template #cancel_modal let-modal>
+
+        <div class="modal-header">
+
+            <span>{{cancelModalReference.action}} {{cancelModalReference.table_name_display}}</span>
+
+            <button style="cursor: pointer;" class="close" aria-label="Close" (click)="onCloseCancelModal()">
+                <span aria-hidden="true" class="ion-close-round"></span>
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+            <h6>{{'COMMON.AreYouSure' | translate}}</h6>
+        </div>
+
+        <div class="modal-footer">
+            <button style="cursor: pointer;" type="button" class="more"
+                (click)="onCloseCancelModal()">{{'TECHNICAL_INFORMATION.close' | translate}}</button>
+            <button style="cursor: pointer;" type="button" class="more"
+                (click)="onCancelConfirm()">{{'COMMON.Yes' | translate}}</button>
+        </div>
+
+    </ng-template>
+
+</div>

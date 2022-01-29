@@ -1,0 +1,1 @@
+export enum actionType{Add=1,Edit,Delete}

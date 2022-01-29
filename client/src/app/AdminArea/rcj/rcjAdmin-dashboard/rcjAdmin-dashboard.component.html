@@ -1,0 +1,447 @@
+
+
+
+
+<div *ngIf='data && data.length>0'>
+
+  <div class="row" style="margin-bottom: 11px; text-align: center; vertical-align: middle;margin-right: 11px;">
+
+    <div class='my-legend'>
+      <div class='legend-scale'>
+        <ul class='legend-labels'>
+          <li>
+              <span class="color" style='background:#0d8a74;'></span>
+              <span class="legend">قبول </span>
+              <span class="color" style='background:#dc3545;'></span>
+              <span class="legend">رفض</span>
+              <span class="color" style='background:#41ad4f;'></span>
+              <span class="legend">الصندوق</span>
+              <span class="color" style='background:#007bff;'></span>
+              <span class="legend">الهيئة </span>
+              <span class="color" style='background:#ffc107;'></span>
+              <span class="legend">العميل</span>
+          </li>
+        </ul>
+      </div>
+      </div>
+
+</div>
+
+
+    <div class="row" style="margin-bottom: 5px;">
+      <div class="col-sm-2 col-lg-2" (click)="navigateTo(1)">
+        <div class="card text-white bg-primary coloreactionSidf">
+          <div class="card-body pb-0">
+            <h4 class="mb-0">{{data[0].Count1}}</h4>
+            <p>الصندوق الصناعي- تم استلام الطلب
+              </p>
+          </div>
+          <div class="chart-wrapper px-3" style="height:40px;">
+            <canvas baseChart class="chart"
+            [datasets]="lineChart1Data"
+            [labels]="lineChart1Labels"
+            [options]="lineChart1Options"
+            [colors]="lineChart1Colours"
+            [legend]="lineChart1Legend"
+            [chartType]="lineChart1Type"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div><!--/.col-->
+      <div class="col-sm-2 col-lg-2"  (click)="navigateTo(40)">
+        <div class="card text-white bg-success coloGreen">
+          <div class="card-body pb-0">
+         
+            <h4 class="mb-0">{{data[0].Count40}}</h4>
+            <p>الصندوق - تم قبول الطلب المبدئي
+              </p>
+          </div>
+          <div class="chart-wrapper" style="height:40px;">
+              <canvas baseChart class="chart"
+              [datasets]="lineChart3Data"
+              [labels]="lineChart3Labels"
+              [options]="lineChart3Options"
+              [colors]="lineChart3Colours"
+              [legend]="lineChart3Legend"
+              [chartType]="lineChart3Type"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+      </div><!--/.col-->
+
+
+    <div class="col-sm-2 col-lg-2" (click)="navigateTo(41)">
+        <div class="card text-white bg-warning coloreactionSidf">
+          <div class="card-body pb-0">
+            <h4 class="mb-0">{{data[0].Count41}}</h4>
+            <p>الصندوق - طلب معلومات إضافية
+              </p>
+          </div>
+          <div class="chart-wrapper" style="height:40px;">
+              <canvas baseChart class="chart"
+              [datasets]="lineChart3Data"
+              [labels]="lineChart3Labels"
+              [options]="lineChart3Options"
+              [colors]="lineChart3Colours"
+              [legend]="lineChart3Legend"
+              [chartType]="lineChart3Type"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
+      </div><!--/.col-->
+
+      <div class="col-sm-2 col-lg-2" (click)="navigateTo(42)">
+          <div class="card text-white bg-danger colorejected">
+            <div class="card-body pb-0">
+              <h4 class="mb-0">{{data[0].Count42}}</h4>
+              <p>الصندوق – رفض الطلب المبدئي
+                </p>
+            </div>
+            <div class="chart-wrapper px-3" style="height:40px;">
+                <canvas baseChart class="chart"
+                [datasets]="barChart1Data"
+                [labels]="barChart1Labels"
+                [options]="barChart1Options"
+                [colors]="barChart1Colours"
+                [legend]="barChart1Legend"
+                [chartType]="barChart1Type"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+              </div>
+          </div>
+        </div><!--/.col-->
+
+        <div class="col-sm-2 col-lg-2" (click)="navigateTo(5)">
+          <div class="card text-white bg-info coloreactionuser">
+            <div class="card-body pb-0">
+       
+              <h4 class="mb-0">{{data[0].Count5}}</h4>
+              <p> العميل - ارسال الطلب الكامل
+
+              </p>
+            </div>
+            <div class="chart-wrapper px-3" style="height:40px;">
+              <canvas baseChart class="chart"
+              [datasets]="barChart1Data"
+              [labels]="barChart1Labels"
+              [options]="barChart1Options"
+              [colors]="barChart1Colours"
+              [legend]="barChart1Legend"
+              [chartType]="barChart1Type"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </div>
+        </div><!--/.col-->
+
+
+        <div class="col-sm-2 col-lg-2" (click)="navigateTo(6)">
+          <div class="card text-white bg-primary coloreactionauthority">
+            <div class="card-body pb-0">
+              <h4 class="mb-0">{{data[0].Count6}}</h4>
+              <p>الهيئة - المراجعة الأولية
+                </p>
+            </div>
+            <div class="chart-wrapper px-3" style="height:40px;">
+              <canvas baseChart class="chart"
+              [datasets]="lineChart1Data"
+              [labels]="lineChart1Labels"
+              [options]="lineChart1Options"
+              [colors]="lineChart1Colours"
+              [legend]="lineChart1Legend"
+              [chartType]="lineChart1Type"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </div>
+        </div><!--/.col-->
+
+       
+    </div>
+    <div class="row" style="margin-bottom: 5px;">
+      <div class="col-sm-2 col-lg-2" (click)="navigateTo(7)">
+        <div class="card text-white bg-info coloreactionauthority">
+          <div class="card-body pb-0">
+     
+            <h4 class="mb-0">{{data[0].Count7}}</h4>
+            <p>الهيئة - طلب معلومات إضافية
+
+            </p>
+          </div>
+          <div class="chart-wrapper px-3" style="height:40px;">
+              <canvas baseChart class="chart"
+              [datasets]="lineChart1Data"
+              [labels]="lineChart1Labels"
+              [options]="lineChart1Options"
+              [colors]="lineChart1Colours"
+              [legend]="lineChart1Legend"
+              [chartType]="lineChart1Type"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+            </div>
+         
+        </div>
+      </div><!--/.col-->
+
+      <div class="col-sm-2 col-lg-2" (click)="navigateTo(8)">
+        <div class="card text-white bg-primary coloreactionuser">
+          <div class="card-body pb-0">
+           
+            <h4 class="mb-0">{{data[0].Count8}}</h4>
+            <p>العميل - ارسال المعلومات الإضافية
+
+               </p>
+          </div>
+          <div class="chart-wrapper px-3" style="height:40px;">
+              <canvas baseChart class="chart"
+              [datasets]="lineChart1Data"
+              [labels]="lineChart1Labels"
+              [options]="lineChart1Options"
+              [colors]="lineChart1Colours"
+              [legend]="lineChart1Legend"
+              [chartType]="lineChart1Type"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </div>
+          </div><!--/.col-->
+
+          <div class="col-sm-2 col-lg-2"  (click)="navigateTo(9)">
+            <div class="card text-white bg-danger colorejected">
+              <div class="card-body pb-0">
+               
+                <h4 class="mb-0">{{data[0].Count9}}</h4>
+                <p>الهيـئة - إلغـاء الطــلب
+                  </p>
+              </div>
+              <div class="chart-wrapper px-3" style="height:40px;">
+                  <canvas baseChart class="chart"
+                  [datasets]="barChart1Data"
+                  [labels]="barChart1Labels"
+                  [options]="barChart1Options"
+                  [colors]="barChart1Colours"
+                  [legend]="barChart1Legend"
+                  [chartType]="barChart1Type"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+                </div>
+        
+            </div>
+          </div><!--/.col-->
+
+          <div class="col-sm-2 col-lg-2" (click)="navigateTo(10)">
+            <div class="card text-white bg-success coloreactionauthority">
+              <div class="card-body pb-0">
+                <h4 class="mb-0">{{data[0].Count10}}</h4>
+                <p>الهيئة - إصدار شهادة التخصيص
+                  </p>
+              </div>
+              <div class="chart-wrapper" style="height:40px;">
+                  <canvas baseChart class="chart"
+                  [datasets]="lineChart3Data"
+                  [labels]="lineChart3Labels"
+                  [options]="lineChart3Options"
+                  [colors]="lineChart3Colours"
+                  [legend]="lineChart3Legend"
+                  [chartType]="lineChart3Type"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+          </div><!--/.col-->
+
+      <div class="col-sm-2 col-lg-2" (click)="navigateTo(17)">
+          <div class="card text-white bg-info coloreactionSidf">
+            <div class="card-body pb-0">
+       
+              <h4 class="mb-0">{{data[0].Count17}}</h4>
+              <p>الصندوق - مرحلة التقييم
+
+              </p>
+            </div>
+            <div class="chart-wrapper px-3" style="height:40px;">
+              <canvas baseChart class="chart"
+              [datasets]="barChart1Data"
+              [labels]="barChart1Labels"
+              [options]="barChart1Options"
+              [colors]="barChart1Colours"
+              [legend]="barChart1Legend"
+              [chartType]="barChart1Type"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </div>
+        </div><!--/.col-->
+
+        <div class="col-sm-2 col-lg-2" (click)="navigateTo(18)">
+          <div class="card text-white bg-danger colorejected">
+            <div class="card-body pb-0">
+              <h4 class="mb-0">{{data[0].Count18}}</h4>
+              <p>الصندوق - رفض الطلب 
+                </p>
+            </div>
+            <div class="chart-wrapper px-3" style="height:40px;">
+                <canvas baseChart class="chart"
+                [datasets]="barChart1Data"
+                [labels]="barChart1Labels"
+                [options]="barChart1Options"
+                [colors]="barChart1Colours"
+                [legend]="barChart1Legend"
+                [chartType]="barChart1Type"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+              </div>
+          </div>
+        </div><!--/.col-->
+
+
+
+
+    
+      
+      
+      </div><!--/.row-->
+      
+      <div *ngIf='isshow'>
+
+          <div class="row" style="margin-bottom: 5px;">
+            <div class="col-sm-2 col-lg-2" (click)="navigateTo(43)">
+              <div class="card text-white bg-primary coloreactionSidf">
+                <div class="card-body pb-0">
+                 
+                  <h4 class="mb-0">{{data[0].Count43}}</h4>
+                  <p>الصندوق - الموافقة المشروطة
+                    </p>
+                </div>
+                <div class="chart-wrapper px-3" style="height:40px;">
+                    <canvas baseChart class="chart"
+                    [datasets]="lineChart1Data"
+                    [labels]="lineChart1Labels"
+                    [options]="lineChart1Options"
+                    [colors]="lineChart1Colours"
+                    [legend]="lineChart1Legend"
+                    [chartType]="lineChart1Type"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+              </div>
+            </div><!--/.col-->
+        
+          <div class="col-sm-2 col-lg-2" (click)="navigateTo(22)">
+            <div class="card text-white bg-info coloreactionSidf">
+              <div class="card-body pb-0">
+             
+                <h4 class="mb-0">{{data[0].Count22}}</h4>
+                <p>الصندوق - ارسال خطاب التزام
+                  </p>
+              </div>
+              <div class="chart-wrapper px-3" style="height:40px;">
+                <canvas baseChart class="chart"
+                [datasets]="lineChart1Data"
+                [labels]="lineChart1Labels"
+                [options]="lineChart1Options"
+                [colors]="lineChart1Colours"
+                [legend]="lineChart1Legend"
+                [chartType]="lineChart1Type"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+          </div><!--/.col-->
+              <div class="col-sm-2 col-lg-2" (click)="navigateTo(23)">
+                <div class="card text-white bg-primary coloreactionauthority">
+                  <div class="card-body pb-0">
+                    <h4 class="mb-0">{{data[0].Count23}}</h4>
+                    <p>الهيئة - إكتمال المخططات 100%
+                      </p>
+                  </div>
+                  <div class="chart-wrapper px-3" style="height:40px;">
+                    <canvas baseChart class="chart"
+                    [datasets]="lineChart1Data"
+                    [labels]="lineChart1Labels"
+                    [options]="lineChart1Options"
+                    [colors]="lineChart1Colours"
+                    [legend]="lineChart1Legend"
+                    [chartType]="lineChart1Type"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+                </div>
+              </div><!--/.col-->
+              <div class="col-sm-2 col-lg-2" (click)="navigateTo(24)">
+                <div class="card text-white bg-info coloreactionauthority">
+                  <div class="card-body pb-0">
+                 
+                    <h4 class="mb-0">{{data[0].Count24}}</h4>
+                    <p>الهيئة - طلب معلومات إضافية
+                      </p>
+                  </div>
+                  <div class="chart-wrapper px-3" style="height:40px;">
+                    <canvas baseChart class="chart"
+                    [datasets]="lineChart2Data"
+                    [labels]="lineChart2Labels"
+                    [options]="lineChart2Options"
+                    [colors]="lineChart2Colours"
+                    [legend]="lineChart2Legend"
+                    [chartType]="lineChart2Type"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+                </div>
+              </div><!--/.col-->
+              <div class="col-sm-2 col-lg-2" (click)="navigateTo(26)">
+                  <div class="card text-white bg-success coloreactionauthority">
+                    <div class="card-body pb-0">
+                      <h4 class="mb-0">{{data[0].Count26}}</h4>
+                      <p>الهـيئة - تـوقـيع العقـد
+                        </p>
+                    </div>
+                    <div class="chart-wrapper" style="height:40px;">
+                        <canvas baseChart class="chart"
+                        [datasets]="lineChart3Data"
+                        [labels]="lineChart3Labels"
+                        [options]="lineChart3Options"
+                        [colors]="lineChart3Colours"
+                        [legend]="lineChart3Legend"
+                        [chartType]="lineChart3Type"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+                      </div>
+                  </div>
+                </div><!--/.col-->
+                <div class="col-sm-2 col-lg-2"(click)="navigateTo(44)">
+                  <div class="card text-white bg-success coloGreen">
+                    <div class="card-body pb-0">
+                      <h4 class="mb-0">{{data[0].Count44}}</h4>
+                      <p>الصندوق - توقيع اتفاقية القرض
+                        </p>
+                    </div>
+                    <div class="chart-wrapper" style="height:40px;">
+                        <canvas baseChart class="chart"
+                        [datasets]="lineChart3Data"
+                        [labels]="lineChart3Labels"
+                        [options]="lineChart3Options"
+                        [colors]="lineChart3Colours"
+                        [legend]="lineChart3Legend"
+                        [chartType]="lineChart3Type"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+                      </div>
+                 
+                  </div>
+                </div><!--/.col-->
+                
+      
+                 
+            </div><!--/.row-->
+
+      </div>
+      <label style="cursor: pointer; color: green;float: left;" (click)='ShowMore()'> {{textToshow}}</label>
+ <br>
+    
+  
+  </div>
+  

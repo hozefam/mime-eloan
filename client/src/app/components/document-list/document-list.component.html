@@ -1,0 +1,86 @@
+<ng-template #viewDocumentToolTip>{{ "COMMON.viewDocumentToolTip" | translate}}</ng-template>
+<ng-template #deleteDocumentToolTip>{{ "COMMON.deleteDocumentToolTip" | translate}}</ng-template>
+
+<nb-card style="max-height: 300px !important" accent="success">
+
+    <nb-card-header>{{ 'COMMON.DocumentList' | translate }}</nb-card-header>
+
+    <nb-card-body>
+
+        <h6 *ngIf="!documents.documentList"
+            style="font-family: Exo; font-size: 1rem; padding-top: 10px; text-align: center;">
+            {{ "COMMON.NoDocumentsFound" | translate}}</h6>
+
+        <h6 *ngIf="documents.documentList && documents.documentList.length == 0"
+            style="font-family: Exo; font-size: 1rem; padding-top: 10px; text-align: center;">
+            {{ "COMMON.NoDocumentsFound" | translate}}</h6>
+
+        <ul *ngIf="documents.documentList && documents.documentList.length > 0" class="traffic-list"
+            style="margin: 2%;">
+
+            <li
+                style="border-top: 1px solid #C0C0C0 !important; border-left: 1px solid #C0C0C0 !important; border-right: 1px solid #C0C0C0 !important; border-bottom: 1px solid #C0C0C0 !important; height: auto; padding-top: 2%; padding-bottom: 2%; width: auto;">
+                <div class="text"
+                    style="font-family: Exo; font-size: 1rem; font-weight: 600; overflow-wrap: break-word; color: #2a2a2a; margin-right: 10px; width: 30%; text-align: center;">
+                    <strong>{{ 'COMMON.DocumentName' | translate }}</strong></div>
+                <div class="text"
+                    style="font-family: Exo; font-size: 1rem; font-weight: 600; overflow-wrap: break-word; color: #2a2a2a; margin-right: 10px; width: 30%; text-align: center;">
+                    <strong>{{ 'COMMON.DocumentType' | translate }}</strong></div>
+                <div class="text" *ngIf="statusCode!='P' && statusCode!='A' && statusCode!='L' && method != 'view'"
+                    style="font-family: Exo; font-size: 1rem; font-weight: 600; overflow-wrap: break-word; color: #2a2a2a; width: 30%; text-align: center;">
+                    <strong>{{ 'COMMON.Actions' | translate }}</strong></div>
+            </li>
+
+            <li *ngFor="let request of documents.documentList"
+                style="border-left: 1px solid #C0C0C0 !important; border-right: 1px solid #C0C0C0 !important; border-bottom: 1px solid #C0C0C0 !important; height: auto; padding-top: 2%; padding-bottom: 2%; width: auto;">
+
+                <div class="text"
+                    style="font-family: Exo; font-size: 1rem; overflow-wrap: break-word; color: #2a2a2a; margin-right: 10px; width: 30%; text-align: center; cursor: pointer;"
+                    [ngbTooltip]="viewDocumentToolTip" (click)="documentView(request)">{{request.FileName}}</div>
+
+                <div class="text"
+                    style="font-family: Exo; font-size: 1rem; overflow-wrap: break-word; color: #2a2a2a; margin-right: 10px; width: 30%; text-align: center; cursor: pointer;"
+                    [ngbTooltip]="viewDocumentToolTip" (click)="documentView(request)">{{request.DocumentDefName}}</div>
+
+                <div *ngIf="statusCode!='P' && statusCode!='A' && statusCode!='L' && method != 'view'" class="nb-trash"
+                    style="overflow-wrap: break-word; height: 10px; font-size: 24px; color: #2a2a2a; width: 30%; text-align: center; cursor: pointer;"
+                    [ngbTooltip]="deleteDocumentToolTip" (click)="deleteDocument(delete_modal, request)"></div>
+
+            </li>
+
+        </ul>
+
+    </nb-card-body>
+
+</nb-card>
+
+<ng-template #delete_modal let-modal>
+
+    <div class="modal-content" style="border-color: black;">
+
+        <div class="modal-header">
+
+            <span>{{ "COMMON.DeleteDocument" | translate }}</span>
+
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;" class="close" aria-label="Close"
+                (click)="onCloseDeleteModal()">
+                <span aria-hidden="true" class="ion-close-round"></span>
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+            <h6>{{ "COMMON.AreYouSure" | translate }}</h6>
+        </div>
+
+        <div class="modal-footer">
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="margin-right: 1%; margin-left: 1%; cursor: pointer;" type="button" class="btn btn-danger"
+                (click)="onCloseDeleteModal()">{{
+            "COMMON.Cancel" | translate }}</button>
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" type="button" class="btn btn-success" (click)="onDeleteConfirm()">{{
+            "COMMON.Yes" | translate }}</button>
+        </div>
+
+    </div>
+
+</ng-template>

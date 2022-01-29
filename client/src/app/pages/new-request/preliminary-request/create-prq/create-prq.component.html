@@ -1,0 +1,1784 @@
+<!--Start Title-->
+<div class="container-fluid" style="width:98%;">
+    <div class="row title_01">
+        <div class="col">
+            <img src="assets/images/pen.png" alt="img">
+            {{ "FactoryLoan.RequestDetails" | translate}}
+        </div>
+    </div>
+</div>
+<!--End Title-->
+
+<!-- <ng-template #selectADateToolTip>{{ "COMMON.selectADateToolTip" | translate}}</ng-template> -->
+<!-- <ng-template #selectIndustrialSectorToolTip>{{ "PRELIMINARY_REQUEST.selectIndustrialSector" | translate}}</ng-template> -->
+<!-- <ng-template #selectADateToolTip>{{ "COMMON.selectADateToolTip" | translate}}</ng-template> -->
+<!-- <ng-template #selectIndustrialSectorToolTip>{{ "PRELIMINARY_REQUEST.selectIndustrialSector" | translate}}</ng-template> -->
+<ng-template #StartTour>{{ "COMMON.StartTour" | translate}}</ng-template>
+
+<div class="col-md-12">
+
+    <nb-card accent="success" style="border-top-color:#fff !important;" i>
+
+        <!-- <nb-card-header>{{ 'PRELIMINARY_REQUEST.createPreliminaryRequest' | translate }}</nb-card-header> -->
+
+        <nb-card-body [ngClass]="{'prqCardHeight': screen_number == 1}">
+            <div class="col-md-12" *ngIf="rejected!=0&&rejected!=-1">
+                <p _ngcontent-c15="" style="font-family: Exo; font-size: 1rem; font-weight: 600; margin-left: 2%; margin-right: 2%;" class="ng-star-inserted"> 
+                    {{ "FactoryLoan.Useold" | translate}}
+                </p>
+                
+                <br/>
+            <label class="form-check-inline">  
+                <input class="form-check-input" (click)="CheckRejected(1)" style="margin:5px;height:30px; width:30px; vertical-align: middle;" type="radio" name="mode" [value]="true" [(ngModel)]="rule">
+                {{ "FactoryLoan.Useoldyes" | translate}}
+            </label>
+            <br/>
+            <label class="form-check-inline"> 
+                <input class="form-check-input" (click)="CheckRejected(2)"   style="margin:5px;height:30px; width:30px; vertical-align: middle;" type="radio" name="mode" [value]="false" [(ngModel)]="rule">
+                {{ "FactoryLoan.Useoldno" | translate}}
+            </label>
+            <table *ngIf="rejected==2" class="table">
+                <thead>
+                    <th width="5%"></th>
+                  <th>{{ "COMMON.RequestId" | translate}}</th>
+                  <th>{{ "COMMON.ProjectCode" | translate}}</th>
+                  <th>{{ "TECHNICAL_INFORMATION.requeststatus" | translate}}</th>
+                  <th>{{ "TECHNICAL_INFORMATION.requestdate" | translate}}</th>
+                  
+                </thead>
+                <tbody>
+                  <tr *ngFor="let entry of source">
+                    <td>
+                        
+                        <input type="radio" name="radiogroup" style="height:20px; width:20px; vertical-align: middle;"
+                        [checked]="idx === 0" 
+                        [value]="entry.requestId" 
+                        (change)="onSelect(entry)">
+                    </td>
+                    <td>{{ entry.RequestId }}</td>
+                    <td>{{ entry.ProjectCode }}</td>
+                    <td *ngIf="commonService.defaultLanguage == 'en'">{{ entry.RequestStatus }}</td>
+                    <td *ngIf="commonService.defaultLanguage == 'ar'">{{ entry.RequestStatusAr }}</td>
+                    <td>{{ entry.RequestDate }}</td>
+                    
+                  </tr>
+                  
+                </tbody>
+              </table>
+            <ng2-smart-table  *ngIf="rejected==20" [settings]="settings" [source]="source" (userRowSelect)="onSelect($event)" (edit)="onEdit($event)">
+            </ng2-smart-table>
+            <div style="margin-top: 20px;" *ngIf="rejected==2" class="form-group row">
+
+                <div style="text-align: center;" class="col-sm-12">
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" id="tourStep4-s1"
+                        style="cursor: pointer;" type="button" class="more"
+                        (click)="onBack(delete_cancel_modal, 1)">{{
+                        "COMMON.Back" | translate }}</button>
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" id="tourStep5-s1" 
+                        *ngIf="prevRequestId>0" type="button"
+                        style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more" (click)="copyRequest()">
+                        {{"COMMON.Next" | translate }}</button>
+                    
+                </div>
+
+            </div>
+            </div>
+            <!-- <div *ngIf="screen_number == 2" style="margin-bottom: 20px;"> -->
+            <!-- 
+                <strong><label
+                        style="color: #2a2a2a; font-family: DroidKufi; font-size: 1.125rem; font-weight: 600; text-align: center !important;"
+                        *ngIf="requestId" class="col-sm-4">{{'COMMON.RequestId' | translate }} -
+                        {{requestId}}</label></strong>
+
+                <strong><label
+                        style="color: #2a2a2a; font-family: DroidKufi; font-size: 1.125rem; font-weight: 600; text-align: center !important;"
+                        *ngIf="!requestId && (inputs.ProfileTypeSelected != '' || inputs.ProjectId != '' && inputs.ProjectId != '0000000000')"
+                        class="col-sm-4"></label></strong>
+
+                <strong><label
+                        style="color: #2a2a2a; font-family: DroidKufi; font-size: 1.125rem; font-weight: 600; text-align: center !important;"
+                        *ngIf="inputs.ProfileTypeSelected != ''"
+                        class="col-sm-4">{{'PRELIMINARY_REQUEST.ProfileType' | translate }} -
+                        {{inputs.ProfileTypeSelected}}</label></strong>
+
+                <strong><label
+                        style="color: #2a2a2a; font-family: DroidKufi; font-size: 1.125rem; font-weight: 600; text-align: center !important;"
+                        *ngIf="inputs.ProfileTypeSelected == '' && inputs.ProjectId != '' && inputs.ProjectId != '0000000000'"
+                        class="col-sm-4"></label></strong>
+
+                <strong><label
+                        style="color: #2a2a2a; font-family: DroidKufi; font-size: 1.125rem; font-weight: 600; text-align: center !important;"
+                        *ngIf="inputs.ProjectId != '' && inputs.ProjectId != '0000000000'"
+                        class="col-sm-4">{{'COMMON.ProjectId' | translate }} - {{inputs.ProjectId}}</label></strong>
+
+            </div> -->
+
+            <form *ngIf="rejected==0||rejected==3">
+
+                <!-- <div *ngIf="screen_number == 1" style="margin-bottom: 20px; text-align: right;"> 
+
+                   <span id="startTour-s1" [ngbTooltip]="StartTour" placement="left"
+                        style="vertical-align: middle; margin-left: 1%; margin-right: 1%; color: #006e42; cursor: pointer; font-size: 35px; font-weight: 600;"
+                        class="nb-help" (click)="startTour()"></span> 
+
+                </div> -->
+
+                <div *ngIf="screen_number === 1">
+
+                    <!-- <div id="tourStep1-s1" class="form-group row">
+                        <label class="col-sm-6 form-label"><span class="required-pf">*
+                            </span>{{'PRELIMINARY_REQUEST.typeOfLicense' | translate }}</label>
+                        <div class="col-sm-4"></div> -->
+
+                    <!-- <label for="profile_type" class="col-sm-1 col-form-label"><span class="required-pf">* </span>{{ 'PRELIMINARY_REQUEST.Type' | translate
+                                    }}</label> -->
+                    <!-- <div class="col-sm-6">
+                            <select [ngClass]="{'is-invalid' : profile_type_vs}" (change)="onProfileTypeChange()"
+                                name="profile_type" class="form-control" [(ngModel)]="inputs.ProfileType">
+                                <option value="" disabled selected hidden>{{'COMMON.Select' | translate }}
+                                    {{ 'PRELIMINARY_REQUEST.Type' | translate }}
+                                </option>
+                                <option *ngFor="let profile_type_item of inputs.ProfileTypeList"
+                                    [value]="profile_type_item.id">
+                                    {{profile_type_item.prqTypeEn}}</option>
+                            </select>
+                        </div> -->
+
+                    <!-- <div class="col-sm-4"></div> -->
+
+                    <!-- </div> -->
+
+                    <div id="tourStep2-s1" class="form-group row" *ngIf="typeHasBeenSelected">
+                        <label class="col-sm-2 form-label"><span class="required-pf">* </span>{{
+                            'PRELIMINARY_REQUEST.typeOfLicense' | translate }}</label>
+                        <div class="col-sm-2" *ngFor="let license_item of inputs.TypeOfLicense">
+
+                            <label class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" name="type_of_license"
+                                    (change)="inputs.TypeOfLicenseChecked = license_item; startedFilling = 1;"
+                                    (click)="inputs.TypeOfLicenseChecked = license_item"
+                                    [checked]="license_item === inputs.TypeOfLicenseChecked">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">{{license_item}}</span>
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div id="tourStep3-s1" class="form-group row" *ngIf="typeHasBeenSelected">
+
+                        <label *ngIf="inputs.TypeOfLicenseChecked === initialLicense" for="industrial_license_id"
+                            class="col-sm-3 col-form-label"><span class="required-pf">* </span>{{ 'PRELIMINARY_REQUEST.industrialLicenseId' | translate
+                            }}</label>
+                        <div *ngIf="inputs.TypeOfLicenseChecked === initialLicense" class="col-sm-3">
+                            <input [ngClass]="{'is-invalid' : industrial_license_id_vs}" type="number"
+                                [(ngModel)]="inputs.IndustrialLicenseId" min="0" step="1"
+                                oninput="validity.valid || (value='')" name="industrial_license_id"
+                                (change)="industrial_license_id_vs = false; startedFilling = 1;"
+                                placeholder="{{ 'PRELIMINARY_REQUEST.enterIndustrialLicenseId' | translate }}"
+                                class="form-control">
+                        </div>
+
+                        <label *ngIf="inputs.TypeOfLicenseChecked === initialLicense" for="industrial_license_date"
+                            class="col-sm-3 col-form-label"><span class="required-pf">* </span>{{ 'PRELIMINARY_REQUEST.industrialLicenseStartDate' |
+                            translate }}</label>
+                        <div *ngIf="inputs.TypeOfLicenseChecked === initialLicense" class="col-sm-3">
+
+                            <div class="input-group">
+                              
+                                    
+                                    <input type="text" [ngClass]="{'is-invalid' : industrial_license_date_vs}" 
+                                    onkeydown="return false;" [(ngModel)]="inputs.IndustrialLicenseDate"
+                                    placeholder="YYYY-MM-DD" class="form-control" name="industrial_license_date"
+                                    placement="bottom" #industrial_license_date="bsDatepicker" bsDatepicker
+                                    [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                                    style="cursor: pointer;">
+                                <div class="input-group-append">
+                                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" class="more ion-calendar"
+                                        (click)="industrial_license_date.toggle(); industrial_license_date_vs = false; startedFilling = 1;"
+                                        type="button"></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <label *ngIf="inputs.TypeOfLicenseChecked === finalLicense" for="customer_license_number"
+                            class="col-sm-2 col-form-label"><span class="required-pf">*
+                            </span>{{ 'PRELIMINARY_REQUEST.factoryId' | translate }}</label>
+                        <div *ngIf="inputs.TypeOfLicenseChecked === finalLicense" class="col-sm-3">
+                            <input (change)="customer_license_number_vs = false; startedFilling = 1;"
+                                [ngClass]="{'is-invalid' : customer_license_number_vs}" type="number"
+                                [(ngModel)]="inputs.CustomerLicenseNumber" min="0" step="1"
+                                oninput="validity.valid || (value='')" name="customer_license_number"
+                                placeholder="{{ 'PRELIMINARY_REQUEST.enterFactoryId' | translate }}"
+                                class="form-control" >
+                        </div>
+
+                        <label *ngIf="inputs.TypeOfLicenseChecked === finalLicense" for="customer_license_date"
+                            class="col-sm-2 col-form-label"><span class="required-pf">*
+                            </span>{{ 'PRELIMINARY_REQUEST.licenseStartDate' | translate }}</label>
+                        <div *ngIf="inputs.TypeOfLicenseChecked === finalLicense" class="col-sm-3">
+
+                            <div class="input-group">
+                                <input type="text" [ngClass]="{'is-invalid' : customer_license_date_vs}"
+                                    (change)="inputs.CustomerLicenseDate = commonService.onChangeHijriDate($event, inputs.CustomerLicenseDate)"
+                                    [(ngModel)]="inputs.CustomerLicenseDate" placeholder="YYYY-MM-DD"
+                                    class="form-control"
+                                    (click)="customer_license_date.toggle(); customer_license_date_vs = false; startedFilling = 1;"
+                                    name="customer_license_date" placement="bottom" ngbDatepicker
+                                    #customer_license_date="ngbDatepicker" [minDate]="minDate" [maxDate]="maxDate"
+                                    style="cursor: pointer;">
+                                <div class="input-group-append">
+                                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" class="more ion-calendar"
+                                        (click)="customer_license_date.toggle(); customer_license_date_vs = false; startedFilling = 1;"
+                                        type="button"></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <label *ngIf="inputs.TypeOfLicenseChecked === meimInitialLicense"
+                            for="meim_industrial_license_id" class="col-sm-3 col-form-label"><span class="required-pf">*
+                            </span>{{ 'PRELIMINARY_REQUEST.industrialLicenseId' | translate
+                    }}</label>
+                        <div *ngIf="inputs.TypeOfLicenseChecked === meimInitialLicense" class="col-sm-3">
+
+                            <input [ngClass]="{'is-invalid' : meim_industrial_license_id_vs}" type="number"
+                                [(ngModel)]="inputs.MEIMIndustrialLicenseId" min="0" step="1"
+                                oninput="validity.valid || (value='')" name="meim_industrial_license_id"
+                                (change)="meim_industrial_license_id_vs = false; startedFilling = 1;"
+                                placeholder="{{ 'PRELIMINARY_REQUEST.enterIndustrialLicenseId' | translate }}"
+                                class="form-control">
+
+                        </div>
+
+                        <label *ngIf="inputs.TypeOfLicenseChecked === meimInitialLicense"
+                            for="meim_industrial_license_date" class="col-sm-3 col-form-label"><span
+                                class="required-pf">* </span>{{ 'PRELIMINARY_REQUEST.industrialLicenseStartDate' |
+                    translate }}</label>
+                        <div *ngIf="inputs.TypeOfLicenseChecked === meimInitialLicense" class="col-sm-3">
+
+                            <div class="input-group">
+                                <input type="text" [ngClass]="{'is-invalid' : meim_industrial_license_date_vs}"
+                                    onkeydown="return false;" [(ngModel)]="inputs.MEIMIndustrialLicenseDate"
+                                    placeholder="YYYY-MM-DD" class="form-control" name="meim_industrial_license_date"
+                                    placement="bottom" #meim_industrial_license_date="bsDatepicker" bsDatepicker
+                                    [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                                    style="cursor: pointer;">
+                                <div class="input-group-append">
+                                    <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                        class="btn btn-success ion-calendar"
+                                        (click)="meim_industrial_license_date.toggle(); meim_industrial_license_date_vs = false; startedFilling = 1;"
+                                        type="button"></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <label
+                            *ngIf="inputs.TypeOfLicenseChecked === sagiaLicense || inputs.TypeOfLicenseChecked === crNumberLicense"
+                            for="cr_number" class="col-sm-2 col-form-label"><span class="required-pf">*
+                            </span>{{ 'PRELIMINARY_REQUEST.companyNumber' | translate }}</label>
+                        <div *ngIf="inputs.TypeOfLicenseChecked === sagiaLicense || inputs.TypeOfLicenseChecked === crNumberLicense"
+                            class="col-sm-3">
+
+                            <input (change)="cr_number_vs = false; startedFilling = 1;"
+                                [ngClass]="{'is-invalid' : cr_number_vs}" type="number" [(ngModel)]="inputs.CrNumber"
+                                min="0" step="1" oninput="validity.valid || (value='')" name="cr_number"
+                                placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyNumber' | translate }}"
+                                class="form-control">
+                        </div>
+
+                        <label *ngIf="inputs.TypeOfLicenseChecked === sagiaLicense" for="cr_expiry_date"
+                            class="col-sm-2 col-form-label"><span class="required-pf">*
+                            </span>{{ 'PRELIMINARY_REQUEST.CompanyIssueDate' | translate }}</label>
+                        <div *ngIf="inputs.TypeOfLicenseChecked === sagiaLicense" class="col-sm-3">
+
+                            <div class="input-group">
+                                <input type="text" [ngClass]="{'is-invalid' : cr_expiry_date_vs}"
+                                    (change)="inputs.CrExpiryDate = commonService.onChangeHijriDate($event, inputs.CrExpiryDate)"
+                                    [(ngModel)]="inputs.CrExpiryDate" placeholder="YYYY-MM-DD" class="form-control"
+                                    (click)="cr_expiry_date.toggle(); cr_expiry_date_vs = false; startedFilling = 1;"
+                                    name="cr_expiry_date" placement="bottom" ngbDatepicker
+                                    #cr_expiry_date="ngbDatepicker" [minDate]="minDate" [maxDate]="maxDate"
+                                    style="cursor: pointer;">
+                                <div class="input-group-append">
+                                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" class="more ion-calendar"
+                                        (click)="cr_expiry_date.toggle(); cr_expiry_date_vs = false; startedFilling = 1;"
+                                        type="button"></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <label *ngIf="inputs.TypeOfLicenseChecked === crNumberLicense" for="issue_date"
+                            class="col-sm-2 col-form-label"><span class="required-pf">*
+                            </span>{{ 'PRELIMINARY_REQUEST.issueDate' | translate }}</label>
+                        <div *ngIf="inputs.TypeOfLicenseChecked === crNumberLicense" class="col-sm-3">
+
+                            <div class="input-group">
+                                <input type="text" [ngClass]="{'is-invalid' : issue_date_vs}"
+                                    (change)="inputs.IssueDate = commonService.onChangeHijriDate($event, inputs.IssueDate)"
+                                    [(ngModel)]="inputs.IssueDate" placeholder="YYYY-MM-DD" class="form-control"
+                                    (click)="issue_date.toggle(); issue_date_vs = false; startedFilling = 1;"
+                                    name="issue_date" placement="bottom" ngbDatepicker #issue_date="ngbDatepicker"
+                                    [minDate]="minDate" [maxDate]="maxDate" style="cursor: pointer;">
+
+                                <div class="input-group-append">
+                                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" class="more ion-calendar"
+                                        (click)="issue_date.toggle(); issue_date_vs = false; startedFilling = 1;"
+                                        type="button"></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div id="tourStep3-s1" class="form-group row">
+
+                        <label for="profile_type" class="col-sm-3 col-form-label"><span class="required-pf">* </span>{{ 'PRELIMINARY_REQUEST.ProfileType' | translate
+                            }}</label>
+                        <div class="col-sm-3">
+                            <select [ngClass]="{'is-invalid' : profile_type_vs}" (change)="onProfileTypeChange()" *ngIf="!islogistic"
+                                name="profile_type" class="form-control" [(ngModel)]="inputs.ProfileType">
+                              
+                                <option 
+                                    *ngFor="let profile_type_item of  profileItems"
+                                    [value]="profile_type_item.id">
+                                    
+                                <span *ngIf="currentLang === 'en'">{{profile_type_item.prqTypeEn}}</span>
+                                <span *ngIf="currentLang === 'ar'">{{profile_type_item.prqTypeAr}}</span>
+                                </option> 
+                            </select>
+        
+                            <select [ngClass]="{'is-invalid' : profile_type_vs}" (change)="onProfileTypeChange()" *ngIf="islogistic"
+                            name="profile_type" class="form-control" [(ngModel)]="inputs.ProfileType">
+                          
+                            <option 
+                                *ngFor="let profile_type_item of  LogprofileItems"
+                                [value]="profile_type_item.id">
+                                
+                            <span *ngIf="currentLang === 'en'">{{profile_type_item.prqTypeEn}}</span>
+                            <span *ngIf="currentLang === 'ar'">{{profile_type_item.prqTypeAr}}</span>
+                            </option> 
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div *ngIf="screen_number === 2">
+                    <nb-alert *ngIf="eca_license_vs == false" status="danger">
+                        {{ 'PRELIMINARY_REQUEST.ECAInvalid' | translate }} <a style="color:white"
+                            href="http://eca.gov.sa/360/pages/ar/home">{{ 'PRELIMINARY_REQUEST.ECAInvalidLink' | translate }}
+                        </a>
+                    </nb-alert>
+
+                    <div style="margin-bottom: 20px; text-align: right;">
+
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;"
+                            *ngIf="allPanelsExpanded === false" class="more" (click)="expandAllPanels(0);">{{
+                            'COMMON.ExpandAllPanels' | translate }}</button>
+
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;"
+                            *ngIf="allPanelsExpanded === true" class="more" (click)="expandAllPanels(1);">{{
+                            'COMMON.CollapseAllPanels' | translate }}</button>
+
+                        <!-- <span id="startTour-s2" *ngIf="add_edit_delete_show" [ngbTooltip]="StartTour" placement="left"
+                            style="vertical-align: middle; margin-left: 1%; margin-right: 1%; color: #006e42; cursor: pointer; font-size: 35px; font-weight: 600;"
+                            class="nb-help" (click)="startTour()"></span> -->
+
+                    </div>
+                    <mat-accordion multi="true">
+
+                        <mat-expansion-panel *ngIf="serviceId == 11  || this.serviceId == 15"
+                            [expanded]="panelStep === 0 || allPanelsExpanded === true" (opened)="setPanelStep(0)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    {{ 'PRELIMINARY_REQUEST.ECA_Information' | translate }}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+
+                            <div class="col-md-12 form-group row">
+
+                                <label for="eca_license" class="col-sm-3 col-form-label"><span class="required-pf">*
+                                    </span>{{'PRELIMINARY_REQUEST.ECALicense' | translate}}</label>
+                                <div class="col-sm-3">
+                                    <input [ngClass]="{'is-invalid' : eca_license_vs}" type="number"
+                                        [(ngModel)]="inputs.eca_license" min="0" step="1" max="9999999999999"
+                                        oninput="validity.valid || (value='')" name="eca_license"
+                                        [disabled]="!add_edit_delete_show"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.ECALicense' | translate }}"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button type="button" style="cursor: pointer;" class="more" (click)="nextPanelStep(0);">{{
+                                        'COMMON.Next' |
+                                        translate }}</button>
+                            </mat-action-row>
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel id="tourStep1-s2"
+                            [expanded]="panelStep === 1 || allPanelsExpanded === true" (opened)="setPanelStep(1)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    {{ 'PRELIMINARY_REQUEST.sectorDetails' | translate }}
+                                </mat-panel-title>
+
+                                <common-comments *ngIf="comments_show" [comments]="sector_details_comments">
+                                </common-comments>
+
+                            </mat-expansion-panel-header>
+
+                            <div class="col-md-12 form-group row">
+
+                                <div class="col-sm-6 row">
+
+                                    <label for="industrial_sector" class="col-sm-4 col-form-label"><span
+                                            class="required-pf">*
+                                        </span>{{ 'PRELIMINARY_REQUEST.industrialSector' | translate }}
+                                   
+                                    </label>
+                                    <div class="col-sm-6 input-group mail-btn-group"
+                                        (click)="onOpenIndustrialSectorPopUp(industrial_sector_pop_up)">
+                                        <input [ngClass]="{'is-invalid' : industrial_sector_vs}"
+                                            (change)="industrial_sector_vs = false" name="industrial_sector"
+                                            [(ngModel)]="inputs.IndustrialSectorSelected[0].name" type="text"
+                                            class="form-control"
+                                            placeholder="{{ 'PRELIMINARY_REQUEST.selectIndustrialSector' | translate }}"
+                                            readonly="readonly" [disabled]="!add_edit_delete_show || (!sector_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')"
+                                            style="cursor: pointer; height: 21px !important;" />
+                                        <span class="input-group-append">
+                                            <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                                style="cursor: pointer; height: 40px; border-top-right-radius:0; border-bottom-right-radius:0px; border-top-left-radius:3px; border-bottom-left-radius:3px"
+                                                class="more input-group-text" [disabled]="!add_edit_delete_show || (!sector_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                                <i class="nb-search" style="font-size: 15px;"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+
+
+
+
+                                    <!-- 
+
+                                    <div class="col-sm-6 input-group mail-btn-group ui-rtl" dir="rtl">
+
+                                   <p-dropdown   [ngClass]="{'is-invalid' : industrial_sector_vs}"
+                                     name="industrial_sector" placeholder="{{ 'PRELIMINARY_REQUEST.selectIndustrialSector' | translate }}" 
+                                    optionLabel="name" [showClear]="true" [options]="industrial_sector_pop_up_array" [disabled]="!add_edit_delete_show" [(ngModel)]="inputs.IndustrialSectorSelected[0]"
+                                    required="true" [style]="{'width':'100%','height':'38px','vertical-align':'middle'}" filter="true">
+                                     
+                                    </p-dropdown> 
+                                </div>  -->
+
+
+
+                                </div>
+
+                                <!-- <div class="col-sm-6 row">
+
+                                        <label for="category" class="col-sm-3 col-form-label"><span
+                                                class="required-pf">*
+                                            </span>{{
+                                        'PRELIMINARY_REQUEST.category' | translate }}</label>
+                                        <div class="col-sm-6">
+                                            <select [ngClass]="{'is-invalid' : category_vs}"
+                                                (change)="category_vs = false" name="category" class="form-control"
+                                                [(ngModel)]="inputs.CategorySelected" [disabled]="!add_edit_delete_show"
+                                                style="height: 21px !important;">
+                                                <option *ngFor="let category_item of inputs.Category"
+                                                    [value]="category_item.id">{{category_item.category}}</option>
+                                                    <option [value]="7"> تمويل المشروع  </option>
+                                            </select>
+                                        </div>
+
+                                    </div> -->
+
+                                <div class="col-sm-6 row">
+
+                                    <label for="region" class="col-sm-4 col-form-label"><span class="required-pf">*
+                                        </span>{{
+                                        'PRELIMINARY_REQUEST.region' | translate }}</label>
+                                    <div class="col-sm-6">
+                                        <select [ngClass]="{'is-invalid' : region_vs}"
+                                            (change)="region_vs = false; startedFilling = 1;" name="region"
+                                            class="form-control" [(ngModel)]="inputs.RegionSelected"
+                                            [disabled]="!add_edit_delete_show|| (!sector_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" style="height: 21px !important;">
+                                            <option value="" disabled selected hidden>
+                                                {{'COMMON.Select' | translate }}
+                                                {{ 'PRELIMINARY_REQUEST.region' | translate }}</option>
+                                            <option *ngFor="let region_item of inputs.Region" [value]="region_item.id">
+                                                
+                                                <span *ngIf="currentLang === 'en'">{{region_item.region}}</span>
+                                                <span *ngIf="currentLang === 'ar'">{{region_item.regionAr}}</span>
+                                             
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-group row">
+                                <div class="col-sm-6 row">
+                                     
+                                    <label for="type" class="col-sm-4 col-form-label"><span class="required-pf">*
+                                        </span>{{
+                                        'PRELIMINARY_REQUEST.purpose' | translate }}</label>
+                                    <div class="col-sm-6">
+                                        <select [ngClass]="{'is-invalid' : type_vs}" style="height: 21px !important;"
+                                            (change)="onPurposeChange();" name="type" class="form-control"
+                                            [(ngModel)]="inputs.TypeSelected" [disabled]="!add_edit_delete_show|| (!sector_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                            <option value="" disabled selected hidden>
+                                                {{'COMMON.Select' | translate }}
+                                                {{ 'PRELIMINARY_REQUEST.purpose' | translate }}</option>
+                                            <option *ngFor="let type_item of inputs.Type" [value]="type_item.id">
+                                                
+                                                <span *ngIf="currentLang === 'en'">{{type_item.type}}</span>
+                                                <span *ngIf="currentLang === 'ar'">{{type_item.typeAr}}</span>
+                                             
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div *ngIf="isPurposeOthers" class="col-sm-6 row">
+
+                                    <label for="other_purpose" class="col-sm-3 col-form-label"><span
+                                            class="required-pf">*
+                                        </span>{{
+                                             'PRELIMINARY_REQUEST.OtherPurpose' | translate }}</label>
+                                    <div class="col-sm-6">
+                                        <input maxlength="100" [ngClass]="{'is-invalid' : other_purpose_vs}"
+                                            (change)="other_purpose_vs = false; startedFilling = 1;" type="text"
+                                            class="form-control" [(ngModel)]="inputs.OtherPurpose" name="other_purpose"
+                                            placeholder="{{ 'PRELIMINARY_REQUEST.EnterOtherPurpose' | translate }}"
+                                            [disabled]="!add_edit_delete_show|| (!sector_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="cursor: pointer;" class="more" (click)="nextPanelStep(1);">{{
+                                    'COMMON.Next' |
+                                    translate }}</button>
+                            </mat-action-row>
+
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel id="tourStep2-s2"
+                            [expanded]="panelStep === 2 || allPanelsExpanded === true" (opened)="setPanelStep(2)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    <span *ngIf="inputs.TypeOfLicenseChecked != crNumberLicense">{{ 'PRELIMINARY_REQUEST.licenseDetails' | translate }}       </span>
+                                    <span *ngIf="inputs.TypeOfLicenseChecked === crNumberLicense">{{ 'PRELIMINARY_REQUEST.factoryDetails' | translate }}       </span>
+                                </mat-panel-title>
+
+                                <common-comments *ngIf="comments_show" [comments]="license_details_comments">
+                                </common-comments>
+
+                            </mat-expansion-panel-header>
+
+                            <div class="col-md-12 form-group row" *ngIf="inputs.TypeOfLicenseChecked != crNumberLicense">
+
+                                <div class="col-sm-6 row" >
+                                    <label for="license_type" class="col-sm-6 col-form-label">{{
+                                        'PRELIMINARY_REQUEST.licenseType' | translate }}</label>
+                                    <input type="text" class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.TypeOfLicenseChecked" name="license_type"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterLicenseType' | translate }}"
+                                        [disabled]="!isSagiaOrCr || !add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+
+                                <div class="col-sm-6 row">
+                                    <label for="license_number" class="col-sm-6 col-form-label">{{
+                                        'PRELIMINARY_REQUEST.licenseNumber' | translate }}</label>
+                                    <input type="text" class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.licenseDetails[0].licenseId" name="license_number"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterLicenseNumber' | translate }}"
+                                        [disabled]="!isSagiaOrCr || !add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12 form-group row" *ngIf="inputs.TypeOfLicenseChecked != crNumberLicense">
+
+                                <div class="col-sm-6 row">
+                                    <label for="license_start_date" class="col-sm-6 col-form-label">{{
+                                        'PRELIMINARY_REQUEST.licenseStartDate' | translate }}</label>
+                                    <div *ngIf="!isMEIM" class="col-sm-6 input-group"
+                                        style="box-sizing: border-box; padding-left: 0px; padding-right: 0px;">
+                                        <input type="text" nbInput
+                                            (change)="inputs.licenseDetails[0].licStartDate = commonService.onChangeHijriDate($event, inputs.licenseDetails[0].licStartDate)"
+                                            [(ngModel)]="inputs.licenseDetails[0].licStartDate" placeholder="YYYY-MM-DD"
+                                            class="col-sm-10 form-control" (click)="license_start_date.toggle()"
+                                            name="license_start_date" placement="bottom" ngbDatepicker
+                                            #license_start_date="ngbDatepicker" [minDate]="minDate" [maxDate]="maxDate"
+                                            [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                        <div class="input-group-append">
+                                            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                                class="more ion-calendar" (click)="license_start_date.toggle()"
+                                                type="button" [disabled]="!add_edit_delete_show"></button>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="isMEIM" class="col-sm-6 input-group"
+                                        style="padding-right: 0px !important; padding-left: 0px !important;">
+                                        <input type="text" onkeydown="return false;"
+                                            [(ngModel)]="inputs.licenseDetails[0].licStartDateGreg"
+                                            placeholder="YYYY-MM-DD" class="col-sm-10 form-control"
+                                            name="licenseStartDate" placement="bottom" #licenseStartDate="bsDatepicker"
+                                            bsDatepicker
+                                            [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                                            [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                        <div class="input-group-append">
+                                            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                                class="more ion-calendar" (click)="licenseStartDate.toggle();"
+                                                [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" type="button"></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6 row">
+                                    <label for="license_end_date" class="col-sm-6 col-form-label">{{
+                                        'PRELIMINARY_REQUEST.licenseEndDate' | translate }}</label>
+                                    <div *ngIf="!isMEIM" class="col-sm-6 input-group"
+                                        style="box-sizing: border-box; padding-left: 0px; padding-right: 0px;">
+                                        <input type="text" nbInput
+                                            (change)="inputs.licenseDetails[0].licEndDate = commonService.onChangeHijriDate($event, inputs.licenseDetails[0].licEndDate)"
+                                            [(ngModel)]="inputs.licenseDetails[0].licEndDate" placeholder="YYYY-MM-DD"
+                                            class="col-sm-10 form-control" (click)="license_end_date.toggle()"
+                                            name="license_end_date" placement="bottom" ngbDatepicker
+                                            #license_end_date="ngbDatepicker" [minDate]="minDate" [maxDate]="maxDate"
+                                            [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                        <div class="input-group-append">
+                                            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                                class="more ion-calendar" (click)="license_end_date.toggle()"
+                                                type="button" [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')"></button>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="isMEIM" class="col-sm-6 input-group"
+                                        style="padding-right: 0px !important; padding-left: 0px !important;">
+                                        <input type="text" onkeydown="return false;"
+                                            [(ngModel)]="inputs.licenseDetails[0].licEndDateGreg"
+                                            placeholder="YYYY-MM-DD" class="col-sm-11 form-control"
+                                            name="licenseEndDate" placement="bottom" #licenseEndDate="bsDatepicker"
+                                            bsDatepicker
+                                            [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                                            style="cursor: pointer;" [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                        <div class="input-group-append">
+                                            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                                class="btn btn-success ion-calendar" (click)="licenseEndDate.toggle();"
+                                                [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" type="button"></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12 form-group row">
+
+                                <div class="col-sm-6 row">
+                                    <label for="factory_name_arabic" class="col-sm-6 col-form-label"><span
+                                            class="required-pf" *ngIf="!isSagiaOrCr">*
+                                        </span>{{
+                                        'PRELIMINARY_REQUEST.factoryNameArabic' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : factory_name_ar_vs}"
+                                        (change)="factory_name_ar_vs = false; startedFilling = 1; ValidateFactoryLanguageAR($event);" type="text"
+                                        class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.licenseDetails[0].factoryNameAr" name="factory_name_arabic"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterFactoryNameArabic' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" (keydown)= "ValidateFactoryLanguageAR($event);"
+                                        (blur) = "ValidateFactoryLanguageAR($event);">
+                                </div>
+
+                                <div class="col-sm-6 row">
+                                    <label for="factory_name" class="col-sm-6 col-form-label"><span
+                                            class="required-pf">*
+                                        </span>{{ 'PRELIMINARY_REQUEST.factoryNameEnglish' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : factory_name_vs}"
+                                        (change)="factory_name_vs = false; startedFilling = 1; ValidateFactoryLanguageEN($event);" type="text"
+                                        class="col-sm-6 form-control" [(ngModel)]="inputs.licenseDetails[0].factoryName"
+                                        name="factory_name"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterFactoryNameEnglish' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" (keydown)= "ValidateFactoryLanguageEN($event);"
+                                        (blur) = "ValidateFactoryLanguageEN($event);">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12 form-group row">
+
+                                <div class="col-sm-6 row">
+                                    <label for="proposed_capitals" class="col-sm-6 col-form-label">{{
+                                        'PRELIMINARY_REQUEST.capital' | translate }}</label>
+                                    <input (keypress)="numberOnly($event)" type="text" class="col-sm-6 form-control"
+                                        [ngModelOptions]="{updateOn:'blur'}"
+                                        (ngModelChange)="inputs.licenseDetails[0].proCapital = $event; parseTextToInt('proCapital')"
+                                        [ngModel]="inputs.licenseDetails[0].proCapital | currency:'SAR ':'symbol':'2.4'"
+                                        min="0" step=".0001" oninput="validity.valid || (value='')"
+                                        name="proposed_capitals"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCapital' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                    <!--  || inputs.TypeOfLicenseChecked != 'Initial'"> -->
+                                </div>
+
+                                <div class="col-sm-6 row">
+                                    <label for="request_amount" class="col-sm-6 col-form-label"><span
+                                            class="required-pf" >*
+                                        </span>{{ 'PRELIMINARY_REQUEST.requestAmount' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : request_amount_vs}"
+                                        (change)="request_amount_vs = false" (keypress)="numberOnly($event)" type="text"
+                                        class="col-sm-6 form-control" [ngModelOptions]="{updateOn:'blur'}"
+                                        (ngModelChange)="inputs.licenseDetails[0].reqAmount = $event; parseTextToInt('reqAmount')"
+                                        [ngModel]="inputs.licenseDetails[0].reqAmount | currency:'SAR ':'symbol':'2.4'"
+                                        min="0" step=".0001" oninput="validity.valid || (value='')"
+                                        name="request_amount" required
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterRequestAmount' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12 form-group row">
+
+                                <div class="col-sm-6 row">
+                                    <label for="legal_entity" class="col-sm-6 col-form-label"><span
+                                            class="required-pf">*
+                                        </span>{{ 'PROJECT_INFORMATION.LegalEntity' | translate }}</label>
+                                    <input
+                                        *ngIf="inputs.licenseDetails[0].crLegalInd == 'X' && commonService.defaultLanguage == 'en'"
+                                        type="text" class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.licenseDetails[0].crLeagalTypeEn" name="legal_entity"
+                                        placeholder="{{ 'PROJECT_INFORMATION.LegalEntity' | translate }}"
+                                        [disabled]="!isSagiaOrCr || !add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                    <input
+                                        *ngIf="inputs.licenseDetails[0].crLegalInd == 'X' && commonService.defaultLanguage == 'ar'"
+                                        type="text" class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.licenseDetails[0].crLeagalTypeAr" name="legal_entity"
+                                        placeholder="{{ 'PROJECT_INFORMATION.LegalEntity' | translate }}"
+                                        [disabled]="!isSagiaOrCr || !add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                    <select
+                                        *ngIf="inputs.licenseDetails[0].crLegalInd == '' && commonService.defaultLanguage == 'en'"
+                                        [ngClass]="{'is-invalid' : legal_entity_vs}"
+                                        (change)="onLegalEntityChange('en')" name="legal_entity"
+                                        class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.licenseDetails[0].crLeagalTypeEn"
+                                        [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" style="height: 21px !important;">
+                                        <option value="" disabled selected hidden>{{'COMMON.Select' | translate }}
+                                            {{ 'PROJECT_INFORMATION.LegalEntity' | translate }}</option>
+                                        <option *ngFor="let legal_entity_item of legal_entity_en_desc_list"
+                                            [value]="legal_entity_item">{{legal_entity_item}}</option>
+                                    </select>
+                                    <select
+                                        *ngIf="inputs.licenseDetails[0].crLegalInd == '' && commonService.defaultLanguage == 'ar'"
+                                        [ngClass]="{'is-invalid' : legal_entity_vs}"
+                                        (change)="onLegalEntityChange('ar')" name="legal_entity"
+                                        class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.licenseDetails[0].crLeagalTypeAr"
+                                        [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" style="height: 21px !important;">
+                                        <option value="" disabled selected hidden>{{'COMMON.Select' | translate }}
+                                            {{ 'PROJECT_INFORMATION.LegalEntity' | translate }}</option>
+                                        <option *ngFor="let legal_entity_item of legal_entity_ar_desc_list"
+                                            [value]="legal_entity_item">{{legal_entity_item}}</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-6 row">
+                                    <label for="relationship_manager" class="col-sm-6 col-form-label">{{
+                                        'PRELIMINARY_REQUEST.relationshipManagerEmailId' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : relationship_manager_vs}"
+                                        (change)="relationship_manager_vs = false; startedFilling = 1;" type="email"
+                                        class="col-sm-6 form-control" [(ngModel)]="inputs.RmEmail"
+                                        name="relationship_manager"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterRelationshipManagerEmailId' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group row">
+                                <div class="col-sm-6 row">
+                                    <label for="city" class="col-sm-6 col-form-label"><span class="required-pf"
+                                            *ngIf="!isSagiaOrCr">*
+                                        </span>{{ 'PRELIMINARY_REQUEST.City' | translate }}</label>
+                                    <select [ngClass]="{'is-invalid' : city_vs}"
+                                        (change)="city_vs = false; startedFilling = 1;" name="city"
+                                        class="col-sm-6 form-control" [(ngModel)]="inputs.licenseDetails[0].city"
+                                        [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" style="height: 21px !important;">
+                                        <option value="" disabled selected hidden>{{'COMMON.Select' | translate }}
+                                            {{ 'PROJECT_INFORMATION.City' | translate }}</option>
+                                        <option *ngFor="let city_item of city_saudi_name_list" [value]="city_item">
+                                            {{city_item}}</option>
+                                    </select>
+                                </div>
+  
+
+                                <div class="col-sm-6 row"
+                                    *ngIf="inputs.TypeOfLicenseChecked != crNumberLicense &&(inputs.ProfileType==='51'||ProfileTypeID==='24'||inputs.ProfileType==='24' ||inputs.ProfileType =='0000000024')">
+                                    <label for="ModonCity" class="col-sm-6 col-form-label"><span class="required-pf">*
+                                        </span>{{ 'PRELIMINARY_REQUEST.ModonCity' | translate }} </label>
+                                    <select  [ngClass]="{'is-invalid' : modonCity_vs}" 
+                                        (change)="modonCity_vs = false; startedFilling = 1;" name="ModonCity"
+                                        class="col-sm-6 form-control" [(ngModel)]="inputs.ModonCity"
+                                        [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" style="height: 21px !important;">
+                                         <option value="" disabled selected >{{'COMMON.Select' | translate }}
+                                                {{ 'PRELIMINARY_REQUEST.ModonCity' | translate }}</option> 
+                                        <option *ngFor="let city of modonCities" [value]="city.Value">
+                                            {{city.ItemName}}</option>
+                                             
+                                    </select>
+                                     
+                                </div>
+                                <div class="col-sm-6 row"
+                                *ngIf="inputs.TypeOfLicenseChecked === crNumberLicense &&(inputs.ProfileType==='51'||ProfileTypeID==='24'||ProfileTypeID==='25'||inputs.ProfileType==='24' ||inputs.ProfileType =='0000000024'||inputs.ProfileType==='25' ||inputs.ProfileType =='0000000025')||(inputs.TypeOfLicenseChecked != crNumberLicense && (ProfileTypeID==='25'||inputs.ProfileType==='25'||inputs.ProfileType =='0000000025'))">
+                                <label for="ModonCity" class="col-sm-6 col-form-label"><span class="required-pf">*
+                                    </span>{{ 'PRELIMINARY_REQUEST.CrCity' | translate }}</label>
+                            
+                                <select                      name="crCity"
+                                class="col-sm-6 form-control" [(ngModel)]="inputs.ModonCity"
+                                [disabled]="!add_edit_delete_show || (!license_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" style="height: 21px !important;">
+                                 <option value="" disabled selected >{{'COMMON.Select' | translate }}
+                                        {{ 'PRELIMINARY_REQUEST.CrCity' | translate }}</option> 
+                               
+                                    <option  *ngFor="let city_item of crCities" [value]="city_item.Code">
+                                        
+                                        <span *ngIf="currentLang === 'en'">{{city_item.Value_en}}</span>
+                                        <span *ngIf="currentLang === 'ar'">{{city_item.Value_ar}}</span>
+                                     
+                                    </option>
+                            </select>
+                            </div>
+                        
+                            </div>
+
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                    (click)="prevPanelStep(2);">{{
+                                    'COMMON.Previous' |
+                                    translate }}</button>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="cursor: pointer;" class="more" (click)="nextPanelStep(2);">{{
+                                    'COMMON.Next' |
+                                    translate
+                                    }}</button>
+                            </mat-action-row>
+
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel id="tourStep3-s2"
+                            [expanded]="panelStep === 3 || allPanelsExpanded === true" (opened)="setPanelStep(3)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    {{ 'PRELIMINARY_REQUEST.companyDetails' | translate }}
+                                </mat-panel-title>
+
+                                <common-comments *ngIf="comments_show" [comments]="company_details_comments">
+                                </common-comments>
+
+                            </mat-expansion-panel-header>
+
+                            <div class="col-md-12 form-group row">
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_name_arabic" class="col-sm-6 col-form-label">
+                                        <!-- <span *ngIf="inputs.TypeOfLicenseChecked == 'Initial'" -->
+                                        <span class="required-pf">* </span>{{ 'PRELIMINARY_REQUEST.companyNameArabic' |
+                                        translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : cr_name_arabic_vs}"
+                                        (change)="cr_name_arabic_vs = false; startedFilling = 1; ValidateLanguageAR($event);" type="text"
+                                        class="col-sm-6 form-control" [(ngModel)]="inputs.licenseDetails[0].crNameAr"
+                                        name="cr_name_arabic"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyNameArabic' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" (keydown)= "ValidateLanguageAR($event);" 
+                                        (blur) = "ValidateLanguageAR($event);">
+                                    <!--  || inputs.TypeOfLicenseChecked != 'Initial'"> -->
+                                </div>
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_name" class="col-sm-6 col-form-label"><span class="required-pf">*
+                                        </span>{{
+                                        'PRELIMINARY_REQUEST.companyNameEnglish' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : cr_name_vs}"
+                                        (change)="cr_name_vs = false; startedFilling = 1; ValidateLanguageEN($event);" type="text"
+                                        class="col-sm-6 form-control" [(ngModel)]="inputs.licenseDetails[0].crName"
+                                        name="cr_name"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyNameEnglish' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" (keydown)= "ValidateLanguageEN($event);"
+                                        (blur) = "ValidateLanguageEN($event);">
+                                        
+                                        <!-- [pattern]="/[a-zA-Z ]*/" -->
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12 form-group row">
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_number" class="col-sm-6 col-form-label"><span class="required-pf">*
+                                        </span>{{ 'PRELIMINARY_REQUEST.companyNumber' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : cr_number_2_vs}"
+                                        (change)="cr_number_2_vs = false; startedFilling = 1;" type="number"
+                                        class="col-sm-6 form-control" min="0" step="1"
+                                        oninput="validity.valid || (value='')"
+                                        [(ngModel)]="inputs.licenseDetails[0].crNumber" name="cr_number"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyNumber' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')"
+                                        (change)="GetCRnformation($event.target.value)">
+                                </div>
+                                <!-- Peter updated -->
+                                <div class="col-sm-6 row">
+                                    <label for="cr_issue_place" class="col-sm-6 col-form-label">
+                                        <!-- <span *ngIf="inputs.TypeOfLicenseChecked == 'Initial'" -->
+                                        <span class="required-pf">* </span>{{ 'PRELIMINARY_REQUEST.companyIssuePlace' |
+                                        translate }}</label>
+                                    <!-- <input [ngClass]="{'is-invalid' : cr_issue_place_vs}"
+                                            (change)="cr_issue_place_vs = false" type="text"
+                                            class="col-sm-6 form-control"
+                                            [(ngModel)]="inputs.licenseDetails[0].crLocationAr" name="cr_issue_place"
+                                            placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyIssuePlace' | translate }}"
+                                            [disabled]="!add_edit_delete_show"> -->
+                                    <select [ngClass]="{'is-invalid' : cr_issue_place_vs}"
+                                        (change)="cr_issue_place_vs = false; startedFilling = 1;" name="cr_issue_place"
+                                        class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.licenseDetails[0].crLocationAr"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" style="height: 21px !important;">
+                                        <option value="" disabled selected hidden>{{'COMMON.Select' | translate }}
+                                            {{ 'PRELIMINARY_REQUEST.companyIssuePlace' | translate }}</option>
+                                        <option *ngFor="let city_item of city_saudi_name_list" [value]="city_item">
+                                            {{city_item}}</option>
+                                    </select>
+                                    <!--  || inputs.TypeOfLicenseChecked != 'Initial'"> -->
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12 form-group row" *ngIf="serviceId == 9"> -->
+                            <div class="col-md-12 form-group row" *ngIf="serviceId == 9 || serviceId == 10">
+
+                                <div class="col-sm-6 row">
+                                    <label class="col-sm-6 col-form-label">
+                                        تاريخ الصدور</label>
+                                    <input type="text" class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.commercialRegistrationDetails[0].RegStartDate"
+                                        name="RegStartDate" [disabled]="true">
+                                </div>
+
+                                <div class="col-sm-6 row">
+                                    <label class="col-sm-6 col-form-label">
+                                        تاريخ الانتهاء</label>
+                                    <input type="text" class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.commercialRegistrationDetails[0].RegEndDate"
+                                        name="RegEndDate" [disabled]="true">
+                                </div>
+                            </div>
+
+
+                            <!-- <div class="col-md-12 form-group row" *ngIf="serviceId == 9"> -->
+                            <div class="col-md-12 form-group row" *ngIf="serviceId == 9 || serviceId == 10">
+
+                                <div class="col-sm-6 row">
+                                    <label class="col-sm-6 col-form-label">
+                                        اسم الشركة </label>
+                                    <input type="text" class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.commercialRegistrationDetails[0].RegCompanyName"
+                                        name="RegCompanyName" [disabled]="true">
+                                </div>
+                                <div class="col-sm-6 row">
+                                    <label class="col-sm-6 col-form-label">
+                                        النشاط </label>
+                                    <input type="text" class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.commercialRegistrationDetails[0].RegActivity"
+                                        name="RegActivity" [disabled]="true">
+                                </div>
+                            </div>
+                            <!-- </div> -->
+
+                            <div class="col-md-12 form-group row">
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_issue_date" class="col-sm-6 col-form-label">
+                                        <!-- <span *ngIf="inputs.TypeOfLicenseChecked == 'Initial'" -->
+                                        <span class="required-pf">* </span>{{
+                                        'PRELIMINARY_REQUEST.CompanyIssueDate' | translate }}</label>
+                                    <div class="col-sm-6 input-group"
+                                        style="box-sizing: border-box; padding-left: 0px; padding-right: 0px;">
+                                        <input [ngClass]="{'is-invalid' : cr_issue_date_vs}" type="text" nbInput
+                                            (change)="inputs.licenseDetails[0].crIssueDate = commonService.onChangeHijriDate($event, inputs.licenseDetails[0].crIssueDate)"
+                                            [(ngModel)]="inputs.licenseDetails[0].crIssueDate" placeholder="YYYY-MM-DD"
+                                            class="form-control"
+                                            (click)="cr_issue_date.toggle(); cr_issue_date_vs = false; startedFilling = 1;"
+                                            name="cr_issue_date" placement="bottom" ngbDatepicker
+                                            #cr_issue_date="ngbDatepicker" [minDate]="minDate" [maxDate]="maxDate"
+                                            [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" style="cursor: pointer;">
+                                        <!--  || inputs.TypeOfLicenseChecked != 'Initial'"> -->
+                                        <div class="input-group-append">
+                                            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                                class="more ion-calendar"
+                                                (click)="cr_issue_date.toggle(); cr_issue_date_vs = false; startedFilling = 1;"
+                                                type="button" [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')"></button>
+                                            <!--  || inputs.TypeOfLicenseChecked != 'Initial'"></button> -->
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_expiry_date_1" class="col-sm-6 col-form-label">
+                                        <!-- <span *ngIf="inputs.TypeOfLicenseChecked == 'Initial'" -->
+                                        <span class="required-pf">* </span>{{ 'PRELIMINARY_REQUEST.companyExpiryDate' |
+                                        translate }}</label>
+                                    <div class="col-sm-6 input-group"
+                                        style="box-sizing: border-box; padding-left: 0px; padding-right: 0px;">
+                                        <input [ngClass]="{'is-invalid' : cr_expiry_date_1_vs}" type="text" nbInput
+                                            (change)="inputs.licenseDetails[0].crExpiryDate = commonService.onChangeHijriDate($event, inputs.licenseDetails[0].crExpiryDate)"
+                                            [(ngModel)]="inputs.licenseDetails[0].crExpiryDate" placeholder="YYYY-MM-DD"
+                                            class="form-control"
+                                            (click)="cr_expiry_date_1.toggle(); cr_expiry_date_1_vs = false; startedFilling = 1;"
+                                            name="cr_expiry_date_1" placement="bottom" ngbDatepicker
+                                            #cr_expiry_date_1="ngbDatepicker" [minDate]="minDate" [maxDate]="maxDate"
+                                            [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')" style="cursor: pointer;">
+                                        <!--  || inputs.TypeOfLicenseChecked != 'Initial'"> -->
+                                        <div class="input-group-append">
+                                            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                                class="more ion-calendar"
+                                                (click)="cr_expiry_date_1.toggle(); cr_expiry_date_1_vs = false; startedFilling = 1;"
+                                                type="button" [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')"></button>
+                                            <!--  || inputs.TypeOfLicenseChecked != 'Initial'"></button> -->
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12 form-group row">
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_phone" class="col-sm-6 col-form-label"><span class="required-pf">*
+                                        </span>{{ 'PRELIMINARY_REQUEST.companyPhoneNumber' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : cr_phone_vs}"
+                                        (change)="cr_phone_vs = false; startedFilling = 1;" type="text"
+                                        class="col-sm-6 form-control" [(ngModel)]="inputs.licenseDetails[0].crPhone"
+                                        name="cr_phone"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyPhoneNumber' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_fax_no" class="col-sm-6 col-form-label">{{
+                                        'PRELIMINARY_REQUEST.companyFaxNumber' | translate }}</label>
+                                    <input (change)="startedFilling = 1;" type="text" class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.licenseDetails[0].crFaxNo" name="cr_fax_no"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyFaxNumber' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12 form-group row">
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_address" class="col-sm-6 col-form-label"><span class="required-pf">*
+                                        </span>{{ 'PRELIMINARY_REQUEST.companyAddress' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : cr_address_vs}"
+                                        (change)="cr_address_vs = false; startedFilling = 1;" type="text"
+                                        class="col-sm-6 form-control" [(ngModel)]="inputs.licenseDetails[0].crAddress"
+                                        name="cr_address"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyAddress' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_zip_code" class="col-sm-6 col-form-label"><span class="required-pf">*
+                                        </span>{{ 'PRELIMINARY_REQUEST.companyPostalCode' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : cr_zip_code_vs}"
+                                        (change)="cr_zip_code_vs = false; startedFilling = 1;" type="number"
+                                        class="col-sm-6 form-control" [(ngModel)]="inputs.licenseDetails[0].crZipCode"
+                                        min="0" step="1" oninput="validity.valid || (value='')" name="cr_zip_code"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyPostalCode' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12 form-group row">
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_district_area" class="col-sm-6 col-form-label">{{
+                                        'PRELIMINARY_REQUEST.companyDistrictArea' | translate }}</label>
+                                    <input (change)="startedFilling = 1;" type="text" class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.licenseDetails[0].crDistrictArea" name="cr_district_area"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyDistrictArea' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_unit_no" class="col-sm-6 col-form-label"><span class="required-pf">*
+                                        </span>{{ 'PRELIMINARY_REQUEST.companyUnitNumber' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : cr_unit_no_vs}"
+                                        (change)="cr_unit_no_vs = false; startedFilling = 1;" type="number"
+                                        class="col-sm-6 form-control" [(ngModel)]="inputs.licenseDetails[0].crUnitNo"
+                                        min="0" step="1" oninput="validity.valid || (value='')" name="cr_unit_no"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyUnitNumber' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12 form-group row">
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_building_no" class="col-sm-6 col-form-label"><span
+                                            class="required-pf">*
+                                        </span>{{ 'PRELIMINARY_REQUEST.companyBuildingNumber' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : cr_building_no_vs}"
+                                        (change)="cr_building_no_vs = false; startedFilling = 1;" type="number"
+                                        class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.licenseDetails[0].crBuildingNo" min="0" step="1"
+                                        oninput="validity.valid || (value='')" name="cr_building_no"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyBuildingNumber' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+
+                                <div class="col-sm-6 row">
+                                    <label for="cr_additional_no" class="col-sm-6 col-form-label"><span
+                                            class="required-pf">*
+                                        </span>{{ 'PRELIMINARY_REQUEST.companyAdditionalNumber' | translate }}</label>
+                                    <input [ngClass]="{'is-invalid' : cr_additional_no_vs}"
+                                        (change)="cr_additional_no_vs = false; startedFilling = 1;" type="number"
+                                        class="col-sm-6 form-control"
+                                        [(ngModel)]="inputs.licenseDetails[0].crAdditionalNo" min="0" step="1"
+                                        oninput="validity.valid || (value='')" name="cr_additional_no"
+                                        placeholder="{{ 'PRELIMINARY_REQUEST.enterCompanyAdditionalNumber' | translate }}"
+                                        [disabled]="!add_edit_delete_show || (!company_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                </div>
+
+                            </div>
+
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                    (click)="prevPanelStep(3);">{{
+                                    'COMMON.Previous' |
+                                    translate }}</button>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="cursor: pointer;" class="more" (click)="nextPanelStep(3);">{{
+                                    'COMMON.Next' |
+                                    translate
+                                    }}</button>
+                            </mat-action-row>
+
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel id="tourStep4-s2" style="text-align: center;"
+                            [expanded]="panelStep === 4 || allPanelsExpanded === true" (opened)="setPanelStep(4)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    {{ 'PRELIMINARY_REQUEST.mciOrProposedProducts' | translate }}
+                                </mat-panel-title>
+
+                                <common-comments *ngIf="comments_show" [comments]="product_details_comments  ">
+                                </common-comments>
+
+                            </mat-expansion-panel-header>
+
+                            <div style="text-align: center;" *ngIf="(add_edit_delete_show&&PreliminaryRequestStatus!=41) ||  (product_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+                                
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-bottom: 20px; cursor: pointer;" class="more"
+                                    (click)="onAdd('proposed_products')">{{ 'PRELIMINARY_REQUEST.addProposedProducts' |
+                                    translate }}</button>
+
+                            </div>
+                            <ng2-smart-table [settings]="proposed_products_settings_en"
+                                [source]="proposed_products_source" (edit)="onEdit($event, 'proposed_products')"
+                                (delete)="onDelete(delete_cancel_modal, $event, 'proposed_products')"
+                                (userRowSelect)="onView($event, 'proposed_products')">
+                            </ng2-smart-table>
+                            <!-- <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                    [settings]="proposed_products_settings_en" [source]="proposed_products_source"
+                                    (edit)="onEdit($event, 'proposed_products')"
+                                    (delete)="onDelete(delete_cancel_modal, $event, 'proposed_products')"
+                                    (userRowSelect)="onView($event, 'proposed_products')">
+                                </ng2-smart-table>
+
+                                <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                    [settings]="proposed_products_settings_ar" [source]="proposed_products_source"
+                                    (edit)="onEdit($event, 'proposed_products')"
+                                    (delete)="onDelete(delete_cancel_modal, $event, 'proposed_products')"
+                                    (userRowSelect)="onView($event, 'proposed_products')">
+                                </ng2-smart-table> -->
+
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                    (click)="prevPanelStep(4);">{{
+                                    'COMMON.Previous' |
+                                    translate }}</button>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="cursor: pointer;" class="more" (click)="nextPanelStep(4);">{{
+                                    'COMMON.Next' |
+                                    translate
+                                    }}</button>
+                            </mat-action-row>
+
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel id="tourStep5-s2" style="text-align: center;"
+                            [expanded]="panelStep === 5 || allPanelsExpanded === true" (opened)="setPanelStep(5)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    {{ 'PRELIMINARY_REQUEST.mciOrProposedOwnerships' | translate }}
+                                </mat-panel-title>
+
+                                <common-comments *ngIf="comments_show" [comments]="ownership_details_comments">
+                                </common-comments>
+
+                            </mat-expansion-panel-header>
+
+                            <div style="text-align: center;" *ngIf="(add_edit_delete_show&&PreliminaryRequestStatus!=41) ||  (ownership_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-bottom: 20px; cursor: pointer;" class="more"
+                                    (click)="onAdd('proposed_ownerships')">{{
+                                    'PRELIMINARY_REQUEST.addProposedOwnerships' | translate }}</button>
+
+                            </div>
+
+                            <ng2-smart-table [settings]="proposed_ownerships_settings_en"
+                                [source]="proposed_ownerships_source" (edit)="onEdit($event, 'proposed_ownerships')"
+                                (delete)="onDelete(delete_cancel_modal, $event, 'proposed_ownerships')"
+                                (userRowSelect)="onView($event, 'proposed_ownerships')">
+                            </ng2-smart-table>
+                            <!-- <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                    [settings]="proposed_ownerships_settings_en" [source]="proposed_ownerships_source"
+                                    (edit)="onEdit($event, 'proposed_ownerships')"
+                                    (delete)="onDelete(delete_cancel_modal, $event, 'proposed_ownerships')"
+                                    (userRowSelect)="onView($event, 'proposed_ownerships')">
+                                </ng2-smart-table>
+
+                                <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                    [settings]="proposed_ownerships_settings_ar" [source]="proposed_ownerships_source"
+                                    (edit)="onEdit($event, 'proposed_ownerships')"
+                                    (delete)="onDelete(delete_cancel_modal, $event, 'proposed_ownerships')"
+                                    (userRowSelect)="onView($event, 'proposed_ownerships')">
+                                </ng2-smart-table> -->
+
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                    (click)="prevPanelStep(5);">{{
+                                    'COMMON.Previous' |
+                                    translate }}</button>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="cursor: pointer;" class="more" (click)="nextPanelStep(5);">{{
+                                    'COMMON.Next' |
+                                    translate
+                                    }}</button>
+                            </mat-action-row>
+
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel id="tourStep6-s2" style="text-align: center;"
+                            [expanded]="panelStep === 6 || allPanelsExpanded === true" (opened)="setPanelStep(6)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    {{ 'PROJECT_INFORMATION.ListofRealEstatesOwned' | translate }}
+                                </mat-panel-title>
+
+                                <common-comments *ngIf="comments_show" [comments]="real_estates_comments">
+                                </common-comments>
+
+                            </mat-expansion-panel-header>
+
+                            <nb-card-body>
+
+                                <div style="text-align: center;" *ngIf="(add_edit_delete_show&&PreliminaryRequestStatus!=41) ||  (real_estates_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+
+                                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                        style="margin-bottom: 20px; cursor: pointer;" class="more"
+                                        (click)="onAdd('real_est')">{{ 'PROJECT_INFORMATION.AddRealEstatesOwned' |
+                                        translate }}</button>
+
+                                </div>
+                                <ng2-smart-table [settings]="settings_real_est_en" [source]="real_estate_source"
+                                    (edit)="onEdit($event, 'real_est')"
+                                    (delete)="onDelete(delete_cancel_modal, $event, 'real_est')"
+                                    (userRowSelect)="onView($event, 'real_est')">
+                                </ng2-smart-table>
+                                <!-- <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                        [settings]="settings_real_est_en" [source]="real_estate_source"
+                                        (edit)="onEdit($event, 'real_est')"
+                                        (delete)="onDelete(delete_cancel_modal, $event, 'real_est')"
+                                        (userRowSelect)="onView($event, 'real_est')">
+                                    </ng2-smart-table>
+
+                                    <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                        [settings]="settings_real_est_ar" [source]="real_estate_source"
+                                        (edit)="onEdit($event, 'real_est')"
+                                        (delete)="onDelete(delete_cancel_modal, $event, 'real_est')"
+                                        (userRowSelect)="onView($event, 'real_est')">
+                                    </ng2-smart-table> -->
+
+                            </nb-card-body>
+
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                    (click)="prevPanelStep(6);">{{ 'COMMON.Previous' | translate
+                                    }}</button>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="cursor: pointer;" class="more" (click)="nextPanelStep(6);">{{
+                                    'COMMON.Next' | translate }}</button>
+                            </mat-action-row>
+
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel id="tourStep7-s2" style="text-align: center;"
+                            [expanded]="panelStep === 7  || allPanelsExpanded === true" (opened)="setPanelStep(7)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    {{ 'PROJECT_INFORMATION.ListofCompanies' | translate }}
+                                </mat-panel-title>
+
+                                <common-comments *ngIf="comments_show" [comments]="list_of_companies_comments">
+                                </common-comments>
+
+                            </mat-expansion-panel-header>
+
+                            <nb-card-body>
+
+                                <div style="text-align: center;" *ngIf="(add_edit_delete_show&&PreliminaryRequestStatus!=41) ||  (list_of_companies_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+
+                                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                        style="margin-bottom: 20px; cursor: pointer;" class="more"
+                                        (click)="onAdd('list_comp')">{{ 'PROJECT_INFORMATION.AddCompanies' | translate
+                                        }}</button>
+
+                                    <nb-alert outline="warning">
+                                        <div class="row show-grid">
+                                            <div class="col-md-0">
+
+                                                <div class="icon" style="padding-left:10px; padding-top:0px">
+                                                    <i class="ion-alert-circled"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <strong>{{ 'PROJECT_INFORMATION.EnterListofCompanies' | translate }}</strong>
+
+                                            </div>
+                                        </div>
+                                    </nb-alert>
+
+                                </div>
+                                <ng2-smart-table [settings]="settings_companies_en" [source]="list_companies_source"
+                                    (edit)="onEdit($event, 'list_comp')"
+                                    (delete)="onDelete(delete_cancel_modal, $event, 'list_comp')"
+                                    (userRowSelect)="onView($event, 'list_comp')">
+                                </ng2-smart-table>
+                                <!-- <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                        [settings]="settings_companies_en" [source]="list_companies_source"
+                                        (edit)="onEdit($event, 'list_comp')"
+                                        (delete)="onDelete(delete_cancel_modal, $event, 'list_comp')"
+                                        (userRowSelect)="onView($event, 'list_comp')">
+                                    </ng2-smart-table>
+
+                                    <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                        [settings]="settings_companies_ar" [source]="list_companies_source"
+                                        (edit)="onEdit($event, 'list_comp')"
+                                        (delete)="onDelete(delete_cancel_modal, $event, 'list_comp')"
+                                        (userRowSelect)="onView($event, 'list_comp')">
+                                    </ng2-smart-table> -->
+
+                            </nb-card-body>
+
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                    (click)="prevPanelStep(7);">{{ 'COMMON.Previous' | translate
+                                    }}</button>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="cursor: pointer;" class="more" (click)="nextPanelStep(7);">{{
+                                    'COMMON.Next' | translate }}</button>
+                            </mat-action-row>
+
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel id="tourStep8-s2" style="text-align: center;"
+                            [expanded]="panelStep === 8  || allPanelsExpanded === true" (opened)="setPanelStep(8)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    {{ 'PROJECT_INFORMATION.OtherInvestments' | translate }}
+                                </mat-panel-title>
+
+                                <common-comments *ngIf="comments_show" [comments]="other_investments_comments">
+                                </common-comments>
+
+                            </mat-expansion-panel-header>
+
+                            <nb-card-body>
+
+                                <div style="text-align: center;" *ngIf="(add_edit_delete_show&&PreliminaryRequestStatus!=41) ||  (other_investments_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+
+                                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                        style="margin-bottom: 20px; cursor: pointer;" class="more"
+                                        (click)="onAdd('other_inv')">{{ 'PROJECT_INFORMATION.AddOtherInvestments' |
+                                        translate }}</button>
+
+                                    <nb-alert outline="warning">
+                                        <div class="row show-grid">
+                                            <div class="col-md-0">
+
+                                                <div class="icon" style="padding-left:10px; padding-top:0px">
+                                                    <i class="ion-alert-circled"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <strong>{{ 'PROJECT_INFORMATION.EnterOtherInvestments' | translate }}</strong>
+                                            </div>
+                                        </div>
+                                    </nb-alert>
+
+                                </div>
+                                <ng2-smart-table [settings]="settings_other_inv_en" [source]="other_investments_source"
+                                    (edit)="onEdit($event, 'other_inv')"
+                                    (delete)="onDelete(delete_cancel_modal, $event, 'other_inv')"
+                                    (userRowSelect)="onView($event, 'other_inv')">
+                                </ng2-smart-table>
+                                <!-- <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                        [settings]="settings_other_inv_en" [source]="other_investments_source"
+                                        (edit)="onEdit($event, 'other_inv')"
+                                        (delete)="onDelete(delete_cancel_modal, $event, 'other_inv')"
+                                        (userRowSelect)="onView($event, 'other_inv')">
+                                    </ng2-smart-table>
+
+                                    <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                        [settings]="settings_other_inv_ar" [source]="other_investments_source"
+                                        (edit)="onEdit($event, 'other_inv')"
+                                        (delete)="onDelete(delete_cancel_modal, $event, 'other_inv')"
+                                        (userRowSelect)="onView($event, 'other_inv')">
+                                    </ng2-smart-table> -->
+
+                            </nb-card-body>
+
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                    (click)="prevPanelStep(8);">{{ 'COMMON.Previous' | translate
+                                    }}</button>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="cursor: pointer;" class="more" (click)="nextPanelStep(8);">{{
+                                    'COMMON.Next' | translate }}</button>
+                            </mat-action-row>
+
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel id="tourStep9-s2" style="text-align: center;"
+                            *ngIf="non_saudi_owners_list.length > 0"
+                            [expanded]="panelStep === 9 || allPanelsExpanded === true" (opened)="setPanelStep(9)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    {{ 'PRELIMINARY_REQUEST.bankDetails' | translate }}
+                                </mat-panel-title>
+
+                                <common-comments *ngIf="comments_show" [comments]="bank_details_comments">
+                                </common-comments>
+
+                            </mat-expansion-panel-header>
+
+                            <div style="text-align: center;" *ngIf="(add_edit_delete_show&&PreliminaryRequestStatus!=41) ||  (bank_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-bottom: 10px; cursor: pointer;" class="more"
+                                    (click)="onAdd('bank_details')">{{ 'PRELIMINARY_REQUEST.addBankDetails' | translate
+                                    }}</button>
+
+                            </div>
+                            <ng2-smart-table [settings]="bank_details_settings_en" [source]="bank_details_source"
+                                (edit)="onEdit($event, 'bank_details')"
+                                (delete)="onDelete(delete_cancel_modal, $event, 'bank_details')"
+                                (userRowSelect)="onView($event, 'bank_details')">
+                            </ng2-smart-table>
+                            <!-- <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                    [settings]="bank_details_settings_en" [source]="bank_details_source"
+                                    (edit)="onEdit($event, 'bank_details')"
+                                    (delete)="onDelete(delete_cancel_modal, $event, 'bank_details')"
+                                    (userRowSelect)="onView($event, 'bank_details')">
+                                </ng2-smart-table>
+
+                                <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                    [settings]="bank_details_settings_ar" [source]="bank_details_source"
+                                    (edit)="onEdit($event, 'bank_details')"
+                                    (delete)="onDelete(delete_cancel_modal, $event, 'bank_details')"
+                                    (userRowSelect)="onView($event, 'bank_details')">
+                                </ng2-smart-table> -->
+
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                    (click)="prevPanelStep(9);">{{
+                                    'COMMON.Previous' |
+                                    translate }}</button>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="cursor: pointer;" class="more" (click)="nextPanelStep(9);">{{
+                                    'COMMON.Next' |
+                                    translate
+                                    }}</button>
+                            </mat-action-row>
+
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel id="tourStep10-s2" style="text-align: center;"
+                            [expanded]="panelStep === 10 || allPanelsExpanded === true" (opened)="setPanelStep(10)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    {{ 'PRELIMINARY_REQUEST.authorizedPerson' | translate }}
+                                </mat-panel-title>
+
+                                <common-comments *ngIf="comments_show" [comments]="authorized_person_details_comments">
+                                </common-comments>
+
+                            </mat-expansion-panel-header>
+
+                            <div style="text-align: center;" *ngIf="(add_edit_delete_show&&PreliminaryRequestStatus!=41) ||  (authorized_person_details_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-bottom: 20px; cursor: pointer;" class="more"
+                                    (click)="onAdd('representatives')">{{ 'PRELIMINARY_REQUEST.addAuthorizedPerson' |
+                                    translate }}</button>
+
+                            </div>
+                            <ng2-smart-table [settings]="representatives_settings_en" [source]="representatives_source"
+                                (edit)="onEdit($event, 'representatives')"
+                                (delete)="onDelete(delete_cancel_modal, $event, 'representatives')"
+                                (userRowSelect)="onView($event, 'representatives')">
+                            </ng2-smart-table>
+                            <!-- <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                    [settings]="representatives_settings_en" [source]="representatives_source"
+                                    (edit)="onEdit($event, 'representatives')"
+                                    (delete)="onDelete(delete_cancel_modal, $event, 'representatives')"
+                                    (userRowSelect)="onView($event, 'representatives')">
+                                </ng2-smart-table>
+
+                                <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                    [settings]="representatives_settings_ar" [source]="representatives_source"
+                                    (edit)="onEdit($event, 'representatives')"
+                                    (delete)="onDelete(delete_cancel_modal, $event, 'representatives')"
+                                    (userRowSelect)="onView($event, 'representatives')">
+                                </ng2-smart-table> -->
+
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                    (click)="prevPanelStep(10);">{{
+                                    'COMMON.Previous' |
+                                    translate }}</button>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="cursor: pointer;" class="more" (click)="nextPanelStep(10);">{{
+                                    'COMMON.Next' |
+                                    translate
+                                    }}</button>
+                            </mat-action-row>
+
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel id="tourStep11-s2" style="text-align: center;"
+                            [expanded]="panelStep === 11 || allPanelsExpanded === true" (opened)="setPanelStep(11)">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    {{ 'PRELIMINARY_REQUEST.documents' | translate }}
+                                </mat-panel-title>
+
+                                <common-comments *ngIf="comments_show" [comments]="documents_comments">
+                                </common-comments>
+
+                            </mat-expansion-panel-header>
+
+                            <div style="text-align: center;" *ngIf="(add_edit_delete_show&&PreliminaryRequestStatus!=41) ||  (documents_comments.anyOpenComments&&(PreliminaryRequestStatus===41)&&requestStatus==='Q')">
+
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="margin-bottom: 20px; cursor: pointer;" class="more"
+                                    (click)="onAdd('documents')">{{ 'PRELIMINARY_REQUEST.addDocuments' | translate }}</button>
+
+                                <nb-alert outline="warning">
+                                    <div class="row show-grid">
+
+                                        <div class="col-md-0">
+
+                                            <div class="icon" style="padding-left:10px; padding-top:5px">
+                                                <i class="ion-alert-circled"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <strong>{{ 'PRELIMINARY_REQUEST.DocumentsWarning' | translate }}</strong>
+                                        </div>
+                                    </div>
+                                </nb-alert>
+
+                            </div>
+
+                            <document-list [documents]="documentsTableDocuments"></document-list>
+
+                            <mat-action-row *ngIf="allPanelsExpanded === false">
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                    style="cursor: pointer;" class="more" (click)="prevPanelStep(11);">{{
+                                    'COMMON.Previous' |
+                                    translate }}</button>
+                            </mat-action-row>
+
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+
+
+
+                </div>
+
+                <div style="margin-top: 20px;" *ngIf="add_edit_delete_show" class="form-group row">
+
+                    <div style="text-align: center;" class="col-sm-12">
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" id="tourStep4-s1"
+                            *ngIf="screen_number === 1" style="cursor: pointer;" type="button" class="more"
+                            (click)="onBack(delete_cancel_modal, 1)">{{
+                            "COMMON.Back" | translate }}</button>
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" id="tourStep5-s1"
+                            *ngIf="screen_number === 1" type="button"
+                            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more" (click)="next()">{{
+                            "COMMON.Next" | translate }}</button>
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" id="tourStep12-s2"
+                            *ngIf="screen_number === 2" style="cursor: pointer;" type="button" class="more"
+                            (click)="onBack(delete_cancel_modal, 1)">{{
+                            "COMMON.Back" | translate }}</button>
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" id="tourStep13-s2"
+                            *ngIf="screen_number === 2" type="button"
+                            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                            (click)="save_submit(1)">{{ "COMMON.Save" | translate }}</button>
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" id="tourStep14-s2"
+                            *ngIf="screen_number === 2" type="button"
+                            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                            (click)="save_submit(2)">{{
+                            "COMMON.Submit" | translate }}</button>
+                    </div>
+
+                </div>
+
+                <div style="margin-top: 20px;" *ngIf="!add_edit_delete_show" class="form-group row">
+
+                    <div style="text-align: center;" class="col-sm-12">
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" type="button"
+                            class="more" (click)="onBack(delete_cancel_modal, 2)">{{
+                            'COMMON.Back' | translate }}</button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </nb-card-body>
+
+    </nb-card>
+
+    <ng-template #delete_cancel_modal let-modal>
+
+        <div class="modal-header">
+
+            <span>{{deleteCancelModalReference.action}} {{deleteCancelModalReference.table_name_display}}</span>
+
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;"
+                class="close" aria-label="Close" (click)="onCloseDeleteCancelModal()">
+                <span aria-hidden="true" class="ion-close-round"></span>
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+            <h6>{{deleteCancelModalReference.error}}</h6>
+        </div>
+
+        <div class="modal-footer">
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                style="margin-right: 1%; margin-left: 1%; cursor: pointer;" type="button" class="more"
+                (click)="onCloseDeleteCancelModal()">{{
+                "COMMON.Cancel" | translate }}</button>
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" type="button" class="more"
+                (click)="onDeleteCancelConfirm()">{{
+                "COMMON.Yes" | translate }}</button>
+        </div>
+
+    </ng-template>
+
+    <ng-template #industrial_sector_pop_up let-modal>
+
+        <div class="modal-header">
+
+            <span>{{ "PRELIMINARY_REQUEST.industrialSector" | translate }}</span>
+
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;"
+                class="close" aria-label="Close" (click)="onCloseIndustrialSectorPopUp()">
+                <span aria-hidden="true" class="ion-close-round"></span>
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="col-sm-12 input-group mail-btn-group">
+                <input name="industrial_sector" type="text" [(ngModel)]="searchText"
+                    (input)="onSearchIndustrialSectorPopUpItem()" class="form-control"
+                    placeholder="{{'COMMON.Search' | translate }}" />
+                <span class="input-group-append" (click)="onResetIndustrialSectorPopUpSearch()">
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;"
+                        class="more input-group-text">
+                        <i class="nb-close-circled" style="font-size: 15px;"></i>
+                    </button>
+                </span>
+            </div>
+
+            <nb-card [size]="'small'" style='font-size:15px;margin-top: 20px; margin-right: 2%; margin-left: 2%;'>
+                <nb-list>
+                    <nb-list-item style="cursor: pointer;font-size:15px;"
+                        *ngFor="let industrial_sector_item of industrial_sector_pop_up_array"
+                        (click)="onClickIndustrialSectorPopUpItem(industrial_sector_item)">
+                        {{ industrial_sector_item.nameAr }}
+                    </nb-list-item>
+                </nb-list>
+            </nb-card>
+
+        </div>
+
+        <div class="modal-footer">
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;" class="more"
+                (click)="onCloseIndustrialSectorPopUp()">{{
+                "COMMON.Cancel" | translate }}</button>
+        </div>
+
+    </ng-template>
+
+</div>

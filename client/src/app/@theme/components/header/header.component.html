@@ -1,0 +1,111 @@
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light secondary_nav  d-none d-lg-flex " style="background-color: #413157!important;">
+    <div _ngcontent-c8="" class="logo-containter">
+        <a _ngcontent-c8=""  class="navigation navbar-toggler" (click)="toggleSidebar()"  id="tourStep1-db"><i _ngcontent-c8="" class="nb-menu"></i></a>
+        <div _ngcontent-c8="" class="logo" id="tourStep2-db" style="cursor: pointer;">
+          </div></div>
+    <button class="navbar-toggler" type="button" (click)="toggleSidebar()"  data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    
+    <div class="collapse navbar-collapse" id="navbarColor02">
+       
+     
+     
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
+              <li class="nav-item ms-3 me-3">
+                <a class="nav-link" href="#" *ngIf="commonService.defaultLanguage == 'ar'" >  
+                    <object   data="./assets/images/Logo-Ibtdaa.svg"></object> 
+                </a>
+                <a class="nav-link" href="#" *ngIf="commonService.defaultLanguage == 'en'"  >   
+                    <object  data="./assets/images/Logo-Ibtdaaen.svg"></object>
+                </a>
+              </li>
+            
+              <li _ngcontent-c5="" class="nav-item ms-3 me-3"><!--bindings={
+                "ng-reflect-ng-if": "true"
+              }--><a _ngcontent-c5="" class="nav-link text-light ng-star-inserted"> </a><!--bindings={
+                "ng-reflect-ng-if": "false"
+              }--></li>
+              <li _ngcontent-c5="" class="nav-item ms-3 me-3"><!--bindings={
+                "ng-reflect-ng-if": "true"
+              }--><a _ngcontent-c5="" class="nav-link text-light ng-star-inserted"> </a><!--bindings={
+                "ng-reflect-ng-if": "false"
+              }--></li>
+              <li _ngcontent-c5="" class="nav-item ms-3 me-3"><!--bindings={
+                "ng-reflect-ng-if": "true"
+              }--><a _ngcontent-c5="" class="nav-link text-light ng-star-inserted"> </a><!--bindings={
+                "ng-reflect-ng-if": "false"
+              }--></li>
+              <li _ngcontent-c5="" class="nav-item ms-3 me-3"><!--bindings={
+                "ng-reflect-ng-if": "true"
+              }--><a _ngcontent-c5="" class="nav-link text-light ng-star-inserted"> </a><!--bindings={
+                "ng-reflect-ng-if": "false"
+              }--></li>
+              <li _ngcontent-c5="" class="nav-item ms-3 me-3"><!--bindings={
+                "ng-reflect-ng-if": "true"
+              }--><a _ngcontent-c5="" class="nav-link text-light ng-star-inserted"> </a><!--bindings={
+                "ng-reflect-ng-if": "false"
+              }--></li>
+              <li _ngcontent-c5="" class="nav-item ms-3 me-3"><!--bindings={
+                "ng-reflect-ng-if": "true"
+              }--><a _ngcontent-c5="" class="nav-link text-light ng-star-inserted"> </a><!--bindings={
+                "ng-reflect-ng-if": "false"
+              }--></li>
+              <li class="nav-item ms-3 me-3"> 
+                
+           <a class="nav-link text-light"  *ngIf="commonService.defaultLanguage == 'ar'" (click)="onLangChange('en')"> English</a>
+           <a class="nav-link text-light"  *ngIf="commonService.defaultLanguage == 'en'" (click)="onLangChange('ar')"> Arabic</a>
+              </li>
+            </ul>
+    
+          
+        
+<div class="customdropbox">
+ 
+    <ng-select [items]="customerProfiles"
+    *ngIf="adminuser == null" class=" " style="cursor: pointer; margin-top: 1px; margin-left: 10px; margin-right: 10px; width: 225px;"
+    bindLabel="BpName" 
+    [clearable]="false"
+    [(ngModel)]="selectedcustomerProfile" 
+    [addTag]="addCustomUser" (change)="onCustProfileChange1($event);"
+     >
+</ng-select>
+    <select *ngIf="adminuser == -1" class="dropdown " style="cursor: pointer; margin-top: 1px; margin-left: 10px; margin-right: 10px; width: 225px;"
+    id="ddlCustomerProfile" (change)="onCustProfileChange($event.target.value);">
+    <option *ngFor="let prof of customerProfiles"  [value]="prof.CustomerProfile+';'+prof.BpNum">{{prof.BpName}}
+    </option>
+</select>
+    <select class="dropdown"  [(ngModel)]="language" (change)="onLangChange($event.target.value);" id="ddlLanguages">
+        
+        <option *ngFor="let item of languages" [value]="item.value">
+         <span  style="color:white" >  {{item.name}} </span> 
+        </option>
+    </select> 
+    
+<nb-actions size="medium" [class.right]="position === 'normal'" [class.left]="position === 'inverse'">
+
+    <!-- <nb-action icon="nb-gear" class="toggle-layout" (click)="toggleSettings()"></nb-action>
+         -->
+    <nb-action *nbIsGranted="['view', 'user']">
+        <nb-user *ngIf="adminuser == null && commonService.defaultLanguage == 'ar'"  style="cursor: pointer; width: max-content" [nbContextMenu]="userMenu"
+            nbContextMenuTag="user-menu" [name]="user.firstname" [picture]="user?.picture"></nb-user>
+            <nb-user *ngIf="adminuser == null && commonService.defaultLanguage == 'en'"  style="cursor: pointer; width: max-content" [nbContextMenu]="userMenuEn"
+            nbContextMenuTag="user-menu" [name]="user.firstname" [picture]="user?.picture"></nb-user>
+    </nb-action>
+
+    <nb-action>
+        <nb-user *ngIf="adminuser != null" style="cursor: pointer; width: max-content" [nbContextMenu]="userAdminMenu"
+            nbContextMenuTag="useradmin-menu" [name]="adminuser.UserName" [picture]="adminuser?.picture"></nb-user>
+    </nb-action>
+
+    <!-- <nb-action class="control-item" disabled icon="nb-notifications"></nb-action>
+        <nb-action class="control-item" icon="nb-email"></nb-action>
+        <nb-action class="control-item">
+        <nb-search type="rotate-layout" (click)="startSearch()"></nb-search>
+        </nb-action> -->
+
+</nb-actions>
+</div>
+    </div>
+</nav>

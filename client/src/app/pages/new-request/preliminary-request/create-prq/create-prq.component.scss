@@ -1,0 +1,180 @@
+:host /deep/.highlight{
+    background: #effff3 !important;
+}
+
+:hover /deep/.highlight{
+    background: #effff3 !important;
+}
+
+/*! CSS Used from: file:///D:/RCJ/Design/SIDF%20HTML%20Prototype%20-%20V3/css/bootstrap.css */
+*,::after,::before{box-sizing:border-box;}
+ul{margin-top:0;margin-bottom:1rem;}
+.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;}
+@media (min-width:576px){
+.container{max-width:540px;}
+}
+@media (min-width:768px){
+.container{max-width:720px;}
+}
+@media (min-width:992px){
+.container{max-width:960px;}
+}
+@media (min-width:1200px){
+.container{max-width:1140px;}
+}
+.dropdown{position:relative;}
+.dropdown-menu{position:absolute;top:100%;left:0;z-index:1000;display:none;float:left;min-width:10rem;padding:.5rem 0;margin:.125rem 0 0;font-size:1rem;color:#212529;text-align:left;list-style:none;background-color:#fff;background-clip:padding-box;border:1px solid rgba(0,0,0,.15);border-radius:.25rem;}
+@media print{
+*,::after,::before{text-shadow:none!important;box-shadow:none!important;}
+.container{min-width:992px!important;}
+}
+/*! CSS Used from: file:///D:/RCJ/Design/SIDF%20HTML%20Prototype%20-%20V3/css/dashtest.css */
+.header-bg{background:rgb(13,138,116);background:-moz-linear-gradient(45deg, rgba(13,138,116,1) 0%, rgba(118,205,80,1) 100%);background:-webkit-linear-gradient(45deg, rgba(21, 136, 116, 0.7) 0%,rgba(21, 136, 116, 0.7) 100%);background:linear-gradient(45deg, rgba(21, 136, 116, 0.7) 0%,rgba(21, 136, 116, 0.7) 100%);box-shadow:0px 7px 10px rgba(201, 201, 201, 0.74);border-radius:5px;max-width:1108px;height:80px;}
+.pen{display:inline-block;width:40px;height:91%;background-image:url(assets/images/senaee/pen.png);background-size:contain;background-repeat:no-repeat;background-position:28%;}
+.title-header{color:#ffffff;font-size:28px;display:inline-block;width:70%;height:100%;vertical-align:text-bottom;line-height:2.6;padding-right:20px;}
+.title-header span{border-right:2px solid #fff;padding-right:25px;margin-right:21px;font-size:22px;letter-spacing:1px;}
+.request-type{display:inline-block;width:240px;height:60px;float:left;padding-top:20px;padding-left:16px;}
+.request-type .dropdown{border:1px solid #e8e4e4;background-color:#ffffff;box-shadow:0px 0px 10px #28a745;}
+.title-header:after{content:"";width:auto;height:2px;background-color:#222;display:inline-block;margin-top:10px;}
+.dropdown-menu{right:0!important;width:100%;position:relative!important;background:#ffffff;border:none;padding:0;margin:0;}
+.dropdown-menu{display:block;height:0;transition:all 0.3s;overflow:hidden;}
+.request-type .dropdown{text-align:left;color:#343C3F;border:1px solid #cecece;border-radius:5px;}
+.request-type .dropdown.closed .dropdown-menu{margin-top:0px;padding:0;border:none;}
+.request-type .dropdown.closed .dropdown-menu li{height:0px;}
+.request-type .dropdown.closed .title:after{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(0deg);}
+.request-type .dropdown .title{width:100%;position:relative;height:38px;padding:12px;cursor:pointer;text-align:right;line-height:10px;}
+.request-type .dropdown .title:after{display:block;content:"";position:relative;left:6px;-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);height:30px;top:-19px;width:17px;background:url('assets/images/senaee/down-arrow.png');background-size:contain;background-position:center;background-repeat:no-repeat;margin-right:auto;margin-left:0;}
+.request-type .dropdown .dropdown-menu{position:absolute!important;overflow:hidden;max-height:200px;-webkit-transition:all 0.2s;-moz-transition:all 0.2s;transition:all 0.2s;-webkit-box-sizing:"border-box";-moz-box-sizing:"border-box";box-sizing:"border-box";display:block;width:100%;height:auto!important;overflow-y:scroll;padding:0;margin-top:1px;}
+.request-type .dropdown ul{position:relative;top:0;width:100%;text-align:right;padding:0;margin:0;}
+.request-type .dropdown.closed{overflow:hidden;height:38px;}
+.request-type .dropdown ul li{width:100%;height:40px;line-height:40px;border:1px solid #D9E1E4;padding:0 12px;vertical-align:top;overflow:hidden;cursor:pointer;transition:all 0.3s;-webkit-transition:margin-top 0.5s, height 0.5s;-moz-transition:margin-top 0.5s, height 0.5s;border-top:none;background:#f8f8f8;transition:all 0.6s;}
+
+nb-card.accent-success {
+    border-top-color: white !important;
+}
+
+
+.header-bg {
+	background-color: rgba(21, 136, 116, 0.7) !important;
+        height: 60px; line-height: 60px; 
+margin-bottom: 15PX !important; width: 98%;
+}
+
+.pen{display:inline-block;width:40px;height:91%;background-image:url(assets/images/senaee/pen.png);background-size:contain;background-repeat:no-repeat;background-position:28%;}
+.title-header {
+    font-family:"DroidKufi"; 
+    color:#ffffff;font-size:25px;
+    display:inline-block;
+    vertical-align:text-bottom;
+    padding-right:15px;
+}
+
+.title-header span{border-right:2px solid #fff;padding-right:25px;margin-right:21px;font-size:22px;letter-spacing:1px;}
+
+.serbtn {cursor: pointer; height: 40px; border-top-right-radius:0; border-bottom-right-radius:0px; border-top-left-radius:3px; border-bottom-left-radius:3px}
+
+.more {
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    height: auto;
+    line-height: 40px;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 25px;
+    transition: all 0.3s;
+    border: 0px;
+    padding-right: 15px; padding-left: 15px; margin: 0 auto;
+    background-color: rgba(21, 136, 116, 0.7) !important;
+    border-radius: 3px;
+}
+
+.more:hover { background-color: rgba(21, 136, 116, 1)}
+
+/*! CSS Used from: file:///D:/RCJ/Design/SIDF%20HTML%20Prototype%20-%20V3/css/bootstrap.css */
+*,::after,::before{box-sizing:border-box;}
+button{border-radius:0;}
+button:focus{outline:1px dotted;outline:5px auto -webkit-focus-ring-color;}
+button{margin:0;font-family:inherit;font-size:inherit;line-height:inherit;}
+button{overflow:visible;}
+button{text-transform:none;}
+[type=button],button{-webkit-appearance:button;}
+[type=button]::-moz-focus-inner,button::-moz-focus-inner{padding:0;border-style:none;}
+.btn{display:inline-block;font-weight:400;color:#212529;text-align:center;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;}
+@media screen and (prefers-reduced-motion:reduce){
+.btn{transition:none;}
+}
+.btn:hover{color:#212529;text-decoration:none;}
+.btn:focus{outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,.25);}
+.btn:disabled{opacity:.65;}
+.btn:not(:disabled):not(.disabled){cursor:pointer;}
+@media print{
+*,::after,::before{text-shadow:none!important;box-shadow:none!important;}
+}
+/*! CSS Used from: file:///D:/RCJ/Design/SIDF%20HTML%20Prototype%20-%20V3/css/dashtest.css */
+.buttons-div{text-align:center;margin-top:40px;padding:15px;}
+button.cancel-btn.btn:hover{text-decoration:none;color:#ea1100;border:1px solid #e61100;background-color:rgba(172, 0, 0, 0.06);box-shadow:0px 0px 1px #a00000;}
+.next-prog,button.cancel-btn.btn{color:#299b8d;border:1px solid #299b8d;width:200px;text-align:center;padding:10px;border-radius:3px;background-image:url('assets/images/senaee/back.png');background-size:14px;background-position:left;background-repeat:no-repeat;background-position-x:8px;margin-top:3vh;cursor:pointer;transition:all 0.3s;float:left;}
+.next-prog:hover{color:#116c61;border:1px solid #116c61;background-image:url("assets/images/senaee/left-arrow-green.png");}
+button.cancel-btn.btn{color:#959595;border:1px solid #959595;background-image:none;margin-left:15px;}
+
+
+
+
+
+.card .card-header.collapsed {
+    background-image: url("assets/images/senaee/add.png");
+    font-family: "DroidKufi" !important;
+}
+.accordion .card .card-header {
+    margin-bottom: -1px;
+}
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    font-family: "DroidKufi" !important;
+}
+.card-header {
+    cursor: pointer;
+    /* background-image: url(../img/remove.png); */
+    background-size: 20px;
+    background-repeat: no-repeat;
+ 
+    background-position-y: center;
+    background-position-x: 20px;
+    transition: all 0.3s;
+    font-family: "DroidKufi" !important;
+}
+.card-header {
+    color: #007a63;
+    font-size: 19px;
+    font-family: "DroidKufi" !important;
+}
+.card-header {
+    cursor: pointer;
+    background-image:url("assets/images/senaee/remove.png");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 20px;
+    transition: all 0.3s;
+    color: #007a63;
+    font-family: "DroidKufi" !important;
+}
+.card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    color: inherit;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    font-family: "DroidKufi" !important;
+}
+.collapse:not(.show) {
+    display: none;
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    font-family: "DroidKufi" !important;
+}
+.nb-theme-default a{color:#413157!important;}

@@ -1,0 +1,10 @@
+<form class="form-inline">
+    <div class="form-group">
+        <div class="input-group">
+            <input id="dtHijri" class="form-control" placeholder="yyyy-mm-dd" (click)="d.toggle()" name="dp" [(ngModel)]="model" [minDate] = "minDate" ngbDatepicker #d="ngbDatepicker" />
+            <div class="input-group-append">
+                <button matRipple matRippleColor="rgba(255,239,20,0.15)" class="btn ion-calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+        </div>
+    </div>
+</form>

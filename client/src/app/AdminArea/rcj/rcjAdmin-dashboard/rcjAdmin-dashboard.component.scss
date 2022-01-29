@@ -1,0 +1,106 @@
+.fot { 
+z-index: 99;    
+width: 100%;
+}
+.search-btn{
+color: #fff !important;
+font-weight: normal !important;
+display: block !important;
+text-align: center;
+height: 45px !important;
+font-size: 15px !important;
+line-height: 45px !important;
+border-radius: 2px !important;
+background: linear-gradient(45deg, #0d8a74 0%, #76cd50 100%) !important;
+-webkit-transition: all 0.3s !important;
+transition: all 0.3s !important;
+border: none !important;
+width: 100% !important;
+margin-bottom: 12px;
+margin-top: 0px;
+align-content: center;
+vertical-align: middle;
+cursor: pointer;}
+
+.card-body {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+
+/* .bg-primary {
+    background-color: rgba(21, 136, 116, 0.7);
+    background-image: linear-gradient(to bottom, #5bab9d 0, #5bab9d 100%);
+    background-repeat: repeat-x;
+    border-color: #5bab9d;
+    color: #fff;
+    margin-bottom: 20px;
+    cursor: pointer;
+} */
+
+.coloGreen{
+    background-color: #0d8a74 !important;
+    cursor: pointer;
+}
+.colorejected {
+    background-color: #dc3545 !important;
+    cursor: pointer;
+}
+.coloreactionSidf {
+    background-color: #41ad4f !important;
+    cursor: pointer;
+}
+.coloreactionauthority  {
+    background-color: #007bff !important;
+    cursor: pointer;
+}
+.coloreactionuser   {
+    background-color: #ffc107 !important;
+    cursor: pointer;
+}
+
+
+
+
+.my-legend .legend-title {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 90%;
+    }
+  .my-legend .legend-scale ul {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+    float: left;
+    list-style: none;
+    }
+  .my-legend .legend-scale ul li {
+    display:inline;
+    font-size: 80%;
+    list-style: none;
+    margin-left: 0;
+    line-height: 18px;
+    margin-bottom: 2px;
+    }
+  .my-legend ul.legend-labels li .color {
+    display: block;
+    float: left;
+    height: 16px;
+    width: 20px;
+    margin-right: 5px;
+    margin-left: 0;
+    border: 1px solid #999;
+    }
+   .my-legend ul.legend-labels li  .legend {
+    display: block;
+    float: left;
+    height: 16px;
+    width: 40px;
+    margin-right: 5px;
+    margin-left: 0;
+    }
+  
+  .my-legend a {
+    color: #777;
+    }

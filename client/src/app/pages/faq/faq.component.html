@@ -1,0 +1,113 @@
+<a href="#" class="scrollup">Scroll</a>
+<div [class]="current_direction">
+    <div id="page-wrap">
+
+
+        <section id="white-section">
+            <div class="container-fulid topfixid"></div>
+            <div class="main-container">
+                <div class="container">
+                    <!-- Navigation bar -->
+
+                    <Topmenu ></Topmenu>
+
+                    <!-- Title -->
+                    <div class="l_body_title">
+                        <h1 *ngIf="commonService.defaultLanguage == 'ar'" style="text-align: right;">
+                           {{'COMMON.QA' | translate}} </h1>
+                           <h1 *ngIf="commonService.defaultLanguage == 'en'" style="text-align: left;">
+                            {{'COMMON.QA' | translate}} </h1>
+                     </div>
+                     
+                    <div id="headline__description" style="line-height: 2.2;">
+                        <div *ngIf="commonService.defaultLanguage == 'ar'" style="text-align: right;">
+                            <h5 style="color:red">1. ما هو برنامج أرض وقرض صناعي؟  </h5>
+                            يتيح برنامج "أرض وقرض صناعي" للمستثمر الحصول حزمة تمويلية موحدة، تتضمن قرضًا صناعيًا وأرضًا مُخصصّة للاستثمار الصناعي، وذلك عبر طلب موحد، ويأتي هذا البرنامج ضمن البرامج المشتركة بين كل من: الهيئة السعودية للمدن الصناعية ومناطق التقنية (مُدن)، الهيئة الملكية للجبيل وينبع، الوادي الصناعي في مدينة الملك عبدالله الاقتصادية، مدينة الملك سلمان للطاقة (سبارك) والصندوق الصناعي. 
+                            <h5 style="color:red">2. ما هي مميزات برنامج أرض وقرض صناعي؟    </h5>
+                            <ul>يتميّز برنامج "أرض وقرض صناعي" بـ:
+<li>
+اختصاره وقت وجهد المستثمر، عبر تسهيل الإجراءات المطلوبة من الصندوق الصناعي والجهات المُخصِّصَة للأرض. 
+</li>
+<li>
+تخفيف الأعباء المالية عن المستثمر الصناعي، إذ تُخصّص وتُفوتر الأرض الصناعية بعد موافقة الصندوق على التمويل، بدلاً من البدء في دفع إيجار الارض قبل التقديم على قرض صناعي، كما كان الأمر سابقًا. 
+</li> </ul>
+                            <h5 style="color:red">3. ما هي الجهات الحكومية المشاركة مع الصندوق الصناعي في برنامج أرض وقرض صناعي والتي ستوفر الأراضي الصناعية للمستثمر؟    </h5>
+                            الهيئة السعودية للمدن الصناعية ومناطق التقنية (مُدن)، الهيئة الملكية للجبيل وينبع، الوادي الصناعي في مدينة الملك عبدالله الاقتصادية، ومدينة الملك سلمان للطاقة (سبارك). 
+                            <h5 style="color:red">4. ما هي المدة التي يستغرقها الرد بالموافقة الأولية على طلب برنامج أرض وقرض صناعي؟   </h5>
+                            يستغرق الرد بالموافقة الأولية على طلب أرض وقرض صناعي 3 أيام من تاريخ التقديم. 
+                            <h5 style="color:red">5. هل يلزم وجود ملاءة مالية للمستثمر عند تقديم طلب برنامج أرض وقرض صناعي؟  </h5>
+                            نعم، يلزم وجود ملاءة مالية للمستثمر عند تقدمه بطلب الحصول على منتج "أرض وقرض صناعي
+                            <h5 style="color:red">6.ما هو سبب اشتراط وجود الملاءة المالية لدى المستثمر، ليستفيد من برنامج أرض وقرض صناعي؟   </h5>
+                            تُشترط الملاءة المالية، لتقييم القدرة المالية الداعمة لصاحب المشروع، والتأكد من مدى التزامه الكامل بجدول السداد خلال فترة الاقتراض. 
+                            <h5 style="color:red">7. هل يقبل الصندوق الصناعي الكفالة في الملاءة المالية؟    </h5>
+                            لا، يجب أن يتمتّع ملاّك الشركة أو المؤسسة أنفسهم بالملاءة المالية اللازمة، للاستفادة من برنامج "أرض وقرض صناعي".  
+                            <h5 style="color:red">8. خلال دراسة مشروعي، ما هي المرحلة التي ستتواصل فيها معي الجهات الشريكة في برنامج أرض وقرض صناعي، لإبلاغي بخيارات الأراضي الصناعية المتاحة لديهم؟    </h5>
+                            يتم التواصل مع العميل، بعد موافقة الصندوق الصناعي الأولية على طلب برنامج "أرض وقرض صناعي"، وتعبئة بيانات التقديم. 
+                            <h5 style="color:red">9. هل تُتاح فرصة اختيار طبيعة الأرض الصناعية قبل تحديدها بشكل نهائي؟   </h5>
+                            نعم، بالإمكان الرجوع الجهة المزودة للأرض لتحديد طبيعتها، بعد الحصول على الموافقة النهائية من الصندوق. 
+                            <h5 style="color:red">10. ما هي المرحلة التي يُوقّع فيها إيجار الأرض مع الجهات المشاركة في برنامج أرض وقرض صناعي؟   </h5>
+                            يُوقّع على عقد ايجار الأرض بعد موافقة الصندوق الصناعي على تمويل المشروع. 
+                        
+                        </div> 
+                        <div *ngIf="commonService.defaultLanguage == 'en'" style="text-align: left;direction: ltr;">
+                            <h5 style="color:red">1. What is the Land and Loan Program?  </h5>
+                            The ”Land and Loan” Program allows investors to apply for a unified financial package, which includes an industrial loan and allocating an industrial land through a unified application as part of joint programs with MODON, the Royal Commission for Jubail and Yanbu, King Abdullah Economic City, SPARK and the Saudi Industrial Development Fund, as a unified industrial package. 
+                            <h5 style="color:red">2.What are the advantages of the Land and Loan Program?     </h5>
+                            <ul>The Land and Loan program is known to:  
+                            <li>
+                                Save the investors time and effort by facilitating required procedures from SIDF and land allocators 
+                            </li>
+                            <li>
+                                Reduce the alleviation of financial burden, as the allocation and billing of industrial land are obtained after SIDF’s approval instead of meeting the land lease fees before applying for the loan as it was before .
+                            </li>
+                        </ul>
+                            <h5 style="color:red">3.What are the industrial cities and government entities involved with SIDF in the Land and Loan Program?     </h5>
+                            The Saudi Authority for Industrial Cities and Technology Zones (MODON), Royal Commission for Jubail and Yanbu, the Industrial Valley of King Abdullah Economic City (KAEC), and King Salman Energy Park (SPARK). 
+                            <h5 style="color:red">4. How long is does it take to receive the initial approval for applying to this program?   </h5>
+                            The time period required for responding to the preliminary request for Land and Loan is 3 days from the date of submission. 
+                            <h5 style="color:red">5. Does applying to the Land and Loan program require financial solvency?   </h5>
+                            Yes, financial solvency is required in order to apply for both Land and Loan and Factory and Loan programs. 
+                            <h5 style="color:red">6.What is the reason behind requesting financial solvency, to benefit from the Land and Loan program?</h5>
+                                To assess the financial ability that supports the project's owner in addition to proving the borrower's ability to fully commit to the payment schedule during the loan period. 
+                            <h5 style="color:red">7. Does SIDF accept financial solvency sponsorship?     </h5>
+                            No, financial solvency should be from the owners of the company/establishment, in order to benefit from the Land and Loan Program. 
+                            <h5 style="color:red">8. At what stage of studying my industrial project am I going to get contacted by the industrial cities under the Land and Loan Program to inform me about the industrial lands available?     </h5>
+                            The client will be contacted after getting the initial approval from SIDF on the “Land and Loan” application after meeting all requirements.
+                            <h5 style="color:red">9. Will the client get a say in the nature of the industrial land assigned before finalizing the approval?     </h5>
+                             Yes, the client can refer to the land provider to allocate the industrial land after SIDF’s final approval. 
+                            <h5 style="color:red">10. At what stage will the land lease be signed with the entities that are in collaboration with the Land and Loan program?  </h5>
+                            The land lease will be signed after SIDF’s approval on financing the project. 
+                        
+                        </div> 
+                    </div>
+
+                </div>
+
+            </div>
+        </section> 
+        <footer style="margin-top: 10%;">
+            <div class="main-container">
+                <div class="row">
+                    
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9">
+                            
+                            <ul  class="footer__socials">
+                                <li>{{'COMMON.Footer' | translate}}</li>
+                                    <li  class="footer__social"><a  class="footer__socialIcon " href="https://twitter.com/SIDFSA" target="_blank"><i  class="fa fa-twitter fa-2x"></i></a></li>
+                                    <li  class="footer__social"><a  class="footer__socialIcon" href="https://www.facebook.com/SIDFSA" target="_blank"><i  class="fa fa-facebook fa-2x"></i></a></li>
+                                    <li  class="footer__social"><a  class="footer__socialIcon" href="https://instagram.com/SIDFSA" target="_blank"><i   class="fa fa-instagram fa-2x"></i></a></li>
+                                    <li  class="footer__social"><a  class="footer__socialIcon" href="https://www.youtube.com/channel/UCjdXNd7yPduuuuckWusYhgA" target="_blank"><i  class="fa fa-youtube-play fa-2x"></i></a></li>
+                                    <li  class="footer__social"><a  class="footer__socialIcon" href="https://sa.linkedin.com/company/saudi-industrial-development-fund" target="_blank"><i  class="fa fa-linkedin fa-2x"></i></a></li>
+                                </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+</div>
+

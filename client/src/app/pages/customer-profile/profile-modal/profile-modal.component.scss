@@ -1,0 +1,56 @@
+.passwordtoggle{
+    height: 33px !important;
+    float: right !important;
+    margin-top: -39px !important;
+    width: 10%;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.passwordtoggle1{
+  height: 33px !important;
+  float: left !important;
+  margin-top: -39px !important;
+  margin-left: 2%;
+  width: 10%;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.regpass-rules {
+    color: black;
+    border: 1px solid #06a04a;
+    border-radius: 18px;
+    padding: 5px;
+}
+
+progress {
+    //margin-top: -2px !important;
+    height: 3px !important;
+    background-color: white !important;
+    border-radius: 4px;
+  }
+  
+  progress.bardanger::-webkit-progress-value {
+    background: #c00 !important;
+  }
+
+  progress.barwarning::-webkit-progress-value {
+    background: rgb(241, 10, 10) !important;
+  }
+  
+  progress.barok::-webkit-progress-value {
+    background:  #F90 !important;
+  }
+
+  progress.bargood::-webkit-progress-value {
+    background: #9acd32 !important;
+  }
+
+  progress.barperfect::-webkit-progress-value {
+    background:  #006e42 !important;
+  }
+  
+  progress::-webkit-progress-bar {
+  background: transparent;
+}

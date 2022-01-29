@@ -1,0 +1,50 @@
+<div class="col-md-12">
+
+
+
+  <!--Start Title-->
+  <div class="container-fulid margwid">
+    <div class="row title_01">
+      <div class="col">
+        <img src="assets/images/pen.png" alt="img">
+        الطلبات
+      </div>
+    </div>
+  </div>
+  <!--End Title-->
+
+  <div class="row" style="margin: 10px;">
+      <div class="col-sm-6">
+              <div class="input-group">
+                  <label for="status" class="col-sm-2 col-form-label" style="text-align: left">{{"RCJ_Information.status" | translate}}</label>
+
+                      <select  [(ngModel)]="selectedStatus" class="form-control"
+                        required name="status"
+                        placeholder="حالة الطلب">
+                        <option *ngFor="let item of status" [value]="item.StatusId">{{this.translate.currentLang=="ar"?item.StatusDescriptionAr:item.StatusDescriptionEn}} </option>
+                      </select>
+                    </div>
+
+      </div>
+      <div class="col-sm-2">
+          <button type="button" id="Search" (click)="SearchData()"
+          class="submit-btn2 search-btn">{{'DASHBOARD.Search' | translate}}</button>
+          <br>
+        </div>
+        <div class="col-sm-2">
+            <button type="button" id="Reset" (click)="Reset()"
+            class="submit-btn2 search-btn">{{'DASHBOARD.Reset' | translate}}</button>
+            <br>
+          </div>
+
+   
+</div>
+
+  <div style="background: #fff;">
+    <ng2-smart-table [settings]="settings" [source]="source">
+    </ng2-smart-table>
+  </div>
+
+
+
+</div>

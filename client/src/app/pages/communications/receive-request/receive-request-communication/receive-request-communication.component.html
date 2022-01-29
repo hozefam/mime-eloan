@@ -1,0 +1,657 @@
+<div class="col-sm-12">
+
+    <nav aria-label="breadcrumb" class="breadcrumbCustomOverall">
+        <ol class="breadcrumb breadcrumbCustomItem">
+            <li class="breadcrumb-item">{{ "DASHBOARD.Communications" | translate }}</li>
+            <li class="breadcrumb-item">
+                <a (click)="commonService.navToPrevPageBreadcrumbs('/pages/communications/receive-request')"
+                    class="breadcrumbNavigATag">
+                    {{ "RECEIVE_REQUEST.ReceiveRequest" | translate }}
+                </a>
+            </li>
+            <li class="breadcrumb-item active">{{ "COMMON.Comments" | translate }}</li>
+        </ol>
+    </nav>
+
+    <!-- LOAN -->
+    <nb-card accent="success" *ngIf="activeType === 'LOAN'">
+        <!-- <div id="print-section-loan"> -->
+        <nb-card-header>
+            {{"DASHBOARD.LoanApplication" | translate}} {{"COMMON.Comments" | translate}}
+        </nb-card-header>
+        <nb-card-body>
+
+            <br>
+            <div class="row col-md-12" id="print-section-loan">
+                <mat-accordion multi="true" class="col-md-12">
+                    <div *ngFor="let section of comments">
+                        <mat-expansion-panel *ngIf="section.isComments" [expanded]="section.panelExpandedState"
+                            (closed)="section.panelExpandedState = false" (opened)="section.panelExpandedState = true">
+
+                            <mat-expansion-panel-header>
+
+                                <mat-panel-title>
+                                    <div style="text-align: center; font-weight: 600; padding-bottom: 5px">
+                                        {{section.MainHeading  | translate}}</div>
+                                </mat-panel-title>
+
+                            </mat-expansion-panel-header>
+                            <div *ngFor="let set of section.SectionComments">
+
+                                <nb-card *ngIf="set.commentArray.length != 0" style="max-height: 300px !important">
+
+                                    <nb-card-header style="text-align: center; height: 8px;">
+                                        <div style="text-align: center">{{set.heading | translate}}</div>
+                                    </nb-card-header>
+
+                                    <nb-card-body>
+
+                                        <ul type="none">
+
+                                            <div *ngIf="set.commentArray.length === 0" class="col-md-12 row"
+                                                style="margin-bottom: 10px;">
+                                                {{"COMMON.NoCommentsFound" | translate}}
+                                            </div>
+
+                                            <div *ngFor="let comment of set.commentArray" class="col-md-12 row"
+                                                style="margin-bottom: 10px;">
+
+                                                <div *ngIf="comment.Indicator == 'CP'" class="col-md-5">
+
+                                                    <li *ngIf="!comment.IsFile">
+
+                                                        <div class="text" style="color:black; font-weight: 600;">
+                                                            <span>{{comment.CommentedBy}}</span></div>
+                                                        <div class="text" style="color:black;"><span
+                                                                [innerHTML]="comment.CommentText"></span></div>
+                                                        <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                    </li>
+
+                                                    <li *ngIf="comment.IsFile">
+
+                                                        <div class="text" style="color:black; font-weight: 600;">
+                                                            <span>{{comment.CommentedBy}}</span></div>
+                                                        <div><span
+                                                                style="font-size: 20px; font-weight: 600;margin-right: 10px;"
+                                                                aria-hidden="true" class="ion-document"></span><span><a
+                                                                    class="documentName"
+                                                                    style="color: black; cursor: pointer !important;"
+                                                                    (click)="getDocument(comment);">{{comment.CommentText}}</a></span>
+                                                        </div>
+                                                        <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                    </li>
+
+                                                </div>
+
+                                                <div class="col-md-5">
+
+                                                </div>
+
+                                                <div *ngIf="comment.Indicator == 'UP'" class="col-md-5">
+
+                                                    <li *ngIf="!comment.IsFile" style="text-align: right;">
+
+                                                        <div class="text"
+                                                            style="color:black; font-weight: 600; text-align: right;">
+                                                            <span>{{comment.CommentedBy}}</span></div>
+                                                        <div class="text" style="color: black; text-align: right;"><span
+                                                                [innerHTML]="comment.CommentText"></span></div>
+                                                        <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                    </li>
+
+                                                    <li *ngIf="comment.IsFile" style="text-align: right;">
+
+                                                        <div class="text"
+                                                            style="color:black; font-weight: 600; text-align: right;">
+                                                            <span>{{comment.CommentedBy}}</span></div>
+                                                        <div><span
+                                                                style="font-size: 20px; font-weight: 600;margin-right: 10px;"
+                                                                aria-hidden="true" class="ion-document"></span><span><a
+                                                                    class="documentName"
+                                                                    style="color: black; text-align: right; cursor: pointer !important;"
+                                                                    (click)="getDocument(comment);">{{comment.CommentText}}</a></span>
+                                                        </div>
+                                                        <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                    </li>
+
+                                                </div>
+
+                                            </div>
+
+                                        </ul>
+
+                                    </nb-card-body>
+
+                                </nb-card>
+                            </div>
+
+                        </mat-expansion-panel>
+                    </div>
+                </mat-accordion>
+
+            </div>
+
+            <div class="row col-md-12" style="justify-content: center;">
+                <!-- <div style="text-align: center;">
+                                                                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="margin-top: 10px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;" class="btn btn-success" (click)="submit_comment($event)">{{ "COMMON.Submit" | translate}}</button>
+                                                                </div> -->
+                <div style="text-align: center;">
+
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                        style="margin-top: 20px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;"
+                        class="btn btn-success" (click)="onBack()">{{ 'COMMON.Back' | translate }}</button>
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                        style="margin-top: 20px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;"
+                        class="btn btn-success" type="button" (click)="onDownload()">
+                        {{ "COMMON.Print" | translate}}
+                    </button>
+                </div>
+            </div>
+
+        </nb-card-body>
+
+        <!-- </div> -->
+
+
+    </nb-card>
+
+
+    <!-- PRQ -->
+
+
+    <nb-card accent="success" *ngIf="activeType === 'PRQ'">
+        <!-- <div  id="print-section-prq"> -->
+        <nb-card-header>
+            {{"COMMON.PreliminaryRequest" | translate}} {{"COMMON.Comments" | translate}}
+        </nb-card-header>
+        <nb-card-body>
+
+            <br>
+            <div class="row col-md-12" id="print-section-prq">
+                <mat-accordion multi="true" class="col-md-12">
+
+                    <mat-expansion-panel [expanded]="allpanelsexpanded === true">
+
+                        <mat-expansion-panel-header>
+
+                            <mat-panel-title>
+                                <div style="text-align: center; font-weight: 600; padding-bottom: 5px">
+                                    {{"COMMON.PreliminaryRequest" | translate}}</div>
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+                        <div *ngIf="isPrqComments" class="col-md-12" style="margin-bottom: 10px; text-align: center">
+                            {{"COMMON.NoCommentsFound" | translate}}
+                        </div>
+                        <div *ngFor="let set of comments">
+
+                            <nb-card *ngIf="set.commentArray.length != 0" style="max-height: 300px !important">
+
+                                <nb-card-header style="text-align: center; height: 8px;">
+                                    <div style="text-align: center">{{set.heading | translate}}</div>
+                                </nb-card-header>
+
+                                <nb-card-body>
+
+                                    <ul type="none">
+
+                                        <div *ngIf="set.commentArray.length === 0" class="col-md-12 row"
+                                            style="margin-bottom: 10px;">
+                                            {{"COMMON.NoCommentsFound" | translate}}
+                                        </div>
+
+                                        <div *ngFor="let comment of set.commentArray" class="col-md-12 row"
+                                            style="margin-bottom: 10px;">
+
+                                            <div *ngIf="comment.Indicator == 'CP'" class="col-md-5">
+
+                                                <li *ngIf="!comment.IsFile">
+
+                                                    <div class="text" style="color:black; font-weight: 600;">
+                                                        <span>{{comment.CommentedBy}}</span></div>
+                                                    <div class="text" style="color:black;"><span
+                                                            [innerHTML]="comment.CommentText"></span></div>
+                                                    <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                </li>
+
+                                                <li *ngIf="comment.IsFile">
+
+                                                    <div class="text" style="color:black; font-weight: 600;">
+                                                        <span>{{comment.CommentedBy}}</span></div>
+                                                    <div><span
+                                                            style="font-size: 20px; font-weight: 600;margin-right: 10px;"
+                                                            aria-hidden="true" class="ion-document"></span><span><a
+                                                                class="documentName"
+                                                                style="color: black; cursor: pointer !important;"
+                                                                (click)="getDocument(comment);">{{comment.CommentText}}</a></span>
+                                                    </div>
+                                                    <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                </li>
+
+                                            </div>
+
+                                            <div class="col-md-5">
+
+                                            </div>
+
+                                            <div *ngIf="comment.Indicator == 'UP'" class="col-md-5">
+
+                                                <li *ngIf="!comment.IsFile" style="text-align: right;">
+
+                                                    <div class="text"
+                                                        style="color:black; font-weight: 600; text-align: right;">
+                                                        <span>{{comment.CommentedBy}}</span></div>
+                                                    <div class="text" style="color: black; text-align: right;"><span
+                                                            [innerHTML]="comment.CommentText"></span></div>
+                                                    <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                </li>
+
+                                                <li *ngIf="comment.IsFile" style="text-align: right;">
+
+                                                    <div class="text"
+                                                        style="color:black; font-weight: 600; text-align: right;">
+                                                        <span>{{comment.CommentedBy}}</span></div>
+                                                    <div><span
+                                                            style="font-size: 20px; font-weight: 600;margin-right: 10px;"
+                                                            aria-hidden="true" class="ion-document"></span><span><a
+                                                                class="documentName"
+                                                                style="color: black; text-align: right; cursor: pointer !important;"
+                                                                (click)="getDocument(comment);">{{comment.CommentText}}</a></span>
+                                                    </div>
+                                                    <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                </li>
+
+                                            </div>
+
+                                        </div>
+
+                                    </ul>
+
+                                </nb-card-body>
+
+                            </nb-card>
+                        </div>
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+
+            </div>
+
+            <div class="row col-md-12" style="justify-content: center;">
+                <!-- <div style="text-align: center;">
+                                                                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="margin-top: 10px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;" class="btn btn-success" (click)="submit_comment($event)">{{ "COMMON.Submit" | translate}}</button>
+                                                                </div> -->
+                <div style="text-align: center;">
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                        style="margin-top: 20px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;"
+                        class="btn btn-success" (click)="onBack()">{{ 'COMMON.Back' | translate }}</button>
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                        style="margin-top: 20px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;"
+                        class="btn btn-success" type="button" (click)="onDownload()">
+                        {{ "COMMON.Print" | translate}}
+                    </button>
+                </div>
+            </div>
+
+        </nb-card-body>
+
+
+        <!-- </div> -->
+
+    </nb-card>
+
+    <!-- PRINT -->
+
+    <!-- General Communication -->
+    <nb-card accent="success" *ngIf="activeType === 'GENC'">
+        <!-- <div  id="print-section-prq"> -->
+        <nb-card-header>
+            {{ general_section_comments.heading }}
+        </nb-card-header>
+        <nb-card-body>
+
+
+            <!-- Commented by PSW for PRD build movement hiding AFAD Questinnaire, Pending documents, Agreements Entry point -->
+            <div class="col-md-12 row" style="margin-bottom: 5px; justify-content: center;">
+                <div class="row" style="text-align: center;">
+
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                        style="cursor: pointer; margin-left: 1%; margin-right: 1%;" *ngIf="actualTypeGENC == 'PRR'"
+                        class="btn btn-info" (click)="onClickType(actualTypeGENC)"><img
+                            src="../../../../../assets/images/insert.svg" width="18px"
+                            style="margin-right: 3px; margin-left: 3px;">
+                        {{ "MY_LOANS.AfadQuestionnaire" | translate}}</button>
+                    <div *ngIf="actualTypeGENC == 'AUD'" style="margin-right: 4px; margin-left: 4px;">
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                            style="cursor: pointer; margin-left: 1%; margin-right: 1%;" class="btn btn-info"
+                            (click)="onAFADReviewClick(actualTypeGENC)"><img
+                                src="../../../../../assets/images/pop-up.svg" width="18px"
+                                style="margin-right: 3px; margin-left: 3px;">
+                            {{ "COMMUNICATIONS.PendingDocuments" | translate}}</button>
+
+                    </div>
+                    <div *ngIf="actualTypeGENC == 'AUD'" style="margin-right: 4px; margin-left: 4px;">
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                            style="cursor: pointer; margin-left: 1%; margin-right: 1%;" class="btn btn-info"
+                            (click)="onClickType(actualTypeGENC)"><img src="../../../../../assets/images/insert.svg"
+                                width="18px" style="margin-right: 3px; margin-left: 3px;">
+                            {{ "CONTRACTS.Agreements" | translate}}</button>
+                    </div>
+                </div>
+            </div>
+            <!-- //Commented by PSW for PRD build movement  -->
+
+
+            <br>
+            <div class="row col-md-12">
+                <mat-accordion multi="true" class="col-md-12">
+
+                    <mat-expansion-panel [expanded]="allpanelsexpanded === true">
+
+                        <mat-expansion-panel-header>
+
+                            <mat-panel-title>
+                                <div style="text-align: center; font-weight: 600; padding-bottom: 5px">
+                                    {{ general_section_comments.heading }}</div>
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+                        <div *ngIf="isGenComments" class="col-md-12" style="margin-bottom: 10px; text-align: center">
+                            {{"COMMON.NoCommentsFound" | translate}}
+                        </div>
+
+                        <!-- Post Comments  -->
+                        <!-- <app-ngx-editor [placeholder]="'COMMON.EnterComment' | translate" height="100px" [spellcheck]="true"
+                        [(ngModel)]="currentComment"></app-ngx-editor> -->
+                        <ckeditor [(ngModel)]="currentComment" [config]="configForCkEditor" debounce="500"></ckeditor>
+
+                        <div class="form-group row" style="margin-top: 10px; text-align: center;">
+
+                            <div class="col-sm-1"></div>
+
+                            <label for="fileUpload" style="text-align: center"
+                                class="col-sm-3 col-form-label">{{ "COMMON.Attachments" | translate }}</label>
+
+                            <input multiple="multiple" (change)="onFileChange($event)" [name]="fileUpload"
+                                id="fileUpload" type="file" class="form-control col-sm-6">
+
+                        </div>
+
+                        <div style="margin-top: 10px; margin-bottom: 20px; text-align: center;">
+                            <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                                (click)="onSubmitComment()" style="cursor: pointer;"
+                                class="btn btn-primary">{{ "COMMON.Submit" | translate }}</button>
+                        </div>
+                        <!-- /Post Comments -->
+
+                        <div *ngFor="let set of comments" id="print-section-genc">
+
+                            <nb-card accent="success" *ngIf="set.commentArray.length != 0"
+                                style="max-height: 300px !important">
+
+                                <nb-card-header>
+                                    {{ "COMMON.CommentHistory" | translate }}
+                                </nb-card-header>
+
+                                <nb-card-body>
+
+                                    <ul type="none">
+
+                                        <div *ngIf="set.commentArray.length === 0" class="col-md-12 row"
+                                            style="margin-bottom: 10px;">
+                                            {{"COMMON.NoCommentsFound" | translate}}
+                                        </div>
+
+                                        <div *ngFor="let comment of set.commentArray" class="col-md-12 row"
+                                            style="margin-bottom: 10px;">
+
+                                            <div *ngIf="comment.Indicator == 'CP'" class="col-md-5">
+
+                                                <li *ngIf="!comment.IsFile">
+
+                                                    <div class="text" style="color:black; font-weight: 600;">
+                                                        <span>{{comment.CommentedBy}}</span></div>
+                                                    <div class="text" style="color:black;"><span
+                                                            [innerHTML]="comment.CommentText"></span></div>
+                                                    <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                </li>
+
+                                                <li *ngIf="comment.IsFile">
+
+                                                    <div class="text" style="color:black; font-weight: 600;">
+                                                        <span>{{comment.CommentedBy}}</span></div>
+                                                    <div><span
+                                                            style="font-size: 20px; font-weight: 600;margin-right: 10px;"
+                                                            aria-hidden="true" class="ion-document"></span><span><a
+                                                                class="documentName"
+                                                                style="color: black; cursor: pointer !important;"
+                                                                (click)="getDocument(comment);">{{comment.CommentText}}</a></span>
+                                                    </div>
+                                                    <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                </li>
+
+                                            </div>
+
+                                            <div class="col-md-5">
+
+                                            </div>
+
+                                            <div *ngIf="comment.Indicator == 'UP'" class="col-md-5">
+
+                                                <li *ngIf="!comment.IsFile" style="text-align: right;">
+
+                                                    <div class="text"
+                                                        style="color:black; font-weight: 600; text-align: right;">
+                                                        <span>{{comment.CommentedBy}}</span></div>
+                                                    <div class="text" style="color: black; text-align: right;"><span
+                                                            [innerHTML]="comment.CommentText"></span></div>
+                                                    <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                </li>
+
+                                                <li *ngIf="comment.IsFile" style="text-align: right;">
+
+                                                    <div class="text"
+                                                        style="color:black; font-weight: 600; text-align: right;">
+                                                        <span>{{comment.CommentedBy}}</span></div>
+                                                    <div><span
+                                                            style="font-size: 20px; font-weight: 600;margin-right: 10px;"
+                                                            aria-hidden="true" class="ion-document"></span><span><a
+                                                                class="documentName"
+                                                                style="color: black; text-align: right; cursor: pointer !important;"
+                                                                (click)="getDocument(comment);">{{comment.CommentText}}</a></span>
+                                                    </div>
+                                                    <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                                </li>
+
+                                            </div>
+
+                                        </div>
+
+                                    </ul>
+
+                                </nb-card-body>
+
+                            </nb-card>
+                        </div>
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+
+            </div>
+
+            <div class="row col-md-12" style="justify-content: center;">
+                <!-- <div style="text-align: center;">
+                                                                            <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="margin-top: 10px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;" class="btn btn-success" (click)="submit_comment($event)">{{ "COMMON.Submit" | translate}}</button>
+                                                                        </div> -->
+                <div style="text-align: center;">
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                        style="margin-top: 20px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;"
+                        class="btn btn-success" (click)="onBack()">{{ 'COMMON.Back' | translate }}</button>
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                        style="margin-top: 20px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;"
+                        class="btn btn-success" type="button" (click)="onDownload()">
+                        {{ "COMMON.Print" | translate}}
+                    </button>
+                </div>
+            </div>
+
+        </nb-card-body>
+    </nb-card>
+    <!-- /General Communication -->
+
+    <!-- Claims -->
+    <nb-card accent="success" *ngIf="activeType === 'CLAI'">
+        <!-- <div  id="print-section-prq"> -->
+        <nb-card-header>
+            {{"RECEIVE_REQUEST.ClaimsCommunication" | translate}}
+        </nb-card-header>
+        <nb-card-body>
+            <br>
+            <div class="row col-md-12">
+
+                <div *ngIf="isClaimsComments" class="col-md-12" style="margin-bottom: 10px; text-align: center">
+                    {{"COMMON.NoCommentsFound" | translate}}
+                </div>
+
+                <div *ngFor="let set of comments" id="print-section-clai" class="col-md-12">
+
+                    <!-- <nb-card accent="success" *ngIf="set.commentArray.length != 0" style="max-height: 300px !important">
+
+                    <nb-card-header>
+                        <div style="text-align: center; font-weight: 600;">
+                        {{"RECEIVE_REQUEST.Claims" | translate}} {{ "COMMON.CommentHistory" | translate }}
+                        </div>
+                    </nb-card-header> -->
+
+                    <!-- <nb-card-body> -->
+
+                    <ul type="none">
+
+                        <div *ngIf="set.commentArray.length === 0" class="col-md-12 row" style="margin-bottom: 10px;">
+                            {{"COMMON.NoCommentsFound" | translate}}
+                        </div>
+                        <!-- 
+                            <div class="col-md-12 row"
+                                style="margin-bottom: 10px;"> -->
+
+                        <mat-accordion multi="true" class="col-md-12">
+                            <mat-expansion-panel *ngFor="let comment1 of set.commentArray"
+                                [expanded]="allpanelsexpanded === true">
+
+                                <mat-expansion-panel-header>
+
+                                    <mat-panel-title>
+                                        <div style="text-align: center; font-weight: 600;">
+                                            {{comment1.WbsName}}
+                                        </div>
+                                    </mat-panel-title>
+
+                                </mat-expansion-panel-header>
+                                <div *ngFor="let comment of comment1.RecReqComment" class="col-md-12 row">
+                                    <div *ngIf="comment.Indicator == 'CP'" class="col-md-5">
+
+                                        <li *ngIf="!comment.IsFile">
+
+                                            <div class="text" style="color:black; font-weight: 600;">
+                                                <span>{{comment.CommentedBy}}</span></div>
+                                            <div class="text" style="color:black;"><span
+                                                    [innerHTML]="comment.CommentText"></span></div>
+                                            <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                        </li>
+
+                                        <li *ngIf="comment.IsFile">
+
+                                            <div class="text" style="color:black; font-weight: 600;">
+                                                <span>{{comment.CommentedBy}}</span></div>
+                                            <div><span style="font-size: 20px; font-weight: 600;margin-right: 10px;"
+                                                    aria-hidden="true" class="ion-document"></span><span><a
+                                                        class="documentName"
+                                                        style="color: black; cursor: pointer !important;"
+                                                        (click)="getDocument(comment);">{{comment.CommentText}}</a></span>
+                                            </div>
+                                            <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                        </li>
+
+                                    </div>
+
+                                    <div class="col-md-5">
+
+                                    </div>
+
+                                    <div *ngIf="comment.Indicator == 'UP'" class="col-md-5">
+
+                                        <li *ngIf="!comment.IsFile" style="text-align: right;">
+
+                                            <div class="text" style="color:black; font-weight: 600; text-align: right;">
+                                                <span>{{comment.CommentedBy}}</span></div>
+                                            <div class="text" style="color: black; text-align: right;"><span
+                                                    [innerHTML]="comment.CommentText"></span></div>
+                                            <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                        </li>
+
+                                        <li *ngIf="comment.IsFile" style="text-align: right;">
+
+                                            <div class="text" style="color:black; font-weight: 600; text-align: right;">
+                                                <span>{{comment.CommentedBy}}</span></div>
+                                            <div><span style="font-size: 20px; font-weight: 600;margin-right: 10px;"
+                                                    aria-hidden="true" class="ion-document"></span><span><a
+                                                        class="documentName"
+                                                        style="color: black; text-align: right; cursor: pointer !important;"
+                                                        (click)="getDocument(comment);">{{comment.CommentText}}</a></span>
+                                            </div>
+                                            <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                                        </li>
+
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+
+                        <!-- </div> -->
+
+                    </ul>
+
+                    <!-- </nb-card-body> -->
+
+                    <!-- </nb-card> -->
+                </div>
+
+            </div>
+
+            <div class="row col-md-12" style="justify-content: center;">
+                <!-- <div style="text-align: center;">
+                                                                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="margin-top: 10px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;" class="btn btn-success" (click)="submit_comment($event)">{{ "COMMON.Submit" | translate}}</button>
+                                                                    </div> -->
+                <div style="text-align: center;">
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                        style="margin-top: 20px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;"
+                        class="btn btn-success" (click)="onBack()">{{ 'COMMON.Back' | translate }}</button>
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                        style="margin-top: 20px; margin-bottom: 0px; margin-left: 10px; margin-right: 10px; cursor: pointer;"
+                        class="btn btn-success" type="button" (click)="onDownload()">
+                        {{ "COMMON.Print" | translate}}
+                    </button>
+                </div>
+            </div>
+
+        </nb-card-body>
+    </nb-card>
+    <!-- /Claims -->
+
+</div>

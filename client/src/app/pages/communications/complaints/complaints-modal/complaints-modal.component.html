@@ -1,0 +1,83 @@
+
+<div class="modal-header">
+
+    <span>{{ComplaintsModalsForm.header}}</span>
+  
+    <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="ion-close-round"></span>
+    </button>
+  
+  </div>
+  
+  <div class="modal-body">
+  
+  
+     <div class="form-group row" style="text-align: center;" *ngFor="let input of ComplaintsModalsForm.inputs;">
+  
+      <div class="col-sm-1"></div>
+  
+      <label for="{{input.name}}" style="text-align: left" class="col-sm-3 col-form-label"><span *ngIf="input.required === 'true' && ComplaintsModalsForm.method != 'view'"
+              class="required-pf">* </span>{{input.name}}</label>
+  
+      <div class="col-sm-7">
+        
+  
+         
+          <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+              (keypress)="numberOnly($event)" *ngIf="(input.type != 'number') && (input.id != 'alert') && (input.type != 'text_disabled') && (input.cost === 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'textarea') && (ComplaintsModalsForm.method != 'view') "
+              [name]="input.id" min="0" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:input.currency:'code':'2.4'"
+              [ngModelOptions]="{updateOn:'blur', debounce:0}" (ngModelChange)="input.value=$event; onngmodelchange(input, ComplaintsModalsForm);"
+              id="{{input.id}}" type="{{input.type}}" placeholder="{{input.name}}" class="form-control">
+          <input (keypress)="numberOnly($event)" *ngIf="(input.type != 'number') && (input.id != 'alert') && (input.type === 'text_disabled') &&(input.cost === 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'textarea') && (ComplaintsModalsForm.method != 'view') "
+              [name]="input.id" min="0" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:input.currency:'code':'2.4'"
+              [ngModelOptions]="{updateOn:'blur', debounce:0}" (ngModelChange)="input.value=$event; onngmodelchange(input, ComplaintsModalsForm);"
+              id="{{input.id}}" type="text" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control" disabled>
+          <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="(input.type != 'file_multiple') && (input.id != 'alert') && (input.cost != 'true') && (input.type != 'greg_date') && (input.type != 'hijri_date') && (input.type != 'text_disabled') && (input.type != 'textarea_disabled') && (input.type != 'textarea') && (input.type != 'number_no_decimal') && (input.type != 'number') && (input.type != 'select') && (input.type != 'email') && (ComplaintsModalsForm.method != 'view') "
+              [name]="input.id" min="0" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}"
+              type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+          <input *ngIf="input.type == 'text_disabled'" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}"
+              type="text" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control" disabled>
+          <select (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type === 'select'"
+              [(ngModel)]="input.selected" name="{{input.id}}" class="form-control">
+              <option value="" disabled selected hidden>{{'COMMON.Select' | translate }} {{input.name}}</option>
+              <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+          </select>
+          <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type == 'number'"
+              [name]="input.id" min="0" step=".0001" oninput="validity.valid || (value='')" [(ngModel)]="input.value"
+              id="{{input.id}}" type="number" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+          <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type === 'email'"
+              [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+              class="form-control">
+          <textarea (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type === 'textarea'"
+              rows="5" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+              class="form-control"></textarea>
+          <textarea *ngIf="input.type === 'textarea_disabled'" rows="5" [name]="input.id" [(ngModel)]="input.value"
+              id="{{input.id}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control" disabled></textarea>
+          <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type == 'number_no_decimal'"
+              [name]="input.id" min="0" step="1" oninput="validity.valid || (value='')" [(ngModel)]="input.value"
+              id="{{input.id}}" type="number" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+          <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="(input.type != 'file_multiple') && (input.id != 'alert') && (input.type != 'greg_date') && (input.type != 'hijri_date') && (input.type != 'text_disabled') && (input.type != 'textarea_disabled') && (input.type != 'textarea') && (input.type != 'number_no_decimal') && (input.type != 'number') && (input.type != 'select') && (input.type != 'email') && (ComplaintsModalsForm.method === 'view') "
+              [name]="input.id" min="0" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}"
+              type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control" disabled>
+          <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type == 'file_multiple'"
+               (change)="onFileChange($event, input.id)" [name]="input.id" id="{{input.id}}"
+              type="file" placeholder="{{input.name}}" class="form-control">
+  
+  
+      </div>
+  
+  </div>
+  
+  </div>
+  <!--  -->
+  <div class="modal-footer">
+  
+    <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="btnCnl btn btn-md btn-danger"
+        (click)="closeModal()">{{
+        'COMMON.Cancel' | translate }}</button>
+  
+    <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" type="{{button.type}}" *ngFor="let button of ComplaintsModalsForm.buttons;"
+        class="btn {{button.class}}" (click)="onSubmit()">{{button.name}}</button>
+  
+  </div>
+  

@@ -1,0 +1,25 @@
+<div class="col-md-12">
+
+
+
+  <!--Start Title-->
+  <div class="container-fulid margwid">
+    <div class="row title_01">
+      <div class="col">
+        <img src="assets/images/pen.png" alt="img">
+        الطلبات
+      </div>
+    </div>
+  </div>
+  <!--End Title-->
+
+
+
+  <div style="background: #fff;">
+    <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEdit($event)">
+    </ng2-smart-table>
+  </div>
+
+
+
+</div>

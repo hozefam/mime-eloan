@@ -1,0 +1,40 @@
+<nb-card size="small" accent="success">
+    <nb-card-header>
+        <h5>
+            {{ "Transactions.Last" | translate }}
+        </h5>
+        <!-- <div class="dropdown ghost-dropdown" ngbDropdown>
+            <button type="button" class="btn btn-sm" ngbDropdownToggle [ngClass]="{ 'btn-success': currentTheme == 'default'}">
+              {{ type }}
+            </button>
+            <ul ngbDropdownMenu class="dropdown-menu">
+                <li class="dropdown-item" *ngFor="let t of types" (click)="getUserActivity(t); type = t">
+                    {{ t }}
+                </li>
+            </ul>
+        </div> -->
+
+    </nb-card-header>
+
+    <nb-card-body>
+         
+        <ul class="traffic-list">
+            <li>
+                <div class="text" style="color: #696969"><b>      {{ "Transactions.SentReqId" | translate }}</b></div>
+                <div class="date"style="color: #696969"><strong>       {{ "Transactions.SentReqTypeDesc" | translate }}</strong></div>
+                
+                <div class="text" style="color: #696969"><strong>      {{ "Transactions.CommReqStatusDesc" | translate }}</strong></div>
+                <div class="text" style="color: #696969"><strong>      {{ "Transactions.Date" | translate }}</strong></div>
+            </li>
+            <li *ngFor="let request of requests">
+                <div class="text">{{request.RequestId}}</div>
+                <div class="date" *ngIf="commonService.defaultLanguage =='en'" >{{request.RequestType}}</div>
+                <div class="date" *ngIf="commonService.defaultLanguage =='ar'" >{{request.RequestTypeAr}}</div>
+                <div class="date"> {{ "Transactions.Closed" | translate }}</div>
+                <div class="date">{{request.CreatedDate}}</div>
+            </li>
+        </ul>
+
+    </nb-card-body>
+
+</nb-card>

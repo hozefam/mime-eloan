@@ -1,0 +1,247 @@
+<!--begin search-->
+<div>
+<div class="row" style="margin: 10px;">
+        <div class="col-sm-6">
+                <div class="input-group">
+                    <label for="city" class="col-sm-2 col-form-label" style="text-align: left">{{ "DASHBOARD.city" | translate}}</label>
+
+                        <select  [(ngModel)]="city" class="form-control"
+                          required name="City"
+                          placeholder=" المدينة الصناعية">
+                          <option *ngFor="let item of Cities" [value]="item.Code">{{this.translate.currentLang=="ar"?item.Value_Ar:item.Value_En}}</option>
+                        </select>
+
+                      </div>
+
+        </div>
+        <div class="col-sm-6">
+                <div class="row">
+                        <label for="request_amount" class="col-sm-3 col-form-label">
+                            {{ 'PRELIMINARY_REQUEST.requestAmount' | translate }}</label>
+
+
+                            <div class="col-sm-9">
+                            <ng5-slider [(value)]="minValue" [(ngModel)]='amount' [(highValue)]="maxValue" [options]="options"></ng5-slider>
+                          </div>
+                            <!-- 
+                        <input [ngClass]="{'is-invalid' : request_amount_vs}"
+                             (keypress)="numberOnly($event)" type="text"
+                            class="col-sm-9 form-control" [ngModelOptions]="{updateOn:'blur'}"
+                            [(ngModel)]="amount"
+                            min="0" step=".0001" 
+                            name="request_amount"
+                            placeholder="{{ 'PRELIMINARY_REQUEST.enterRequestAmount' | translate }}"
+                            > -->
+                    </div>
+
+        </div>
+
+     
+</div>
+<div class="row" style="margin: 10px;">
+
+ 
+    <div class="col-sm-4">
+
+        <div class="input-group">
+            <label for="fromCreationDate" class="col-sm-4 col-form-label" style="text-align: left">{{ "DASHBOARD.fromDate" | translate}}</label>
+
+         <!--  <input class="form-control" placeholder="{{'DASHBOARD.fromDate' | translate}}" (click)="CreationDatebutton1.toggle()"
+            name="CreationDatebutton1"  name="fromCreationDate" ngbDatepicker
+            #CreationDatebutton1="ngbDatepicker" [(ngModel)]="fromCreationDate"
+            [minDate]="minDate">
+          <div class="input-group-append">
+            <button class="btn ion-calendar" (click)="CreationDatebutton1.toggle()"
+              type="button"></button>
+          </div> -->
+
+
+
+         
+
+          
+                <input type="text" 
+                    onkeydown="return false;" [(ngModel)]="fromCreationDate"
+                    placeholder="{{'DASHBOARD.fromDate' | translate}}" class="form-control" name="CreationDatebutton1"
+                    placement="bottom" #CreationDatebutton1="bsDatepicker" bsDatepicker
+                    [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                    style="cursor: pointer;">
+                <div class="input-group-append">
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                        class="btn btn-success ion-calendar"
+                        (click)="CreationDatebutton1.toggle();  startedFilling = 1;"
+                        type="button"></button>
+                </div>
+           
+
+      
+
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+
+          <div class="input-group">
+              <label for="CreationDate" class="col-sm-4 col-form-label" style="text-align: left">{{ "DASHBOARD.toDate" | translate}}</label>
+<!-- 
+            <input class="form-control" placeholder="{{'DASHBOARD.toDate' | translate}}" (click)="CreationDatebutton.toggle()"
+              name="CreationDatebutton"  name="CreationDate" ngbDatepicker
+              #CreationDatebutton="ngbDatepicker" [(ngModel)]="toCreationDate"
+              [minDate]="minDate">
+            <div class="input-group-append">
+              <button class="btn ion-calendar" (click)="CreationDatebutton.toggle()"
+                type="button"></button>
+            </div> -->
+
+            <input type="text" 
+            onkeydown="return false;" [(ngModel)]="toCreationDate"
+            placeholder="{{'DASHBOARD.toDate' | translate}}" class="form-control" name="CreationDatebutton"
+            placement="bottom" #CreationDatebutton="bsDatepicker" bsDatepicker
+            [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+            style="cursor: pointer;">
+        <div class="input-group-append">
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                class="btn btn-success ion-calendar"
+                (click)="CreationDatebutton.toggle();  startedFilling = 1;"
+                type="button"></button>
+        </div>
+
+
+
+          </div>
+  
+        </div>
+    <div class="col-sm-2">
+    <button type="button" id="Search" (click)="SearchData()"
+    class="submit-btn2 search-btn">{{'DASHBOARD.Search' | translate}}</button>
+    <br>
+  </div>
+  <div class="col-sm-2">
+      <button type="button" id="Reset" (click)="Reset()"
+      class="submit-btn2 search-btn">{{'DASHBOARD.Reset' | translate}}</button>
+      <br>
+    </div>
+</div>
+</div>
+<!--End search-->
+<div class="animated fadeIn" style="margin: 7px;">
+
+<div *ngIf='serviceId==9'>
+<Rcj-admin-dashboard #Rcjadmindashboard></Rcj-admin-dashboard>
+</div>
+<div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-5">
+            <h4 class="card-title mb-0">الإحصائيات</h4>
+            <div class="small text-muted">{{cmonth}} {{cyear}}</div>
+
+          </div><!--/.col-->
+          <div class="col-sm-5">
+            <div>
+
+              <div class="input-group">
+                  <label for="CreationDatebuttonc" class="col-sm-4 col-form-label" style="text-align: left">التاريخ</label>
+                <input type="text" 
+                onkeydown="return false;" [(ngModel)]="CreationDatechart"
+                placeholder="{{'DASHBOARD.toDate' | translate}}" class="form-control" name="CreationDatebuttonc"
+                placement="bottom" #CreationDatebuttonc="bsDatepicker" bsDatepicker
+                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                style="cursor: pointer;">
+            <div class="input-group-append">
+                <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                    class="btn btn-success ion-calendar"
+                    (click)="CreationDatebuttonc.toggle();  startedFilling = 1;"
+                    type="button"></button>
+            </div>
+    
+    
+    
+              </div>
+      
+            </div>
+           
+          </div><!--/.col-->
+          <div class="col-sm-2">
+            <button type="button" id="Search" (click)="getDatachart()"
+            class="submit-btn2 search-btn">{{'DASHBOARD.Search' | translate}}</button>
+            <br>
+          </div>
+          <div class="col-sm-7 hidden-sm-down">
+  
+
+          
+
+
+
+            <!--    <button type="button" class="btn btn-primary float-right"><i class="icon-cloud-download"></i></button>
+   <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+              <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
+                <label class="btn btn-outline-secondary">
+                  <input type="radio" name="options" id="option1"> Week
+                </label>
+                <label class="btn btn-outline-secondary active">
+                  <input type="radio" name="options" id="option2" checked> Month
+                </label>
+                <label class="btn btn-outline-secondary">
+                  <input type="radio" name="options" id="option3"> Year
+                </label>
+              </div>
+            </div> -->
+          </div><!--/.col-->
+        </div><!--/.row-->
+        <div class="chart-wrapper" style="height:300px;margin-top:40px;">
+          <canvas baseChart class="chart"
+          [datasets]="mainChartData"
+          [labels]="mainChartLabels"
+          [options]="mainChartOptions"
+          [colors]="mainChartColours"
+          [legend]="mainChartLegend"
+          [chartType]="mainChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+<!--      <div class="card-footer">
+        <ul>
+          <li>
+            <div class="text-muted">Visits</div>
+            <strong>29.703 Users (40%)</strong>
+            <div class="progress progress-xs mt-2">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </li>
+          <li class="hidden-sm-down">
+            <div class="text-muted">Unique</div>
+            <strong>24.093 Users (20%)</strong>
+            <div class="progress progress-xs mt-2">
+              <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </li>
+          <li>
+            <div class="text-muted">Pageviews</div>
+            <strong>78.706 Views (60%)</strong>
+            <div class="progress progress-xs mt-2">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </li>
+          <li class="hidden-sm-down">
+            <div class="text-muted">New Users</div>
+            <strong>22.123 Users (80%)</strong>
+            <div class="progress progress-xs mt-2">
+              <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </li>
+          <li class="hidden-sm-down">
+            <div class="text-muted">Bounce Rate</div>
+            <strong>40.15%</strong>
+            <div class="progress progress-xs mt-2">
+              <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </li>
+        </ul>
+      </div>  -->
+    </div>
+    <!--/.card-->
+  
+  </div>

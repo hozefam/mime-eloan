@@ -1,0 +1,532 @@
+<div class="col-md-12">
+
+  <div class="container bread_crumbs">
+    <div class="row">
+      <div class="col">
+        <a href="#"><span>{{ "DASHBOARD.Home" | translate}}</span></a>
+        <span><img src="assets/images/arrow-l.png" alt="img"></span>
+        <span>{{ "FactoryLoan.RequestDetails" | translate}}</span>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container-fulid margwid">
+    <div class="row title_01">
+      <div class="col">
+        <img src="assets/images/pen.png" alt="img">
+        {{ "FactoryLoan.RequestDetails" | translate}}
+      </div>
+    </div>
+  </div>
+
+
+  <nb-card accent="success"> 
+
+    <nb-card-body> 
+      <div class="col-xxxl-12 col-xxl-12 col-md-12" style="text-align: center; margin-bottom: 20px;">
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(0)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ 'COMMON.ProjectInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 10px;">
+            <nb-progress-bar [value]="GenInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+
+        </div>
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(1)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ 'COMMON.MarketingInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 10px;">
+            <nb-progress-bar [value]="MarkInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+        </div>
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(2)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ 'COMMON.TechnicalInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 10px;">
+            <nb-progress-bar [value]="TechInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+
+        </div>
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(3)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ 'COMMON.FinancialInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 10px;">
+            <nb-progress-bar [value]="FinInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+
+        </div>
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2"
+          (click)="onClickLoanApplicationTab(5)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            
+            {{ 'COMMON.landrequirement' | translate }}
+          </div>
+          <div style="width: 80%;
+                        margin: 0 auto;
+                        margin-bottom: 10px;">
+            <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+
+          </div>
+
+        </div>
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2 wiz-select"
+          (click)="onClickLoanApplicationTab(6)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            
+            {{ 'MARKETING_INFORMATION.TargetedMarket' | translate }}
+          </div>
+          <div style="width: 80%;
+                    margin: 0 auto;
+                    margin-bottom: 10px;">
+            <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+
+        </div>
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(4)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ 'COMMON.Checklist' | translate }}
+          </div>
+          <div style="width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 10px;">
+            <nb-progress-bar [value]="ChecklistPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+
+        </div>
+
+      </div>
+
+      <nb-card accent="success" style="border-top-width:2px !important; border-radius: 0; border-color: #8dd27a">
+
+        <nb-card-header
+          style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;">
+          {{ 'MARKETING_INFORMATION.TargetedMarket' | translate }} </nb-card-header>
+
+        <nb-card-body style="text-align: center;">
+
+          <div style="margin-bottom: 20px; text-align: right;">
+
+            <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === false" class="more"
+              (click)="expandAllPanels(0);">{{'COMMON.ExpandAllPanels' | translate }}</button>
+            <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === true" class="more"
+              (click)="expandAllPanels(1);">{{ 'COMMON.CollapseAllPanels' | translate }}</button>
+
+
+          </div>
+
+          <mat-accordion multi="true">
+
+
+            <mat-expansion-panel [expanded]="true">
+
+              <mat-expansion-panel-header>
+
+                <mat-panel-title>
+                  {{ 'MARKETING_INFORMATION.TargetedMarket' | translate }}
+                </mat-panel-title>
+
+              </mat-expansion-panel-header>
+              <form ngNativeValidate #modonForm6="ngForm">
+
+
+                <div class="form-group row">
+
+                  <label for="TotalTechnicians" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'CONTACTUS.lTechnical' | translate }}
+                  </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.TotalTechnicians" type="number"
+                      class="form-control" name="TotalTechnicians" placeholder="{{ 'CONTACTUS.lTechnical' | translate }} " required>
+
+                  </div> 
+                  <label for="TotalManagments" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'CONTACTUS.Management' | translate }}
+                  </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.TotalManagments" type="number"
+                      class="form-control" name="TotalManagments" placeholder="{{ 'CONTACTUS.Management' | translate }} " required>
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                  <label for="TotalEngineers" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'CONTACTUS.Management' | translate }}
+                    </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.TotalEngineers" type="number"
+                      class="form-control" name="TotalEngineers" placeholder="{{ 'CONTACTUS.Engineer' | translate }} " required>
+
+                  </div>
+
+
+
+                  <label for="TotalHandMen" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'CONTACTUS.Engineer' | translate }}
+                    </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.TotalHandMen" type="number"
+                      class="form-control" name="TotalHandMen" placeholder="{{ 'CONTACTUS.Workers' | translate }} " required>
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                  <label for="TotalEmployees" class="col-sm-2 col-form-label" style="text-align: left">
+                    
+                    {{ 'COMMON.Totalemployees' | translate }}
+                  </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.TotalEmployees" type="text"
+                      class="form-control" name="TotalEmployees" placeholder=" {{ 'COMMON.Totalemployees' | translate }} " required>
+
+                  </div>
+
+
+
+                  <label for="SaudiTechnicians" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'COMMON.techniciansNumber' | translate }}
+                    
+                     </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.SaudiTechnicians" type="number"
+                      class="form-control" name="SaudiTechnicians" placeholder=" " required>
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                  <label for="SaudiManagments" class="col-sm-2 col-form-label"
+                    style="text-align: left">
+                    {{ 'COMMON.techniciansNumber' | translate }}
+                  </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.SaudiManagments" type="number"
+                      class="form-control" name="SaudiManagments" placeholder="(إدارة(سعودي" required>
+
+                  </div>
+
+
+                  <label for="SaudiEngineers" class="col-sm-2 col-form-label"
+                    style="text-align: left">
+                    {{ 'COMMON.AdministrationSaudi' | translate }}
+                    </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.SaudiEngineers" type="number"
+                      class="form-control" name="SaudiEngineers" placeholder="{{ 'COMMON.AdministrationSaudi' | translate }}" required>
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                  <label for="SaudiHandMen" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'COMMON.WorkersSaudi' | translate }}
+                    </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.SaudiHandMen" type="number"
+                      class="form-control" name="SaudiHandMen" placeholder="{{ 'COMMON.WorkersSaudi' | translate }}" required>
+
+                  </div>
+
+
+                  <label for="SaudiEmployees" class="col-sm-2 col-form-label" style="text-align: left">
+                    
+                    {{ 'COMMON.TotalemployeesSaudi' | translate }}
+                  </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.SaudiEmployees" type="text"
+                      class="form-control" name="SaudiEmployees" placeholder="{{ 'COMMON.TotalemployeesSaudi' | translate }}" required>
+
+                  </div>
+
+                </div>
+                <div class="form-group row">
+                  <label> 
+
+                    {{ 'COMMON.Typeproduction' | translate }}
+                  </label>
+                  <label class="form-check-inline">
+                    
+                    {{ 'COMMON.internal' | translate }}
+                    <input [disabled]="add_edit_delete_show" class="form-check-input" type="radio" name="mode3"
+                      [value]="true" [(ngModel)]="input.HasInternalProduction">
+                  </label>
+                  <label class="form-check-inline">
+                    
+                    {{ 'COMMON.external' | translate }}
+                    <input class="form-check-input" type="radio" name="mode3" [value]="false"
+                      [(ngModel)]="input.HasInternalProduction">
+                  </label>
+                </div>
+                <div *ngIf="input.HasInternalProduction" class="form-group row">
+
+                  <label for="Area" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'COMMON.Regions' | translate }}
+                    </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <select [disabled]="add_edit_delete_show" [(ngModel)]="input.Area" type="" class="form-control"
+                      name="Area">
+                      <option *ngFor="let item of region" value="{{item.code}}" required> {{item.value}} </option>
+
+                    </select>
+
+                  </div>
+
+
+                  <label for="Distributors" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'COMMON.Distributors' | translate }}
+                    </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.Distributors" type="text"
+                      class="form-control" name="Distributors" placeholder="{{ 'COMMON.Distributors' | translate }} " required>
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+                  <label>  
+                    {{ 'COMMON.isexport' | translate }}
+                  </label>
+                  <label class="form-check-inline">
+                     
+                    {{ 'TECHNICAL_INFORMATION.Yes' | translate }}
+                    <input [disabled]="add_edit_delete_show" class="form-check-input" type="radio" name="mode1"
+                      [value]="true" [(ngModel)]="input.HasExternalExport">
+                  </label>
+                  <label class="form-check-inline">
+                    
+                    {{ 'TECHNICAL_INFORMATION.No' | translate }}
+                    <input [disabled]="add_edit_delete_show" class="form-check-input" type="radio" name="mode1"
+                      [value]="false" [(ngModel)]="input.HasExternalExport">
+                  </label>
+                </div>
+
+                <div *ngIf="input.HasExternalExport" class="form-group row">
+
+                  <label for="ExportCountries" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'COMMON.Countriesexport' | translate }}
+                    </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <select [disabled]="add_edit_delete_show" [(ngModel)]="input.ExportCountries" type=""
+                      class="form-control" name="ExportCountries"  required>
+                      <option *ngFor="let item of contries " value=" {{item.code}}"> {{item.value}} </option>
+                    </select>
+
+                  </div>
+
+
+
+                  <label for="ExportPercentage" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'COMMON.Exportratio' | translate }}
+                    
+                    </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.ExportPercentage" type="number"
+                      class="form-control" name="ExportPercentage" placeholder="{{ 'COMMON.Exportratio' | translate }}   " required>
+
+                  </div>
+
+                </div>
+                <div class="form-group row">
+                  <label> 
+
+                    {{ 'COMMON.industriesAssociated' | translate }}
+                  </label>
+                  <label class="form-check-inline">
+                    {{ 'TECHNICAL_INFORMATION.Yes' | translate }}
+                    <input [disabled]="add_edit_delete_show" class="form-check-input" type="radio" name="mode9"
+                      [value]="true" [(ngModel)]="input.HasConsumerAgreement">
+                  </label>
+                  <label class="form-check-inline">
+                    {{ 'TECHNICAL_INFORMATION.No' | translate }}
+                    <input [disabled]="add_edit_delete_show" class="form-check-input" type="radio" name="mode9"
+                      [value]="false" [(ngModel)]="input.HasConsumerAgreement">
+                  </label>
+                </div>
+
+
+
+
+                <div *ngIf="input.HasConsumerAgreement" class="form-group row">
+
+                  <label for="AgreementAttachement " class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'COMMON.DocumentLink' | translate }}</label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.AgreementAttachement"
+                      type="file" class="form-control" (change)="uploadFile($event ,AgreementAttachement )"
+                      name="AgreementAttachement" placeholder="{{ 'COMMON.DocumentLink' | translate }}  " required>
+
+                  </div>
+
+
+                  <label for="AdditionalConsumerAgreementInfo" class="col-sm-2 col-form-label"
+                    style="text-align: left">
+                    {{ 'COMMON.additionalinformation' | translate }}
+                  </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required
+                      [(ngModel)]="input.AdditionalConsumerAgreementInfo" type="text" class="form-control"
+                      name="AdditionalConsumerAgreementInfo" required placeholder="{{ 'COMMON.additionalinformation' | translate }} ">
+
+                  </div>
+
+                </div>
+                <div class="form-group row">
+                  <label>
+                    {{ 'COMMON.agreementsconsumers'  | translate }}
+                  </label>
+                  <label class="form-check-inline">
+                    {{ 'TECHNICAL_INFORMATION.Yes' | translate }}
+                    <input [disabled]="add_edit_delete_show" class="form-check-input" type="radio" name="mode2"
+                      [value]="true" [(ngModel)]="input.IsRelatedToExistingIndustry">
+                  </label>
+                  <label class="form-check-inline">
+                    {{ 'TECHNICAL_INFORMATION.No' | translate }}
+                    <input [disabled]="add_edit_delete_show" class="form-check-input" type="radio" name="mode2"
+                      [value]="false" [(ngModel)]="input.IsRelatedToExistingIndustry">
+                  </label>
+                </div>
+
+                <div *ngIf="input.IsRelatedToExistingIndustry" class="form-group row">
+
+
+
+
+                  <label for="DocumentOfRelation" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'COMMON.AgreementDocument'}}
+                    </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.DocumentOfRelation" type="file"
+                      class="form-control" name="DocumentOfRelation" required
+                      (change)="uploadFile($event ,AgreementAttachement )">
+
+                  </div>
+
+                  <label for="AdditionalRelationInfo" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ 'COMMON.additionalinformation'  }}
+                    
+                    </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.AdditionalRelationInfo"
+                      type="text" class="form-control" name="AdditionalRelationInfo"
+                      required>
+
+                  </div>
+
+
+
+
+                </div>
+
+                <div class="row">
+                  <inputs-table [rowStructureCells]="rowStructureCells" [data]="products"
+                    (deletedElemrnt)="onDelete($event)" (createdElemrnt)="onCreate($event)"
+                    (updatedElemrnt)="onUpdate($event)" [headers]="header" [key]="productKey"> </inputs-table>
+                </div>
+
+
+              </form>
+
+              <mat-action-row>
+
+                <!-- 
+                <button type="submit" style="margin-right: 10px; cursor: pointer;" *ngIf="allPanelsExpanded === false"
+                  class="more" (click)="nextPanelStep();">{{'COMMON.Next' | translate }</button> -->
+
+              </mat-action-row>
+
+            </mat-expansion-panel>
+
+
+
+
+
+          </mat-accordion>
+
+          <div style="margin-top: 20px;">
+
+            <input *ngIf="!add_edit_delete_show" type="submit" style="cursor: pointer;" class="more"
+              (click)="modonForm6.form.valid ? onSave() :invalidForm()" value="{{ 'COMMON.Save' | translate   }}">
+
+          </div>
+
+        </nb-card-body>
+
+      </nb-card>
+
+    </nb-card-body>
+
+  </nb-card>
+
+
+
+</div>

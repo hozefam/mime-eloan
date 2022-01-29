@@ -1,0 +1,340 @@
+// themes - our custom or/and out of the box themes
+@import 'themes';
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/all';
+// global app font size
+@import './font-size';
+// loading progress bar theme
+@import './pace.theme';
+@import './bootstrap-rtl';
+@import '~@nebular/bootstrap/styles/globals';
+// install the framework and custom global styles
+@include nb-install() {
+    // framework global styles
+    @include nb-theme-global();
+    @include nb-auth-global();
+    @include nb-bootstrap-global();
+    // loading progress bar
+    @include ngx-pace-theme();
+    // fixed in rc.9 and can be removed after upgrade
+    .custom-control .custom-control-indicator {
+        border-radius: 50%; // TODO: quickfix for https://github.com/akveo/nebular/issues/275
+    }
+    @include bootstrap-rtl();
+}
+
+@font-face{font-family:'DroidKufi-bold';
+    src:url('assets/fonts/DroidKufi-Bold.ttf') format('truetype'),    
+url('assets/fonts/DroidArabicKufi-Bold.woff') format('woff'), 
+url('assets/fonts/DroidArabicKufi-Bold.otf') format('opentype'),
+   url('assets/fonts/DroidKufi-Bold.woff2') format('woff2');} 
+
+   @font-face{font-family:'DroidKufi';
+src:url('assets/fonts/DroidKufi-Regular.ttf') format('truetype'),    
+url('assets/fonts/DroidArabicKufi.woff') format('woff'), 
+url('assets/fonts/DroidArabicKufi.otf') format('opentype'),
+url('assets/fonts/DroidKufi-Regular.woff2') format('woff2');}  
+
+// html,
+// body {font-family: "DroidKufi" !important; color: #222 !important; direction: rtl !important; 
+//     text-align: right !important; background-color: #f8f8f8 !important;}
+
+.main-content {background-color: #f8f8f8 !important; border-right: 1px solid #ccc !important;}
+
+.topfixid {height: 64px; background-color: #413157!important; border-bottom: 1px solid #85d64a !important; position: fixed;width: 100%;z-index: 0;}
+.industry01 img {width: 100%;}
+
+/*.nb-theme-default .input-group-addon, .nb-theme-default .form-control {padding: 0px !important}*/
+
+.nb-theme-default .input-group-addon, .nb-theme-default .form-control {
+    padding-top:0px !important;
+    padding-bottom: 0px !important;
+    border: 1px solid #ccc !important;
+    min-height: 40px !important;
+    overflow: scroll !important;
+}
+
+/*--menu--*/
+.scrollable {background-color: #f1f1f1!important;}
+
+.nb-theme-default nb-menu .menu-item > .menu-items > .menu-item a {
+    padding: 0px!important;
+    border: 0px!important;
+    border-radius: 0 !important;
+}
+.nb-theme-default nb-menu .menu-item > .menu-items > .menu-item {
+    border-top: 1px solid #e6e6e6;
+    padding: 3px 1.25rem;
+
+}
+
+.nb-theme-default nb-menu .menu-item > .menu-items > .menu-item:last-child {
+    border-top: 1px solid #e6e6e6;
+    margin-bottom: 0px;
+}
+.nb-theme-default nb-menu .menu-item a {
+    padding: 5px; border-radius: 0px;
+}
+.menu-item a.active {
+    font-family: "DroidKufi" !important;
+    border: 0;
+    border-radius: 0;
+    font-weight: normal;
+    padding: 5px;
+}
+.menu-title {
+    font-family: "DroidKufi" !important;
+    /*background-color: rgba(119, 212, 197, 0.6)!important;*/
+    color: #444;
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    font-weight: normal;
+    padding: 5px;;
+}
+
+/*.menu-item:hover  {
+    background-color: #444!important; color: #fff!important;
+}*/
+.nb-theme-default ng2-smart-table table tr th, .nb-theme-default ng2-smart-table table tr td {font-family: "DroidKufi" !important}
+
+.nb-theme-default .progress-container {
+    height: 12px;
+        border-radius: 0.375rem;
+        background-color: #ebeff5;
+    }
+    .progress-value {
+    height: 100%;
+        text-align: center;
+        font-size: 10px !important;
+    }
+    .header-bg {
+        background-color: rgba(21, 136, 116, 0.7) !important;
+            height: 60px; line-height: 60px; 
+    margin-bottom: 15PX !important; width: 98%;}
+    
+    .title-header {
+        font-family:"DroidKufi"; 
+        color:#ffffff;font-size:25px;
+        display:inline-block;
+        vertical-align:text-bottom;
+        padding-right:15px;}
+    
+    .more {
+        display: block;
+        width: auto;
+        text-align: center;
+        height: 44px;
+        line-height: 40px;
+        color: #fff;
+        text-decoration: none;
+        margin: 25px auto;
+        transition: all 0.3s;
+        border: 0px;
+        padding-right: 15px; padding-left: 15px; 
+        font-family: "DroidKufi" !important;
+        background-color: rgba(21, 136, 116, 0.7);
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+  a {cursor: pointer;}
+  .curs {cursor: pointer;}
+
+
+    .more:hover { background-color: rgba(21, 136, 116, 1);color: #fff!important;}
+
+    .btn, button {
+        background-color: rgba(21, 136, 116, 0.7)!important; color: #fff!important;
+    }
+   .btn-primary {margin-left: 10px; padding: 10px;}
+    .btn:hover, button:hover {
+        background-color: rgba(21, 136, 116, 1)!important; color: #fff!important;
+    }
+
+   
+ .newnavbar {position: fixed!important; width: auto!important; background-color: #413157!important; padding-left: 10px!important; 
+         top:0px!important; z-index: 999!important;  line-height: 60px!important; }
+
+    .navimg {background-color: rgba(255, 255, 255, 0.2)!important; padding-right: 10px!important; margin-left: 0px!important;}
+    .navimg img {margin-right: 0!important;}
+
+    .nb-theme-default nb-card-header, .col-form-label {font-family: "DroidKufi" !important}
+    .mat-expansion-panel-header-description, .mat-expansion-panel-header-title {font-family: "DroidKufi" !important}
+    .col-form-label {text-align: right!important; direction: ltr; font-family: "DroidKufi" !important}
+    .col-form-label-2 {text-align: right!important; font-family: "DroidKufi" !important}
+    .mat-expansion-panel-header-description, .mat-expansion-panel-header-title {font-family: "DroidKufi" !important}
+    .nb-theme-default .btn {padding: 10px 10px !important; }
+
+    .nb-theme-default ng2-smart-table table tr th, .nb-theme-default ng2-smart-table table tr th a {font-family: "DroidKufi" !important}
+    .ng-star-inserted {font-family: "DroidKufi" !important}
+    .nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column {padding: 0px !important;}
+    .pen {
+        display: inline-block;
+        width: 32px !important;
+        height: 37px !important;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 0px 0px !important;
+    }
+
+    /*-----Dashboard Style Start-----*/
+    .wiz-select {background-color: rgba(21, 136, 116, 1)!important;}
+    /*----bread_crumbs start----*/
+    .bread_crumbs {font-size: 14px; color: #519613; margin-top: 20px;}
+    .bread_crumbs span {display: block; float: right;}
+    .bread_crumbs a:link {color: #636363; text-decoration: none; }
+    .bread_crumbs a:hover {color: #519613; text-decoration: none; }
+    .bread_crumbs img {padding-right: 10px; padding-left: 10px;}
+ /*----bread_crumbs end----*/
+.nb-theme-default nb-menu .menu-item .menu-icon {font-size:15px !important;}
+    .title_01 {height: 60px; background-color: #09918c; text-align: left!important; color: #fff; font-size: 22px; line-height: 60px; margin-top: 50px; margin-bottom: 50px;}
+    .title_01 img {padding-left: 7px}
+     
+ 
+    .title_02 {min-height: 53px; background-color: #fff; text-align: left!important; color: #585858; font-size: 18px; line-height: 53px; margin-top: 15px; border-bottom: 2px solid #e6e5e5;}
+    .title_02 img {padding-left: 5px}
+    .margwid {margin-right: 15px; width: 98%;}
+    
+    .subtitle-1 {font-size: 15px; border-right: 1px solid #e6e5e5; text-align: center;
+        transition: all 0.5s ease-in-out;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+    }
+    .subtitle-1 a {color: #222; text-decoration: none;}
+    .subtitle-1:hover {background-color: #f0f0f0; color: #519613; text-decoration: none; border-bottom: 1px solid #09918c;}
+    .subtitle-1 a:hover {color: #519613;}
+    
+    .allitems {margin-top: 80px; margin-bottom: 80px; text-align: center;}
+    .item-1 {background-color: #fff; width: 120px; height: 120px; border-radius: 50%; line-height: 120px; text-align: center; margin: 40px auto; 
+        box-shadow: 0px 6px 6px 0px rgba(6, 6, 6, 0.48);
+        -webkit-box-shadow: 0px 6px 6px 0px rgba(6, 6, 6, 0.48);
+        -moz-box-shadow: 0px 6px 6px 0px rgba(6, 6, 6, 0.48);
+        -o-box-shadow: 0px 6px 6px 0px rgba(6, 6, 6, 0.48);
+    }
+    
+    .marg {margin-left: 50px;}
+    .item-title {margin-top: 20px; border-bottom: 1px solid #e6e5e5; text-align: right; color: #222;}
+    .item-title a {color: #222; text-decoration: none;}
+    .item-title a:hover {color: #519613;}
+    .item-title img {padding-left: 8px;}
+    .item-no {color: #519613; font-size: 18px; font-family: arial; text-align: left; float: right;}
+     
+    
+    
+    /*----------Conditions Start Style-----------*/
+    
+    .fieldset01 { padding: 30px; min-height: 300px; border: 1px solid #CCC; border-radius: 5PX;}
+    .fieldset-title {padding-left: 5px; padding-right: 10px; height: 40px; width: 300px; line-height: 40px; margin-top: -52px; margin-bottom: 20px; background-color: #f8f8f8; font-size: 20px; color: #02716d;}
+    .fieldset-title02 {color: #6a9842; padding-right: 0px; font-size: 20px; padding-bottom: 7px;}
+    .fieldset01 p {line-height: 2; padding-right: 20px; padding-bottom: 15px; }
+    .start-b {text-align: center;}
+    .btn-secondary {color: #fff;background-color: #09918c;border-color: #09918c;padding: 10px 30px; font-size: 16px; margin-top: 40px;}
+    .fieldset01 li {line-height: 2; color: #09918c;}
+    
+    /*----------Conditions End Style-----------*/
+    /*-----Dashboard Style End-----*/
+
+    .modal-header .close {margin: 0 !important; font-family: "DroidKufi" !important;}
+   .nb-theme-default .modal-header {margin: 0 !important; font-family: "DroidKufi" !important;}
+ /*--scrollup--*/
+ .scrollup { width:60px; height:60px; position:fixed; bottom:40px; right:40px; display:none; text-indent:-9999px;
+    background-image:url("/assets/images/senaee/go_top.png"); z-index: 999999; }
+.scrollup:hover { background-image:url("/assets/images/senaee/go_top_h.png"); }
+
+ /*--scrollup end--*/
+
+// /*------------------------------------------------------------ Start Media XS ------------------------------------------------------------*/
+// @media (max-width:767px) {
+//     .marg {margin-left:0px;}
+    
+//     .green-section, .f-svg  {display: none !important;}
+   
+//     .navbar-light {position: fixed; z-index: 999;}
+//     nav.navbar.navbar-expand-lg.navbar-light {top:0;}
+//     .topfixid {height: 80px; top:0px !important;}
+//     .newnavbar {z-index: -1 !important; top:60px !important; width: 100% !important; background-color:#222 !important; padding-right: 0 !important;}
+//     .logomenu {display: none;}
+//     .navbar-light, .navbar-nav, .nav-link {line-height: 45px !important; border-bottom: #464646 !important; margin: auto !important; }
+//     .li.nav-item { border-bottom: #464646 !important; padding: 5px 0;}
+
+//     }
+
+//     /*--End Media XS--*/
+
+// /*-- Small Screen --*/
+// @media (min-width:768px) and (max-width:991px) 
+// {
+//     .topfixid {height: auto;}
+// }
+
+//  /*---------Small Screen End--------*/
+
+
+@media( max-width: 600px) {
+      
+    .newnavbar{
+
+        top:50px!important;
+    }
+}
+   
+.nb-theme-default nb-layout ::-webkit-scrollbar
+{
+    width:15px!important;
+}
+.nb-theme-default nb-layout ::-webkit-scrollbar-thumb {
+    background: #09918c!important;
+}
+
+.scroll-host{width:109%!important;}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option{padding:8px 12px!important;}
+.ng-select .ng-select-container{background-color: #fff;
+border-radius: 4px;
+border: 1px solid #ccc;
+min-height: 36px;
+-webkit-box-align: center;
+-ms-flex-align: center;
+align-items: center;
+}
+.ng-select .ng-select-container {
+    color: #333;
+    cursor: default;
+    display: flex;
+    outline: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.ng-select .ng-arrow-wrapper .ng-arrow {
+    border-color: #999 transparent transparent;
+    border-style: solid;
+    border-width: 5px 5px 2.5px;
+}
+.ng-dropdown-panel{
+    padding: 0.75rem 1.125rem;
+color: #2a2a2a;
+background-color: #ffffff;
+border: 2px solid #dadfe6;
+font-family: Roboto;
+border-radius: 0.375rem;
+}
+.ng-select .ng-select-container {
+    background-color: #fff;
+    border-radius: 4px;
+    height: 44px;
+    border: 1px solid #ccc;
+    min-height: 36px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.ng-select .ng-select-container .ng-value-container {
+    padding-right: 0px;
+    padding-left: 10px!important;
+}
+.ng-value-label{
+    padding: 5px!important;
+}

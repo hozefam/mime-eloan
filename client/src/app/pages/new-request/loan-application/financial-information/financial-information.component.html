@@ -1,0 +1,545 @@
+<div class="col-md-12">
+
+  <!--Start bread crumbs-->
+  <div class="container bread_crumbs">
+    <div class="row">
+      <div class="col">
+        <a href="#"><span>{{ "DASHBOARD.Home" | translate}}</span></a>
+        <span><img src="assets/images/arrow-l.png" alt="img"></span>
+        <span>{{ "DASHBOARD.ApplicationDetails" | translate}}</span>
+      </div>
+    </div>
+  </div>
+  <!--End bread crumbs-->
+
+  <!--Start Title-->
+  <div class="container-fulid margwid">
+    <div class="row title_01">
+      <div class="col">
+        <img src="assets/images/pen.png" alt="img">
+        {{ "DASHBOARD.ApplicationDetails" | translate}}
+      </div>
+    </div>
+  </div>
+  <!--End Title-->
+
+
+  <nb-card accent="success" style="border-top-color:#fff !important;">
+    <!--<nb-card-header style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;">{{ "COMMON.CreateLoanApplication" | translate}}</nb-card-header>-->
+
+    <nb-card-body>
+
+      <!--<h5 *ngIf="requestId != 0" style="margin-bottom: 20px;">{{ "COMMON.RequestId" | translate}} - {{requestId}}</h5>
+
+            <h5 *ngIf="projId != 0" style="margin-bottom: 20px;">{{ "COMMON.ProjectId" | translate}} - {{projId}}</h5>
+-->
+
+      <div class="col-xxxl-12 col-xxl-12 col-md-12" style="text-align: center; margin-bottom: 20px;">
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(0)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; ">
+            {{ 'COMMON.ProjectInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                  margin: 0 auto;
+                  margin-bottom: 10px;">
+            <nb-progress-bar style="color: white; font-family: DroidKufi; font-size: 1rem; font-weight: 600;"
+              [value]="GenInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+          <!-- <div style="padding-bottom: 20px; text-align: center;">
+          <span style="color: white; font-size: 1rem; font-weight: 600;" aria-hidden="true"
+              class="ion-information"></span>
+      </div> -->
+        </div>
+
+        <div id="tourStep1" *ngIf="loanTypeValues.selectedLoanTypeOperation != 'hide_mkt'"
+          class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" (click)="onClickLoanApplicationTab(1)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; ">
+            {{ 'COMMON.MarketingInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                  margin: 0 auto;
+                  margin-bottom: 10px;">
+            <nb-progress-bar style="color: white; font-family: DroidKufi; font-size: 1rem; font-weight: 400;"
+              [value]="MarkInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+          <!-- <div style="padding-bottom: 20px; text-align: center;">
+          <span style="color: white; font-size: 1rem; font-weight: 400;" aria-hidden="true"
+              class="ion-arrow-expand"></span>
+      </div> -->
+        </div>
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(2)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; ">
+            {{ 'COMMON.TechnicalInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                  margin: 0 auto;
+                  margin-bottom: 10px;">
+            <nb-progress-bar style="color: white; font-family: DroidKufi; font-size: 1rem; font-weight: 400;"
+              [value]="TechInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+          <!-- <div style="padding-bottom: 20px; text-align: center;">
+          <span style="color: white; font-size: 1rem; font-weight: 400;" aria-hidden="true"
+              class="ion-clipboard"></span>
+      </div> -->
+        </div>
+
+        <div id="tourStep3" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2 wiz-select"
+          (click)="onClickLoanApplicationTab(3)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; ">
+            {{ 'COMMON.FinancialInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                  margin: 0 auto;
+                  margin-bottom: 10px;">
+            <nb-progress-bar style="color: white; font-family: DroidKufi; font-size: 1rem; font-weight: 400;"
+              [value]="FinInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+          <!-- <div style="padding-bottom: 20px; text-align: center;">
+          <span style="color: white; font-size: 1rem; font-weight: 400;" aria-hidden="true"
+              class="ion-filing"></span>
+      </div> -->
+        </div>
+        <div *ngIf="serviceId==9 || serviceId==10 || serviceId==13 || serviceId==14" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(5)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ "DASHBOARD.LandRequirments" | translate}}
+          </div>
+          <div style="width: 80%;
+                      margin: 0 auto;
+                      margin-bottom: 10px;">
+            <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+          <!-- <div style="padding-bottom: 20px; text-align: center;">
+              <span aria-hidden="true" class="nb-compose"></span>
+          </div> -->
+        </div>
+
+        <div *ngIf="serviceId==9 || serviceId==10 || serviceId==13 || serviceId==14" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(6)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ "DASHBOARD.Survey" | translate}}
+          </div>
+          <div style="width: 80%;
+                          margin: 0 auto;
+                          margin-bottom: 10px;">
+            <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+          <!-- <div style="padding-bottom: 20px; text-align: center;">
+                  <span aria-hidden="true" class="nb-compose"></span>
+              </div> -->
+        </div>
+
+        <div *ngIf="serviceId==81" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(8)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ "COMMON.FactoryData" | translate}}
+          </div>
+          <div style="width: 80%;
+                          margin: 0 auto;
+                          margin-bottom: 10px;">
+            <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+          <!-- <div style="padding-bottom: 20px; text-align: center;">
+                  <span aria-hidden="true" class="nb-compose"></span>
+              </div> -->
+        </div>
+
+        <div *ngIf="serviceId== 7||serviceId== 8" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+          (click)="onClickLoanApplicationTab(5)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ "DASHBOARD.LandRequirments" | translate}}
+          </div>
+          <div style="width: 80%;
+                        margin: 0 auto;
+                        margin-bottom: 10px;">
+            <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+
+          </div>
+
+        </div>
+        <div *ngIf="serviceId== 12" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+        (click)="onClickLoanApplicationTab(5)">
+        <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+          {{ "DASHBOARD.LandRequirments" | translate}}
+        </div>
+        <div style="width: 80%;
+                      margin: 0 auto;
+                      margin-bottom: 10px;">
+          <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+
+        </div>
+
+      </div>
+        <div *ngIf="serviceId== 7" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" style="display:none"
+          (click)="onClickLoanApplicationTab(6)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ "MARKETING_INFORMATION.TargetMarket" | translate}}
+          </div>
+          <div style="width: 80%;
+                    margin: 0 auto;
+                    margin-bottom: 10px;">
+            <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+        </div>
+        <div id="tourStep4" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(4)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; ">
+            {{ 'COMMON.Checklist' | translate }}
+          </div>
+          <div style="width: 80%;
+                  margin: 0 auto;
+                  margin-bottom: 10px;">
+            <nb-progress-bar style="color: white; font-family: DroidKufi; font-size: 1rem; font-weight: 400;"
+              [value]="ChecklistPer" status="warning" [displayValue]="true">
+            </nb-progress-bar>
+          </div>
+          <!-- <div style="padding-bottom: 20px; text-align: center;">
+          <span style="color: white; font-size: 1rem; font-weight: 400;" aria-hidden="true"
+              class="ion-flag"></span>
+      </div> -->
+        </div>
+
+      </div>
+
+
+
+      <nb-card accent="success">
+
+        <nb-card-header>{{ "COMMON.FinancialInformation" | translate}}</nb-card-header>
+
+        <nb-card-body style="text-align: center;">
+
+          <div style="margin-bottom: 20px; text-align: right;">
+
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;"
+              *ngIf="allPanelsExpanded === false" class="btn btn-info"
+              (click)="expandAllPanels(0);">{{ "COMMON.ExpandAllPanels" | translate}}</button>
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;"
+              *ngIf="allPanelsExpanded === true" class="btn btn-info"
+              (click)="expandAllPanels(1);">{{ "COMMON.CollapseAllPanels" | translate}}</button>
+          </div>
+
+          <mat-accordion multi="true">
+
+            <mat-expansion-panel id="tourStep5" [expanded]="panelStep === 1 || allPanelsExpanded === true"
+              (opened)="setPanelStep(1)">
+
+              <mat-expansion-panel-header>
+
+                <mat-panel-title>
+                  {{ "FINANCIAL_INFORMATION.SourceofFinance" | translate}}
+                </mat-panel-title>
+
+                <!-- <common-comments *ngIf="statusCode == 'P' || statusCode == 'A'" [comments]="source_of_finance_comments"></common-comments> -->
+
+                <common-comments *ngIf="statusCode == 'Q'" [comments]="source_of_finance_comments"></common-comments>
+
+              </mat-expansion-panel-header>
+
+              <div *ngIf="(statusCode != 'P' && statusCode != 'A' && statusCode != 'R') && (statusCode == 'Q' ? source_of_finance_comments.hasComments : true)">
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-bottom: 10px; margin-right: 10px; cursor: pointer;" class="btn more"
+                  (click)="onAdd('source_of_finance_cofinancer')">{{ "FINANCIAL_INFORMATION.AddSourcesofFunds" | translate}}</button>
+                <!-- <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="margin-bottom: 10px; cursor: pointer; margin-right: 10px;" class="btn more" (click)="onAdd('source_of_finance_new_partner')">Add New Partner</button> -->
+                <!-- <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="margin-bottom: 10px; cursor: pointer;" class="btn more" (click)="onDelete('source_of_finance')">Delete</button> -->
+              </div>
+              <div class="smart-table-container">
+
+                <ng2-smart-table *ngIf="source_of_finance_visible === true && commonService.defaultLanguage == 'en'"
+                  [settings]="source_of_finance_settings" [source]="source_of_finance_source"
+                  (edit)="onEditCofinancier($event, 'source_of_finance_cofinancer')"
+                  (delete)="onDeleteCofinancier(delete_cancel_modal, $event, 'source_of_finance_cofinancer')">
+                </ng2-smart-table>
+
+                <ng2-smart-table *ngIf="source_of_finance_visible === true && commonService.defaultLanguage == 'ar'"
+                  [settings]="source_of_finance_settings_ar" [source]="source_of_finance_source"
+                  (edit)="onEditCofinancier($event, 'source_of_finance_cofinancer')"
+                  (delete)="onDeleteCofinancier(delete_cancel_modal, $event, 'source_of_finance_cofinancer')">
+                </ng2-smart-table>
+
+              </div>
+
+              <mat-action-row *ngIf="allPanelsExpanded === false">
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-right: 10px; cursor: pointer;" class="btn more"
+                  (click)="nextPanelStep();">{{ "COMMON.Next" | translate}}</button>
+              </mat-action-row>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel id="tourStep6" [expanded]="panelStep === 2 || allPanelsExpanded === true"
+              (opened)="setPanelStep(2)">
+
+              <mat-expansion-panel-header>
+
+                <mat-panel-title>
+                  {{ "FINANCIAL_INFORMATION.BalanceSheetAssets" | translate}}
+                </mat-panel-title>
+
+                <common-comments *ngIf="statusCode == 'Q'" [comments]="asset_statement_comments"></common-comments>
+
+              </mat-expansion-panel-header>
+              <div
+              *ngIf="(statusCode != 'P' && statusCode != 'A' && statusCode != 'R') && (statusCode == 'Q' ? asset_statement_comments.hasComments : true)">
+
+
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-bottom: 10px; margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="onAdd('asset_statement')">{{ "FINANCIAL_INFORMATION.Add" | translate}}</button>
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  *ngIf="asset_statement_edit_button_visible === true"
+                  style="margin-bottom: 10px; margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="onEdit('asset_statement')">{{ "FINANCIAL_INFORMATION.Edit" | translate}}</button>
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  *ngIf="asset_statement_delete_button_visible === true"
+                  style="margin-bottom: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="onDelete('asset_statement')">{{ "FINANCIAL_INFORMATION.Delete" | translate}}</button>
+
+              </div>
+              <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                *ngIf="asset_statement_view_button_visible === true" style="margin-bottom: 10px; cursor: pointer;"
+                class="btn more"
+                (click)="onView('asset_statement')">{{ "FINANCIAL_INFORMATION.ViewDocuments" | translate}}</button>
+              <div class="smart-table-container">
+
+                <ng2-smart-table *ngIf="asset_statement_visible === true && commonService.defaultLanguage == 'en'"
+                  [settings]="asset_statement_settings" [source]="asset_statement_source">
+                </ng2-smart-table>
+
+                <ng2-smart-table *ngIf="asset_statement_visible === true && commonService.defaultLanguage == 'ar'"
+                  [settings]="asset_statement_settings_ar" [source]="asset_statement_source">
+                </ng2-smart-table>
+
+              </div>
+
+              <mat-action-row *ngIf="allPanelsExpanded === false">
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn btn-danger"
+                  (click)="prevPanelStep();">{{ "COMMON.Previous" | translate}}</button>
+                <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="nextPanelStep();">{{ "COMMON.Next" | translate}}</button>
+              </mat-action-row>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel id="tourStep7" [expanded]="panelStep === 3 || allPanelsExpanded === true"
+              (opened)="setPanelStep(3)">
+
+              <mat-expansion-panel-header>
+
+                <mat-panel-title>
+                  {{ "FINANCIAL_INFORMATION.BalanceSheetLiabilities" | translate}}
+                </mat-panel-title>
+
+                <common-comments *ngIf="statusCode == 'Q'" [comments]="liabilities_statement_comments">
+                </common-comments>
+
+              </mat-expansion-panel-header>
+
+              <div
+              *ngIf="(statusCode != 'P' && statusCode != 'A' && statusCode != 'R') && (statusCode == 'Q' ? liabilities_statement_comments.hasComments : true)">
+
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-bottom: 10px; margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="onAdd('liabilities_statement')">{{ "FINANCIAL_INFORMATION.Add" | translate}}</button>
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  *ngIf="liabilities_statement_edit_button_visible === true"
+                  style="margin-bottom: 10px; margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="onEdit('liabilities_statement')">{{ "FINANCIAL_INFORMATION.Edit" | translate}}</button>
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  *ngIf="liabilities_statement_delete_button_visible === true"
+                  style="margin-bottom: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="onDelete('liabilities_statement')">{{ "FINANCIAL_INFORMATION.Delete" | translate}}</button>
+
+              </div>
+
+              <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                *ngIf="liabilities_statement_view_button_visible === true" style="margin-bottom: 10px; cursor: pointer;"
+                class="btn more"
+                (click)="onView('liabilities_statement')">{{ "FINANCIAL_INFORMATION.ViewDocuments" | translate}}</button>
+
+              <div class="smart-table-container">
+
+                <ng2-smart-table *ngIf="liabilities_statement_visible === true && commonService.defaultLanguage == 'en'"
+                  [settings]="liabilities_statement_settings" [source]="liabilities_statement_source">
+                </ng2-smart-table>
+
+                <ng2-smart-table *ngIf="liabilities_statement_visible === true && commonService.defaultLanguage == 'ar'"
+                  [settings]="liabilities_statement_settings_ar" [source]="liabilities_statement_source">
+                </ng2-smart-table>
+
+              </div>
+
+              <mat-action-row *ngIf="allPanelsExpanded === false">
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn btn-danger"
+                  (click)="prevPanelStep();">{{ "COMMON.Previous" | translate}}</button>
+                <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="nextPanelStep();">{{ "COMMON.Next" | translate}}</button>
+              </mat-action-row>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel id="tourStep8" [expanded]="panelStep === 4 || allPanelsExpanded === true"
+              (opened)="setPanelStep(4)">
+
+              <mat-expansion-panel-header>
+
+                <mat-panel-title>
+                  {{ "FINANCIAL_INFORMATION.IncomeStatement" | translate}}
+                </mat-panel-title>
+
+                <common-comments *ngIf="statusCode == 'Q'" [comments]="income_statement_comments"></common-comments>
+
+              </mat-expansion-panel-header>
+
+              <div
+                *ngIf="(statusCode != 'P' && statusCode != 'A' && statusCode != 'R') && (statusCode == 'Q' ? income_statement_comments.hasComments : true)">
+
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-bottom: 10px; margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="onAdd('income_statement')">{{ "FINANCIAL_INFORMATION.Add" | translate}}</button>
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  *ngIf="income_statement_edit_button_visible === true"
+                  style="margin-bottom: 10px; margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="onEdit('income_statement')">{{ "FINANCIAL_INFORMATION.Edit" | translate}}</button>
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  *ngIf="income_statement_delete_button_visible === true"
+                  style="margin-bottom: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="onDelete('income_statement')">{{ "FINANCIAL_INFORMATION.Delete" | translate}}</button>
+
+              </div>
+
+              <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                *ngIf="income_statement_view_button_visible === true" style="margin-bottom: 10px; cursor: pointer;"
+                class="btn more"
+                (click)="onView('income_statement')">{{ "FINANCIAL_INFORMATION.ViewDocuments" | translate}}</button>
+
+
+              <div class="smart-table-container">
+
+                <ng2-smart-table *ngIf="income_statement_visible === true && commonService.defaultLanguage == 'en'"
+                  [settings]="income_statement_settings" [source]="income_statement_source">
+                </ng2-smart-table>
+
+                <ng2-smart-table *ngIf="income_statement_visible === true && commonService.defaultLanguage == 'ar'"
+                  [settings]="income_statement_settings_ar" [source]="income_statement_source">
+                </ng2-smart-table>
+
+              </div>
+
+              <mat-action-row *ngIf="allPanelsExpanded === false">
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn btn-danger"
+                  (click)="prevPanelStep();">{{ "COMMON.Previous" | translate}}</button>
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-right: 10px; margin-left: 10px; cursor: pointer;" class="btn more"
+                  (click)="nextPanelStep();">{{ "COMMON.Next" | translate}}</button>
+              </mat-action-row>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel id="tourStep9" [expanded]="panelStep === 5 || allPanelsExpanded === true"
+              (opened)="setPanelStep(5)">
+
+              <mat-expansion-panel-header>
+                <!-- Cash Flow Statement is label for financial flow  -->
+                <mat-panel-title>
+                  {{ "FINANCIAL_INFORMATION.CashFlowStatement" | translate}}
+                </mat-panel-title>
+
+                <!-- <common-comments *ngIf="statusCode == 'P' || statusCode == 'A'" [comments]="financial_flow_comments"></common-comments> -->
+
+              </mat-expansion-panel-header>
+
+              <!-- <div *ngIf="statusCode != 'P' && statusCode != 'A'">
+
+                              <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="margin-bottom: 10px; margin-right: 10px; cursor: pointer;" class="btn more" (click)="onAdd('project_financial_flows')">Add</button>
+                              <button matRipple matRippleColor="rgba(255,239,20,0.15)" *ngIf="financial_flow_edit_button_visible === true" style="margin-bottom: 10px; margin-right: 10px; cursor: pointer;" class="btn more" (click)="onEdit('project_financial_flows')">Edit</button>    
+                              <button matRipple matRippleColor="rgba(255,239,20,0.15)" *ngIf="financial_flow_delete_button_visible === true" style="margin-bottom: 10px; cursor: pointer;" class="btn more" (click)="onDelete('project_financial_flows')">Delete</button>                                                              
+                              
+                              </div> -->
+
+              <div class="smart-table-container">
+
+                <ng2-smart-table *ngIf="financial_flow_visible === true && commonService.defaultLanguage == 'en'"
+                  [settings]="project_financial_flows_settings" [source]="project_financial_flows_source">
+                </ng2-smart-table>
+
+                <ng2-smart-table *ngIf="financial_flow_visible === true && commonService.defaultLanguage == 'ar'"
+                  [settings]="project_financial_flows_settings_ar" [source]="project_financial_flows_source">
+                </ng2-smart-table>
+
+              </div>
+
+              <mat-action-row *ngIf="allPanelsExpanded === false">
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-right: 10px; cursor: pointer;" class="btn btn-danger"
+                  (click)="prevPanelStep();">{{ "COMMON.Previous" | translate}}</button>
+                <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+                  style="margin-right: 10px; cursor: pointer;" class="btn more"
+                  (click)="nextPanelStep();">{{ "COMMON.Next" | translate}}</button>
+              </mat-action-row>
+
+            </mat-expansion-panel>
+
+
+          </mat-accordion>
+
+          <!-- <div *ngIf="statusCode != 'P' && statusCode != 'A'" style="margin-top: 20px;">
+                
+                      <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" class="btn btn-info" (click)="onSave()">{{ "COMMON.Save" | translate}}</button>
+                      
+                  </div> -->
+
+          <div id="tourStep10" style="margin-top: 20px;">
+
+            <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+              style="cursor: pointer;" type="button" class="btn btn-danger"
+              (click)="onBack()">{{ "COMMON.Back" | translate }}</button>
+
+          </div>
+
+        </nb-card-body>
+
+      </nb-card>
+
+    </nb-card-body>
+
+  </nb-card>
+
+  <ng-template #delete_cancel_modal let-modal>
+
+    <div class="modal-header">
+
+      <span>{{deleteCancelModalReference.actionname}} {{deleteCancelModalReference.table_name_display}}</span>
+
+      <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+        style="cursor: pointer;" class="close" aria-label="Close" (click)="onCloseDeleteCancelModal()">
+        <span aria-hidden="true" class="ion-close-round"></span>
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+      <h6>{{ "COMMON.AreYouSure" | translate}}</h6>
+    </div>
+
+    <div class="modal-footer">
+      <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+        style="margin-right: 10px; margin-left: 10px; cursor: pointer;" type="button" class="btn more"
+        (click)="onCloseDeleteCancelModal()">{{ "COMMON.Cancel" | translate}}</button>
+      <button  matRipple matRippleColor="rgba(255,239,20,0.15)"
+        style="margin-right: 10px; margin-left: 10px; cursor: pointer;" type="button" class="btn more"
+        (click)="onDeleteConfirm()">{{ "COMMON.Yes" | translate}}</button>
+    </div>
+
+  </ng-template>
+
+</div>

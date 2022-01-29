@@ -1,0 +1,128 @@
+<!-- <div class="scrollText">
+    <h3>Scrolling text... </h3>
+</div> -->
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-md-4">
+
+                <nb-card>
+                    <nb-card-body>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h2><strong>{{npre}}</strong></h2>
+                                <small>No. of Preliminary Request Raised</small>
+                            </div>
+                            <div class="col-md-3">
+                                <i class="nb-compose" style="font-size: 40px"></i>
+                            </div>
+                        </div>
+                    </nb-card-body>
+                </nb-card>
+
+            </div>
+            <div class="col-md-4">
+
+                <nb-card>
+                    <nb-card-body>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h2><strong>{{nloa}}</strong></h2>
+                                <small>No. of Loan Request Raised</small>
+                            </div>
+                            <div class="col-md-3">
+                                <i class="nb-compose" style="font-size: 40px"></i>
+                            </div>
+                        </div>
+                    </nb-card-body>
+                </nb-card>
+
+            </div>
+            <div class="col-md-4">
+
+                <nb-card>
+                    <nb-card-body>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h2><strong>{{comr}}</strong></h2>
+                                <small>No. of Received Request</small>
+                            </div>
+                            <div class="col-md-3">
+                                <i class="nb-compose" style="font-size: 40px"></i>
+                            </div>
+                        </div>
+                    </nb-card-body>
+                </nb-card>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-8">
+
+        <dashboard-transactions [requests]="requests"></dashboard-transactions>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <dashboard-calender [options]="options"></dashboard-calender>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-8">
+
+        <dashboard-news></dashboard-news>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <dashboard-rating></dashboard-rating>
+
+    </div>
+
+</div>
+<div class="row col-md-12">
+    <div class="col-md-8">
+        <a target="_blank" href="{{surveyUrl}}" class="more">
+            <i class="ion"></i> <span>Survey</span>
+        </a>
+    </div>
+
+
+
+
+    <!-- CHAT DIV -->
+    <!--          -->
+    <!-- <div class="col-md-4">
+
+        <span aria-hidden="true" (click)="openChatForm()" class="ion-chatbubbles open-button"></span>
+
+        <div class="chat-popup w3-animate-zoom" id="myForm" [hidden]="hidechatdiv">
+            <form class="form-container">
+                <h1>Chat</h1>
+
+                <label for="msg"><b>Message</b></label>
+                <textarea placeholder="Type message.." name="msg" required></textarea>
+                <div>
+                    <button type="submit" class="btn">Send</button>
+                    <button type="button" class="btn cancel" (click)="closeChatForm()">Close</button>
+                </div>
+            </form>
+        </div>
+    </div> -->
+
+
+</div>

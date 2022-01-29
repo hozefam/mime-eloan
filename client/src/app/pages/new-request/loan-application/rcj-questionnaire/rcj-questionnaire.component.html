@@ -1,0 +1,1375 @@
+<div class="col-md-12">
+
+
+    <!--Start bread crumbs-->
+    <div class="container bread_crumbs">
+        <div class="row">
+            <div class="col">
+                <a href="#"><span>{{ "DASHBOARD.Home" | translate}}</span></a>
+                <span><img src="assets/images/arrow-l.png" alt="img"></span>
+                <span>{{ "DASHBOARD.ApplicationDetails" | translate}}</span>
+            </div>
+        </div>
+    </div>
+    <!--End bread crumbs-->
+
+    <!--Start Title-->
+    <div class="container-fulid margwid">
+        <div class="row title_01">
+            <div class="col">
+                <img src="assets/images/pen.png" alt="img">
+                {{ "DASHBOARD.ApplicationDetails" | translate}}
+            </div>
+        </div>
+    </div>
+    <!--End Title-->
+
+    <nb-card accent="success">
+
+        <!--<nb-card-header>Create Loan Application</nb-card-header>-->
+
+        <nb-card-body>
+
+            <!-- <h5 *ngIf="requestId != 0" style="margin-bottom: 20px;">Request ID - {{requestId}}</h5>
+
+             <h5 *ngIf="inputs.ProjId != 0" style="margin-bottom: 20px;">Project ID - {{inputs.ProjId}}</h5> -->
+
+
+
+
+            <div class="col-xxxl-12 col-xxl-12 col-md-12" style="text-align: center; margin-bottom: 20px;">
+
+
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    style="display: inline-block; margin-right: 5px;  margin-top: 5px; cursor: pointer; padding: 0px 0px 0px 0px; border-radius: 10px;"
+                    (click)="onClickLoanApplicationTab(0)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ 'COMMON.ProjectInformation' | translate }}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="GenInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+
+                </div>
+
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(1)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ 'COMMON.MarketingInformation' | translate }}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="MarkInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+
+                </div>
+
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(2)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ 'COMMON.TechnicalInformation' | translate }}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="TechInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                </div>
+
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(3)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ 'COMMON.FinancialInformation' | translate }}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="FinInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+
+                </div>
+
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(5)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "DASHBOARD.LandRequirments" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+
+                    </div>
+
+                </div>
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+                    (click)="onClickLoanApplicationTab(6)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "DASHBOARD.Survey" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                        margin: 0 auto;
+                        margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+
+                </div>
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(4)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ 'COMMON.Checklist' | translate }}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="ChecklistPer" status="warning" [displayValue]="true">
+                        </nb-progress-bar>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <nb-card accent="success" style="border-top-width:2px !important; border-radius: 0; border-color: #8dd27a">
+
+                <nb-card-header
+                    style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;">
+                    {{ "DASHBOARD.Survey" | translate}}</nb-card-header>
+
+                <nb-card-body style="text-align: center;">
+
+                    <div style="margin-bottom: 20px; text-align: right;">
+
+                        <!-- <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === false"
+                            class="btn more" (click)="expandAllPanels(0);">Expand All Panels</button>
+                        <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === true"
+                            class="btn more" (click)="expandAllPanels(1);">Collapse All Panels</button> -->
+
+                    </div>
+                    <div *ngIf="noRecord == true; then noData else hasData"></div>
+                    <ng-template #noData>
+                        <h3>
+                            {{ "RCJ_Questionnaire.noRecordMsg" | translate}}
+
+                        </h3>
+                    </ng-template>
+
+                    <ng-template #hasData>
+                        <div *ngIf="is_waste; then waste else enviromental"></div>
+
+                        <!--Waste-->
+                        <ng-template #waste>
+                            <mat-accordion multi="true">
+
+                                <mat-expansion-panel dir="ltr" [expanded]="true">
+
+                                    <mat-expansion-panel-header>
+
+                                        <mat-panel-title>
+                                            {{ "RCJ_Questionnaire.Waste" | translate}}
+                                        </mat-panel-title>
+
+                                    </mat-expansion-panel-header>
+                                    <form>
+                                        <div class="question_div" *ngFor="let question of questions; let i = index ; ">
+                                            <div class="form-group row">
+
+                                                <label class="col-sm-10 col-form-label-2"
+                                                    style="text-align: left!important"><span class="required-pf">*
+                                                    </span>{{i+1 + ". "+ question.Question}}</label>
+                                            </div>
+                                            <div [ngSwitch]="question.Type">
+                                                <div *ngSwitchCase="'Radio_1'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true;"
+                                                                        id="radioIndustrialWasteRecycling"
+                                                                        name="{{'radio' + i}}" ng-value="true"
+                                                                        [value]="true"><span class="outside"><span
+                                                                            class="inside"></span></span>
+                                                                    {{ "RCJ_Questionnaire.IndustrialWasteRecycling" | translate}}
+                                                                </label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false;"
+                                                                        id="radioIndustrialWasteManagement"
+                                                                        name="{{'radio' + i}}" ng-value="true"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>
+                                                                    {{ "RCJ_Questionnaire.IndustrialWasteManagment" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div *ngSwitchCase="'Radio_2'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true"
+                                                                        id="{{ 'radio-' + i + 'T'}}"
+                                                                        name="{{'radio' + i}}" ng-value="true"
+                                                                        [value]="true"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.RCERStandards" | translate}}</label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false"
+                                                                        id="{{ 'radio-' + i + 'F'}}"
+                                                                        name="{{'radio' + i}}" ng-value="false"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.OtherInternationalStandards" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Text'">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-10 input-group">
+                                                            <textarea [disabled]="add_edit_delete_show"
+                                                                [(ngModel)]="answers[i].TextAnswer1"
+                                                                class="form-control col-sm-10"
+                                                                name="{{ 'q' + i +'_text' }}"></textarea>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Truth'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        name="{{'radio-' + i}}" [value]="true"
+                                                                        (change)="answers[i].Truthy1 = true"
+                                                                        id="{{ 'radio-' + i + 'T'}}" checked="true"
+                                                                        ng-value="true"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.Yes" | translate}}</label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control" name="{{'radio-' + i}}"
+                                                                        [value]="false" [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false"
+                                                                        id="{{ 'radio-' + i + 'F'}}"
+                                                                        ng-value="false"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Text_Text'">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-4">
+                                                            <div class="input-group">
+                                                                <input class="form-control" placeholder="yyyy-mm-dd"
+                                                                    (click)="Commencementbutton.toggle()"
+                                                                    name="Commencementbutton" placement="right"
+                                                                    name="commencementDate" ngbDatepicker
+                                                                    #Commencementbutton="ngbDatepicker"
+                                                                    [(ngModel)]="answers[i].TextAnswer1"
+                                                                    [minDate]="minDate">
+                                                                <div class="input-group-append">
+                                                                    <button class="btn ion-calendar"
+                                                                        (click)="Commencementbutton.toggle()"
+                                                                        type="button"></button>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-sm-4">
+                                                            <div class="input-group">
+                                                                <input class="form-control" placeholder="yyyy-mm-dd"
+                                                                    (click)="Completionbutton.toggle()"
+                                                                    name="Completionbutton" placement="right"
+                                                                    name="completionDate" ngbDatepicker
+                                                                    #Completionbutton="ngbDatepicker"
+                                                                    [(ngModel)]="answers[i].TextAnswer2"
+                                                                    [minDate]="minDate">
+                                                                <div class="input-group-append">
+                                                                    <button class="btn ion-calendar"
+                                                                        (click)="Completionbutton.toggle()"
+                                                                        type="button"></button>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Year'">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-3">
+                                                            <input [disabled]="add_edit_delete_show"
+                                                                [(ngModel)]="answers[i].Quantity" maxlength="50"
+                                                                type="number" class="form-control"
+                                                                name="{{ 'q' + i +'_quantity' }}">
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                            <span> {{"RCJ_Questionnaire.Year" | translate}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Truth_Text'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true"
+                                                                        id="{{ 'radio-' + i + 'T'}}" ng-value="true"
+                                                                        name="{{'radio-' + i}}" [value]="true"><span
+                                                                        class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.Yes" | translate}}</label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false"
+                                                                        id="{{ 'radio-' + i + 'F'}}"
+                                                                        name="{{'radio-' + i}}" ng-value="false"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1" class="form-group row">
+                                                        <label *ngIf="i == 10" class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.Q11SubQuestion" | translate}}</label>
+                                                        <label *ngIf="i == 11" class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.Q12SubQuestion" | translate}}</label>
+
+                                                        <div class="col-sm-10 input-group">
+                                                            <textarea [disabled]="add_edit_delete_show"
+                                                                [(ngModel)]="answers[i].TextAnswer1"
+                                                                class="form-control col-sm-10"
+                                                                name="{{ 'q' + i +'_text' }}"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Truth_Text_Truth'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true"
+                                                                        id="{{ 'radio1-' + i + 'T'}}"
+                                                                        name="{{'radio1-' + i}}" ng-value="true"
+                                                                        [value]="true"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.Yes" | translate}}</label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false"
+                                                                        id="{{ 'radio1-' + i + 'F'}}"
+                                                                        name="{{'radio1-' + i}}" ng-value="false"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-10 col-form-label-2"
+                                                                style="text-align: left!important">{{"RCJ_Questionnaire.Q18SubQuestion1" | translate}}</label>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-10 input-group">
+                                                                <textarea [disabled]="add_edit_delete_show"
+                                                                    [(ngModel)]="answers[i].TextAnswer1"
+                                                                    class="form-control col-sm-10"
+                                                                    name="{{ 'q' + i +'_text' }}"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1">
+                                                        <div class="form-group row radioopt">
+                                                            <label class="col-sm-10 col-form-label-2"
+                                                                style="text-align: left!important">{{"RCJ_Questionnaire.Q18SubQuestion2" | translate}}</label>
+                                                        </div>
+                                                        <div class="form-group row radioopt">
+                                                            <div class="col-sm-10 input-group">
+                                                                <div class="hsep">
+                                                                    <label><input [disabled]="add_edit_delete_show"
+                                                                            type="radio" class="radio-inline"
+                                                                            class="form-control"
+                                                                            [(ngModel)]="answers[i].Truthy2"
+                                                                            (change)="answers[i].Truthy2 = true"
+                                                                            id="{{ 'radio2-' + i + 'T'}}"
+                                                                            name="{{'radio2-' + i}}" ng-value="true"
+                                                                            [value]="true"><span class="outside"><span
+                                                                                class="inside"></span></span>{{ "RCJ_Questionnaire.Yes" | translate}}</label>
+
+                                                                    <label><input [disabled]="add_edit_delete_show"
+                                                                            type="radio" class="radio-inline"
+                                                                            class="form-control"
+                                                                            [(ngModel)]="answers[i].Truthy2"
+                                                                            (change)="answers[i].Truthy2 = false"
+                                                                            id="{{ 'radio2-' + i + 'F'}}"
+                                                                            name="{{'radio2-' + i}}" ng-value="false"
+                                                                            [value]="false"><span class="outside"><span
+                                                                                class="inside"></span></span>{{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Table_1'">
+                                                    <table class="table table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>{{ "RCJ_Questionnaire.TypeIndustrialWastes" | translate }}
+                                                                </th>
+                                                                <th>{{ "RCJ_Questionnaire.Confirmation" | translate }}
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of q7_object">
+                                                                <td>
+                                                                    <label>{{item.name}}</label>
+                                                                </td>
+                                                                <td>
+                                                                    <input [disabled]="add_edit_delete_show"
+                                                                        type="checkbox" name="{{ 'checkbox-' + i }}"
+                                                                        [(ngModel)]="item.value" class="col-sm-10"
+                                                                        [ngModelOptions]="{standalone: true}" />
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.Q7SubQuestion" | translate}}</label>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-10 input-group">
+                                                            <textarea [disabled]="add_edit_delete_show"
+                                                                [(ngModel)]="answers[i].TextAnswer1"
+                                                                class="form-control col-sm-10"
+                                                                name="{{ 'q' + i +'_text' }}"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Table_2'">
+                                                    <div class="col-sm-10">
+                                                        <table class="table table-sm">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>{{ "RCJ_Questionnaire.TypeWasteManagement" | translate }}
+                                                                    </th>
+                                                                    <th>{{ "RCJ_Questionnaire.Confirmation" | translate }}
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of q20_object">
+                                                                    <td>
+                                                                        <label>{{item.name}}</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            type="checkbox" name="{{ 'textarea-' + i }}"
+                                                                            [(ngModel)]="item.value" class="col-sm-10"
+                                                                            [ngModelOptions]="{standalone: true}" />
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchDefault></div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </form>
+
+                                    <mat-action-row>
+                                        <!-- <button type="button" style="margin-right: 10px; cursor: pointer;"
+                                        *ngIf="allPanelsExpanded === false" class="btn more"
+                                        (click)="nextPanelStep();">Next</button> -->
+                                    </mat-action-row>
+
+                                </mat-expansion-panel>
+
+                                <!-- <mat-expansion-panel [expanded]="panelStep === 2 || allPanelsExpanded === true" (opened)="setPanelStep(2)">
+            
+                                        <mat-expansion-panel-header>
+            
+                                            <mat-panel-title>
+                                                Project Profile
+                                            </mat-panel-title>
+            
+                                        </mat-expansion-panel-header>
+                                        </mat-expansion-panel> -->
+
+
+
+
+                            </mat-accordion>
+                        </ng-template>
+                        <ng-template #enviromental>
+                            <mat-accordion multi="true">
+
+                                <mat-expansion-panel dir="ltr" [expanded]="true">
+
+                                    <mat-expansion-panel-header>
+
+                                        <mat-panel-title>
+                                            {{ "RCJ_Questionnaire.Enviromental" | translate}}
+                                        </mat-panel-title>
+
+                                    </mat-expansion-panel-header>
+                                    <form>
+                                        <div class="question_div" *ngFor="let question of questions; let i = index ; ">
+                                            <div class="form-group row">
+
+                                                <label class="col-sm-10 col-form-label-2"
+                                                    style="text-align: left!important"><span class="required-pf">*
+                                                    </span>{{i+1 + ". "+ question.Question}}</label>
+                                            </div>
+                                            <div [ngSwitch]="question.Type">
+                                                <div *ngSwitchCase="'Truth_TypeM_Quantity'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true;"
+                                                                        id="{{'radioMatertialYes' + i }}"
+                                                                        name="{{'radio' + i}}" ng-value="true"
+                                                                        [value]="true"><span class="outside"><span
+                                                                            class="inside"></span></span>
+                                                                    {{ "RCJ_Questionnaire.Yes" | translate}}
+                                                                </label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false;"
+                                                                        id="{{'radioMatertialNo' + i }}"
+                                                                        name="{{'radio' + i}}" ng-value="true"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>
+                                                                    {{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1" class="form-group row">
+                                                        <label class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.PleaseFillTheTable" | translate}}</label>
+                                                        <table class="table table-sm">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>{{ "RCJ_Questionnaire.TypeOfMaterial" | translate }}
+                                                                    </th>
+                                                                    <th>{{ "RCJ_Questionnaire.Quantity" | translate }}
+                                                                    </th>
+                                                                    <th *ngIf="i == 0"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of questionsObjects[i]">
+                                                                    <td>
+                                                                        <label *ngIf="i>0">{{item.name}}</label>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            class="form-control col-sm-10"
+                                                                            maxlength="100" type="text" *ngIf="i == 0"
+                                                                            name="{{'itemName' + i +'-' + item.code}}"
+                                                                            [(ngModel)]="item.name" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            class="form-control col-sm-10"
+                                                                            maxlength="100" type="number"
+                                                                            name="{{'itemQuantity' + i +'-' + item.code}}"
+                                                                            [(ngModel)]="item.quantity" />
+                                                                    </td>
+                                                                    <td *ngIf="i == 0">
+                                                                        <i (click)="deleteRow4(questionsObjects[i],item)"
+                                                                            class="nb-trash"></i>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <button class="more" [disabled]="add_edit_delete_show"
+                                                            (click)="addRow(questionsObjects[i])"
+                                                            *ngIf="i==0">{{ "RCJ_Questionnaire.Add" | translate }}</button>
+
+
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Truth_Used_Text'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true"
+                                                                        id="{{ 'radio1-' + i + 'T'}}"
+                                                                        name="{{'radio1-' + i}}" ng-value="true"
+                                                                        [value]="true"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.Yes" | translate}}</label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false"
+                                                                        id="{{ 'radio1-' + i + 'F'}}"
+                                                                        name="{{'radio1-' + i}}" ng-value="false"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div *ngIf="answers[i].Truthy1">
+                                                        <div class="form-group row radioopt">
+                                                            <label class="col-sm-10 col-form-label-2"
+                                                                style="text-align: left!important">{{"RCJ_Questionnaire.Q18SubQuestion2" | translate}}</label>
+                                                        </div>
+
+
+                                                        <div class="form-group row radioopt">
+                                                            <div class="col-sm-10 input-group">
+                                                                <div class="hsep">
+                                                                    <label><input [disabled]="add_edit_delete_show"
+                                                                            type="radio" class="radio-inline"
+                                                                            class="form-control"
+                                                                            [(ngModel)]="answers[i].Used"
+                                                                            (change)="answers[i].Used = true"
+                                                                            id="{{ 'radio-UsedT'}}"
+                                                                            name="{{'radio' + i}}" ng-value="true"
+                                                                            [value]="true"><span class="outside"><span
+                                                                                class="inside"></span></span>{{ "RCJ_Questionnaire.Used" | translate}}</label>
+
+                                                                    <label><input [disabled]="add_edit_delete_show"
+                                                                            type="radio" class="radio-inline"
+                                                                            class="form-control"
+                                                                            [(ngModel)]="answers[i].Used"
+                                                                            (change)="answers[i].Used = false"
+                                                                            id="{{ 'radio-UsedF'}}"
+                                                                            name="{{'radio' + i}}" ng-value="false"
+                                                                            [value]="false"><span class="outside"><span
+                                                                                class="inside"></span></span>{{ "RCJ_Questionnaire.Recycled" | translate}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-10 col-form-label-2"
+                                                                style="text-align: left!important">{{"RCJ_Questionnaire.Q18SubQuestion1" | translate}}</label>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-10 input-group">
+                                                                <textarea [disabled]="add_edit_delete_show"
+                                                                    [(ngModel)]="answers[i].TextAnswer1"
+                                                                    class="form-control col-sm-10"
+                                                                    name="{{ 'q' + i +'_text' }}"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Truth_Quantity'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true"
+                                                                        id="{{ 'radio1-' + i + 'T'}}"
+                                                                        name="{{'radio1-' + i}}" ng-value="true"
+                                                                        [value]="true"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.Yes" | translate}}</label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false"
+                                                                        id="{{ 'radio1-' + i + 'F'}}"
+                                                                        name="{{'radio1-' + i}}" ng-value="false"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-10 col-form-label-2"
+                                                                style="text-align: left!important">{{"RCJ_Questionnaire.Q18SubQuestion1" | translate}}</label>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-10 input-group">
+                                                                <input [disabled]="add_edit_delete_show" type="number"
+                                                                    [(ngModel)]="answers[i].Quantity"
+                                                                    class="form-control col-sm-10" maxlength="50"
+                                                                    name="{{ 'q' + i +'_quantity' }}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div *ngSwitchCase="'Truth_Crud_Quantity'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        name="{{'radio-' + i}}" [value]="true"
+                                                                        (change)="answers[i].Truthy1 = true"
+                                                                        id="{{ 'radio-' + i + 'T'}}" checked="true"
+                                                                        ng-value="true"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.Yes" | translate}}</label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control" name="{{'radio-' + i}}"
+                                                                        [value]="false" [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false"
+                                                                        id="{{ 'radio-' + i + 'F'}}"
+                                                                        ng-value="false"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1">
+                                                        <label class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.PleaseFillTheTable" | translate}}</label>
+                                                        <table class="table table-sm">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>{{ "RCJ_Questionnaire.CrudOil" | translate }}
+                                                                    </th>
+                                                                    <th>{{ "RCJ_Questionnaire.HeavyFuel" | translate }}
+                                                                    </th>
+                                                                    <th>{{ "RCJ_Questionnaire.Quantity" | translate }}
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of q8_object">
+                                                                    <td>
+                                                                        <div class="radioopt">
+                                                                            <div class="col-sm-10 input-group">
+                                                                                <div class="hsep">
+                                                                                    <label><input
+                                                                                            [disabled]="add_edit_delete_show"
+                                                                                            type="radio"
+                                                                                            class="radio-inline"
+                                                                                            class="form-control col-sm-10"
+                                                                                            [(ngModel)]="item.value"
+                                                                                            (change)="item.value = true"
+                                                                                            id="{{ 'radio-' + item.codeCrud +'-'+ i + 'T'}}"
+                                                                                            ng-value="true"
+                                                                                            name="{{ 'radio-' + item.codeCrud +'-'+ i + 'T'}}"
+                                                                                            [value]="true"><span
+                                                                                            class="outside"><span
+                                                                                                class="inside"></span></span>{{item.text}}</label>
+
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="radioopt">
+                                                                            <div class="col-sm-10 input-group">
+                                                                                <div class="hsep">
+                                                                                    <label><input
+                                                                                            [disabled]="add_edit_delete_show"
+                                                                                            type="radio"
+                                                                                            class="radio-inline"
+                                                                                            class="form-control"
+                                                                                            [(ngModel)]="item.value"
+                                                                                            (change)="item.value = false"
+                                                                                            id="{{ 'radio-' + item.codeCrud +'-'+ i +'F'}}"
+                                                                                            name="{{ 'radio-' + item.codeCrud +'-'+ i + 'T'}}"
+                                                                                            ng-value="false"
+                                                                                            [value]="false"><span
+                                                                                            class="outside"><span
+                                                                                                class="inside"></span></span>{{item.text}}</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            type="number" class="form-control col-md-10"
+                                                                            maxlength="50"
+                                                                            name="{{'itemQuantity-' + item.codeCrud +'-'+ i}}"
+                                                                            [(ngModel)]="item.quantity" />
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Text_Text'">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-4">
+                                                            <div class="input-group">
+                                                                <input [disabled]="add_edit_delete_show"
+                                                                    class="form-control" placeholder="yyyy-mm-dd"
+                                                                    (click)="Commencementbutton.toggle()"
+                                                                    name="Commencementbutton" placement="right"
+                                                                    name="commencementDate" ngbDatepicker
+                                                                    #Commencementbutton="ngbDatepicker"
+                                                                    [(ngModel)]="answers[i].TextAnswer1"
+                                                                    [minDate]="minDate">
+                                                                <div class="input-group-append">
+                                                                    <button class="btn ion-calendar"
+                                                                        (click)="Commencementbutton.toggle()"
+                                                                        type="button"></button>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-sm-4">
+                                                            <div class="input-group">
+                                                                <input [disabled]="add_edit_delete_show"
+                                                                    class="form-control" placeholder="yyyy-mm-dd"
+                                                                    (click)="Completionbutton.toggle()"
+                                                                    name="Completionbutton" placement="right"
+                                                                    name="completionDate" ngbDatepicker
+                                                                    #Completionbutton="ngbDatepicker"
+                                                                    [(ngModel)]="answers[i].TextAnswer2"
+                                                                    [minDate]="minDate">
+                                                                <div class="input-group-append">
+                                                                    <button [disabled]="add_edit_delete_show"
+                                                                        class="btn ion-calendar"
+                                                                        (click)="Completionbutton.toggle()"
+                                                                        type="button"></button>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Year'">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-3">
+                                                            <input [disabled]="add_edit_delete_show"
+                                                                [(ngModel)]="answers[i].Quantity" maxlength="50"
+                                                                type="number" class="form-control"
+                                                                name="{{ 'q' + i +'_quantity' }}">
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                            <span> {{"RCJ_Questionnaire.Year" | translate}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Truth_Text'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true"
+                                                                        id="{{ 'radio-' + i + 'T'}}" ng-value="true"
+                                                                        name="{{'radio-' + i}}" [value]="true"><span
+                                                                        class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.Yes" | translate}}</label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false"
+                                                                        id="{{ 'radio-' + i + 'F'}}"
+                                                                        name="{{'radio-' + i}}" ng-value="false"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1" class="form-group row">
+                                                        <label *ngIf="i == 10" class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.Q11SubQuestion" | translate}}</label>
+                                                        <label *ngIf="i == 11" class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.Q12SubQuestion" | translate}}</label>
+                                                        <label *ngIf="i == 13" class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.Q14SubQuestion" | translate}}</label>
+
+                                                        <div class="col-sm-10 input-group">
+                                                            <textarea [disabled]="add_edit_delete_show"
+                                                                [(ngModel)]="answers[i].TextAnswer1"
+                                                                class="form-control col-sm-10"
+                                                                name="{{ 'q' + i +'_text' }}"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Truth_Text_Truth'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true"
+                                                                        id="{{ 'radio1-' + i + 'T'}}"
+                                                                        name="{{'radio1-' + i}}" ng-value="true"
+                                                                        [value]="true"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.Yes" | translate}}</label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false"
+                                                                        id="{{ 'radio1-' + i + 'F'}}"
+                                                                        name="{{'radio1-' + i}}" ng-value="false"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>{{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-10 col-form-label-2"
+                                                                style="text-align: left!important">{{"RCJ_Questionnaire.Q18SubQuestion1" | translate}}</label>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-10 input-group">
+                                                                <textarea [disabled]="add_edit_delete_show"
+                                                                    [(ngModel)]="answers[i].TextAnswer1"
+                                                                    class="form-control col-sm-10"
+                                                                    name="{{ 'q' + i +'_text' }}"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1">
+                                                        <div class="form-group row radioopt">
+                                                            <label class="col-sm-10 col-form-label-2"
+                                                                style="text-align: left!important">{{"RCJ_Questionnaire.Q18SubQuestion2" | translate}}</label>
+                                                        </div>
+                                                        <div class="form-group row radioopt">
+                                                            <div class="col-sm-10 input-group">
+                                                                <div class="hsep">
+                                                                    <label><input [disabled]="add_edit_delete_show"
+                                                                            type="radio" class="radio-inline"
+                                                                            class="form-control"
+                                                                            [(ngModel)]="answers[i].Truthy2"
+                                                                            (change)="answers[i].Truthy2 = true"
+                                                                            id="{{ 'radio2-' + i + 'T'}}"
+                                                                            name="{{'radio2-' + i}}" ng-value="true"
+                                                                            [value]="true"><span class="outside"><span
+                                                                                class="inside"></span></span>{{ "RCJ_Questionnaire.Yes" | translate}}</label>
+
+                                                                    <label><input [disabled]="add_edit_delete_show"
+                                                                            type="radio" class="radio-inline"
+                                                                            class="form-control"
+                                                                            [(ngModel)]="answers[i].Truthy2"
+                                                                            (change)="answers[i].Truthy2 = false"
+                                                                            id="{{ 'radio2-' + i + 'F'}}"
+                                                                            name="{{'radio2-' + i}}" ng-value="false"
+                                                                            [value]="false"><span class="outside"><span
+                                                                                class="inside"></span></span>{{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Table_1'">
+                                                    <table class="table table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>{{ "RCJ_Questionnaire.TypeIndustrialWastes" | translate }}
+                                                                </th>
+                                                                <th>{{ "RCJ_Questionnaire.Confirmation" | translate }}
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of q7_object">
+                                                                <td>
+                                                                    <label>{{item.name}}</label>
+                                                                </td>
+                                                                <td>
+                                                                    <input [disabled]="add_edit_delete_show"
+                                                                        type="checkbox" name="{{ 'checkbox-' + i }}"
+                                                                        [(ngModel)]="item.value" class="col-sm-10" />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.Q7SubQuestion" | translate}}</label>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-10 input-group">
+                                                            <textarea [disabled]="add_edit_delete_show"
+                                                                [(ngModel)]="answers[i].TextAnswer1"
+                                                                class="form-control col-sm-10"
+                                                                name="{{ 'q' + i +'_text' }}"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Table_2'">
+                                                    <div class="col-sm-10">
+                                                        <table class="table table-sm">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>{{ "RCJ_Questionnaire.TypeWasteManagement" | translate }}
+                                                                    </th>
+                                                                    <th>{{ "RCJ_Questionnaire.Confirmation" | translate }}
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of q20_object">
+                                                                    <td>
+                                                                        <label>{{item.name}}</label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            type="checkbox" name="{{ 'textarea-' + i }}"
+                                                                            class="col-sm-10"
+                                                                            [(ngModel)]="item.value" />
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Text'">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-10 input-group">
+                                                            <textarea [disabled]="add_edit_delete_show"
+                                                                [(ngModel)]="answers[i].TextAnswer1"
+                                                                class="form-control col-sm-10"
+                                                                name="{{ 'q' + i +'_text' }}"></textarea>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Truth_TypeM_Quantity_Liquid'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true;"
+                                                                        id="{{'radioMatertialYes' + i }}"
+                                                                        name="{{'radio' + i}}" ng-value="true"
+                                                                        [value]="true"><span class="outside"><span
+                                                                            class="inside"></span></span>
+                                                                    {{ "RCJ_Questionnaire.Yes" | translate}}
+                                                                </label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false;"
+                                                                        id="{{'radioMatertialNo' + i }}"
+                                                                        name="{{'radio' + i}}" ng-value="true"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>
+                                                                    {{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1" class="form-group row">
+                                                        <label class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.PleaseFillTheTable" | translate}}</label>
+                                                        <table class="table table-sm">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>{{ "RCJ_Questionnaire.TypeOfMaterial" | translate }}
+                                                                    </th>
+                                                                    <th>{{ "RCJ_Questionnaire.Quantity" | translate }}
+                                                                    </th>
+                                                                    <th>{{ "RCJ_Questionnaire.LiquidQuantity" | translate }}
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr
+                                                                    *ngFor="let item of questionsObjects[i]; let j = index">
+                                                                    <td>
+                                                                        <label *ngIf="i>0">{{item.name}}</label>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            class="form-control col-sm-10" type="text"
+                                                                            *ngIf="i == 0" name="{{'qtext-'+ j}}"
+                                                                            [(ngModel)]="item.name" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            class="form-control col-sm-10" type="number"
+                                                                            name="{{'qnumber1-'+ j}}" maxlength="50"
+                                                                            [(ngModel)]="item.quantity" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            class="form-control col-sm-10" type="number"
+                                                                            name="{{'qnumber2-'+ j}}" maxlength="50"
+                                                                            [(ngModel)]="item.liquidQuantity" />
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Truth_Point_Quantity'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true;"
+                                                                        id="{{'radioMatertialYes' + i }}"
+                                                                        name="{{'radio' + i}}" ng-value="true"
+                                                                        [value]="true"><span class="outside"><span
+                                                                            class="inside"></span></span>
+                                                                    {{ "RCJ_Questionnaire.Yes" | translate}}
+                                                                </label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false;"
+                                                                        id="{{'radioMatertialNo' + i }}"
+                                                                        name="{{'radio' + i}}" ng-value="true"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>
+                                                                    {{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1" class="form-group row">
+                                                        <label class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.PleaseFillTheTable" | translate}}</label>
+                                                        <table class="table table-sm">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>{{ "RCJ_Questionnaire.NumberOfPointSource" | translate }}
+                                                                    </th>
+                                                                    <th>{{ "RCJ_Questionnaire.QuantityTperY" | translate }}
+                                                                    </th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody *ngIf="i == 10">
+                                                                <tr *ngFor="let item of q11_object; let i = index">
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            class="form-control col-sm-10" type="text"
+                                                                            name="{{'q11text-'+ i}}" maxlength="50"
+                                                                            [(ngModel)]="item.numberOfPointSource" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            class="form-control col-sm-10" type="number"
+                                                                            name="{{'q11number-'+ i}}" maxlength="50"
+                                                                            [(ngModel)]="item.quantity" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <i (click)="deleteRow1(q11_object,item)"
+                                                                            class="nb-trash"></i>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tbody *ngIf="i == 9">
+                                                                <tr *ngFor="let item of q10_object; let i = index">
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            class="form-control col-sm-10" type="text"
+                                                                            name="{{'q10text-'+ i}}" maxlength="50"
+                                                                            [(ngModel)]="item.numberOfPointSource" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            class="form-control col-sm-10" type="number"
+                                                                            name="{{'q10number-'+ i}}" maxlength="50"
+                                                                            [(ngModel)]="item.quantity" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <i (click)="deleteRow3(q10_object,item)"
+                                                                            class="nb-trash"></i>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <button [disabled]="add_edit_delete_show" class="more"
+                                                            (click)="addRow3(i == 9?q10_object:q11_object)">{{ "RCJ_Questionnaire.Add" | translate }}</button>
+
+
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'Truth_Country_Location_NumberPlant'">
+                                                    <div class="form-group row radioopt">
+                                                        <div class="col-sm-10 input-group">
+                                                            <div class="hsep">
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = true;"
+                                                                        id="{{'radioMatertialYes' + i }}"
+                                                                        name="{{'radio' + i}}" ng-value="true"
+                                                                        [value]="true"><span class="outside"><span
+                                                                            class="inside"></span></span>
+                                                                    {{ "RCJ_Questionnaire.Yes" | translate}}
+                                                                </label>
+
+                                                                <label><input [disabled]="add_edit_delete_show"
+                                                                        type="radio" class="radio-inline"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="answers[i].Truthy1"
+                                                                        (change)="answers[i].Truthy1 = false;"
+                                                                        id="{{'radioMatertialNo' + i }}"
+                                                                        name="{{'radio' + i}}" ng-value="true"
+                                                                        [value]="false"><span class="outside"><span
+                                                                            class="inside"></span></span>
+                                                                    {{ "RCJ_Questionnaire.No" | translate}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="answers[i].Truthy1" class="form-group row">
+                                                        <label class="col-sm-10 col-form-label-2"
+                                                            style="text-align: left!important">{{"RCJ_Questionnaire.PleaseFillTheTable" | translate}}</label>
+                                                        <table class="table table-sm">
+                                                            <thead>
+                                                                <tr>
+
+                                                                    <th>{{ "RCJ_Questionnaire.Country" | translate }}
+                                                                    </th>
+                                                                    <th>{{ "RCJ_Questionnaire.Location" | translate }}
+                                                                    </th>
+                                                                    <th>{{ "RCJ_Questionnaire.NumberOfPointSource" | translate }}
+                                                                    </th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of q13_object ; let i = index">
+                                                                    <td>
+                                                                        <select [disabled]="add_edit_delete_show"
+                                                                            [(ngModel)]="item.country"
+                                                                            name="{{'country' + i}}"
+                                                                            [ngModelOptions]="{standalone: true}"
+                                                                            class="form-control col-sm-10">
+                                                                            <option *ngFor="let country of countries"
+                                                                                required [value]="country.id">
+                                                                                {{country.country}}</option>
+                                                                        </select>
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            type="text" name="{{'location' + i}}"
+                                                                            maxlength="50" [(ngModel)]="item.location"
+                                                                            class="form-control col-sm-10" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input [disabled]="add_edit_delete_show"
+                                                                            type="number"
+                                                                            name="{{'numberOfPlants' + i}}"
+                                                                            maxlength="50"
+                                                                            [(ngModel)]="item.numberOfPlants"
+                                                                            class="form-control col-sm-10" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <i (click)="deleteRow2(q13_object,item)"
+                                                                            class="nb-trash"></i>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <button [disabled]="add_edit_delete_show" class="more"
+                                                            (click)="addRow2(q13_object)">{{ "RCJ_Questionnaire.Add" | translate }}</button>
+
+
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchDefault>deff</div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+
+                        </ng-template>
+                        <div *ngIf="!add_edit_delete_show" style="margin-top: 20px;">
+
+                            <button type="button" style="cursor: pointer;" class=" more"
+                                (click)="onSave();">Save</button>
+
+                        </div>
+                    </ng-template>
+                </nb-card-body>
+
+            </nb-card>
+
+        </nb-card-body>
+
+    </nb-card>
+
+
+
+</div>

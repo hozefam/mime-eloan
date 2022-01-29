@@ -1,0 +1,258 @@
+<div class="modal-header">
+
+    <span>{{modonaldnformModalsForm.header}}</span>
+
+    <button  type="button" style="cursor: pointer;" class="close"
+        aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="ion-close-round"></span>
+    </button>
+
+</div>
+
+<div class="modal-body">
+
+    <form *ngFor="let input of modonaldnformModalsForm.inputs;">
+
+        <div *ngIf="this.modonaldnformModalsForm.form_number && this.modonaldnformModalsForm.form_number == input.form_number"
+            class="form-group row" style="text-align: center;">
+
+            <div class="col-sm-1"></div>
+
+            <label for="{{input.name}}" style="text-align: left" class="col-sm-3 col-form-label"><span
+                    *ngIf="input.required === 'true' && modonaldnformModalsForm.method != 'view'"
+                    class="required-pf">* </span>{{input.name}}</label>
+
+            <div class="col-sm-7">
+
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="(input.type != 'cc_select') && (input.type != 'file_single') && (input.id != 'alert') && (input.cost != 'true') && (input.type != 'greg_date') && (input.type != 'hijri_date') && (input.type != 'text_disabled') && (input.type != 'textarea_disabled') && (input.type != 'textarea') && (input.type != 'number_no_decimal') && (input.type != 'number')  && (input.type != 'select') && (input.type != 'selectattachment') && (input.type != 'email') && (modonaldnformModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [(ngModel)]="input.value"
+                    id="{{input.id}}" type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control">
+                <select (change)="onSelectChange(input.id, input.selected)"
+                    [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type === 'select'"
+                    [(ngModel)]="input.selected" name="{{input.id}}" class="form-control">
+                    <option value="" disabled selected hidden>{{'COMMON.Select' | translate }} {{input.name}}</option>
+                    <option *ngFor="let input_values of input.value;" [value]="input_values.Code">
+                        <span *ngIf="commonService.defaultLanguage == 'en'">{{input_values.Value_en}} </span>
+                        <span *ngIf="commonService.defaultLanguage == 'ar'">{{input_values.Value_ar}} </span></option>
+                </select>
+                
+                <select (change)="onSelectChange(input.id, input.selected)"
+                [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type === 'selectattachment'"
+                [(ngModel)]="input.selected" name="{{input.id}}" class="form-control">
+                <option value="" disabled selected hidden>{{'COMMON.Select' | translate }} {{input.TemplateName}}</option>
+                <option *ngFor="let input_values of input.value;" [value]="input_values.TemplateName">
+                    <span *ngIf="commonService.defaultLanguage == 'en'">{{input_values.Value_en}} </span>
+                    <span *ngIf="commonService.defaultLanguage == 'ar'">{{input_values.Value_ar}} </span></option>
+            </select>
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type == 'number'" [name]="input.id" min="0" step=".0001"
+                    oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="number"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+                <input *ngIf="input.type == 'text_disabled'" [name]="input.id" [(ngModel)]="input.value"
+                    id="{{input.id}}" type="text" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control" disabled>
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="(input.type != 'cc_select') && (input.type != 'file_single') && (input.id != 'alert') && (input.type != 'greg_date') && (input.type != 'hijri_date') && (input.type != 'text_disabled') && (input.type != 'textarea_disabled') && (input.type != 'textarea') && (input.type != 'number_no_decimal') && (input.type != 'number')  && (input.type != 'select') && (input.type != 'selectattachment') && (input.type != 'email') && (modonaldnformModalsForm.method === 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [(ngModel)]="input.value"
+                    id="{{input.id}}" type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control" disabled>
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    (keypress)="numberOnly($event)"
+                    *ngIf="(input.type != 'number') && (input.id != 'alert') && (input.type != 'text_disabled') && (input.cost === 'true') && (input.type != 'number_disabled')  && (input.type != 'select') && (input.type != 'selectattachment') && (input.type != 'textarea') && (modonaldnformModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')"
+                    [ngModel]="input.value | currency:input.currency:'code':'2.4'"
+                    [ngModelOptions]="{updateOn:'blur', debounce:0}"
+                    (ngModelChange)="input.value=$event; onngmodelchange(input, modonaldnformModalsForm);"
+                    id="{{input.id}}" type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control">
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type == 'file_single'" multiple="multiple" (change)="onFileChange($event, input.id)"
+                    [name]="input.id" id="{{input.id}}" type="file"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+
+            </div>
+
+        </div>
+
+        <div *ngIf="!this.modonaldnformModalsForm.form_number" class="form-group row" style="text-align: center;">
+
+            <div class="col-sm-1"></div>
+
+            <label for="{{input.name}}" style="text-align: left" class="col-sm-3 col-form-label"><span
+                    *ngIf="input.required === 'true' && modonaldnformModalsForm.method != 'view'"
+                    class="required-pf">* </span>{{input.name}}</label>
+
+            <div class="col-sm-7">
+
+                <div *ngIf="input.type == 'hijri_date'" style="cursor: pointer;" class="input-group">
+                    <input [ngClass]="{'is-invalid' : input.validation_status}" nbInput onkeydown="return false;"
+                        [(ngModel)]="input.value" placeholder="YYYY-MM-DD" class="form-control"
+                        (click)="hijri_date.toggle(); onInputChange(input.id)" name="{{input.name}}" placement="bottom"
+                        ngbDatepicker #hijri_date="ngbDatepicker" [minDate]="minDate" [maxDate]="maxDate">
+                    <div class="input-group-append">
+                        <button  class="more ion-calendar"
+                            (click)="hijri_date.toggle(); onInputChange(input.id)" type="button"></button>
+                    </div>
+                </div>
+
+                <div *ngIf="input.type == 'greg_date'" style="cursor: pointer;" class="input-group">
+                    <input [ngClass]="{'is-invalid' : input.validation_status}" onkeydown="return false;"
+                        [(ngModel)]="input.value" class="form-control" #greg_date="bsDatepicker" bsDatepicker
+                        placement="right" name="{{input.name}}"
+                        [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }" placeholder="YYYY-MM-DD">
+                    <div class="input-group-append">
+                        <button  class="more ion-calendar"
+                            (click)="greg_date.toggle(); onInputChange(input.id)" type="button"></button>
+                    </div>
+                </div>
+
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    (keypress)="numberOnly($event)"
+                    *ngIf="(input.type != 'number') && (input.id != 'alert') && (input.type != 'text_disabled') && (input.cost === 'true') && (input.type != 'number_disabled')  && (input.type != 'select') && (input.type != 'selectattachment') && (input.type != 'textarea') && (modonaldnformModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')"
+                    [ngModel]="input.value | currency:input.currency:'code':'2.4'"
+                    [ngModelOptions]="{updateOn:'blur', debounce:0}"
+                    (ngModelChange)="input.value=$event; onngmodelchange(input, modonaldnformModalsForm);"
+                    id="{{input.id}}" type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control">
+                <input (keypress)="numberOnly($event)"
+                    *ngIf="(input.type != 'number') && (input.id != 'alert') && (input.type === 'text_disabled') &&(input.cost === 'true') && (input.type != 'number_disabled')  && (input.type != 'select') && (input.type != 'selectattachment') && (input.type != 'textarea') && (modonaldnformModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')"
+                    [ngModel]="input.value | currency:input.currency:'code':'2.4'"
+                    [ngModelOptions]="{updateOn:'blur', debounce:0}"
+                    (ngModelChange)="input.value=$event; onngmodelchange(input, modonaldnformModalsForm);"
+                    id="{{input.id}}" type="text" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control" disabled>
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="(input.type != 'cc_select') && (input.type != 'file_single') && (input.id != 'alert') && (input.cost != 'true') && (input.type != 'greg_date') && (input.type != 'hijri_date') && (input.type != 'text_disabled') && (input.type != 'textarea_disabled') && (input.type != 'textarea') && (input.type != 'number_no_decimal') && (input.type != 'number')  && (input.type != 'select') && (input.type != 'selectattachment') && (input.type != 'email') && (modonaldnformModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [(ngModel)]="input.value"
+                    id="{{input.id}}" type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control">
+                <input *ngIf="input.type == 'text_disabled'" [name]="input.id" [(ngModel)]="input.value"
+                    id="{{input.id}}" type="text" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control" disabled>
+                <select (change)="onSelectChange(input.id, input.selected)"
+                    [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type === 'select'"
+                    [(ngModel)]="input.selected" name="{{input.id}}" class="form-control">
+                    <option value="" disabled selected hidden>{{'COMMON.Select' | translate }} {{input.name}}</option>
+                    <option *ngFor="let input_values of input.value;" [value]="input_values.Code">
+                        <span *ngIf="commonService.defaultLanguage == 'en'">{{input_values.Value_en}} </span>
+                        <span *ngIf="commonService.defaultLanguage == 'ar'">{{input_values.Value_ar}} </span></option>
+                </select>
+                <select (change)="onSelectChange(input.id, input.selected)"
+                [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type === 'selectattachment'"
+                [(ngModel)]="input.selected" name="{{input.id}}" class="form-control">
+                <option value="" disabled selected hidden>{{'COMMON.Select' | translate }} {{input.TemplateName}}</option>
+                <option *ngFor="let input_values of input.value;" [value]="input_values.TemplateName">
+                    <span *ngIf="commonService.defaultLanguage == 'en'">{{input_values.Value_en}} </span>
+                    <span *ngIf="commonService.defaultLanguage == 'ar'">{{input_values.Value_ar}} </span></option>
+            </select>
+                <select [ngClass]="{'is-invalid' : input.validation_status}"
+                    (change)="changeCountryCitySelectOption(input.selected , '', input.id)"
+                    *ngIf="input.type === 'cc_select'" [(ngModel)]="input.selected" name="{{input.id}}"
+                    class="form-control">
+                    <option value="" disabled selected hidden>{{'COMMON.Select' | translate }} {{input.name}}</option>
+                    <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                </select>
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type == 'number'" [name]="input.id" min="0" step=".0001"
+                    oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="number"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type === 'email'" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}"
+                    type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control">
+                <textarea (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type === 'textarea'" rows="5" [name]="input.id" [(ngModel)]="input.value"
+                    id="{{input.id}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control"></textarea>
+                <textarea *ngIf="input.type === 'textarea_disabled'" rows="5" [name]="input.id"
+                    [(ngModel)]="input.value" id="{{input.id}}"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control"
+                    disabled></textarea>
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type == 'number_no_decimal'" [name]="input.id" min="0" step="1"
+                    oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="number"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="(input.type != 'cc_select') && (input.type != 'file_single') && (input.id != 'alert') && (input.type != 'greg_date') && (input.type != 'hijri_date') && (input.type != 'text_disabled') && (input.type != 'textarea_disabled') && (input.type != 'textarea') && (input.type != 'number_no_decimal') && (input.type != 'number')  && (input.type != 'select') && (input.type != 'selectattachment') && (input.type != 'email') && (modonaldnformModalsForm.method === 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [(ngModel)]="input.value"
+                    id="{{input.id}}" type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control" disabled>
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type == 'file_multiple'" multiple="multiple" (change)="onFileChange($event, input.id)"
+                    [name]="input.id" id="{{input.id}}" type="file"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+
+               <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type == 'file_single'"  (change)="onFileChange($event, input.id)"
+                    [name]="input.id" id="{{input.id}}" type="file"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+
+                    <nb-checkbox [ngClass]="{'is-invalid' : input.validation_status}"
+                    (change)="onCheckboxChange(input.value)" *ngIf="input.type == 'checkbox'" id="{{input.id}}"
+                    [name]="input.id" [(ngModel)]="input.value"></nb-checkbox>
+            </div>
+
+        </div>
+
+    </form>
+
+    <nb-alert
+        *ngIf="this.modonaldnformModalsForm.inputs[3] && this.modonaldnformModalsForm.inputs[3].id == 'Type'"
+        style="margin-top: 20px; text-align: center" outline="warning">
+        <div class="row show-grid">
+            <div class="col-sm-0">
+
+                <div class="icon" style="padding-left: 10px; padding-top:5px">
+                    <i class="ion-alert-circled"></i>
+                </div>
+            </div>
+
+            <div class="col-sm-11">
+                <strong>{{ 'PROJECT_INFORMATION.IdNumberWarning' | translate }}</strong>
+            </div>
+
+            <div *ngIf="guaranteeType" style="margin-top: 2%;" class="col-sm-11">
+                <strong>{{ 'PROJECT_INFORMATION.CorporateGuaranteeWarning' | translate }}</strong>
+            </div>
+
+        </div>
+    </nb-alert>
+
+    <nb-alert
+        *ngIf="this.modonaldnformModalsForm.inputs[6] && this.modonaldnformModalsForm.inputs[6].id == 'attachments'"
+        style="margin-top: 20px; text-align: center" outline="warning">
+        <div class="row show-grid">
+            <div class="col-sm-0">
+
+                <div class="icon" style="padding-left: 10px; padding-top:5px">
+                    <i class="ion-alert-circled"></i>
+                </div>
+            </div>
+            <div class="col-sm-11">
+                <strong>{{ 'PROJECT_INFORMATION.OwnersWarning' | translate }}</strong>
+            </div>
+        </div>
+    </nb-alert>
+
+    <div *ngIf="modonaldnformModalsForm.documents">
+        <document-list [documents]="modonaldnformModalsForm.documents"></document-list>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+
+    <button  type="button"
+        style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+        (click)="closeModal()">{{
+        'COMMON.Cancel' | translate }}</button>
+
+    <button  style="cursor: pointer;" type="{{button.type}}"
+        *ngFor="let button of modonaldnformModalsForm.buttons;" class="more {{button.class}}"
+        (click)="onSubmit()">{{button.name}}</button>
+
+</div>

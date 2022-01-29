@@ -1,0 +1,87 @@
+<div class="col-md-12">
+
+
+
+
+  <div class="container-fulid margwid">
+    <div class="row title_01">
+      <div class="col">
+        <img src="assets/images/pen.png" alt="img">
+        المستخدمين
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div style="background: #fff;">
+    <ng2-smart-table [settings]="settings" (delete)='onDelete($event)' (create)='onAdd($event)' [source]="source"
+      (edit)="onEdit($event)">
+    </ng2-smart-table>
+  </div>
+
+
+
+</div>
+<div class="ui-rtl" dir="rtl">
+  <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true" (onHide)='closedialoge()' [responsive]="true"
+    [width]="450" [minWidth]="300" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+    <div class="form-group row">
+      <label for="Role" class="col-sm-4 col-form-label"
+        style="text-align: left">{{ "User.UserRole" | translate}}</label>
+
+      <select [(ngModel)]="userRole" class="form-control col-sm-8" required name="Role" placeholder='نوع المستخدم'>
+        <option *ngFor="let item of Roles" [value]="item.id">
+          {{item!=null?(this.translate.currentLang=="ar"?item.Value_Ar:item.Value_En):""}}</option>
+      </select>
+
+    </div>
+
+    <div class="form-group row">
+      <label for="userName" class="col-sm-4 col-form-label" style="text-align: left"><span class="required-pf">*
+        </span>{{ "User.UserName" | translate}}</label>
+      <div class="col-sm-8 input-group">
+        <input [(ngModel)]="user.UserName" maxlength="50" type="text" class="form-control" name="userName" />
+        <!-- [disabled]="actionType==Delete" -->
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label for="Password" class="col-sm-4 col-form-label" style="text-align: left"><span class="required-pf">*
+        </span>{{ "User.Password" | translate}}</label>
+      <div class="col-sm-8 input-group">
+        <input [(ngModel)]="user.Password" maxlength="50" type="password" class="form-control" name="Password" />
+        <!-- [disabled]="actionType==Delete" -->
+      </div>
+    </div>
+
+    <p-footer>
+      <button class="dialogbtn" type="button" pButton icon="fa-check" (click)="onclickBtn()">{{btnmodalTitle}}</button>
+      <button class="dialogbtn" type="button" pButton icon="fa-check" style="color: red;" (click)="display=false"
+        label="إلغاء">إلغاء</button>
+
+
+    </p-footer>
+  </p-dialog>
+</div>
+
+
+
+
+<div class="ui-rtl" dir="rtl">
+  <p-dialog header="{{modalTitle}}" [(visible)]="displaydl" [modal]="true" (onHide)='closedialoge()' [responsive]="true"
+    [width]="450" [minWidth]="300" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+    <span> هل تريد حذف هذا المستخدم</span>
+
+
+    <p-footer>
+      <button class="dialogbtn" type="button" pButton icon="fa-check" (click)="onclickBtn()">{{btnmodalTitle}}</button>
+      <button class="dialogbtn" type="button" pButton icon="fa-check" style="color: red;" (click)="displaydl=false"
+        label="إلغاء">إلغاء</button>
+
+
+    </p-footer>
+  </p-dialog>
+</div>

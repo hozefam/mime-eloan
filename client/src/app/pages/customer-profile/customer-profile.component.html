@@ -1,0 +1,304 @@
+<div class="row">
+  <div class="col-md-4">
+
+    <div class="col-md-12">
+
+      <nb-card class="inline-form-card" accent="success">
+        <nb-card-header>{{ 'MY_PROFILE.Profile' | translate }}
+
+        </nb-card-header>
+
+        <nb-card-body>
+
+          <ng-template #popContent>
+            <img (click)="file.click(); changeProfilePicture($event, file)" [src]="image_default" style="border-radius: 8px; width: 350px; height: auto;"
+              title="{{ 'MY_PROFILE.ClicktoChangeProfilePicture' | translate }}">
+          </ng-template>
+
+          <div class="col-md-12" style="padding-left: 25%; padding-right: 25%; margin-bottom: 15px; text-align: -webkit-center;">
+            <nb-card style="color: transparent; border-color: transparent; box-shadow: 0 0px 0px 0 !important; -webkit-box-shadow: 0 0px 0px 0 !important; border-radius: 1000px; width: 150px;"
+              [nbSpinner]="spinner_status" nbSpinnerSize="xsmall" nbSpinnerMessage="">
+              <img [nbPopover]="popContent" nbPopoverPlacement="right" [src]="image_default" style="border-radius:100px;  width: 150px; border: 1px solid #006e42;">
+            </nb-card>
+          </div>
+
+
+          <h2 *ngIf="commonService.defaultLanguage == 'en'" style="text-align: center;"><strong>{{FirstNameEn}} {{MiddleNameEn}} {{LastNameEn}}</strong></h2>
+          <h2 *ngIf="commonService.defaultLanguage == 'ar'" style="text-align: center;"><strong>{{FirstName}} {{MiddleName}} {{LastName}}</strong></h2>
+          <p style="text-align: center;">{{ 'MY_PROFILE.userid' | translate }} :<strong>{{UserId}}</strong></p>
+          <div class="col-md-12" style="text-align: center;">
+            <p><a (click)="open2($event,'changePass')" style="cursor : pointer; font-family: Exo !important; color: #006e42 !important; font-weight: 600 !important;">{{
+                'MY_PROFILE.ChangePassword' | translate }}</a></p>
+            <p><a (click)="file.click(); changeProfilePicture($event, file)" style="cursor : pointer; font-family: Exo !important; color: #006e42 !important; font-weight: 600 !important;">{{'MY_PROFILE.ChangeProfilePicture'
+                | translate }}</a></p>
+            <input type="file" accept="image/*" (change)="onInputImageChange($event)" style="visibility: hidden;" #file>
+
+
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-md-12">
+      <nb-card accent="success">
+        <nb-card-header>{{ 'SIGNUP.lMobilenumber' | translate }}
+          <a *ngIf="commonService.defaultLanguage == 'en'" (click)="closeAddress()" [hidden]="hide_close1"><b><span
+                class="nb nb-close icon_en_profile onhovertranspantag" [ngbTooltip]="cancelTitle" style="color: #ec162d;"></span></b></a>
+          <a *ngIf="commonService.defaultLanguage == 'en'" (click)="address_icon === 'nb nb-edit' ? addressEdit() : saveAddress()"><span
+              class="{{address_icon}} icon_en_profile onhovertranspantag" [ngbTooltip]="editTitle" style="color : #025a37;"></span></a>
+
+          <a *ngIf="commonService.defaultLanguage == 'ar'" (click)="closeAddress()" [hidden]="hide_close1"><b><span 
+            class="nb nb-close icon_en_profile onhovertranspantag" [ngbTooltip]="cancelTitleAr" style="color: #ec162d; float: left;"></span></b></a>
+          <a *ngIf="commonService.defaultLanguage == 'ar'" (click)="address_icon === 'nb nb-edit' ? addressEdit() : saveAddress()"><span
+              class="{{address_icon}} icon_en_profile onhovertranspantag" [ngbTooltip]="editTitleAr" style="color : #025a37; float: left;"></span></a>
+        </nb-card-header>
+        <nb-card-body>
+          <form class="form-horizontal ">
+
+            <div class="form-group ">
+              <label [hidden]="MobileHidden" for="inputMobile3" class="col-sm-12 form-control-label">{{
+                'MY_PROFILE.EnternewMobileNumber' | translate }}</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" [(ngModel)]="Mobile" [ngModelOptions]="{standalone: true}" id="inputMobile3"
+                  placeholder="{{ 'SIGNUP.lMobilenumber' | translate }}" [readonly]="ReadOnly2">
+              </div>
+            </div>
+            <div class="form-group" style="text-align: center;" [hidden]="hMobileOTP">
+              <div class="col-sm-12">
+                <input type={{textOrPassword1}} class="form-control" [(ngModel)]="mobileOTP" [ngModelOptions]="{standalone: true}"
+                  id="mobileOTP" placeholder="{{ 'MY_PROFILE.MobileOTP' | translate }}">
+                <span *ngIf="commonService.defaultLanguage == 'en'" class="passwordtoggle {{icontype1}}" (click)="OnPasswordToggle1();"></span>
+                <span *ngIf="commonService.defaultLanguage == 'ar'" class="passwordtoggle1 {{icontype1}}" (click)="OnPasswordToggle1();"></span>
+              </div>
+              <div class="col-sm-12">
+                <div class="expirytimer">{{timeLeftformat}}</div>
+                <div [hidden]="hresend" class="resendotp" (click)="saveAddress();"><span>{{ "COMMON_TIMER.Resend" |
+                    translate}}</span></div>
+              </div>
+              <button matRipple matRippleColor="rgba(255,239,20,0.15)" (click)="verifyOTP('mobile')" style="margin-top: 10px;" class="btn btn-primary" type="button">{{
+                'LOGIN.bverify' | translate }}</button>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+    <div class="col-md-12">
+      <nb-card accent="success">
+        <nb-card-header>{{ 'SIGNUP.lEmailAddress' | translate }}
+          <a *ngIf="commonService.defaultLanguage == 'en'" (click)="closeAddress1()" [hidden]="hide_close2"><span class="nb nb-close icon_en_profile onhovertranspantag"
+              [ngbTooltip]="cancelTitle" style="color: #ec162d;"></span></a>
+          <a *ngIf="commonService.defaultLanguage == 'en'" (click)="address_icon1 === 'nb nb-edit' ? addressEdit1() : saveAddress1()"><span
+              class="{{address_icon1}} icon_en_profile onhovertranspantag" [ngbTooltip]="editTitle" style="color : #025a37;"></span></a>
+
+          <a *ngIf="commonService.defaultLanguage == 'ar'" (click)="closeAddress1()" [hidden]="hide_close2"><span class="nb nb-close icon_en_profile onhovertranspantag"
+             [ngbTooltip]="cancelTitleAr" style="color: #ec162d; float: left;"></span></a>
+          <a *ngIf="commonService.defaultLanguage == 'ar'" (click)="address_icon1 === 'nb nb-edit' ? addressEdit1() : saveAddress1()"><span
+              class="{{address_icon1}} icon_en_profile onhovertranspantag" [ngbTooltip]="editTitleAr" style="color : #025a37; float: left;"></span></a>
+        </nb-card-header>
+        <nb-card-body>
+          <form class="form-horizontal ">
+            <div class="form-group ">
+              <label [hidden]="EmailHidden" for="inputEmail3" class="col-sm-12 form-control-label">{{
+                'MY_PROFILE.EnternewEmailID' | translate }}</label>
+              <div class="col-sm-12">
+                <input type="email" class="form-control" [(ngModel)]="Email" [ngModelOptions]="{standalone: true}" id="inputEmail3"
+                  placeholder="{{ 'SIGNUP.lEmailAddress' | translate }}" [readonly]="ReadOnly3">
+              </div>
+            </div>
+
+            <div class="form-group " style="text-align: center;" [hidden]="hEmailOTP">
+              <div class="col-sm-12">
+                <input type={{textOrPassword2}} class="form-control" [(ngModel)]="emailOTP" [ngModelOptions]="{standalone: true}"
+                  id="emailOTP" placeholder="{{ 'MY_PROFILE.EmailOTP' | translate }}">
+                <span *ngIf="commonService.defaultLanguage == 'en'" class="passwordtoggle {{icontype2}}" (click)="OnPasswordToggle2();"></span>
+                <span *ngIf="commonService.defaultLanguage == 'ar'" class="passwordtoggle1 {{icontype2}}" (click)="OnPasswordToggle2();"></span>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="expirytimer">{{timeLeftformat1}}</div>
+                <div [hidden]="hresend1" class="resendotp" (click)="saveAddress1();"><span>{{ "COMMON_TIMER.Resend" |
+                    translate}}</span></div>
+              </div>
+
+              <button matRipple matRippleColor="rgba(255,239,20,0.15)" (click)="verifyOTP('email')" style="margin-top: 10px;" class="btn btn-primary" type="button">{{
+                'LOGIN.bverify' | translate }}</button>
+            </div>
+
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+    <div class="col-md-12">
+      <nb-card matRipple accent="success" (click)="navigateToRepresentatives()" style = "cursor : pointer">
+        <nb-card-header>{{ 'MY_PROFILE.RepresentativeDetails' | translate }}
+          <a *ngIf="commonService.defaultLanguage == 'en'" (click)="navigateToRepresentatives()"><span class="ion ion-ios-people icon_en_profile onhovertranspantag pulseOff" style="color : #025a37;"></span></a>
+          <a *ngIf="commonService.defaultLanguage == 'ar'" (click)="navigateToRepresentatives()"><span class="ion ion-ios-people icon_en_profile onhovertranspantag pulseOff" style="color : #025a37; float: left"></span></a>
+        </nb-card-header>
+      </nb-card>
+    </div>
+
+
+  </div>
+
+
+
+  <div class="col-md-8">
+    <nb-card accent="success">
+      <nb-card-header>{{ 'MY_PROFILE.BasicDetails' | translate }}
+        <a *ngIf="commonService.defaultLanguage == 'en'" (click)="closeBasicDet()" [hidden]="hide_close"><span
+            [ngbTooltip]="cancelTitle" class="nb nb-close icon_en_profile onhovertranspantag" style="color: #ec162d;"></span></a>
+        <a *ngIf="commonService.defaultLanguage == 'en'" (click)="basicDet_icon === 'nb nb-edit' ? basicDetEdit() : saveBasicDet()"><span
+            class="{{basicDet_icon}} icon_en_profile onhovertranspantag" [ngbTooltip]="editTitle" style="color : #025a37;"></span></a>
+
+        <a *ngIf="commonService.defaultLanguage == 'ar'" (click)="closeBasicDet()" [hidden]="hide_close"><span 
+            [ngbTooltip]="cancelTitleAr" class="nb nb-close icon_en_profile onhovertranspantag" style="color: #ec162d; float: left;"></span></a>
+        <a *ngIf="commonService.defaultLanguage == 'ar'" (click)="basicDet_icon === 'nb nb-edit' ? basicDetEdit() : saveBasicDet()"><span
+            class="{{basicDet_icon}} icon_en_profile onhovertranspantag" [ngbTooltip]="editTitleAr" style="color : #025a37; float: left;"></span></a>
+      </nb-card-header>
+      <nb-card-body>
+        <form class="form-horizontal">
+
+          <div class="form-group row">
+            <label for="inputFirst" class="col-sm-3 form-control-label">{{ 'SIGNUP.lFirstNamearb' | translate }}</label>
+            <div class="col-sm-9">
+              <input (keypress)="ValidateAlphaArabic($event)" (change)="onlyArabic($event)" type="text" class="form-control"
+                [(ngModel)]="FirstName" [ngModelOptions]="{standalone: true}" id="inputFirst" placeholder="{{ 'MY_PROFILE.FirstNameArabic' | translate }}"
+                [readonly]="ReadOnly1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputMiddle" class="col-sm-3 form-control-label">{{ 'SIGNUP.lMiddleNamearb' | translate }}</label>
+            <div class="col-sm-9">
+              <input (keypress)="ValidateAlphaArabic($event)" (change)="onlyArabic($event)" type="text" class="form-control"
+                [(ngModel)]="MiddleName" [ngModelOptions]="{standalone: true}" id="inputMiddle" placeholder="{{ 'MY_PROFILE.MiddleNameArabic' | translate }}"
+                [readonly]="ReadOnly1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputLast" class="col-sm-3 form-control-label">{{ 'SIGNUP.lLastNamearb' | translate }}</label>
+            <div class="col-sm-9">
+              <input (keypress)="ValidateAlphaArabic($event)" (change)="onlyArabic($event)" type="text" class="form-control"
+                [(ngModel)]="LastName" [ngModelOptions]="{standalone: true}" id="inputLast" placeholder="{{ 'MY_PROFILE.LastNameArabic' | translate }}"
+                [readonly]="ReadOnly1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputFirstEn" class="col-sm-3 form-control-label">{{ 'SIGNUP.lFirstNameeng' | translate }}</label>
+            <div class="col-sm-9">
+              <input (keypress)="ValidateAlpha" (change)="onlyEnglish($event)" type="text" class="form-control"
+                [(ngModel)]="FirstNameEn" [ngModelOptions]="{standalone: true}" id="inputFirstEn" placeholder="{{ 'MY_PROFILE.FirstNameEnglish' | translate }}"
+                [readonly]="ReadOnly1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputMiddleEn" class="col-sm-3 form-control-label">{{ 'SIGNUP.lMiddleNameeng' | translate }}</label>
+            <div class="col-sm-9">
+              <input (keypress)="ValidateAlpha" (change)="onlyEnglish($event)" type="text" class="form-control"
+                [(ngModel)]="MiddleNameEn" [ngModelOptions]="{standalone: true}" id="inputMiddleEn" placeholder="{{ 'MY_PROFILE.MiddleNameEnglish' | translate }}"
+                [readonly]="ReadOnly1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputLastEn" class="col-sm-3 form-control-label">{{ 'SIGNUP.lLastNameeng' | translate }}</label>
+            <div class="col-sm-9">
+              <input (keypress)="ValidateAlpha" (change)="onlyEnglish($event)" type="text" class="form-control"
+                [(ngModel)]="LastNameEn" [ngModelOptions]="{standalone: true}" id="inputLastEn" placeholder="{{ 'MY_PROFILE.LastNameEnglish' | translate }}"
+                [readonly]="ReadOnly1">
+            </div>
+          </div>
+
+
+
+          <div class="form-group row" [hidden]="hConsultancy">
+            <label for="inputCRdate3" class="col-sm-3 form-control-label">{{ 'SIGNUP.lCRExpiry' | translate }}</label>
+            <div class="col-sm-9">
+              <input [disabled]="commomDisabled" type="date" class="form-control" [(ngModel)]="Crdate" [ngModelOptions]="{standalone: true}"
+                value="{{CRExpYear}}-{{CRExpMonth}}-{{CRExpDay}}" id="inputCRdate3" placeholder="{{ 'MY_PROFILE.CRExpiryDate' | translate }}"
+                [readonly]="ReadOnly1">
+            </div>
+          </div>
+          <div class="form-group row" [hidden]="hGcc">
+            <label for="inputPassport3" class="col-sm-3 form-control-label">{{ 'SIGNUP.lPassportNumber' | translate }}</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" [(ngModel)]="PassNum" [ngModelOptions]="{standalone: true}" id="inputPassport3"
+                placeholder="{{ 'MY_PROFILE.PassportNumber' | translate }}" [readonly]="ReadOnly1">
+            </div>
+          </div>
+          <div class="form-group row" [hidden]="hGcc">
+            <label for="inputPassExp3" class="col-sm-3 form-control-label">{{ 'SIGNUP.lPassportExpiry' | translate }}</label>
+            <div class="col-sm-9 input-group">
+              <input class="form-control" #passportExpiryButton="bsDatepicker" [(ngModel)]="PassDate" [ngModelOptions]="{standalone: true}"
+                bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                placement="bottom" placeholder="YYYY-MM-DD" [disabled]="passportDateDisabled" [readonly]="ReadOnly1">
+                <div class="input-group-append">
+                  <button [disabled]="passportDateDisabled" matRipple matRippleColor="rgba(255,239,20,0.15)" class="btn btn-success ion-calendar" (click)="passportExpiryButton.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputBuildNum" class="col-sm-3 form-control-label">{{ 'SIGNUP.lBuildingNumber' | translate }}</label>
+            <div class="col-sm-9">
+              <input (keypress)="numberOnly($event)" type="text" class="form-control" [(ngModel)]="BuildNum" [ngModelOptions]="{standalone: true}" id="inputBuildNum"
+                placeholder="{{ 'MY_PROFILE.BuildingNumber' | translate }}" [readonly]="ReadOnly1">
+            </div>
+
+
+          </div>
+
+          <div class="form-group row">
+            <label for="inputZip" class="col-sm-3 form-control-label">{{ 'SIGNUP.lAdditionalNumber' | translate }}</label>
+            <div class="col-sm-9">
+              <input (keypress)="numberOnly($event)" type="text" class="form-control" [(ngModel)]="AddNum" [ngModelOptions]="{standalone: true}" id="AddNum"
+                placeholder="{{ 'MY_PROFILE.AdditionalNumber' | translate }}" [readonly]="ReadOnly1">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputZip" class="col-sm-3 form-control-label">{{ 'SIGNUP.lUnitNumber' | translate }}</label>
+            <div class="col-sm-9">
+              <input (keypress)="numberOnly($event)" type="text" class="form-control" [(ngModel)]="UnitNum" [ngModelOptions]="{standalone: true}" id="UnitNum"
+                placeholder="{{ 'MY_PROFILE.UnitNumber' | translate }}" [readonly]="ReadOnly1">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputStreetName" class="col-sm-3 form-control-label">{{ 'SIGNUP.lStreet' | translate }}</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" [(ngModel)]="Street" [ngModelOptions]="{standalone: true}" id="inputStreetName"
+                placeholder="{{ 'MY_PROFILE.StreetName' | translate }}" [readonly]="ReadOnly1">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputStreetName" class="col-sm-3 form-control-label">{{ 'SIGNUP.lNeighbourhood' | translate }}</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" [(ngModel)]="Neighbour" [ngModelOptions]="{standalone: true}" id="Neighbour"
+                placeholder="{{ 'MY_PROFILE.Neighbour' | translate }}" [readonly]="ReadOnly1">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputCity" class="col-sm-3 form-control-label">{{ 'SIGNUP.lCity' | translate }}</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" [(ngModel)]="City" [ngModelOptions]="{standalone: true}" id="inputCity"
+                placeholder="{{ 'MY_PROFILE.PassportNumber' | translate }}" [readonly]="ReadOnly1">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputZip" class="col-sm-3 form-control-label">{{ 'SIGNUP.lZipcode' | translate }}</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" [(ngModel)]="Zip" [ngModelOptions]="{standalone: true}" id="inputZip"
+                placeholder="{{ 'MY_PROFILE.PassportNumber' | translate }}" [readonly]="ReadOnly1">
+            </div>
+          </div>
+
+        </form>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+</div>

@@ -1,0 +1,179 @@
+.pad {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+nb-card{
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24) !important;
+}
+
+.scrollText {
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+}
+
+.scrollText h3 {
+    font-size: 2em;
+    color: #06a04a;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 50px;
+    text-align: center;
+    /* Starting position */
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    /* Apply animation to this element */
+    -moz-animation: scrollText 15s linear infinite;
+    -webkit-animation: scrollText 15s linear infinite;
+    animation: scrollText 15s linear infinite;
+}
+
+
+/* Move it (define the animation) */
+
+@-moz-keyframes scrollText {
+    0% {
+        -moz-transform: translateX(100%);
+    }
+    100% {
+        -moz-transform: translateX(-100%);
+    }
+}
+
+@-webkit-keyframes scrollText {
+    0% {
+        -webkit-transform: translateX(100%);
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+    }
+}
+
+@keyframes scrollText {
+    0% {
+        -moz-transform: translateX(100%);
+        /* Firefox bug fix */
+        -webkit-transform: translateX(100%);
+        /* Firefox bug fix */
+        transform: translateX(100%);
+    }
+    100% {
+        -moz-transform: translateX(-100%);
+        /* Firefox bug fix */
+        -webkit-transform: translateX(-100%);
+        /* Firefox bug fix */
+        transform: translateX(-100%);
+    }
+}
+.cont{
+position: relative;
+//right: -10rem;
+}
+
+// .box-opener {
+//     cursor: pointer;
+// }
+
+// .box {
+//     background-color: #FFCC55;
+//     max-height: 0px;
+//     overflow-y: hidden;
+//     transition: ease-in-out 400ms max-height;
+// }
+
+// .box.opened {
+//     max-height: 500px;
+//     transition: ease-in-out 600ms max-height;
+// }
+
+.ion-chatbubbles{
+    font-size: 30px;
+    float: right;
+}
+
+
+// DIV CHAT CSS CUSTOM
+
+.open-button {
+    background-color: #06a04a;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    position: fixed;
+    bottom: 13px;
+    right: 38px;
+    width: 80px;
+    text-align: center;
+    border-radius: 50%;
+    font-family: "DroidKufi" !important;
+  }
+
+  /* The popup chat - hidden by default */
+  .chat-popup {
+    
+    position: fixed;
+    bottom: 0;
+    right: 38px;
+    border: 3px solid #f1f1f1;
+    
+  }
+   
+  /* Add styles to the form container */
+  .form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+  }
+   
+  /* Full-width textarea */
+  .form-container textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    resize: none;
+    min-height: 200px;
+  }
+   
+  /* When the textarea gets focus, do something */
+  .form-container textarea:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+   
+  /* Set a style for the submit/send button */
+  .form-container .btn {
+    background-color: rgba(21, 136, 116, 0.7);
+        color: #c1a240;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+   
+  /* Add a red background color to the cancel button */
+  .form-container .cancel {
+    background-color: red;
+  }
+   
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+    font-family: "DroidKufi" !important;
+  }
+
+  .w3-animate-zoom {animation:animatezoom 0.4s}@keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}}
+ 

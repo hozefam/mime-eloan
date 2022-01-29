@@ -1,0 +1,29 @@
+<nb-card accent="primary">
+    <nb-card-header>
+        Users
+        <button class="more float-left" (click)="showToastSuccess()">Toast</button>
+        <button class="more float-right" (click)="createNewUserModel()">New User</button>
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustom($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="close" aria-label="Close" (click)="onClose()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <p>One fine body&hellip;</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="more" (click)="onClose()">Close</button>
+    </div>
+</ng-template>
+
+<button class="btn btn-outline-primary mb-2 mr-2" (click)="openBackDropCustomClass(content)">Modal with backdrop custom class</button>

@@ -1,0 +1,64 @@
+@import '../../../@theme/styles/themes';
+@include nb-install-component() {
+    nb-card{
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24) !important;
+        }
+    nb-card-header {
+        background-color: #6c757d3b !important;
+        }
+    nb-card-body {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        background-color: rgba(255, 255, 255, 0.8) !important;
+    }
+    .picture {
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        border-top-left-radius: nb-theme(card-border-radius);
+        border-top-right-radius: nb-theme(card-border-radius);
+        flex: 1;
+    }
+    nb-card-footer {
+        background-color: rgba(255, 255, 255, 0.8) !important;
+        display: flex;
+        justify-content: space-around;
+        padding: 0.75rem 0;
+        border: none;
+        a {
+            text-decoration: none;
+            color: nb-theme(color-fg);
+            &:hover {
+                color: nb-theme(color-fg-heading);
+            }
+            i {
+                font-size: 1.75rem;
+            }
+        }
+    }
+}
+
+.rating-container {
+    text-align: center;
+    padding-top: 35px;
+    padding-bottom: 20px;
+}
+
+textarea{
+    background-color: rgba(255, 255, 255, 0.38823529411764707) !important;
+    padding: 10px;
+    border: none !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24) !important;
+}
+
+.mat-button.mat-accent, .mat-icon-button.mat-accent, .mat-stroked-button.mat-accent {
+    color: #006e42;
+    font-family: "DroidKufi" !important;
+}
+
+// .btn {
+//     align: left;
+// }

@@ -1,0 +1,135 @@
+<!---->
+<div [class]="current_direction">
+
+    <nb-layout>
+
+        <nb-layout-column class="theme-background">
+            <section class="mb-10 mt-sm-20" id="first-section">
+                <div class="container-fulid topfixid"></div>
+                <div class="main-container">
+                    <div class="container">
+                        <!-- Navigation bar -->
+                        <nav class="navbar navbar-expand-lg navbar-light  navbar-dark">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto newnavbar">
+
+                                    <li class="nav-item item-img navimg logomenu"><a class="navbar-brand order-md-last"
+                                            href="/">{{'COMMON.EPortal' | translate}}</a></li>
+                                    <li class="nav-item item-img navimg logomenu" style="padding-left: 20px;">
+                                        <img src="assets/images/senaee/visionimg.png">
+                                    </li>
+
+                                    <!-- <li class="nav-item">
+                                        <a class="nav-link" href="#">{{'COMMON.ContactUs' | translate}}</a>
+                                    </li> -->
+                                    <!-- <li class="nav-item">
+
+                                        <a class="nav-link" href="#"> {{'COMMON.QA' | translate}}</a>
+                                    </li> -->
+                                    <!-- <li class="nav-item">
+                                    <a *ngIf="selectedLang == 'ar'" (click)="onLangChange('en')" class="nav-link en-link">EN</a>
+                                    <a *ngIf="selectedLang == 'en'" (click)="onLangChange('ar')" class="nav-link en-link">AR</a>
+                            </li>    -->
+
+                                </ul>
+
+
+                            </div>
+                        </nav>
+
+                        <div class="welcome-content">
+                            <span class="welcome-title">
+                                {{'LOGIN.WelcomBack' | translate}}
+                            </span>
+                            <span class="welcome-desc">
+                                {{'LOGIN.EnterUserNameAndPassword' | translate}}
+                            </span>
+
+                            <form class="sign-form" action="login-otp.html" [formGroup]="loginForm"
+                                (ngSubmit)="VerifyLogin()" autocomplete='off'>
+
+                                <div class="form-group">
+                                    <label style="margin-top:8%"> {{'COMMON.UserName' | translate}} </label>
+                                    <input type="text" class="form-control input-lg" autocomplete="off"
+                                        id="InputUserName" formControlName="userName"
+                                        [ngClass]="{'is-invalid' :  loginData.userName.errors}"
+                                        placeholder='{{ "COMMON.UserName" | translate}}'></div>
+
+                                <div class="form-group">
+                                    <label for="email">{{'LOGIN.Password' | translate}}</label>
+                                    <input type={{textOrPassword1}} autocomplete="off" class="form-control input-lg"
+                                        formControlName="password" id="InputPassword"
+                                        [ngClass]="{'is-invalid' :  loginData.password.errors}"
+                                        placeholder='{{ "LOGIN.Password" | translate}}'>
+                                    <!-- <span class="{{icontype1}} passwordtoggle" (click)="OnPasswordToggle1();"></span>
+           <span *ngIf="selectedLang == 'en'" class="{{icontype1}} passwordtoggle" (click)="OnPasswordToggle1();"></span>
+           <span *ngIf="selectedLang == 'ar'" class="{{icontype1}} passwordtoggle3" (click)="OnPasswordToggle1();"></span>-->
+                                </div>
+
+
+                                <button type="submit" id="LoginAdmin"
+                                    class="submit-btn2 urs">{{'LOGIN.LOG' | translate}}</button>
+
+                               <div class="form-group login-pf-settings">
+          <!--   <a class="forgotPassword" (click)="getContactUs()">{{'COMMON.ContactUs' | translate}}</a> -->
+<!--             <a class="forgotPassword" (click)="getForgotPasswordOTP()"> {{'LOGIN.ForgotPassword' | translate}} </a>
+ --><!--             <a [routerLink]="['/signup/0']" class="forgotPassword">{{'LOGIN.NewUser' | translate}}</a> -->
+        </div> 
+
+                                <!--  <div class="form-group login-pf-settings" style="float:left; text-align:left;"></div>-->
+                            </form>
+
+
+                        </div>
+                        <!---->
+                    </div>
+
+                </div>
+            </section>
+            <div class="row green-ribbon-footer-login"></div>
+            <footer class="trans-footer">
+                <div class="main-container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-9">
+                                {{'COMMON.Footer' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!---->
+
+
+            <!-- <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">{{ "LOGIN.verifycode" | translate}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="onClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <input name="iuserOTP" [(ngModel)]="inputOTP" id="iuserOTP" placeholder='{{ "LOGIN.verifycode" | translate}}' class="form-control" type={{textOrPassword}}>
+            <span *ngIf="selectedLang == 'en'" class="{{icontype1}} passwordtoggle1" (click)="OnPasswordToggle1();"></span>
+                <span *ngIf="selectedLang == 'ar'" class="{{icontype1}} passwordtoggle4" (click)="OnPasswordToggle1();"></span>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="more" style="margin:3px" (click)="onOTPVerify()">{{ "LOGIN.bverify" | translate}}</button>
+            <button type="button" class="more" style="margin:3px" (click)="onClose()">{{ "LOGIN.bcancel" | translate}}</button>
+            
+        </div>
+    </ng-template> -->
+        </nb-layout-column>
+
+    </nb-layout>
+
+</div>

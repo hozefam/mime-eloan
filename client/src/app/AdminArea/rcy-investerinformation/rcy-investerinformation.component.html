@@ -1,0 +1,257 @@
+<div class="col-md-12">
+  <!--Start bread crumbs-->
+  <div class="container bread_crumbs">
+    <div class="row">
+      <div class="col">
+        <a href="#"><span>{{ "DASHBOARD.Home" | translate}}</span></a>
+        <span><img src="assets/images/arrow-l.png" alt="img"></span>
+        <span>{{ "DASHBOARD.ApplicationDetails" | translate}}</span>
+      </div>
+    </div>
+  </div>
+  <!--End bread crumbs-->
+
+  <!--Start Title-->
+  <div class="container-fulid margwid">
+    <div class="row title_01">
+      <div class="col">
+        <img src="assets/images/pen.png" alt="img">
+        {{ "DASHBOARD.ApplicationDetails" | translate}}
+      </div>
+    </div>
+  </div>
+  <!--End Title-->
+
+  <nb-card accent="success">
+    <nb-card-body>
+      <div class="row">
+        <div class="col-xxxl-3 col-xxl-3 col-md-3 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(4)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; cursor: pointer;">
+            المعلومات الشخصية
+          </div>
+          <div style="width: 80%;
+                                          margin: 0 auto;
+                                          margin-bottom: 10px;">
+            <!-- <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar> -->
+          </div>
+
+        </div>
+        <div class="col-xxxl-3 col-xxl-3 col-md-3 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(5)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; cursor: pointer;">
+            {{ "DASHBOARD.LandRequirments" | translate}}
+          </div>
+          <div style="width: 80%;
+                                  margin: 0 auto;
+                                  margin-bottom: 10px;">
+            <!-- <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar> -->
+
+          </div>
+
+        </div>
+        <div class="col-xxxl-3 col-xxl-3 col-md-3 loan-percentage-current wizard2"
+          (click)="onClickLoanApplicationTab(6)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; cursor: pointer;">
+            {{ "DASHBOARD.Survey" | translate}}
+          </div>
+          <div style="width: 80%;
+                              margin: 0 auto;
+                              margin-bottom: 10px;">
+            <!-- <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar> -->
+          </div>
+
+        </div>
+        <div class="col-xxxl-3 col-xxl-3 col-md-3 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(7)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; cursor: pointer;">
+            القرارات
+          </div>
+          <div style="width: 80%;
+                                                  margin: 0 auto;
+                                                  margin-bottom: 10px;">
+            <!-- <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar> -->
+          </div>
+
+        </div>
+      </div>
+
+
+      <nb-card accent="success" style="border-top-width:2px !important; border-radius: 0; border-color: #8dd27a">
+
+        <nb-card-header
+          style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;">
+          المعلومات الشخصية
+        </nb-card-header>
+
+        <nb-card-body style="text-align: center;">
+
+          <div style="margin-bottom: 20px; text-align: right;">
+
+            <!-- <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === false" class="more"
+              (click)="expandAllPanels(0);">{{'COMMON.ExpandAllPanels' | translate }}</button>
+            <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === true" class="more"
+              (click)="expandAllPanels(1);">{{ 'COMMON.CollapseAllPanels' | translate }}</button> -->
+
+
+          </div>
+
+          <mat-accordion multi="true">
+
+            <mat-expansion-panel [expanded]="true">
+
+              <mat-expansion-panel-header>
+
+                <mat-panel-title>
+                  المعلومات الشخصية
+                </mat-panel-title>
+
+              </mat-expansion-panel-header>
+              <!-- <div>
+                <label class="col-sm-2 col-form-label" style="text-align: left">
+                  التحويل الي PDF </label>
+                <input type="button" (click)="captureScreen()" />
+              </div> -->
+
+              <!-- <table id="contentToConvertpdfsss" *ngIf="!showTable">
+                <tr>
+                  <td><label class="col-sm-2 col-form-label" style="text-align: left">
+                      البريد الالكتروني </label></td>
+                  <td>
+                    <label class="form-control">{{model.Email}}</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="model.FirstName" class="col-sm-2 col-form-label" style="text-align: left">
+                      الاسم الأول</label></td>
+                  <td>
+                    <label class="form-control">{{model.FirstName}}</label>
+                  </td>
+                </tr>
+              </table> -->
+              <form>
+
+
+                <div class="form-group row">
+                  <label for="model.MiddleName" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.MiddleName" | translate}} </label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.MiddleName" type="text" class="form-control" name="MiddleName" />
+                  </div>
+                  <label for="model.LastName" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.LastName" | translate}}</label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.LastName" type="text" class="form-control" name="LastName" />
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+                  <label for="model.City" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.City" | translate}} </label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.City" type="text" class="form-control" name="City" />
+                  </div>
+                  <label for="model.POBox" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.POBox" | translate}}</label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.POBox" type="text" class="form-control" name="POBox" />
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+                  <label for="model.Nationality" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.Nationality" | translate}} </label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.Nationality" type="text" class="form-control"
+                      name="Nationality" />
+                  </div>
+                  <label for="model.NationalId" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.NationalId" | translate}}</label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.NationalId" type="text" class="form-control" name="NationalId" />
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+                  <label for="model.Phone" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.Phone" | translate}} </label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.Phone" type="text" class="form-control" name="Phone" />
+                  </div>
+                  <label for="model.Mobile" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.Mobile" | translate}}</label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.Mobile" type="text" class="form-control" name="Mobile" />
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+                  <label for="model.ComapnyName1025" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.ComapnyName1025" | translate}} </label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.ComapnyName1025" type="text" class="form-control"
+                      name="ComapnyName1025" />
+                  </div>
+                  <label for="model.CommercialId" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.CommercialId" | translate}}</label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.CommercialId" type="text" class="form-control"
+                      name="CommercialId" />
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+                  <label for="model.JobTitle" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.JobTitle" | translate}} </label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.JobTitle" type="text" class="form-control" name="JobTitle" />
+                  </div>
+                  <label for="model.WaselNumber" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.WaselNumber" | translate}}</label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.WaselNumber" type="text" class="form-control"
+                      name="WaselNumber" />
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+                  <label for="model.RegNumber" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.RegNumber" | translate}} </label>
+                  <div class="col-sm-3 input-group">
+                    <input disabled [(ngModel)]="model.RegNumber" type="text" class="form-control" name="RegNumber" />
+                  </div>
+
+
+                </div>
+
+                <div class="form-group row">
+                  <label for="model.RegActivity" class="col-sm-2 col-form-label" style="text-align: left">
+                    {{ "RCY_Information.RegActivity" | translate}}</label>
+                  <div class="col-sm-12 input-group">
+                    <textarea disabled [(ngModel)]="model.RegActivity" class="form-control"
+                      name="RegActivity"></textarea>
+                  </div>
+                </div>
+
+              </form>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </nb-card-body>
+      </nb-card>
+    </nb-card-body>
+  </nb-card>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>

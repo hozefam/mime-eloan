@@ -1,0 +1,71 @@
+.smart-table-container {
+    overflow-x: scroll;
+}
+table {
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.mat-table {
+    background: transparent !important;
+}
+
+.mat-header-cell {
+    color: black !important;
+    font-size: 14px !important;
+    justify-content: center !important;
+}
+
+.mat-cell {
+    justify-content: center !important;
+}
+
+.search {
+    position: relative;
+}
+.search input {
+    text-indent: 30px;
+}
+.search .sartext {
+    position: absolute;
+    top: 13px;
+    padding-left: 1rem;
+    font-size: 16px;
+}
+
+.search .sartextar {
+    position: absolute;
+    top: 13px;
+    padding-left: 1rem;
+    left: 85% !important;
+    font-size: 16px;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate,
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate {
+    background-color: #057146 !important;
+}
+
+.highlight {
+    background-color: rgba(0, 217, 119, 0.21) !important;
+    color: #ffffff;
+}
+
+::ng-deep .mat-checkbox:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.5 !important;
+    background-color: #057146 !important;
+}
+.is-invalid {
+    border-color: #c00;
+}
+
+common-comments button {
+    font-size: 50px;
+}

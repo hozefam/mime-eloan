@@ -1,0 +1,135 @@
+<nb-layout>
+    <nb-layout-column>
+        <div class="loginpage commonbg-pf">
+            <div class="login-pf-page">
+                    <select class="selectpicker" [(ngModel)]="selectedLang " (change)="onLangChange($event.target.value);">
+                            <option value="en" >EN</option>
+                            <option value="ar"  >AR</option>
+                        </select>
+                <header class="login-pf-page-header"><img style = "cursor: pointer;" class="login-pf-brand" (click)="navigatetoLogin()" src="assets/images/SIDF_Logo_Arabic_CMYK_AW-01.png" alt="sidf logo" /></header>
+                <div class="row">
+                    <div class="col-md-3"></div>
+
+                    <div class="col-md-6">
+                        <nb-card accent="success">
+                            <nb-card-header >
+                                
+                                <div *ngIf="translate.currentLang === 'en'">
+                                <label class="labelfloaten">{{ "CONTACTUS.lnote1" | translate}} <span class="label_required">* </span>{{ "CONTACTUS.lnote2" | translate}}</label>
+                                </div>
+                                 <div *ngIf="translate.currentLang === 'ar'"><label class="labelfloat">{{ "CONTACTUS.lnote2" | translate}} <span class="label_required">* </span> {{ "CONTACTUS.lnote1" | translate}}</label></div></nb-card-header>
+                            <nb-card-body>
+                                <form class="form-horizontal" [formGroup]="contactUsForm">
+                                    <div class="form-group row">
+                                        <label for="inputName" class="col-sm-3 col-form-label"> <span class="required-pf">*</span>  {{ "CONTACTUS.lName" | translate}}</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputName" formControlName="inputName" [ngClass]="{'is-invalid' : next1 && contactUsData.inputName.errors}" placeholder='{{"CONTACTUS.lName" | translate}}'>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="translate.currentLang == 'en'" class="form-group row">
+                                        <label for="inputmobile" class="col-sm-3 col-form-label"><span class="required-pf">*</span>  {{ "CONTACTUS.lMobileNo" | translate}}</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="inputmobcode" value="00966" formControlName="inputmobcode" [ngClass]="{'is-invalid' : next1 && contactUsData.inputmobcode.errors}">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control" id="inputmobile" placeholder='{{ "CONTACTUS.lMobileNo" | translate}}' formControlName="inputmobile" [ngClass]="{'is-invalid' : next1 && contactUsData.inputmobile.errors}">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="translate.currentLang == 'ar'" class="form-group row">
+                                        <label for="inputmobile" class="col-sm-3 col-form-label"><span class="required-pf">*</span>  {{ "CONTACTUS.lMobileNo" | translate}}</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control" id="inputmobile" placeholder='{{ "CONTACTUS.lMobileNo" | translate}}' formControlName="inputmobile" [ngClass]="{'is-invalid' : next1 && contactUsData.inputmobile.errors}">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="inputmobcode" value="00966" formControlName="inputmobcode" [ngClass]="{'is-invalid' : next1 && contactUsData.inputmobcode.errors}">
+                                        </div>
+                                        
+                                    </div>
+                                    <div *ngIf="translate.currentLang == 'en'" class="form-group row">
+                                        <label for="inputtelephone" class="col-sm-3 col-form-label">{{ "CONTACTUS.lTelephoneNo" | translate}}</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="inputtelcode" value="00966" formControlName="inputtelcode">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control" id="inputtelephone" placeholder='{{ "CONTACTUS.lTelephoneNo" | translate}}' formControlName="inputtelephone">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="translate.currentLang == 'ar'" class="form-group row">
+                                        <label for="inputtelephone" class="col-sm-3 col-form-label">{{ "CONTACTUS.lTelephoneNo" | translate}}</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control" id="inputtelephone" placeholder='{{ "CONTACTUS.lTelephoneNo" | translate}}' formControlName="inputtelephone">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="inputtelcode" value="00966" formControlName="inputtelcode">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputFactoryName" class="col-sm-3 col-form-label">{{ "CONTACTUS.lFactoryName" | translate}}</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputFactoryName" placeholder='{{ "CONTACTUS.lFactoryName" | translate}}' formControlName="inputFactoryName">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail" class="col-sm-3 col-form-label"><span class="required-pf">*</span> {{ "CONTACTUS.lEmail" | translate}}</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" class="form-control" id="inputEmail" placeholder='{{ "CONTACTUS.lEmail" | translate}}' formControlName="inputEmail" [ngClass]="{'is-invalid' : next1 && contactUsData.inputEmail.errors}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputMessagePurpose1" class="col-sm-3 col-form-label"><span class="required-pf">*</span>  {{ "CONTACTUS.lMessagePurpose" | translate}}</label>
+                                        <div class="col-sm-8">
+                                            <select [(ngModel)]="msgPurposeSelected" name="msgpurpose" class="form-control" [ngModelOptions]="{standalone: true}" (change)="onMessagePurposeSelect()" placeholder="Select Message Purpose">
+                                        <option *ngFor="let msgpurpose of msgpurpose_list" [value]="msgpurpose">{{msgpurpose}}</option>
+                                    </select>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="reason_visible === true" class="form-group row">
+                                        <label for="inputMessagePurpose2" class="col-sm-3 col-form-label"><span class="required-pf">*</span>  {{ "CONTACTUS.lReason" | translate}}</label>
+                                        <div class="col-sm-8">
+                                            <select [(ngModel)]="reasonOptionSelected" name="reason" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Select Reason">
+                                        <option *ngFor="let reason of reason_list" [value]="reason">{{reason}}</option>
+                                    </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputSubject" class="col-sm-3 col-form-label"><span class="required-pf">*</span>  {{ "CONTACTUS.lSubject" | translate}}</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputSubject" placeholder='{{ "CONTACTUS.lSubject" | translate}}' formControlName="inputSubject" [ngClass]="{'is-invalid' : next1 && contactUsData.inputSubject.errors}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputmessage" class="col-sm-3 col-form-label"><span class="required-pf">*</span>  {{ "CONTACTUS.lMessage" | translate}}</label>
+                                        <div class="col-sm-8">
+                                            <textarea class="form-control" id="inputmessage" placeholder='{{ "CONTACTUS.lMessage" | translate}}' formControlName="inputmessage" [ngClass]="{'is-invalid' : next1 && contactUsData.inputmessage.errors}"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="translate.currentLang == 'en'" class="form-group row">
+                                        <div  class="col-sm-6">
+                                            <button type="submit" class="more" (click)="onCancel()">{{ "CONTACTUS.bCANCEL" | translate}}</button>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="more" (click)="onSend()">{{ "CONTACTUS.bSEND" | translate}}</button>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="translate.currentLang == 'ar'" class="form-group row">
+                                        <div  class="col-sm-6">
+                                            <button type="submit" class="more" (click)="onSend()">{{ "CONTACTUS.bSEND" | translate}}</button> 
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="more" (click)="onCancel()">{{ "CONTACTUS.bCANCEL" | translate}}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </nb-card-body>
+                        </nb-card>
+                    </div>
+
+                    <div class="col-md-3"></div>
+
+                </div>
+                <footer style="text-align: center; font-weight: bold;"> &copy; Saudi Industrial Development Fund {{footerYear}}.</footer>
+            </div>
+        </div>
+    </nb-layout-column>
+</nb-layout>

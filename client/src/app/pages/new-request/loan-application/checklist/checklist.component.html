@@ -1,0 +1,268 @@
+<div class="col-md-12">
+
+    <!--Start bread crumbs-->
+    <div class="container bread_crumbs">
+        <div class="row">
+            <div class="col">
+                <a href="#"><span>{{ "DASHBOARD.Home" | translate}}</span></a>
+                <span><img src="assets/images/arrow-l.png" alt="img"></span>
+                <span>{{ "DASHBOARD.ApplicationDetails" | translate}}</span>
+            </div>
+        </div>
+    </div>
+    <!--End bread crumbs-->
+
+    <!--Start Title-->
+    <div class="container-fulid margwid">
+        <div class="row title_01">
+            <div class="col">
+                <img src="assets/images/pen.png" alt="img">
+                <span>{{ "DASHBOARD.ApplicationDetails" | translate}}</span>
+            </div>
+        </div>
+    </div>
+    <!--End Title-->
+
+
+    <nb-card accent="success" style="border-top-width:2px !important; border-radius: 0; border-color: #8dd27a">
+
+        <!--<nb-card-header>Create Loan Application</nb-card-header>-->
+
+        <nb-card-body>
+
+            <!-- <h5 *ngIf="requestId != 0" style="margin-bottom: 20px;">Request ID - {{requestId}}</h5>
+
+            <h5 *ngIf="projId != 0" style="margin-bottom: 20px;">Project ID - {{projId}}</h5>
+            -->
+            <div class="col-xxxl-12 col-xxl-12 col-md-12" style="text-align: center; margin-bottom: 20px;">
+
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(0)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "COMMON.ProjectInformation" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="GenInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                </div>
+
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(1)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "COMMON.MarketingInformation" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="MarkInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+
+                </div>
+
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(2)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "COMMON.TechnicalInformation" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="TechInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+
+                </div>
+
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(3)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "COMMON.FinancialInformation" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="FinInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+
+                </div>
+
+
+                <div *ngIf="serviceId==9 || serviceId==10 || serviceId==13 || serviceId==14"
+                    class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(5)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "DASHBOARD.LandRequirments" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                        <span aria-hidden="true" class="nb-compose"></span>
+                    </div> -->
+                </div>
+
+                <div *ngIf="serviceId==9 || serviceId==10 || serviceId==13 || serviceId==14"
+                    class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(6)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "DASHBOARD.Survey" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                    margin: 0 auto;
+                                    margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                            <span aria-hidden="true" class="nb-compose"></span>
+                        </div> -->
+                </div>
+                <div *ngIf="serviceId==81" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(8)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "COMMON.FactoryData" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                    margin: 0 auto;
+                                    margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                            <span aria-hidden="true" class="nb-compose"></span>
+                        </div> -->
+                </div>
+                <div *ngIf="serviceId== 7||serviceId== 8"
+                    class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+                    (click)="onClickLoanApplicationTab(5)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "DASHBOARD.LandRequirments" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                  margin: 0 auto;
+                                  margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+
+                    </div>
+
+                </div>
+                <div *ngIf="serviceId== 12"
+                class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+                (click)="onClickLoanApplicationTab(5)">
+                <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                    {{ "DASHBOARD.LandRequirments" | translate}}
+                </div>
+                <div style="width: 80%;
+                              margin: 0 auto;
+                              margin-bottom: 10px;">
+                    <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+
+                </div>
+
+            </div>
+                <div *ngIf="serviceId== 7" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" style="display:none"
+                    (click)="onClickLoanApplicationTab(6)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        
+                        {{ "MARKETING_INFORMATION.TargetedMarket" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                              margin: 0 auto;
+                              margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                </div>
+
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+                    (click)="onClickLoanApplicationTab(4)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "COMMON.Checklist" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="ChecklistPer" status="warning" [displayValue]="true">
+                        </nb-progress-bar>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <nb-card accent="success" style="border-top-width:2px !important; border-radius: 0; border-color: #8dd27a">
+
+                <nb-card-header
+                    style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;">
+                    {{ "AUDITDETAILS.AuditDetails" | translate}} </nb-card-header>
+
+                <nb-card-body>
+
+                    <!-- <div style="margin-bottom: 20px; text-align: right;">
+                  
+                        <button style="cursor: pointer;" *ngIf="allPanelsExpanded === false" class=" -info" (click)="expandAllPanels(0);">Expand All Panels</button>
+                        <button style="cursor: pointer;" *ngIf="allPanelsExpanded === true" class=" -info" (click)="expandAllPanels(1);">Collapse All Panels</button>
+                                    
+                    </div> -->
+
+                    <!-- <mat-accordion multi="false">
+
+                        <mat-expansion-panel [expanded]="panelStep === 1 || allPanelsExpanded === true" (opened)="setPanelStep(1)">
+
+                            <mat-expansion-panel-header>
+
+                                 <mat-panel-title>
+                                      Status
+                                    </mat-panel-title> 
+
+                    </mat-expansion-panel-header> -->
+
+                    <!-- <button style="cursor: pointer;" class=" -info">Panel Button 1</button> -->
+                    <!-- <ng2-smart-table [settings]="settings_checklist" [source]="checklist_source">
+                            </ng2-smart-table> -->
+
+                    <ul class="traffic-list" style="padding: 5px 5px 5px 5px">
+                        <li>
+                            <div class="text" style="color: #2a2a2a; width :10%; text-align: center;"><b>#</b></div>
+                            <div class="text" style="color: #2a2a2a; width :70%; text-align: center;">
+                                <strong> {{ 'COMMON.Description' | translate }}</strong></div>
+                            <div class="text" style="color: #2a2a2a; width :20%; text-align: center;">
+                                <strong>{{ 'COMMON.Status' | translate }}</strong></div>
+                        </li>
+                        <li *ngFor="let chk of checklist_source">
+                            <div class="text" style="text-align: center;">{{chk.ItemId}}</div>
+                            <div class="text"  *ngIf="lang==='en'" style="text-align: center;">{{chk.ItemDesc}}</div>
+                            <div class="text"  *ngIf="lang==='ar'" style="text-align: center;">{{chk.ItemDescAr}}</div>
+                            <div class="text" style="text-align: center;"> <img
+                                    [src]="chk.Status === 'X' ? 'assets/images/checkMark.png' : 'assets/images/wrong.png'"
+                                    class="statusImage" />
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- </mat-expansion-panel>
+
+
+                    </mat-accordion> -->
+                    <!-- (statusCode != 'P' && statusCode != 'A') || -->
+                    <div *ngIf=" LandLonRequestStatusId == 41
+                     || LandLonRequestStatusId == 40 || LandLonRequestStatusId == 7 || LandLonRequestStatusId == 
+                     8 || LandLonRequestStatusId == 3 " style="margin-top: 20px;">
+
+                        <button style="cursor: pointer; margin-bottom: 2%" class=" more"
+                            (click)="onSubmit();">{{ "TECHNICAL_INFORMATION.Submit" | translate}}</button>
+
+                    </div>
+
+                    <!-- <div>
+                        <document-list [documents]="documents"></document-list>
+                    </div> -->
+                </nb-card-body>
+
+            </nb-card>
+
+        </nb-card-body>
+
+    </nb-card>
+
+</div>

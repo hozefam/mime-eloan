@@ -1,0 +1,95 @@
+<ng-template #veryweakToolTip>Very Weak</ng-template>
+<ng-template #weakToolTip>Weak</ng-template>
+<ng-template #ModerateToolTip>Moderate</ng-template>
+<ng-template #goodToolTip>Good</ng-template>
+<ng-template #strongToolTip>Strong</ng-template>
+<div class="modal-header">
+    <span>{{ modalHeader }}</span>
+    <button matRipple matRippleColor="rgba(255,239,20,0.15)" class="close" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+</div>
+<div class="modal-body">
+    <!-- {{ modalContent }} -->
+    <div>
+        <form class="form-horizontal ">
+            <div class="form-group ">
+                <!-- <label for="inputEmail3" class="col-sm-3 form-control-label">Email</label> -->
+                <div class="col-sm-12">
+                    <input type={{textOrPassword1}} class="form-control" [(ngModel)]="currentPassword" [ngModelOptions]="{standalone: true}" id="currentPassword" placeholder="{{ 'MY_PROFILE.CurrentPassword' | translate}}">
+                    <span *ngIf="commonService.defaultLanguage == 'en'" class="passwordtoggle {{icontype1}}" (click)="OnPasswordToggle1();"></span>
+                    <span *ngIf="commonService.defaultLanguage == 'ar'" class="passwordtoggle1 {{icontype1}}" (click)="OnPasswordToggle1();"></span>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <!-- <label for="inputEmail3" class="col-sm-3 form-control-label">Email</label> -->
+                <div class="col-sm-12">
+                    <input (keyup)="passStrength($event);" type={{textOrPassword2}} class="form-control" [(ngModel)]="newPassword" [ngModelOptions]="{standalone: true}" id="newPassword" placeholder="{{ 'MY_PROFILE.NewPassword' | translate}}">
+                    <span *ngIf="commonService.defaultLanguage == 'en'" class="passwordtoggle {{icontype2}}" (click)="OnPasswordToggle2();"></span>
+                    <span *ngIf="commonService.defaultLanguage == 'ar'" class="passwordtoggle1 {{icontype2}}" (click)="OnPasswordToggle2();"></span>
+                </div>
+                <div style="text-align :center;" [hidden]="hprogress">
+                    <div *ngIf="strength == 0 || (strength == 20)">
+                        <progress class="bardanger" max="100" value={{strength}} style="width:93%;" [ngbTooltip]="veryweakToolTip" placement="bottom"></progress>
+                    </div>
+                    <div *ngIf="strength == 40">
+                        <progress class="barwarning" max="100" value={{strength}} style="width:93%;" [ngbTooltip]="weakToolTip" placement="bottom"></progress>
+                    </div>
+                    <div *ngIf="strength == 60">
+                        <progress class="barok" max="100" value={{strength}} style="width:93%;" [ngbTooltip]="ModerateToolTip" placement="bottom"></progress>
+                    </div>
+                    <div *ngIf="strength == 80">
+                        <progress class="bargood" max="100" value={{strength}} style="width:93%;" [ngbTooltip]="goodToolTip" placement="bottom"></progress>
+                    </div>
+                    <div *ngIf="strength == 100">
+                        <progress class="barperfect" max="100" value={{strength}} style="width:93%;" [ngbTooltip]="strongToolTip" placement="bottom"></progress>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group ">
+                <!-- <label for="inputEmail3" class="col-sm-3 form-control-label">Email</label> -->
+                <div class="col-sm-12">
+                    <input type={{textOrPassword3}} class="form-control" [(ngModel)]="confirmPassword" [ngModelOptions]="{standalone: true}" id="confirmPassword" placeholder="{{ 'MY_PROFILE.ConfirmPassword' | translate}}">
+                    <span *ngIf="commonService.defaultLanguage == 'en'" class="passwordtoggle {{icontype3}}" (click)="OnPasswordToggle3();"></span>
+                    <span *ngIf="commonService.defaultLanguage == 'ar'" class="passwordtoggle1 {{icontype3}}" (click)="OnPasswordToggle3();"></span>
+                </div>
+
+            </div>
+
+        </form>
+
+        <div *ngIf="commonService.defaultLanguage == 'en'" class="regpass-rules">
+            <h4>{{ "FORGOTPASSWORD.note1" | translate}}</h4>
+
+            <ul>
+                <li>{{ "FORGOTPASSWORD.note2" | translate}}</li>
+                <li>{{ "FORGOTPASSWORD.note3" | translate}}</li>
+                <li>{{ "FORGOTPASSWORD.note4" | translate}}</li>
+                <li>{{ "FORGOTPASSWORD.note5" | translate}}</li>
+            </ul>
+
+        </div>
+
+        <div *ngIf="commonService.defaultLanguage == 'ar'" style="text-align: right" class="regpass-rules">
+            <h4>{{ "FORGOTPASSWORD.note1" | translate}}</h4>
+
+            <ul>
+                <li>{{ "FORGOTPASSWORD.note2" | translate}}</li>
+                <li>{{ "FORGOTPASSWORD.note3" | translate}}</li>
+                <li>{{ "FORGOTPASSWORD.note4" | translate}}</li>
+                <li>{{ "FORGOTPASSWORD.note5" | translate}}</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="modal-footer">
+    <div>
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" class="btn btn-md btn-primary" style="margin-right: 10px; margin-left: 10px; cursor: pointer;" (click)="closeModal()">{{ "LOGIN.bcancel" | translate}}</button>
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" class="btn btn-md btn-primary" (click)="changePassword()">{{ "MY_PROFILE.save" | translate}}</button>
+    </div>
+</div>

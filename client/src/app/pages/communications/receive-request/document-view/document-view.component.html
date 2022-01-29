@@ -1,0 +1,22 @@
+<div class="modal-header">
+
+    <span>Documents</span>
+
+    <button style="cursor: pointer;" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="ion-close-round"></span>
+    </button>
+
+</div>
+
+<div class="modal-body">
+
+    <document-list [documents]="docListModalsForm"></document-list>
+
+</div>
+
+
+<div class="modal-footer">
+
+    <button style="cursor: pointer;" class="more" (click)="closeModal()">الغاء</button>
+
+</div>

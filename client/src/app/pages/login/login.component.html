@@ -1,0 +1,152 @@
+<!---->
+<div  [class]="current_direction">
+
+<nb-layout>
+
+    <nb-layout-column class="theme-background">
+<section class="mb-10 mt-sm-10" id="first-section">
+        <div class="container-fulid  d-none d-md-block"></div>
+           <!-- Navigation bar -->
+           <Topmenu></Topmenu>
+    <div class="main-container">
+    <div class="container">
+     
+        
+              
+              <div class="welcome-content">
+                  <span class="welcome-title">
+                        {{'LOGIN.WelcomBack' | translate}}
+                  </span>
+                  <span class="welcome-desc">
+                        {{'LOGIN.EnterIDAndPassword' | translate}}
+                  </span>
+
+<form class="sign-form" action="login-otp.html" [formGroup]="loginForm" (ngSubmit)="login(content)" autocomplete='off'>
+
+        <div class="form-group">
+                <label for="email" style="margin-top:8%"> {{'LOGIN.UserID' | translate}} </label>
+            <input type="email" class="form-control input-lg"  autocomplete="off" id="InputUserid" formControlName="userName" [ngClass]="{'is-invalid' : next1 && loginData.userName.errors}" placeholder='{{ "LOGIN.UserID" | translate}}'></div>
+        
+            <div class="form-group">
+                    <label for="email">{{'LOGIN.Password' | translate}}</label>
+                <input type={{textOrPassword}} autocomplete="off" class="form-control input-lg" formControlName="password" id="InputPassword" [ngClass]="{'is-invalid' : next1 && loginData.password.errors}" placeholder='{{ "LOGIN.Password" | translate}}'>
+            <!-- <span class="{{icontype}} passwordtoggle" (click)="OnPasswordToggle();"></span> -->
+           <span *ngIf="commonService.defaultLanguage  == 'en'" class="{{icontype}} passwordtoggle" (click)="OnPasswordToggle();"></span>
+           <span *ngIf="commonService.defaultLanguage  == 'ar'" class="{{icontype}} passwordtoggle3" (click)="OnPasswordToggle();"></span>
+        </div>
+        
+
+        <button type="submit" class="submit-btn2 urs">{{'LOGIN.LOG' | translate}}</button>
+
+        <div class="form-group login-pf-setting" style="text-align: center;"> 
+            <a class="forgotPassword" (click)="getForgotPasswordOTP()"> {{'LOGIN.ForgotPassword' | translate}} </a>
+            <a [routerLink]="['/signup/0']" class="forgotPassword"> {{'LOGIN.NewUser' | translate}} {{'LOGIN.Signup' | translate}}</a>
+            <a class="forgotPassword" [routerLink]="'/sitemap'">{{'COMMON.Sitemap' | translate}}</a>
+        </div>
+        <div class="form-group login-pf-setting" style="text-align: center;">
+            <a class="forgotPassword" (click)="getTerm()">{{'COMMON.TermsUse' | translate}}</a> 
+            <a class="forgotPassword" [routerLink]="'/contactus'">{{'COMMON.ContactUs' | translate}}</a>
+            <a class="forgotPassword" (click)="getPrivacy()">{{'COMMON.Privacy' | translate}}</a>
+            <a class="forgotPassword" (click)="getFaq()">{{'COMMON.Faq' | translate}}</a> 
+            
+        </div>
+
+              <!--  <div class="form-group login-pf-settings" style="float:left; text-align:left;"></div>-->
+    </form>
+    
+
+              </div>
+       <!---->
+    </div>
+   
+    </div>
+</section> 
+
+<footer class="footer_Wrapper ">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <figure>
+                <object data="./assets/images/footericon.svg"></object>
+              </figure>
+
+            </div>
+            <div class="col-12 col-lg-6">
+              <p class="mb-4 text-light text-opacity">روابط سريعة</p>
+              <ul class="footer_list">
+                <li><a href="/index.html" class="text-light text-opacity">الصفحة الرئيسية</a> </li>
+                <li><a href="/index.html" class="text-light text-opacity">عن المبادرة</a> </li>
+                <li><a href="/index.html" class="text-light text-opacity">اسئلة شائعة</a> </li>
+                <li><a href="/index.html" class="text-light text-opacity">اتصل بنا</a> </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <p class="mb-4 text-light text-opacity">السياسات والشروط</p>
+              <ul class="footer_list">
+
+                <li><a href="/index.html" class="text-light text-opacity">
+                    الأحكام والشروط</a> </li>
+
+              </ul>
+            </div>
+          
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+ <!---->
+
+
+<ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">{{ "LOGIN.verifycode" | translate}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="onClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <input name="iuserOTP" [(ngModel)]="inputOTP" id="iuserOTP" placeholder='{{ "LOGIN.verifycode" | translate}}' class="form-control" type={{textOrPassword1}}>
+            <span *ngIf="commonService.defaultLanguage  == 'en'" class="{{icontype1}} passwordtoggle" (click)="OnPasswordToggle1();"></span>
+                <span *ngIf="commonService.defaultLanguage  == 'ar'" class="{{icontype1}} passwordtoggle3" (click)="OnPasswordToggle1();"></span>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="more" style="margin:3px" (click)="onOTPVerify()">{{ "LOGIN.bverify" | translate}}</button>
+            <button type="button" class="more" style="margin:3px" (click)="onClose()">{{ "LOGIN.bcancel" | translate}}</button>
+            
+        </div>
+    </ng-template>
+    </nb-layout-column>
+   
+</nb-layout>
+
+</div>
+
+ 
+ 
+
+<script>
+    $(document).ready(function () {
+
+        
+$(".searchForm__buttonIcon").on("click", function (e) {
+$(".searchForm").addClass("active");
+e.stopPropagation()
+});
+
+$(document).on("click", function (e) {
+if ($(e.target).is(".searchForm__input,.searchForm__buttonSearch") === false) {
+$(".searchForm").removeClass("active");
+}
+});
+    });
+</script>

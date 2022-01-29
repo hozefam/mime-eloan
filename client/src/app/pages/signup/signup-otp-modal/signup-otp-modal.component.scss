@@ -1,0 +1,23 @@
+// .modaliconstyle{
+   
+//     width: 60%;
+//     height: 20%;
+//    float: right;
+    
+//     }
+
+//    .button-modal{
+//     width: 20%;
+//    }
+.passwordtoggle{
+    height: 33px !important;
+    float: left !important;
+    margin-top: -39px !important;
+    width: 10%;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+input::-ms-clear, input::-ms-reveal {
+    display: none;
+}

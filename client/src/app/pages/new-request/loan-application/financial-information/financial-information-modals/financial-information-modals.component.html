@@ -1,0 +1,144 @@
+<div class="modal-header">
+    
+        <span>{{FinancialInformationModalsForm.header}}</span>
+    
+            <button style="cursor: pointer;"  class="close" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true" class="ion-close-round"></span>
+            </button>
+    
+    </div>
+        
+    <div class="modal-body">
+
+        <form *ngFor="let input of FinancialInformationModalsForm.inputs;">
+            
+            <div class="form-group row" *ngIf="FinancialInformationModalsForm.method === 'add'">
+                
+                <label *ngIf="input.type != 'number_disabled'" for="{{input.name}}" class="col-sm-3 col-form-label"><span *ngIf="input.required === 'true'" class="required-pf">* </span>{{input.name}}</label>
+                <label *ngIf="input.type === 'number_disabled'" style = "font-weight: bold;" for="{{input.name}}" class="col-sm-3 col-form-label"><span *ngIf="input.required === 'true'" class="required-pf">* </span>{{input.name}}</label>
+                <div class="col-sm-7">
+                    <input (keypress)="numberOnly($event)" *ngIf="(input.type != 'number_disabled') && (input.id != 'alert') && (input.type != 'file') && (input.type != 'select') && (input.type != 'textarea') && (FinancialInformationModalsForm.method != 'view') " [name]="input.id" min="0" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:'SAR ':'symbol':'2.2'" [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="input.value=$event; calculateFinanceSum()" id="{{input.id}}" step=".01" type="{{input.type}}" placeholder="{{input.name}}" class="form-control">
+                    <select (change)="onChangeSelect(input.selected)" *ngIf="input.type === 'select'" [(ngModel)]="input.selected" name="{{input.id}}" class="form-control">
+                            <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                    </select>
+                    <input *ngIf="input.type === 'number_disabled'" [name]="input.id" min="0" step=".01" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:'SAR ':'symbol':'2.2'" [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="input.value=$event; calculateFinanceSum()" id="{{input.id}}" type="text" placeholder="{{input.name}}" class="form-control" disabled>
+                    
+                    <textarea *ngIf="input.type === 'textarea'" rows="4" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}" placeholder="{{input.name}}" class="form-control"></textarea>
+                    
+                    <input *ngIf="(input.type != 'number_disabled') && (input.id != 'alert') && (input.type != 'select') && (input.type != 'file') && (input.type != 'textarea') && (FinancialInformationModalsForm.method === 'view') " [name]="input.id" min="0" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" step=".01" type="{{input.type}}" placeholder="{{input.name}}" class="form-control" disabled>
+
+                    <input *ngIf="input.type == 'file'" (change)="onFileChange($event, input.name)" [name]="input.id" id="{{input.id}}" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" placeholder="{{input.name}}" multiple class="form-control">
+                </div>
+
+                <div class="col-sm-12" *ngIf="(input.id == 'alert')">
+                        <nb-alert outline="warning">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong> Please attach supporting Financial Statements if applicable. </strong><br>
+
+                                </div>
+                            </div>
+                        </nb-alert>
+                    </div>
+                
+            </div>
+
+            <div class="form-group row" *ngIf="FinancialInformationModalsForm.method === 'add_normal'">
+                
+                <label for="{{input.name}}" class="col-sm-3 col-form-label"><span *ngIf="input.required === 'true'" class="required-pf">* </span>{{input.name}}</label>
+                <div class="col-sm-7">
+                    
+                    <!-- <input (keypress)="numberOnly($event)" *ngIf="(FinancialInformationModalsForm.method === 'add_normal') && (input.cost === 'true') && (input.type === 'currency') && (input.type != 'select') && (input.type != 'select_disabled') && (FinancialInformationModalsForm.method != 'view') " [name]="input.id" min="0" step=".0001" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:'SAR ':'symbol':'2.4'" [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="input.value=$event;" id="{{input.id}}" type="{{input.type}}" placeholder="Enter {{input.name}}" class="form-control"> -->
+                    <input *ngIf="(input.type != 'currency') && (input.id != 'alert') && (input.type != 'text_disabled') && (input.cost != 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'select_disabled') && (input.type != 'email') && (input.type != 'textarea') && (FinancialInformationModalsForm.method != 'view') " [name]="input.id" min="0" step=".01" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}" placeholder="{{input.name}}" class="form-control">
+                    <input (keypress)="numberOnly($event)" *ngIf="(input.type === 'currency') && (input.id != 'alert') && (input.type != 'text_disabled') && (input.cost != 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'select_disabled') && (input.type != 'textarea') && (input.type != 'email') && (FinancialInformationModalsForm.method != 'view') " [name]="input.id" min="0" step=".01" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:'SAR ':'symbol':'2.2'" [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="input.value=$event; parseTextToInt($event);" id="{{input.id}}" step=".01" type="text" placeholder="{{input.name}}" class="form-control">
+                    <select (change)="onChangeSelect(input.selected)" *ngIf="input.type === 'select'" [(ngModel)]="input.selected" name="{{input.id}}" class="form-control">
+                            <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                    </select>
+
+                    <textarea *ngIf="(input.type === 'textarea') && (input.id != 'alert') " rows="4" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}" placeholder="{{input.name}}" class="form-control"></textarea>
+                    
+                    
+
+                    <input *ngIf="(input.type === 'text_disabled') && (input.id != 'alert') && (input.type != 'currency') && (input.cost != 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'select_disabled') && (input.type != 'email') && (FinancialInformationModalsForm.method != 'view') " [name]="input.id" min="0" step=".0001" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="text" placeholder="{{input.name}}" class="form-control" disabled>
+                    
+                    
+                </div>
+
+                <div class="col-sm-12" *ngIf="(input.id == 'alert')">
+                        <nb-alert outline="warning">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong> Paid In Capital - No less than 25% of total cost</strong><br>
+                                    <strong> Internal Cash Flows - In case of loans for expansion,modernization and development)</strong><br>
+                                    <strong> Other loans - Specify either a bank loan or loans from shareholders, etc </strong><br>     
+                                </div>
+                            </div>
+                        </nb-alert>
+                    </div>
+                
+            </div>
+
+            <div class="form-group row" *ngIf="(FinancialInformationModalsForm.method === 'edit' && input.type == 'select') || FinancialInformationModalsForm.method === 'edit_change'">
+                
+                <label for="{{input.name}}" class="col-sm-3 col-form-label"><span *ngIf="input.required === 'true'" class="required-pf">* </span>{{input.name}}</label>
+                <div class="col-sm-7">
+                    <input (keypress)="numberOnly($event)" *ngIf="(FinancialInformationModalsForm.method === 'edit_change') && (input.id != 'alert') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'file') && (input.type != 'textarea') && (FinancialInformationModalsForm.method != 'view') " [name]="input.id" min="0" step=".01" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:'SAR ':'symbol':'2.2'" [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="input.value=$event; calculateFinanceSum()" id="{{input.id}}" type="{{input.type}}" placeholder="{{input.name}}" class="form-control">
+                    <select (change)="onChangeSelect(input.selected)" *ngIf="input.type === 'select'" [(ngModel)]="input.selected" name="{{input.id}}" class="form-control">
+                            <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                    </select>
+                    <input *ngIf="(FinancialInformationModalsForm.method === 'edit_change') && (input.id != 'alert') && (input.type === 'number_disabled')" [name]="input.id" min="0" step=".01" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:'SAR ':'symbol':'2.2'" [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="input.value=$event; calculateFinanceSum()" id="{{input.id}}" type="text" placeholder="{{input.name}}" class="form-control" disabled>
+                    
+                    
+                    <textarea *ngIf="(FinancialInformationModalsForm.method === 'edit_change') && (input.id != 'alert') && (input.type === 'textarea') && (input.type != 'number_disabled') && (input.type != 'file')" rows="4" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}" placeholder="{{input.name}}" class="form-control"></textarea>
+                    
+                    <input *ngIf="(FinancialInformationModalsForm.method === 'edit_change') && (input.id != 'alert') && (input.type != 'number_disabled') && (input.type != 'file') && (input.type != 'select') && (input.type != 'textarea') && (FinancialInformationModalsForm.method === 'view') " [name]="input.id" min="0" step=".01" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}" placeholder="{{input.name}}" class="form-control" disabled>
+                
+                    <input *ngIf="input.type === 'file'" (change)="onFileChange($event, input.name)" [name]="input.id" id="{{input.id}}" type="file" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" placeholder="{{input.name}}" multiple class="form-control">
+                
+                    
+                </div>
+
+                <div class="col-sm-12" *ngIf="(input.id == 'alert')">
+                        <nb-alert outline="warning">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong> Please attach supporting Financial Statements if applicable. </strong><br>
+
+                                </div>
+                            </div>
+                        </nb-alert>
+                    </div>
+                
+            </div>
+
+            <div class="form-group row" *ngIf="FinancialInformationModalsForm.method === 'delete'">
+                
+                <label for="{{input.name}}" class="col-sm-3 col-form-label"><span *ngIf="input.required === 'true'" class="required-pf">* </span>{{input.name}}</label>
+                <div class="col-sm-7">
+                    <input *ngIf="(input.type != 'select') && (input.id != 'alert') && (input.type != 'email') && (FinancialInformationModalsForm.method != 'view') " [name]="input.id" min="0" step=".0001" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}" placeholder="{{input.name}}" class="form-control">
+                    <select (change)="onChangeSelect(input.selected)" *ngIf="input.type === 'select'" [(ngModel)]="input.selected" name="{{input.id}}" class="form-control">
+                            <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                    </select>
+                    <input *ngIf="input.type === 'email'" [name]="input.id" [(ngModel)]="input.value" step=".0001" id="{{input.id}}" type="{{input.type}}" placeholder="{{input.name}}" class="form-control">
+                    <input *ngIf="(input.type != 'select') && (input.id != 'alert') && (input.type != 'email') && (FinancialInformationModalsForm.method === 'view') " [name]="input.id" min="0" step=".0001" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}" placeholder="{{input.name}}" class="form-control" disabled>
+                </div>
+                
+            </div>
+            
+        </form>
+
+        <!-- <div *ngIf="(FinancialInformationModalsForm.method === 'edit_change') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'file') && (input.type != 'textarea') && (FinancialInformationModalsForm.method != 'view') ">
+            <document-list [documents]="documents"></document-list>
+        </div> -->
+
+        <div *ngIf="FinancialInformationModalsForm.method === 'edit_change'">
+            <document-list [documents]="documents"></document-list>
+        </div>
+    </div>
+    
+    <div class="modal-footer">
+        
+        <button style="cursor: pointer;"  class="more" (click)="closeModal()">الغاء</button>
+        <button style="cursor: pointer;"  type="{{button.type}}" *ngFor="let button of FinancialInformationModalsForm.buttons;" class="btn {{button.class}}" (click)="onSubmit()">{{button.name}}</button>
+        
+    </div>

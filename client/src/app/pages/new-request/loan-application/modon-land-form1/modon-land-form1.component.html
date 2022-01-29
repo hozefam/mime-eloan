@@ -1,0 +1,1165 @@
+<div class="col-md-12">
+  <div class="container bread_crumbs">
+     <div class="row">
+        <div class="col">
+           <a href="#"><span>{{ "DASHBOARD.Home" | translate}}</span></a>
+           <span><img src="assets/images/arrow-l.png" alt="img"></span>
+           <span> {{ "FactoryLoan.RequestDetails" | translate}}</span>
+        </div>
+     </div>
+  </div>
+  <div class="container-fulid margwid">
+     <div class="row title_01">
+        <div class="col">
+           <img src="assets/images/pen.png" alt="img">
+           {{ "FactoryLoan.RequestDetails" | translate}}
+        </div>
+     </div>
+  </div>
+  <nb-card accent="success">
+    <form ngNativeValidate #modonForm="ngForm">
+     <!-- NationalAttachment / 5
+        DelegateIDCopy (Modified)  5 
+        AgreementAttachement / 6 
+        PartnerAttachement  /1 
+        FactoryLayoutAttachment  /5
+        TimePlanAttachment  /5  -->
+     <nb-card-body>
+        <div class="col-xxxl-12 col-xxl-12 col-md-12" style="text-align: center; margin-bottom: 20px;">
+           <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+              (click)="onClickLoanApplicationTab(0)">
+              <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                 {{ 'COMMON.ProjectInformation' | translate }}
+              </div>
+              <div style="width: 80%;
+                 margin: 0 auto;
+                 margin-bottom: 10px;">
+                 <nb-progress-bar [value]="GenInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+              </div>
+           </div>
+           <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+              (click)="onClickLoanApplicationTab(1)">
+              <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                 {{ 'COMMON.MarketingInformation' | translate }}
+              </div>
+              <div style="width: 80%;
+                 margin: 0 auto;
+                 margin-bottom: 10px;">
+                 <nb-progress-bar [value]="MarkInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+              </div>
+           </div>
+           <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+              (click)="onClickLoanApplicationTab(2)">
+              <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                 {{ 'COMMON.TechnicalInformation' | translate }}
+              </div>
+              <div style="width: 80%;
+                 margin: 0 auto;
+                 margin-bottom: 10px;">
+                 <nb-progress-bar [value]="TechInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+              </div>
+           </div>
+           <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+              (click)="onClickLoanApplicationTab(3)">
+              <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                 {{ 'COMMON.FinancialInformation' | translate }}
+              </div>
+              <div style="width: 80%;
+                 margin: 0 auto;
+                 margin-bottom: 10px;">
+                 <nb-progress-bar [value]="FinInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+              </div>
+           </div>
+           <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+              (click)="onClickLoanApplicationTab(5)">
+              <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                 {{ 'COMMON.landrequirement' | translate }}
+              </div>
+              <div style="width: 80%;
+                 margin: 0 auto;
+                 margin-bottom: 10px;">
+                 <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+              </div>
+           </div>
+           <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" style="display:none"
+              (click)="onClickLoanApplicationTab(6)">
+              <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                 {{ 'MARKETING_INFORMATION.TargetedMarket' | translate }}
+              </div>
+              <div style="width: 80%;
+                 margin: 0 auto;
+                 margin-bottom: 10px;">
+                 <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar>
+              </div>
+           </div>
+           <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+              (click)="onClickLoanApplicationTab(4)">
+              <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                 {{ 'COMMON.Checklist' | translate }}
+              </div>
+              <div style="width: 80%;
+                 margin: 0 auto;
+                 margin-bottom: 10px;">
+                 <nb-progress-bar [value]="ChecklistPer" status="warning" [displayValue]="true"></nb-progress-bar>
+              </div>
+           </div>
+        </div>
+        <nb-card accent="success" style="border-top-width:2px !important; border-radius: 0; border-color: #8dd27a">
+           <nb-card-header
+              style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;">
+              {{ 'COMMON.FacoryLandRequirements' | translate }}
+           </nb-card-header>
+           <nb-card-body style="text-align: center;">
+              <div style="margin-bottom: 20px; text-align: right;">
+                 <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === false" class="more"
+                 (click)="expandAllPanels(0);">{{'COMMON.ExpandAllPanels' | translate }}</button>
+                 <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === true" class="more"
+                 (click)="expandAllPanels(1);">{{ 'COMMON.CollapseAllPanels' | translate }}</button>
+              </div>
+              <mat-accordion multi="true">
+                 
+                 <mat-expansion-panel *ngIf="panelsVisible[0].visible"
+                 [expanded]=" (panelStep === panelsVisible[0].panelStep || allPanelsExpanded === true)"
+                 (opened)="setPanelStep(panelsVisible[0].panelStep, panelsVisible[0].panel)">
+                    <mat-expansion-panel-header>
+                       <mat-panel-title>
+                          {{ 'ModonLandForm.ApplicantData' | translate }}
+                       </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <form ngNativeValidate #modonForm1="ngForm">
+                      
+                        <div class="form-group row">
+                           <label for="IsApplybyCR" class="col-sm-2 col-form-label" style="text-align: left">
+                             {{ 'ModonLandForm.IsApplybyCR' | translate }}</label>
+                             <div class="col-sm-3 input-group">
+                             
+                              <select [disabled]="add_edit_delete_show" [(ngModel)]="input.IsApplybyCR"  (ngModelChange)="setHasil($event)" 
+                              class="form-control" name="hasil"
+                              placeholder="   ">
+                              <option  [ngValue]="true"> {{ 'TECHNICAL_INFORMATION.Yes' | translate }}   </option>
+                              <option  [ngValue]="false"> {{ 'TECHNICAL_INFORMATION.No' | translate }}   </option>
+                              </select>
+                           </div>
+                           <label for="IndustrialLicenseNumber"  *ngIf="hasil"class="col-sm-2 col-form-label" style="text-align: left">
+                              {{ 'ModonLandForm.IndustrialLicenseNumber' | translate }}</label>
+                            <div class="col-sm-3 input-group">
+                               <input [disabled]="add_edit_delete_show"  *ngIf="hasil" [(ngModel)]="input.IndustrialLicenseNumber" type="number" 
+                               class="form-control" name="IndustrialLicenseNumber" placeholder=" ">
+                            </div>
+                       </div>
+                       <div class="form-group row">
+                        <label for="ModonCity" class="col-sm-2 col-form-label"  style="text-align: left">
+                           <span     class="required-pf">* </span> {{ 'ModonLandForm.ModonCity' | translate }}</label>
+                        <div class="col-sm-3 input-group">
+                           <select [disabled]="add_edit_delete_show" *ngIf="serviceId!=7" [(ngModel)]="input.ModonCity" required
+                           class="form-control"  name="ModonCity"
+                           placeholder="   ">
+                           <option *ngFor="let item of LIndustrial_Cities_Factory" [ngValue]="item.Code"> 
+                             <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.Value_ar}} </span>
+                             <span *ngIf="commonService.defaultLanguage == 'en'">{{item.Value_en}} </span>
+                           </option>
+                           </select>
+                           <select [disabled]="add_edit_delete_show" *ngIf="serviceId==7" [(ngModel)]="input.ModonCity" required
+                           class="form-control"  name="ModonCity"
+                           placeholder="   ">
+                           <option *ngFor="let item of LIndustrial_Cities_Land" [ngValue]="item.Code"> 
+                             <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.Value_ar}} </span>
+                             <span *ngIf="commonService.defaultLanguage == 'en'">{{item.Value_en}} </span>
+                           </option>
+                           </select>
+                        </div>
+                        <label for="SAGIANumber" class="col-sm-2 col-form-label" style="text-align: left">
+                           {{ 'ModonLandForm.SAGIANumber' | translate }}</label>
+                         <div class="col-sm-3 input-group">
+                            <input [disabled]="add_edit_delete_show"   [(ngModel)]="input.SAGIANumber" type="number" 
+                            class="form-control" name="SAGIANumber" placeholder=" ">
+                         </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="Products_List"  *ngIf="!hasil" class="col-sm-2 col-form-label" style="text-align: left"><span
+                           class="required-pf">* </span>{{ 'ModonLandForm.Products_List' | translate }} </label>
+                          <div class="col-sm-3 input-group"  *ngIf="!hasil"> 
+                           <mat-select    [disabled]="add_edit_delete_show"  name="Products_List" placeholder="Products_List"  
+                           class="form-control" [(ngModel)]="productlistmodel" multiple> 
+                            <mat-option *ngFor="let item of LProduct_Type" [value]="item.Value"> 
+                              <span>{{item.Text}} </span>
+                            </mat-option> 
+                            </mat-select>
+                        </div>
+                        <label for="productId"  *ngIf="serviceId!=7" class="col-sm-2 col-form-label" style="text-align: left"><span
+                           class="required-pf">* </span>{{ 'ModonLandForm.productId' | translate }} </label>
+                           <div class="col-sm-3 input-group"> 
+                         
+                           <select [disabled]="add_edit_delete_show"   *ngIf="serviceId!=7" [(ngModel)]="input.productId" required
+                           class="form-control"  name="productId"
+                           placeholder="   ">
+                           <option *ngFor="let item of LProductId" [ngValue]="item.code"> 
+                             <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.title}} </span>
+                             <span *ngIf="commonService.defaultLanguage == 'en'">{{item.titleEn}} </span>
+                           </option>
+                           </select>
+                        </div>
+                       
+                     </div>
+                     <div class="form-group row">
+                        <label for="requestReason" class="col-sm-2 col-form-label" style="text-align: left"><span
+                           class="required-pf">* </span> {{ 'ModonLandForm.requestReason' | translate }}  </label>
+                        <div class="col-sm-3 input-group">
+                           <select [disabled]="add_edit_delete_show" [(ngModel)]="input.requestReason" required
+                           class="form-control"  name="requestReason"
+                           placeholder="   ">
+                           <option *ngFor="let item of LRequestReason" [ngValue]="item.Code"> 
+                             <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.Value_ar}} </span>
+                             <span *ngIf="commonService.defaultLanguage == 'en'">{{item.Value_en}} </span>
+                           </option>
+                           </select>
+                        </div> 
+                        <label  *ngIf="input.requestReason==2" for="Oldcontractnumber" class="col-sm-2 col-form-label" style="text-align: left"><span
+                           class="required-pf">* </span>{{ 'ModonLandForm.Oldcontractnumber' | translate }} </label>
+                        <div class="col-sm-3 input-group"  *ngIf="input.requestReason==2">
+                           <input  [(ngModel)]="input.Oldcontractnumber" type="text" required
+                           class="form-control" name="Oldcontractnumber" placeholder=" ">
+                        </div>
+                      </div>
+                       <div class="form-group row">
+                          <label for="typeOfIdentity_applicant" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span> {{ 'ModonLandForm.typeOfIdentity_applicant' | translate }}  </label>
+                          <div class="col-sm-3 input-group">
+                             <select [disabled]="add_edit_delete_show" [(ngModel)]="input.TypeOfIdentity_applicant" required
+                             class="form-control" (ngModelChange)="getModonSubActivety($event)" name="typeOfIdentity_applicant"
+                             placeholder="   ">
+                             <option *ngFor="let item of LTypeofIdentity" [ngValue]="item.Code"> 
+                               <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.Value_ar}} </span>
+                               <span *ngIf="commonService.defaultLanguage == 'en'">{{item.Value_en}} </span>
+                             </option>
+                             </select>
+                          </div>
+                          <label for="IdentityNumber_applicant" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.IdentityNumber_applicant' | translate }} </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="true" [(ngModel)]="input.IdentityNumber_applicant" type="text" required
+                             class="form-control" name="IdentityNumber_applicant" placeholder=" ">
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="Email_applicant" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.Email_applicant' | translate }} </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="true" [(ngModel)]="input.Email_applicant" type="text" required
+                             class="form-control" name="Email_applicant" placeholder=" ">
+                          </div>
+                          <label for="Mobile_applicant" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.Mobile_applicant' | translate }}</label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.Mobile_applicant" type="text" required
+                             class="form-control" name="Mobile_applicant" placeholder=" ">
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="FirstName_applicant" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.FirstName_applicant' | translate }}</label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="true" [(ngModel)]="input.FirstName_applicant" type="text" required
+                             class="form-control" name="FirstName_applicant" placeholder=" ">
+                          </div>
+                          <label for="SecondName_applicant" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.SecondName_applicant' | translate }}</label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="true" [(ngModel)]="input.SecondName_applicant" type="text" required
+                             class="form-control" name="SecondName_applicant" placeholder=" ">
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="ThirdName_applicant" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.ThirdName_applicant' | translate }}</label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="true" [(ngModel)]="input.ThirdName_applicant" type="text" required
+                             class="form-control" name="ThirdName_applicant" placeholder=" ">
+                          </div>
+                          <label for="FourthName_applicant" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.FourthName_applicant' | translate }}</label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.FourthName_applicant" type="text" required
+                             class="form-control" name="FourthName_applicant" placeholder=" ">
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="IsAuthorizedSignatory" class="col-sm-2 col-form-label" style="text-align: left">
+                            {{ 'ModonLandForm.IsAuthorizedSignatory' | translate }}</label>
+                          <div class="col-sm-3 input-group">
+                               
+                           <select [disabled]="add_edit_delete_show" (ngModelChange)="SetDelegator($event)" [(ngModel)]="input.HasAuthorizedToSignTheContractPerson" 
+                           class="form-control" name="IsAuthorizedSignatory"
+                           placeholder="   ">
+                           <option  [ngValue]="true"> {{ 'TECHNICAL_INFORMATION.Yes' | translate }}   </option>
+                           <option  [ngValue]="false"> {{ 'TECHNICAL_INFORMATION.No' | translate }}   </option>
+                           </select>
+                          </div>
+                       </div>
+                       <div class="asd" *ngIf="input.HasAuthorizedToSignTheContractPerson">
+                          <div class="form-group row">
+                             <label for="typeOfIdentity_delegator" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                class="required-pf">* </span> {{ 'ModonLandForm.typeOfIdentity_delegator' | translate }}  </label>
+                             <div class="col-sm-3 input-group">
+                             
+                                <select [disabled]="add_edit_delete_show" [(ngModel)]="input.TypeOfIdentity_delegator" required
+                                class="form-control" name="typeOfIdentity_delegator"
+                                placeholder="   ">
+                                <option *ngFor="let item of LTypeofIdentity" [ngValue]="item.Code"> 
+                                  <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.Value_ar}} </span>
+                                  <span *ngIf="commonService.defaultLanguage == 'en'">{{item.Value_en}} </span>
+                                </option>
+                                </select>
+                             </div>
+                             <label for="IdentityNumber_delegator" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                class="required-pf">* </span>{{ 'ModonLandForm.IdentityNumber_delegator' | translate }} </label>
+                             <div class="col-sm-3 input-group">
+                                <input [disabled]="add_edit_delete_show" [(ngModel)]="input.IdentityNumber_delegator" type="text" required
+                                class="form-control" name="IdentityNumber_delegator" placeholder=" ">
+                             </div>
+                          </div>
+                          <div class="form-group row">
+                             <label for="Email_delegator" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                class="required-pf">* </span>{{ 'ModonLandForm.Email_delegator' | translate }} </label>
+                             <div class="col-sm-3 input-group">
+                                <input [disabled]="add_edit_delete_show" [(ngModel)]="input.Email_delegator" type="text" required
+                                class="form-control" name="Email_delegator" placeholder=" ">
+                             </div>
+                             <label for="Mobile_delegator" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                class="required-pf">* </span>{{ 'ModonLandForm.Mobile_delegator' | translate }}</label>
+                             <div class="col-sm-3 input-group">
+                                <input [disabled]="add_edit_delete_show" [(ngModel)]="input.Mobile_delegator" type="text" required
+                                class="form-control" name="Mobile_delegator" placeholder=" ">
+                             </div>
+                          </div>
+                          <div class="form-group row">
+                             <label for="FirstName_delegator" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                class="required-pf">* </span>{{ 'ModonLandForm.FirstName_delegator' | translate }}</label>
+                             <div class="col-sm-3 input-group">
+                                <input [disabled]="add_edit_delete_show" [(ngModel)]="input.FirstName_delegator" type="text" required
+                                class="form-control" name="FirstName_delegator" placeholder=" ">
+                             </div>
+                             <label for="SecondName_delegator" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                class="required-pf">* </span>{{ 'ModonLandForm.SecondName_delegator' | translate }}</label>
+                             <div class="col-sm-3 input-group">
+                                <input [disabled]="add_edit_delete_show" [(ngModel)]="input.SecondName_delegator" type="text" required
+                                class="form-control" name="SecondName_delegator" placeholder=" ">
+                             </div>
+                          </div>
+                          <div class="form-group row">
+                             <label for="ThirdName_delegator" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                class="required-pf">* </span>{{ 'ModonLandForm.ThirdName_delegator' | translate }}</label>
+                             <div class="col-sm-3 input-group">
+                                <input [disabled]="add_edit_delete_show" [(ngModel)]="input.ThirdName_delegator" type="text" required
+                                class="form-control" name="ThirdName_delegator" placeholder=" ">
+                             </div>
+                             <label for="FourthName_delegator" class="col-sm-2 col-form-label" style="text-align: left"><span
+                                class="required-pf">* </span>{{ 'ModonLandForm.FourthName_delegator' | translate }}</label>
+                             <div class="col-sm-3 input-group">
+                                <input [disabled]="add_edit_delete_show" [(ngModel)]="input.FourthName_delegator" type="text" required
+                                class="form-control" name="FourthName_delegator" placeholder=" ">
+                             </div>
+                          </div>
+                       </div>
+                     
+                    </form>
+                    <mat-action-row *ngIf="allPanelsExpanded === false" style="justify-content: center;">
+                      <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                          style="cursor: pointer;" class="btn btn-success"
+                          (click)="modonForm1.form.valid ? nextPanelStep(panelsVisible[0].panelStep, panelsVisible[0].panel) :invalidForm()">{{
+                          'COMMON.Next' |
+                          translate }}</button>
+                  </mat-action-row>
+                    <mat-action-row>
+                    </mat-action-row>
+                 </mat-expansion-panel>
+                 <mat-expansion-panel *ngIf="panelsVisible[1].visible"
+                 [expanded]=" (panelStep === panelsVisible[1].panelStep || allPanelsExpanded === true)"
+                 (opened)="setPanelStep(panelsVisible[1].panelStep, panelsVisible[1].panel)">
+                    <mat-expansion-panel-header>
+                       <mat-panel-title>
+                          {{ 'ModonLandForm.IndustryModel' | translate }}
+                       </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <form ngNativeValidate #modonForm2="ngForm">
+                       <div class="form-group row">
+                          <label for="IndustryType" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.Industrytype' | translate }}</label>
+                          <div class="col-sm-3 input-group">
+                             <select [disabled]="add_edit_delete_show" [(ngModel)]="input.IndustryType" class="form-control"
+                             required name="IndustryType" placeholder="  ">
+                             <option *ngFor="let item of LIndustrytype" [ngValue]="item.Code"> 
+                              <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.Value_ar}} </span>
+                              <span *ngIf="commonService.defaultLanguage == 'en'">{{item.Value_en}} </span>
+                            </option>
+                             </select>
+                          </div>
+                          <label for="IndustryMethodology" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.IndustryMethodology' | translate }} </label>
+                          <div class="col-sm-3 input-group">
+                             <select [disabled]="add_edit_delete_show" [(ngModel)]="input.IndustryMethodology" class="form-control"
+                             required name="IndustryMethodology" placeholder="  ">
+                             <option *ngFor="let item of LIndustryMethodology" [ngValue]="item.Code"> 
+                              <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.Value_ar}} </span>
+                              <span *ngIf="commonService.defaultLanguage == 'en'">{{item.Value_en}} </span>
+                            </option>
+                             </select>
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="ManufacturingDescription" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.ManufacturingDescription' | translate }}</label>
+                          <div class="col-sm-3 input-group"> 
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.ManufacturingDescription" type="text" required
+                             class="form-control" name="ManufacturingDescription" placeholder=" ">
+                          </div>
+                          <label for="ManufacturingTechnology" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.ManufacturingTechnology' | translate }} </label>
+                             
+                          <div class="col-sm-3 input-group"> 
+                             <mat-select    [disabled]="add_edit_delete_show"  name="ManufacturingTechnology" placeholder=""  
+                             class="form-control" [(ngModel)]="ManufacturingTechnologymodel" multiple> 
+                              <mat-option *ngFor="let item of LManufacturingTechnology" [value]="item.Code"> 
+                                <span *ngIf="commonService.defaultLanguage == 'en'">{{item.Value_en}} </span>
+                                <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.Value_ar}} </span>
+                              </mat-option> 
+                              </mat-select>
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="IsConsumersAgreement" class="col-sm-2 col-form-label" style="text-align: left">{{ 'ModonLandForm.IsConsumersAgreement' | translate }}</label>
+                          <div class="col-sm-3 input-group">
+                             
+                             <select [disabled]="add_edit_delete_show" [(ngModel)]="input.IsConsumersAgreement" 
+                             class="form-control" name="IsConsumersAgreement"
+                             placeholder="   ">
+                             <option  [ngValue]="true"> {{ 'TECHNICAL_INFORMATION.Yes' | translate }}   </option>
+                             <option  [ngValue]="false"> {{ 'TECHNICAL_INFORMATION.No' | translate }}   </option>
+                             </select>
+                          </div> 
+                          <label *ngIf="input.IsConsumersAgreement" for="ConsumersAgreementInfo" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.ConsumersAgreementInfo' | translate }}</label>
+                          <div  *ngIf="input.IsConsumersAgreement" class="col-sm-3 input-group"> 
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.ConsumersAgreementInfo" type="text" required
+                             class="form-control" name="ConsumersAgreementInfo" placeholder=" ">
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="HasTechPartnership" class="col-sm-2 col-form-label" style="text-align: left">{{ 'ModonLandForm.HasTechPartnership' | translate }}</label>
+                          <div class="col-sm-3 input-group"> 
+                             <select [disabled]="add_edit_delete_show" [(ngModel)]="input.HasTechPartnership" 
+                             class="form-control" name="HasTechPartnership"
+                             placeholder="   ">
+                             <option  [ngValue]="true"> {{ 'TECHNICAL_INFORMATION.Yes' | translate }}   </option>
+                             <option  [ngValue]="false"> {{ 'TECHNICAL_INFORMATION.No' | translate }}   </option>
+                             </select>
+                          </div>
+                          <label *ngIf="input.HasTechPartnership" for="TechPartnerInfo" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.TechPartnerInfo' | translate }}</label>
+                          <div *ngIf="input.HasTechPartnership"  class="col-sm-3 input-group"> 
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.TechPartnerInfo" type="text" required
+                             class="form-control" name="TechPartnerInfo" placeholder=" ">
+                          </div>
+                       </div>
+                    
+                       <div class="form-group row">
+                          <label for="IsInternalProduction" class="col-sm-2 col-form-label" style="text-align: left">{{ 'ModonLandForm.IsInternalProduction' | translate }}</label>
+                          <div class="col-sm-3 input-group">
+                             
+                             <select [disabled]="add_edit_delete_show" [(ngModel)]="input.IsInternalProduction" 
+                             class="form-control" name="IsInternalProduction"
+                             placeholder="   ">
+                             <option  [ngValue]="true"> {{ 'TECHNICAL_INFORMATION.Yes' | translate }}   </option>
+                             <option  [ngValue]="false"> {{ 'TECHNICAL_INFORMATION.No' | translate }}   </option>
+                             </select>
+                          </div>
+                          <label for="ProductionCityId" *ngIf="input.IsInternalProduction" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.ProductionCityId' | translate }}</label>
+                          <div class="col-sm-3 input-group" *ngIf="input.IsInternalProduction">
+                             <select [disabled]="add_edit_delete_show" [(ngModel)]="input.ProductionCityId" class="form-control"
+                             required name="ProductionCityId" placeholder="  ">   
+                              <option *ngFor="let item of LCity" [ngValue]="item.Code"> 
+                              <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.Value_ar}} </span>
+                              <span *ngIf="commonService.defaultLanguage == 'en'">{{item.Value_en}} </span>
+                            </option>
+                             </select>
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                        <label for="InternalDistributors" *ngIf="input.IsInternalProduction" class="col-sm-2 col-form-label" style="text-align: left"><span
+                           class="required-pf">* </span>{{ 'ModonLandForm.InternalDistributors' | translate }}</label>
+                        <div class="col-sm-3 input-group" *ngIf="input.IsInternalProduction">
+                           <input [disabled]="add_edit_delete_show" [(ngModel)]="input.InternalDistributors" type="text" required
+                           class="form-control" name="InternalDistributors" placeholder=" ">
+                        </div>
+                        <label for="CompanyBio" class="col-sm-2 col-form-label" style="text-align: left">{{ 'ModonLandForm.CompanyBio' | translate }}</label>
+                        <div class="col-sm-3 input-group"> 
+                           <input [disabled]="add_edit_delete_show" [(ngModel)]="input.CompanyBio" type="text" 
+                           class="form-control" name="CompanyBio" placeholder=" ">
+                        </div>
+                     </div>
+                       <div class="form-group row">
+                          
+                          <label for="ConstructionAmountValue" class="col-sm-2 col-form-label" style="text-align: left">{{ 'ModonLandForm.ConstructionAmountValue' | translate }}</label>
+                          <div class="col-sm-3 input-group"> 
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.ConstructionAmountValue" type="text" 
+                             class="form-control" name="ConstructionAmountValue" placeholder=" ">
+                          </div>
+                          <label for="InvestmentAmountValue" class="col-sm-2 col-form-label" style="text-align: left">{{ 'ModonLandForm.InvestmentAmountValue' | translate }}</label>
+                          <div class="col-sm-3 input-group"> 
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.InvestmentAmountValue" type="text" 
+                             class="form-control" name="InvestmentAmountValue" placeholder=" ">
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="IsRelatedToIndustry" class="col-sm-2 col-form-label" style="text-align: left">{{ 'ModonLandForm.IsRelatedToIndustry' | translate }}</label>
+                          <div class="col-sm-3 input-group">
+                           <select [disabled]="add_edit_delete_show" [(ngModel)]="input.IsRelatedToIndustry" 
+                           class="form-control" name="IsRelatedToIndustry"
+                           placeholder="   ">
+                           <option  [ngValue]="true"> {{ 'TECHNICAL_INFORMATION.Yes' | translate }}   </option>
+                           <option  [ngValue]="false"> {{ 'TECHNICAL_INFORMATION.No' | translate }}   </option>
+                           </select>
+                            
+                          </div>
+                          
+                          <label  *ngIf="input.IsRelatedToIndustry" for="RelatedIndustriesInfo" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.RelatedIndustriesInfo' | translate }}</label>
+                          <div  *ngIf="input.IsRelatedToIndustry" class="col-sm-3 input-group"> 
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.RelatedIndustriesInfo" type="text" required
+                             class="form-control" name="RelatedIndustriesInfo" placeholder=" ">
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="LendingBankPercentage" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.LendingBankPercentage' | translate }}</label>
+                          <div class="col-sm-3 input-group"> 
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.LendingBankPercentage" type="text" required
+                             class="form-control" name="LendingBankPercentage" placeholder=" ">
+                          </div>
+                          <label for="NumberOfUnits" class="col-sm-2 col-form-label" style="text-align: left">{{ 'ModonLandForm.NumberOfUnits' | translate }}</label>
+                          <div class="col-sm-3 input-group">
+                             <select [disabled]="add_edit_delete_show" [(ngModel)]="input.NumberOfUnits" class="form-control"
+                              name="NumberOfUnits" placeholder="  ">
+                             <option *ngFor="let item of LNumberofunits" [ngValue]="item.Code"> 
+                              <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.Value_ar}} </span>
+                              <span *ngIf="commonService.defaultLanguage == 'en'">{{item.Value_en}} </span>
+                            </option>
+                             </select>
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                        <label for="HaveOtherFactories" class="col-sm-2 col-form-label" style="text-align: left">{{ 'ModonLandForm.HaveOtherFactories' | translate }}</label>
+                        <div class="col-sm-3 input-group"> 
+                           <select [disabled]="add_edit_delete_show"   [(ngModel)]="input.HaveOtherFactories" 
+                           class="form-control" name="HaveOtherFactories"
+                           placeholder="   ">
+                           <option  [ngValue]="true"> {{ 'TECHNICAL_INFORMATION.Yes' | translate }}   </option>
+                           <option  [ngValue]="false"> {{ 'TECHNICAL_INFORMATION.No' | translate }}   </option>
+                           </select>ra
+                        </div>
+                     
+                          <label for="Factories" *ngIf="input.HaveOtherFactories" class="col-sm-2 col-form-label" style="text-align: left">{{ 'ModonLandForm.Factories' | translate }}</label>
+                          <div class="col-sm-3 input-group"  *ngIf="input.HaveOtherFactories"> 
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.Factories" type="text" 
+                             class="form-control" name="Factories" placeholder=" ">
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="SidfPercentage" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.SidfPercentage' | translate }}</label>
+                          <div class="col-sm-3 input-group"> 
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.SidfPercentage" type="number" max="75" required
+                             class="form-control" name="SidfPercentage" placeholder=" ">
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="IsExporting" class="col-sm-2 col-form-label" style="text-align: left">{{ 'ModonLandForm.IsExporting' | translate }}</label>
+                          <div class="col-sm-3 input-group"> 
+                             <select [disabled]="add_edit_delete_show" [(ngModel)]="input.IsExporting" 
+                             class="form-control" name="IsExporting"
+                             placeholder="   ">
+                             <option  [ngValue]="true"> {{ 'TECHNICAL_INFORMATION.Yes' | translate }}   </option>
+                             <option  [ngValue]="false"> {{ 'TECHNICAL_INFORMATION.No' | translate }}   </option>
+                             </select>
+                          </div>
+                          <label for="ExportingCountries" *ngIf="input.IsExporting" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.ExportingCountries' | translate }}</label>
+                          <div class="col-sm-3 input-group" *ngIf="input.IsExporting">
+                            <mat-select     [disabled]="add_edit_delete_show"  name="ExportingCountries" placeholder="ExportingCountries"   class="form-control" [(ngModel)]="exportingcountriesmodel" multiple> 
+                            <mat-option *ngFor="let item of LExportingCountries" [value]="item.Code"> 
+                              <span *ngIf="commonService.defaultLanguage == 'en'">{{item.Value_en}} </span>
+                              <span *ngIf="commonService.defaultLanguage == 'ar'">{{item.Value_ar}} </span>
+                            </mat-option> 
+                            </mat-select>
+                             
+                          </div>
+                       </div>
+                       <div class="form-group row"  *ngIf="input.IsExporting">
+                          <label for="ExportingPercentage"  class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.ExportingPercentage' | translate }}</label>
+                          <div class="col-sm-3 input-group"> 
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.ExportingPercentage" type="text" required
+                             class="form-control" name="ExportingPercentage" placeholder=" ">
+                          </div>
+                          <label for="ExportingAmount" class="col-sm-2 col-form-label" style="text-align: left"><span
+                             class="required-pf">* </span>{{ 'ModonLandForm.ExportingAmount' | translate }}</label>
+                          <div class="col-sm-3 input-group"> 
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.ExportingAmount" type="text" required
+                             class="form-control" name="ExportingAmount" placeholder=" ">
+                          </div>
+                       </div>
+                       
+                    </form>
+                    <mat-action-row *ngIf="allPanelsExpanded === false" style="justify-content: center;">
+                      <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                          style="margin-right: 1%; margin-left: 1%; cursor: pointer;"
+                          class="btnCnl btn btn-danger" (click)="prevPanelStep(panelsVisible[1].panel);">{{
+                          'COMMON.Previous' |
+                          translate }}</button>
+                      <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                          style="cursor: pointer;" class="btn btn-success"
+                          (click)="modonForm2.form.valid ? nextPanelStep(panelsVisible[1].panelStep, panelsVisible[1].panel) :invalidForm()">{{
+                          'COMMON.Next' |
+                          translate }}</button>
+                  </mat-action-row>
+                    <mat-action-row>
+                    </mat-action-row>
+                 </mat-expansion-panel>
+                 <mat-expansion-panel *ngIf="panelsVisible[2].visible"
+                 [expanded]=" (panelStep === panelsVisible[2].panelStep || allPanelsExpanded === true)"
+                 (opened)="setPanelStep(panelsVisible[2].panelStep, panelsVisible[2].panel)">
+                 <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       {{ 'ModonLandForm.ResourcesAndAreas' | translate }}
+                    </mat-panel-title>
+                 </mat-expansion-panel-header>
+                 <nb-card-body>
+                    <form >
+                       <div class="form-group row">
+                          <label for="TotalTechnicians" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.TechnicianNumber' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.TechnicianNumber" type="number"
+                             class="form-control" name="TechnicianNumber" placeholder="{{ 'ModonLandForm.TechnicianNumber' | translate }} " >
+                          </div>
+                          <label for="AdministratorsNumber" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.AdministratorsNumber' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.AdministratorsNumber" type="number"
+                             class="form-control" name="AdministratorsNumber" placeholder="{{ 'ModonLandForm.AdministratorsNumber' | translate }} " >
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="EngineersNumbers" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.EngineersNumbers' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.EngineersNumbers" type="number"
+                             class="form-control" name="EngineersNumbers" placeholder="{{ 'ModonLandForm.EngineersNumbers' | translate }} " >
+                          </div>
+                          <label for="TotalHandMen" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.OperatorsNumber' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.OperatorsNumber" type="number"
+                             class="form-control" name="OperatorsNumber" placeholder="{{ 'ModonLandForm.OperatorsNumber' | translate }} " >
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="SaudiAdministratorsNumber" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.SaudiAdministratorsNumber' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.SaudiAdministratorsNumber" type="text"
+                             class="form-control" name="SaudiAdministratorsNumber" placeholder=" {{ 'ModonLandForm.SaudiAdministratorsNumber' | translate }} " >
+                          </div>
+                          <label for="SaudiTechnicians" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.SaudiEngineersNumbers' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.SaudiEngineersNumbers" type="number"
+                             class="form-control" name="SaudiEngineersNumbers" placeholder=" " >
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="SaudiManagments" class="col-sm-2 col-form-label"
+                             style="text-align: left">
+                          {{ 'ModonLandForm.SaudiOperatorsNumber' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.SaudiOperatorsNumber" type="number"
+                             class="form-control" name="SaudiOperatorsNumber" placeholder="SaudiOperatorsNumber" >
+                          </div>
+                          <label for="SaudiEngineers" class="col-sm-2 col-form-label"
+                             style="text-align: left">
+                          {{ 'ModonLandForm.SaudiTechnicianNumber' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.SaudiTechnicianNumber" type="number"
+                             class="form-control" name="SaudiTechnicianNumber" placeholder="{{ 'ModonLandForm.SaudiTechnicianNumber' | translate }}" >
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="RequestedAreaWithoutSetbacks" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.RequestedAreaWithoutSetbacks' | translate }}
+                          </label> 
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.RequestedAreaWithoutSetbacks" type="number"
+                             class="form-control" name="RequestedAreaWithoutSetbacks" placeholder="{{ 'ModonLandForm.RequestedAreaWithoutSetbacks' | translate }}" >
+                          </div>
+                          <label for="RequestedAreaWithSetbacks" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.RequestedAreaWithSetbacks' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.RequestedAreaWithSetbacks" type="text"
+                             class="form-control" name="RequestedAreaWithSetbacks" placeholder="{{ 'ModonLandForm.RequestedAreaWithSetbacks' | translate }}" >
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="RequestedSetbacksArea" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.RequestedSetbacksArea' | translate }}
+                          </label> 
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.RequestedSetbacksArea" type="number"
+                             class="form-control" name="RequestedSetbacksArea" placeholder="{{ 'ModonLandForm.RequestedSetbacksArea' | translate }}" >
+                          </div>
+                          <label for="WarehouseArea" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.WarehouseArea' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.WarehouseArea" type="text"
+                             class="form-control" name="WarehouseArea" placeholder="{{ 'ModonLandForm.WarehouseArea' | translate }}" >
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="ProductionArea" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.ProductionArea' | translate }}
+                          </label> 
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.ProductionArea" type="number"
+                             class="form-control" name="ProductionArea" placeholder="{{ 'ModonLandForm.ProductionArea' | translate }}" >
+                          </div>
+                          <label for="ServicesArea" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.ServicesArea' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.ServicesArea" type="text"
+                             class="form-control" name="ServicesArea" placeholder="{{ 'ModonLandForm.ServicesArea' | translate }}" >
+                          </div>
+                       </div>
+                    </form>
+                 </nb-card-body>
+                 <mat-action-row *ngIf="allPanelsExpanded === false" style="justify-content: center;">
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="margin-right: 1%; margin-left: 1%; cursor: pointer;"
+                      class="btnCnl btn btn-danger" (click)="prevPanelStep(panelsVisible[1].panel);">{{
+                      'COMMON.Previous' |
+                      translate }}</button>
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="cursor: pointer;" class="btn btn-success"
+                      (click)="nextPanelStep(panelsVisible[1].panelStep, panelsVisible[1].panel);">{{
+                      'COMMON.Next' |
+                      translate }}</button>
+              </mat-action-row>
+                 </mat-expansion-panel>
+                 <mat-expansion-panel  *ngIf="panelsVisible[3].visible"
+                 [expanded]=" (panelStep === panelsVisible[3].panelStep || allPanelsExpanded === true)"
+                 (opened)="setPanelStep(panelsVisible[3].panelStep, panelsVisible[3].panel)">
+                 <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       {{ 'ModonLandForm.UsageModel' | translate }}
+                    </mat-panel-title>
+                 </mat-expansion-panel-header>
+                 <nb-card-body>
+                    <form ngNativeValidate #modonForm6="ngForm">
+                       <div class="form-group row">
+                          <label for="ElectricalLoadsWatt" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.ElectricalLoadsWatt' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.ElectricalLoadsWatt" type="number"
+                             class="form-control" name="ElectricalLoadsWatt" placeholder="{{ 'ModonLandForm.ElectricalLoadsWatt' | translate }} " >
+                          </div>
+                          <label for="NeededGas" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.NeededGas' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.NeededGas" type="number"
+                             class="form-control" name="NeededGas" placeholder="{{ 'ModonLandForm.NeededGas' | translate }} " >
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="NeededIndustrialWater" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.NeededIndustrialWater' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.NeededIndustrialWater" type="number"
+                             class="form-control" name="NeededIndustrialWater" placeholder="{{ 'ModonLandForm.NeededIndustrialWater' | translate }} " >
+                          </div>
+                          <label for="NeededPureWater" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.NeededPureWater' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.NeededPureWater" type="number"
+                             class="form-control" name="NeededPureWater" placeholder="{{ 'ModonLandForm.NeededPureWater' | translate }} " >
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                          <label for="NeededSewage" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.NeededSewage' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show" [(ngModel)]="input.NeededSewage" type="text"
+                             class="form-control" name="NeededSewage" placeholder=" {{ 'ModonLandForm.NeededSewage' | translate }} " >
+                          </div>
+                       </div>
+                    </form>
+                 </nb-card-body>
+                 <mat-action-row *ngIf="allPanelsExpanded === false" style="justify-content: center;">
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="margin-right: 1%; margin-left: 1%; cursor: pointer;"
+                      class="btnCnl btn btn-danger" (click)="prevPanelStep(panelsVisible[1].panel);">{{
+                      'COMMON.Previous' |
+                      translate }}</button>
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="cursor: pointer;" class="btn btn-success"
+                      (click)="nextPanelStep(panelsVisible[1].panelStep, panelsVisible[1].panel);">{{
+                      'COMMON.Next' |
+                      translate }}</button>
+              </mat-action-row>
+                 </mat-expansion-panel>
+                 <mat-expansion-panel *ngIf="panelsVisible[4].visible"
+                 [expanded]=" (panelStep === panelsVisible[4].panelStep || allPanelsExpanded === true)"
+                 (opened)="setPanelStep(panelsVisible[4].panelStep, panelsVisible[4].panel)">
+                 <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       {{ 'ModonLandForm.Investment' | translate }}
+                    </mat-panel-title>
+                 </mat-expansion-panel-header>
+                 <nb-card-body>
+                    <form ngNativeValidate #modonForm3="ngForm">
+                       <div class="form-group row">
+                          <label for="HavePrevProjects" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.HavePrevProjects' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                           <select [disabled]="add_edit_delete_show" [(ngModel)]="input.HavePrevProjects" 
+                           class="form-control" name="HavePrevProjects"
+                           placeholder="   ">
+                           <option  [ngValue]="true"> {{ 'TECHNICAL_INFORMATION.Yes' | translate }}   </option>
+                           <option  [ngValue]="false"> {{ 'TECHNICAL_INFORMATION.No' | translate }}   </option>
+                           </select>
+                              </div>
+                          <label for="RequestedAreaNumber" class="col-sm-2 col-form-label" style="text-align: left">
+                            <span   class="required-pf">* </span>    {{ 'ModonLandForm.RequestedAreaNumber' | translate }}
+                          
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.RequestedAreaNumber" type="number"
+                             class="form-control" name="RequestedAreaNumber" placeholder="{{ 'ModonLandForm.RequestedAreaNumber' | translate }} " required>
+                          </div>
+                       </div>
+                       <div class="form-group row">
+                        <label for="IsImporting" class="col-sm-2 col-form-label" style="text-align: left">
+                            {{ 'ModonLandForm.IsImporting' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group"> 
+                             <select [disabled]="add_edit_delete_show" [(ngModel)]="input.IsImporting" 
+                             class="form-control" name="IsImporting"
+                             placeholder="   ">
+                             <option  [ngValue]="true"> {{ 'TECHNICAL_INFORMATION.Yes' | translate }}   </option>
+                             <option  [ngValue]="false"> {{ 'TECHNICAL_INFORMATION.No' | translate }}   </option>
+                             </select>
+                          </div> 
+                         <label for="YearlyStoringAmount" class="col-sm-2 col-form-label" style="text-align: left">
+                          {{ 'ModonLandForm.YearlyStoringAmount' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.YearlyStoringAmount" type="number"
+                             class="form-control" name="YearlyStoringAmount" placeholder="{{ 'ModonLandForm.YearlyStoringAmount' | translate }} " >
+                          </div>
+                        
+                       </div>
+                       <div class="form-group row">
+                          <label for="IsForeignInvestor" class="col-sm-2 col-form-label" style="text-align: left">
+                           {{ 'ModonLandForm.IsForeignInvestor' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group"> 
+                             <select [disabled]="add_edit_delete_show" [(ngModel)]="input.IsForeignInvestor" 
+                             class="form-control" name="IsForeignInvestor"
+                             placeholder="   ">
+                             <option  [ngValue]="true"> {{ 'TECHNICAL_INFORMATION.Yes' | translate }}   </option>
+                             <option  [ngValue]="false"> {{ 'TECHNICAL_INFORMATION.No' | translate }}   </option>
+                             </select>
+                          </div>
+                          <label for="NumberOfDailyShipments" class="col-sm-2 col-form-label" style="text-align: left">
+                            {{ 'ModonLandForm.NumberOfDailyShipments' | translate }}
+                            </label>
+                            <div class="col-sm-3 input-group">
+                               <input [disabled]="add_edit_delete_show"  [(ngModel)]="input.NumberOfDailyShipments" type="text"
+                               class="form-control" name="NumberOfDailyShipments" placeholder=" {{ 'ModonLandForm.NumberOfDailyShipments' | translate }} " >
+                            </div>
+                       </div>
+                       <div class="form-group row">
+                     
+                        <label for="ImportInvestmentAmount" class="col-sm-2 col-form-label" style="text-align: left">
+                          <span   class="required-pf">* </span>  {{ 'ModonLandForm.ImportInvestmentAmount' | translate }}
+                          </label>
+                          <div class="col-sm-3 input-group">
+                             <input [disabled]="add_edit_delete_show" required [(ngModel)]="input.ImportInvestmentAmount" type="text"
+                             class="form-control" name="ImportInvestmentAmount" placeholder=" {{ 'ModonLandForm.ImportInvestmentAmount' | translate }} " required>
+                          </div>
+                     </div>
+                    </form>
+                    <div style="text-align: center;" *ngIf="!add_edit_delete_show">
+                      <button type="button"
+                         style="margin-bottom: 10px; cursor: pointer;" class="more"
+                         (click)="onAdd('importing')">{{ 'ModonLandForm.AddImportingDetails' |
+                      translate }}</button>
+                   </div>
+                   <ng2-smart-table  
+                   [settings]="settings_importingdetails_en" [source]="importing_details_source"
+                   (edit)="onEdit($event, 'importing')"
+                   (delete)="onDelete(delete_cancel_modal, $event, 'importing')"
+                   (userRowSelect)="onView($event, 'importing')">
+                   </ng2-smart-table>
+                 </nb-card-body>
+                 <mat-action-row *ngIf="allPanelsExpanded === false" style="justify-content: center;">
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="margin-right: 1%; margin-left: 1%; cursor: pointer;"
+                      class="btnCnl btn btn-danger" (click)="prevPanelStep(panelsVisible[1].panel);">{{
+                      'COMMON.Previous' |
+                      translate }}</button>
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="cursor: pointer;" class="btn btn-success"
+                      (click)="modonForm3.form.valid ? nextPanelStep(panelsVisible[1].panelStep, panelsVisible[1].panel) :invalidForm()">{{
+                      'COMMON.Next' |
+                      translate }}</button>
+              </mat-action-row>
+                 </mat-expansion-panel>
+                 
+                 <mat-expansion-panel *ngIf="panelsVisible[5].visible"
+                 [expanded]=" (panelStep === panelsVisible[5].panelStep || allPanelsExpanded === true)"
+                 (opened)="setPanelStep(panelsVisible[5].panelStep, panelsVisible[5].panel)">
+                 <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       {{ 'ModonLandForm.ListOFEquipmentsDetails' | translate }}
+                    </mat-panel-title>
+                 </mat-expansion-panel-header>
+                 <nb-card-body>
+                    <div style="text-align: center;" *ngIf="!add_edit_delete_show">
+                       <button type="button"
+                          style="margin-bottom: 10px; cursor: pointer;" class="more"
+                          (click)="onAdd('equipment')">{{ 'ModonLandForm.AddEquipmentDetails' |
+                       translate }}</button>
+                    </div>
+                    <ng2-smart-table  
+                    [settings]="settings_equipmentdetails_en" [source]="equipment_details_source"
+                    (edit)="onEdit($event, 'equipment')"
+                    (delete)="onDelete(delete_cancel_modal, $event, 'equipment')"
+                    (userRowSelect)="onView($event, 'equipment')">
+                    </ng2-smart-table>
+                 </nb-card-body>
+                 <mat-action-row *ngIf="allPanelsExpanded === false" style="justify-content: center;">
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="margin-right: 1%; margin-left: 1%; cursor: pointer;"
+                      class="btnCnl btn btn-danger" (click)="prevPanelStep(panelsVisible[1].panel);">{{
+                      'COMMON.Previous' |
+                      translate }}</button>
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="cursor: pointer;" class="btn btn-success"
+                      (click)="nextPanelStep(panelsVisible[1].panelStep, panelsVisible[1].panel);">{{
+                      'COMMON.Next' |
+                      translate }}</button>
+              </mat-action-row>
+                 </mat-expansion-panel>
+                 <mat-expansion-panel *ngIf="panelsVisible[6].visible"
+                 [expanded]=" (panelStep === panelsVisible[6].panelStep || allPanelsExpanded === true)"
+                 (opened)="setPanelStep(panelsVisible[6].panelStep, panelsVisible[6].panel)">
+                 <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       {{ 'ModonLandForm.ListOfProductDetails' | translate }}
+                    </mat-panel-title>
+                 </mat-expansion-panel-header>
+                 <nb-card-body>
+
+                    <div style="text-align: center;" *ngIf="!add_edit_delete_show">
+                       <button type="button"
+                          style="margin-bottom: 10px; cursor: pointer;" class="more"
+                          (click)="onAdd('productsdetails')">{{ 'ModonLandForm.AddProductsDetails' |
+                       translate }}</button>
+                    </div>
+                 
+                    <ng2-smart-table  
+                    [settings]="settings_productdetails_en" [source]="product_details_source"
+                    (edit)="onEdit($event, 'productsdetails')"
+                    (delete)="onDelete(delete_cancel_modal, $event, 'productsdetails')"
+                    (userRowSelect)="onView($event, 'productsdetails')">
+                    </ng2-smart-table>
+                 </nb-card-body>
+                 <mat-action-row *ngIf="allPanelsExpanded === false" style="justify-content: center;">
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="margin-right: 1%; margin-left: 1%; cursor: pointer;"
+                      class="btnCnl btn btn-danger" (click)="prevPanelStep(panelsVisible[1].panel);">{{
+                      'COMMON.Previous' |
+                      translate }}</button>
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="cursor: pointer;" class="btn btn-success"
+                      (click)="nextPanelStep(panelsVisible[1].panelStep, panelsVisible[1].panel);">{{
+                      'COMMON.Next' |
+                      translate }}</button>
+              </mat-action-row>
+                 </mat-expansion-panel>
+                 <mat-expansion-panel *ngIf="panelsVisible[7].visible"
+                 [expanded]=" (panelStep === panelsVisible[7].panelStep || allPanelsExpanded === true)"
+                 (opened)="setPanelStep(panelsVisible[7].panelStep, panelsVisible[7].panel)">
+                 <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       {{ 'ModonLandForm.ListOfRawMaterials' | translate }}
+                    </mat-panel-title>
+                 </mat-expansion-panel-header>
+                 <nb-card-body>
+                    <div style="text-align: center;" *ngIf="!add_edit_delete_show">
+                       <button type="button"
+                          style="margin-bottom: 10px; cursor: pointer;" class="more"
+                          (click)="onAdd('rawmaterials')">{{ 'ModonLandForm.AddRawMaterials' |
+                       translate }}</button>
+                    </div>
+                    <ng2-smart-table  
+                    [settings]="settings_rawmaterialdetails_en" [source]="rawmaterial_details_source"
+                    (edit)="onEdit($event, 'rawmaterials')"
+                    (delete)="onDelete(delete_cancel_modal, $event, 'rawmaterials')"
+                    (userRowSelect)="onView($event, 'rawmaterials')">
+                    </ng2-smart-table>
+                 </nb-card-body>
+                 <mat-action-row *ngIf="allPanelsExpanded === false" style="justify-content: center;">
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="margin-right: 1%; margin-left: 1%; cursor: pointer;"
+                      class="btnCnl btn btn-danger" (click)="prevPanelStep(panelsVisible[1].panel);">{{
+                      'COMMON.Previous' |
+                      translate }}</button>
+                      <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="cursor: pointer;" class="btn btn-success"
+                      (click)="nextPanelStep(panelsVisible[1].panelStep, panelsVisible[1].panel);">{{
+                      'COMMON.Next' |
+                      translate }}</button>
+              </mat-action-row>
+                 </mat-expansion-panel>
+                 <mat-expansion-panel *ngIf="panelsVisible[8].visible"
+                 [expanded]=" (panelStep === panelsVisible[8].panelStep || allPanelsExpanded === true)"
+                 (opened)="setPanelStep(panelsVisible[8].panelStep, panelsVisible[8].panel)">
+                 <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       {{ 'ModonLandForm.ContactDetails' | translate }}
+                    </mat-panel-title>
+                 </mat-expansion-panel-header>
+                 <nb-card-body>
+                    <div style="text-align: center;" *ngIf="!add_edit_delete_show">
+                       <button type="button"
+                          style="margin-bottom: 10px; cursor: pointer;" class="more"
+                          (click)="onAdd('contactdetails')">{{ 'ModonLandForm.AddContactDetails' |
+                       translate }}</button>
+                    </div>
+                    <ng2-smart-table  
+                    [settings]="settings_contactdetails_en" [source]="contact_details_source"
+                    (edit)="onEdit($event, 'contactdetails')"
+                    (delete)="onDelete(delete_cancel_modal, $event, 'contactdetails')"
+                    (userRowSelect)="onView($event, 'contactdetails')">
+                    </ng2-smart-table>
+                 </nb-card-body>
+                 <mat-action-row *ngIf="allPanelsExpanded === false" style="justify-content: center;">
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="margin-right: 1%; margin-left: 1%; cursor: pointer;"
+                      class="btnCnl btn btn-danger" (click)="prevPanelStep(panelsVisible[1].panel);">{{
+                      'COMMON.Previous' |
+                      translate }}</button>
+                      <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="cursor: pointer;" class="btn btn-success"
+                      (click)="nextPanelStep(panelsVisible[1].panelStep, panelsVisible[1].panel);">{{
+                      'COMMON.Next' |
+                      translate }}</button>
+              </mat-action-row>
+                 </mat-expansion-panel>
+                 <mat-expansion-panel *ngIf="panelsVisible[9].visible"
+                 [expanded]=" (panelStep === panelsVisible[9].panelStep || allPanelsExpanded === true)"
+                 (opened)="setPanelStep(panelsVisible[9].panelStep, panelsVisible[9].panel)">
+                 <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       {{ 'ModonLandForm.Documents' | translate }}
+                    </mat-panel-title>
+                 </mat-expansion-panel-header>
+                 <nb-card-body>
+                    <div style="text-align: center;" *ngIf="!add_edit_delete_show">
+                       <button type="button"
+                          style="margin-bottom: 10px; cursor: pointer;" class="more"
+                          (click)="onAdd('documents')">{{ 'ModonLandForm.AddDocuments' |         translate }}</button>
+                    </div>
+                    <h1 style="color:red">{{ 'COMMON.DocTypesName' |
+                     translate }}</h1>
+                    <ng2-smart-table  
+                    [settings]="settings_documentdetails_en" [source]="document_details_source"
+                    (delete)="onDelete(delete_cancel_modal, $event, 'documents')">
+                    </ng2-smart-table>
+                 </nb-card-body>
+                 <mat-action-row *ngIf="allPanelsExpanded === false" style="justify-content: center;">
+                  <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                      style="margin-right: 1%; margin-left: 1%; cursor: pointer;"
+                      class="btnCnl btn btn-danger" (click)="prevPanelStep(panelsVisible[1].panel);">{{
+                      'COMMON.Previous' |
+                      translate }}</button>
+                  
+              </mat-action-row>
+                 </mat-expansion-panel>
+                 <div style="margin-top: 20px;">
+                  <input *ngIf="!add_edit_delete_show" type="submit" style="cursor: pointer;" class="more" value="{{
+                     'COMMON.Save' | translate }} "
+                  (click)="modonForm.form.valid? onSave() :invalidForm()">
+                  <!-- <input  type="submit" style="cursor: pointer;"  *ngIf="!modonForm5.form.valid" class="more"   value="حفظ "   > -->
+               </div>
+              </mat-accordion>
+              <!-- 
+                 <div *ngIf="add_edit_delete_show" style="margin-top: 20px;">
+                 
+                     <input type="submit" style="cursor: pointer;" class="more" (click)="onSave();" value="حفظ " >
+                 
+                 </div> -->
+               
+           </nb-card-body>
+        </nb-card>
+     </nb-card-body>
+    </form>
+  </nb-card>
+  
+  <ng-template #delete_cancel_modal let-modal>
+
+    <div class="modal-header">
+
+        <span>{{deleteCancelModalReference.action}} {{deleteCancelModalReference.table_name_display}}</span>
+
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;"
+            class="close" aria-label="Close" (click)="onCloseDeleteCancelModal()">
+            <span aria-hidden="true" class="ion-close-round"></span>
+        </button>
+
+    </div>
+
+    <div class="modal-body">
+        <h6>{{deleteCancelModalReference.error}}</h6>
+    </div>
+
+    <div class="modal-footer">
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" type="button" class="more"
+            (click)="onCloseDeleteCancelModal()">{{
+            "COMMON.Cancel" | translate }}</button>
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" type="button" class="more"
+            (click)="onDeleteCancelConfirm()">{{
+            "COMMON.Yes" | translate }}</button>
+    </div>
+
+</ng-template>
+
+</div>

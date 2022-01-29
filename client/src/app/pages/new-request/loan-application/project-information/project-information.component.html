@@ -1,0 +1,1214 @@
+
+    
+   
+
+<div class="col-md-12">
+
+      <!--Start bread crumbs-->
+      <div class="container bread_crumbs">
+            <div class="row">
+              <div class="col">
+                <a href="#"><span>{{ "DASHBOARD.Home" | translate}}</span></a>
+                <span><img src="assets/images/arrow-l.png" alt="img"></span>
+                <span>{{ "DASHBOARD.ApplicationDetails" | translate}}</span>
+              </div>
+            </div>
+          </div>
+          <!--End bread crumbs-->
+          
+          <!--Start Title-->
+          <div class="container-fulid margwid">
+            <div class="row title_01">
+                <div class="col">
+                <img src="assets/images/pen.png" alt="img">
+                {{ "DASHBOARD.ApplicationDetails" | translate}}
+                </div>
+            </div>
+          </div>  
+          <!--End Title-->  
+
+
+
+    <nb-card accent="success" style="border-top-color:#fff !important;">
+
+        <!-- <nb-card-header>Create Loan Application</nb-card-header> -->
+
+        <nb-card-body>
+
+                <div class="col-xxxl-12 col-xxl-12 col-md-12" style="text-align: center; margin-bottom: 20px;">
+
+                        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2 wiz-select" 
+                          
+                           
+                            (click)="onClickLoanApplicationTab(0, delete_cancel_modal)">
+                            <div
+                                style="padding-top: 20px; text-align: center; margin-bottom: 10px; ">
+                                {{ 'COMMON.ProjectInformation' | translate }}
+                            </div>
+                            <div style="width: 80%;
+                                        margin: 0 auto;
+                                        margin-bottom: 10px;">
+                                <nb-progress-bar style="color: white; font-family: DroidKufi; font-size: 1rem; font-weight: 600;"
+                                    [value]="GenInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                            </div>
+                            <!-- <div style="padding-bottom: 20px; text-align: center;">
+                                <span style="color: white; font-size: 1rem; font-weight: 600;" aria-hidden="true"
+                                    class="ion-information"></span>
+                            </div> -->
+                        </div>
+        
+                        <div id="tourStep1" *ngIf="loanTypeValues.selectedLoanTypeOperation != 'hide_mkt'"
+                            class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" 
+                          
+                           
+                            (click)="onClickLoanApplicationTab(1, delete_cancel_modal)">
+                            <div
+                                style="padding-top: 20px; text-align: center; margin-bottom: 10px; ">
+                                {{ 'COMMON.MarketingInformation' | translate }}
+                            </div>
+                            <div style="width: 80%;
+                                        margin: 0 auto;
+                                        margin-bottom: 10px;">
+                                <nb-progress-bar style="color: white; font-family: DroidKufi; font-size: 1rem; font-weight: 400;"
+                                    [value]="MarkInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                            </div>
+                            <!-- <div style="padding-bottom: 20px; text-align: center;">
+                                <span style="color: white; font-size: 1rem; font-weight: 400;" aria-hidden="true"
+                                    class="ion-arrow-expand"></span>
+                            </div> -->
+                        </div>
+        
+                        <div   class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" 
+                          
+                           
+                            (click)="onClickLoanApplicationTab(2, delete_cancel_modal)">
+                            <div
+                                style="padding-top: 20px; text-align: center; margin-bottom: 10px; ">
+                                {{ 'COMMON.TechnicalInformation' | translate }}
+                            </div>
+                            <div style="width: 80%;
+                                        margin: 0 auto;
+                                        margin-bottom: 10px;">
+                                <nb-progress-bar style="color: white; font-family: DroidKufi; font-size: 1rem; font-weight: 400;"
+                                    [value]="TechInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                            </div>
+                            <!-- <div style="padding-bottom: 20px; text-align: center;">
+                                <span style="color: white; font-size: 1rem; font-weight: 400;" aria-hidden="true"
+                                    class="ion-clipboard"></span>
+                            </div> -->
+                        </div>
+        
+                        <div id="tourStep3" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" 
+                          
+                           
+                            (click)="onClickLoanApplicationTab(3, delete_cancel_modal)">
+                            <div
+                                style="padding-top: 20px; text-align: center; margin-bottom: 10px; ">
+                                {{ 'COMMON.FinancialInformation' | translate }}
+                            </div>
+                            <div style="width: 80%;
+                                        margin: 0 auto;
+                                        margin-bottom: 10px;">
+                                <nb-progress-bar style="color: white; font-family: DroidKufi; font-size: 1rem; font-weight: 400;"
+                                    [value]="FinInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                            </div>
+                            <!-- <div style="padding-bottom: 20px; text-align: center;">
+                                <span style="color: white; font-size: 1rem; font-weight: 400;" aria-hidden="true"
+                                    class="ion-filing"></span>
+                            </div> -->
+                        </div>
+                        <div *ngIf="serviceId==9 || serviceId==10 || serviceId==13 || serviceId==14" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"  (click)="onClickLoanApplicationTab(5)">
+                                <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                                    {{ "DASHBOARD.LandRequirments" | translate}}
+                                </div>
+                                <div style="width: 80%;
+                                            margin: 0 auto;
+                                            margin-bottom: 10px;">
+                                    <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                                </div>
+                                <!-- <div style="padding-bottom: 20px; text-align: center;">
+                                    <span aria-hidden="true" class="nb-compose"></span>
+                                </div> -->
+                            </div>
+        
+                            <div  *ngIf="serviceId==9 || serviceId==10 || serviceId==13|| serviceId==14" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"  (click)="onClickLoanApplicationTab(6)">
+                                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                                        {{ "DASHBOARD.Survey" | translate}}
+                                    </div>
+                                    <div style="width: 80%;
+                                                margin: 0 auto;
+                                                margin-bottom: 10px;">
+                                        <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                                    </div>
+                                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                                        <span aria-hidden="true" class="nb-compose"></span>
+                                    </div> -->
+                                </div>
+                                <div *ngIf="serviceId==81" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"  (click)="onClickLoanApplicationTab(8)">
+                                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                                      {{ "COMMON.FactoryData" | translate}}  
+                                    </div>
+                                    <div style="width: 80%;
+                                                margin: 0 auto;
+                                                margin-bottom: 10px;">
+                                        <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                                    </div>
+                                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                                        <span aria-hidden="true" class="nb-compose"></span>
+                                    </div> -->
+                                </div>
+            
+                                <div *ngIf="serviceId== 7||serviceId== 8" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+                                (click)="onClickLoanApplicationTab(5)">
+                                <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                                    {{ "DASHBOARD.LandRequirments" | translate}}
+                                </div>
+                                <div style="width: 80%;
+                                              margin: 0 auto;
+                                              margin-bottom: 10px;">
+                                  <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                      
+                                </div>
+                      
+                              </div>
+                              
+                              <div *ngIf="serviceId== 12" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+                              (click)="onClickLoanApplicationTab(5)">
+                              <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                                  {{ "DASHBOARD.LandRequirments" | translate}}
+                              </div>
+                              <div style="width: 80%;
+                                            margin: 0 auto;
+                                            margin-bottom: 10px;">
+                                <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    
+                              </div>
+                    
+                            </div>
+                              <div *ngIf="serviceId== 70" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                                (click)="onClickLoanApplicationTab(6)">
+                                <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                                 
+                                 {{ "MARKETING_INFORMATION.TargetMarket" | translate}}
+                                </div>
+                                <div style="width: 80%;
+                                          margin: 0 auto;
+                                          margin-bottom: 10px;">
+                                  <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                                </div>
+                              </div>
+                        <div id="tourStep4" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" 
+                          
+                           
+                            (click)="onClickLoanApplicationTab(4, delete_cancel_modal)">
+                            <div
+                                style="padding-top: 20px; text-align: center; margin-bottom: 10px; ">
+                                {{ 'COMMON.Checklist' | translate }}
+                            </div>
+                            <div style="width: 80%;
+                                        margin: 0 auto;
+                                        margin-bottom: 10px;">
+                                <nb-progress-bar style="color: white; font-family: DroidKufi; font-size: 1rem; font-weight: 400;"
+                                    [value]="ChecklistPer" status="warning" [displayValue]="true">
+                                </nb-progress-bar>
+                            </div>
+                            <!-- <div style="padding-bottom: 20px; text-align: center;">
+                                <span style="color: white; font-size: 1rem; font-weight: 400;" aria-hidden="true"
+                                    class="ion-flag"></span>
+                            </div> -->
+                        </div>
+        
+                    </div>
+        
+                    <nb-card accent="success">
+        
+                        <nb-card-header  style="background-color: #f9f9f9 !important; box-shadow:0 !important;">{{ 'COMMON.ProjectInformation' | translate }}</nb-card-header>
+        
+                        <nb-card-body style="text-align: center;">
+        
+                            <div style="margin-bottom: 20px; text-align: right;">
+        
+                                <button type="button" style="cursor: pointer;"
+                                    *ngIf="allPanelsExpanded === false" class="more" (click)="expandAllPanels(0);">{{
+                                    'COMMON.ExpandAllPanels' | translate }}</button>
+        
+                                <button type="button" style="cursor: pointer;"
+                                    *ngIf="allPanelsExpanded === true" class="more"
+                                    (click)="expandAllPanels(1);">{{ 'COMMON.CollapseAllPanels' | translate }}</button>
+        
+                                <!-- <span *ngIf="add_edit_delete_show" id="startTour" [ngbTooltip]="StartTour" placement="left"
+                                    style="vertical-align: middle; margin-left: 1%; margin-right: 1%; color: #006e42; cursor: pointer; font-size: 35px; font-weight: 600;"
+                                    class="nb-help" (click)="startTour()"></span> -->
+        
+                            </div>
+        
+                            <mat-accordion multi="true">
+        
+                                <mat-expansion-panel id="tourStep5" [expanded]="panelStep === 1 || allPanelsExpanded === true"
+                                    (opened)="setPanelStep(1)">
+        
+                                    <mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            {{ 'PROJECT_INFORMATION.GeneralInformation' | translate }}
+                                        </mat-panel-title>
+        
+                                        <common-comments *ngIf="comments_show" [comments]="general_information_comments">
+                                        </common-comments>
+        
+                                    </mat-expansion-panel-header>
+        
+                                    <form>
+        
+                                        <div class="col-md-12 form-group row">
+                                            <div class="col-md-6 row">
+                                                <label for="project_name" class="col-md-3 col-form-label"
+                                                    style="text-align: left"><span class="required-pf">* </span>{{ 'PROJECT_INFORMATION.ProjectName' |
+                                                    translate }}</label>
+                                                <!-- <div class="col-sm-3 input-group"> -->
+                                                <input [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)"
+                                                    [ngClass]="{'is-invalid' : project_name_vs}"
+                                                    (change)="project_name_vs = false; startedFilling = 1"
+                                                    [(ngModel)]="inputs.ProjectName" type="text" class="col-md-6 form-control"
+                                                    name="project_name"
+                                                    placeholder="{{ 'PROJECT_INFORMATION.EnterProjectName' | translate }}">
+                                                <!-- </div> -->
+                                            </div>
+                                            <div class="col-md-6 row">
+                                                <label for="legal_entity" class="col-md-3 col-form-label"
+                                                    style="text-align: left"><span class="required-pf">* </span>{{ 'PROJECT_INFORMATION.LegalEntity' |
+                                                    translate }}</label>
+                                                <!-- <div class="col-sm-3 input-group"> -->
+                                                <select *ngIf="legalEntitySelectShow" [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)"
+                                                    [ngClass]="{'is-invalid' : legal_entity_vs}"
+                                                    (change)="legal_entity_vs = false; startedFilling = 1"
+                                                    [(ngModel)]="inputs.GetInfoLegalEntity.LegalEntityDesc" name="legal_entity"
+                                                    class="col-md-6 form-control" style="height: 21px !important;">
+                                                    <option *ngFor="let item of legal_entity_desc_list">{{item}}</option>
+                                                </select>
+        
+                                                <input *ngIf="!legalEntitySelectShow"
+                                                    [(ngModel)]="inputs.GetInfoLegalEntity.LegalEntityDesc" type="text"
+                                                    class="form-control col-md-6 input-group" name="legal_entity" disabled>
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+        
+                                        <div class="col-md-12 form-group row">
+                                            <div class="col-md-6 row">
+                                                <label for="license_end_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left"><span class="required-pf">* </span>{{ 'PROJECT_INFORMATION.FactoryTelephone'
+                                                    |
+                                                    translate }}</label>
+                                                <!-- <div class="col-sm-3 input-group"> -->
+                                                <input [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)"
+                                                    [ngClass]="{'is-invalid' : telephone_number_vs}"
+                                                    (change)="telephone_number_vs = false; startedFilling = 1"
+                                                    [(ngModel)]="inputs.GenInfoFactAddress.Phone" type="number"
+                                                    class="col-md-6 form-control" name="telephone_number"
+                                                    placeholder="{{ 'PROJECT_INFORMATION.EnterFactoryTelephone' | translate }}">
+                                            </div>
+                                            <div class="col-md-6 row">
+                                                <label for="license_start_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left"><span class="required-pf">* </span>{{ 'PROJECT_INFORMATION.FactoryFax' |
+                                                    translate }}</label>
+                                                <!-- <div class="col-sm-3 input-group"> -->
+                                                <input [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)" [ngClass]="{'is-invalid' : fax_no_vs}"
+                                                    (change)="fax_no_vs = false; startedFilling = 1"
+                                                    [(ngModel)]="inputs.GenInfoFactAddress.Fax" type="number"
+                                                    class="col-md-6 form-control" name="fax_no"
+                                                    placeholder="{{ 'PROJECT_INFORMATION.EnterFactoryFax' | translate }}">
+                                            </div>
+        
+                                        </div>
+        
+                                        <div class="col-md-12 form-group row">
+                                            <div class="col-md-6 row">
+                                                <label for="license_end_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left"><span class="required-pf">* </span>{{ 'PROJECT_INFORMATION.FactoryEmailId' |
+                                                    translate }}</label>
+                                                <!-- <div class="col-sm-3 input-group"> -->
+                                                <input [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)"
+                                                    [ngClass]="{'is-invalid' : email_id_vs}"
+                                                    (change)="email_id_vs = false; startedFilling = 1"
+                                                    [(ngModel)]="inputs.GenInfoFactAddress.Mail" type="email"
+                                                    class="col-md-6 input-group form-control" name="email_id"
+                                                    placeholder="{{ 'PROJECT_INFORMATION.EnterFactoryEmailId' | translate }}">
+                                            </div>
+                                            <div class="col-md-6 row">
+                                                <label for="license_end_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left"><span class="required-pf">* </span>{{
+                                                    'PROJECT_INFORMATION.ProjectImplementationStatus' | translate }}</label>
+                                                <!-- <div class="col-sm-3 input-group"> -->
+                                                <select [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)" [ngClass]="{'is-invalid' : type_vs}"
+                                                    (change)="type_vs = false; startedFilling = 1"
+                                                    [(ngModel)]="inputs.GenInfoProjImpStatus.ProjImpStatusDesc" name="type"
+                                                    class="col-md-6 form-control input-group" style="height: 23px !important;">
+                                                    <option *ngFor="let item of project_status_desc_list">{{item}}</option>
+                                                </select>
+                                            </div>
+        
+                                        </div>
+        
+        
+        
+        
+        
+                                        <div class="col-md-12 form-group row">
+                                            <div class="col-md-6 row">
+                                                <label for="license_end_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left">{{
+                                                    'PROJECT_INFORMATION.FactoryLocation' | translate }}</label>
+                                                <!-- <div class="col-md-6 input-group"> -->
+                                                <input [(ngModel)]="inputs.GenInfoFactAddress.City" type="text"
+                                                    class="form-control col-md-6 input-group" name="factory_name"
+                                                    placeholder="{{ 'PROJECT_INFORMATION.EnterFactoryLocation' | translate }}"
+                                                    disabled>
+                                            </div>
+                                            <!-- </div> -->
+        
+                                            <div class="col-md-6 row">
+        
+                                                <label for="license_start_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left">{{
+                                                    'PROJECT_INFORMATION.FactoryAddress' | translate }}</label>
+                                                <!-- <div class="col-md-6 input-group"> -->
+                                                <input
+                                                    [(ngModel)]="inputs.GenInfoFactAddress.City + ' ' + inputs.GenInfoFactAddress.ManageArea + ' ' + inputs.GenInfoFactAddress.PoBox + ' ' + inputs.GenInfoFactAddress.Zip"
+                                                    type="text" class="col-md-6 input-group form-control" name="factory_address"
+                                                    placeholder="{{ 'PROJECT_INFORMATION.EnterFactoryAddress' | translate }}"
+                                                    disabled>
+                                                <!-- </div> -->
+                                            </div>
+        
+                                        </div>
+        
+                                        <div class="col-md-12 form-group row">
+                                            <div class="col-md-6 row">
+                                                <label for="license_start_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left">{{
+                                                    'PROJECT_INFORMATION.CommercialRegistrationNumber' | translate }}</label>
+                                                <!-- <div class="col-md-6 input-group"> -->
+                                                <input [(ngModel)]="inputs.FactoryCr" type="text"
+                                                    class="col-md-6 input-group form-control" name="cr_number"
+                                                    placeholder="{{ 'PROJECT_INFORMATION.EnterCommercialRegistrationNumber' | translate }}"
+                                                    disabled>
+                                                <!-- </div> -->
+                                            </div>
+                                            <div class="col-md-6 row">
+                                                <label for="license_end_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left">{{
+                                                    'PROJECT_INFORMATION.CommercialRegistrationDate' | translate }}</label>
+                                                <!-- <div class="col-md-6 input-group"> -->
+                                                <input nbInput onkeydown="return false;" [(ngModel)]="inputs.CrDate"
+                                                    placeholder="YYYY-MM-DD" type="text"
+                                                    class="col-md-6 input-group form-control" (click)="cr_reg_date.toggle()"
+                                                    name="cr_reg_date" placement="bottom" ngbDatepicker
+                                                    #cr_reg_date="ngbDatepicker" [minDate]="minDate" [maxDate]="maxDate"
+                                                    disabled>
+                                                <!-- <div class="input-group-append">
+                                                    <button class="more ion-calendar" (click)="cr_reg_date.toggle()"
+                                                        type="button" disabled></button>
+                                                </div> -->
+                                                <!-- </div> -->
+                                            </div>
+        
+                                        </div>
+        
+                                        <div class="col-md-12 form-group row">
+                                            <div class="col-md-6 row">
+                                                <label for="license_start_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left">{{
+                                                    'PROJECT_INFORMATION.IndustrialLicenseNumber' | translate }}</label>
+                                                <!-- <div class="col-md-6 input-group"> -->
+                                                <input [(ngModel)]="inputs.FactoryId" type="text"
+                                                    class="col-md-6 input-group form-control" name="il_number"
+                                                    placeholder="{{ 'PROJECT_INFORMATION.EnterIndustrialLicenseNumber' | translate }}"
+                                                    disabled>
+                                                <!-- </div> -->
+                                            </div>
+        
+                                            <div class="col-md-6 row">
+        
+                                                <label for="license_end_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left">{{
+                                                    'PROJECT_INFORMATION.IndustrialLicenseDate' | translate }}</label>
+                                                <!-- <div class="col-md-6 input-group"> -->
+                                                <input nbInput onkeydown="return false;" [(ngModel)]="inputs.IndLicDate"
+                                                    placeholder="YYYY-MM-DD" type="text"
+                                                    class="col-md-6 input-group form-control" (click)="il_date.toggle()"
+                                                    name="il_date" placement="bottom" ngbDatepicker #il_date="ngbDatepicker"
+                                                    [minDate]="minDate" [maxDate]="maxDate" disabled>
+                                                <!-- <div class="input-group-append">
+                                                    <button class="more ion-calendar" (click)="il_date.toggle()"
+                                                        type="button" disabled></button>
+                                                </div> -->
+                                                <!-- </div> -->
+                                            </div>
+        
+                                        </div>
+        
+                                        <div class="col-md-12 form-group row">
+                                            <div class="col-md-6 row">
+                                                <label for="license_end_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left">{{
+                                                    'PROJECT_INFORMATION.PurposeoftheLoan' | translate }}</label>
+                                                <!-- <div class="col-md-6 input-group"> -->
+                                                <input [(ngModel)]="inputs.GenInfoLoanPurpose.LoanPurDesc" type="text"
+                                                    class="col-md-6 input-group form-control" name="purpose_of_loan"
+                                                    placeholder="{{ 'PROJECT_INFORMATION.EnterPurposeoftheLoan' | translate }}"
+                                                    disabled>
+                                            </div>
+                                            <!-- </div> -->
+        
+                                            <div class="col-md-6 row">
+        
+                                                <label for="license_start_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left">{{
+                                                    'PROJECT_INFORMATION.TypeofProject' | translate }}</label>
+                                                <!-- <div class="col-md-6 input-group"> -->
+                                                <input [(ngModel)]="inputs.GenInfoTypeProj.ProjTypeDesc" type="text"
+                                                    class="col-md-6 input-group form-control" name="type_of_project"
+                                                    placeholder="{{ 'PROJECT_INFORMATION.EnterTypeofProject' | translate }}"
+                                                    disabled>
+                                                <!-- </div> -->
+                                            </div>
+        
+                                        </div>
+        
+        
+                                        <div class="col-md-12 form-group row">
+                                            <div class="col-md-6 row">
+                                                <label for="license_end_date" class="col-md-3 col-form-label"
+                                                    style="text-align: left"><span class="required-pf">* </span>{{
+                                                    'PROJECT_INFORMATION.CurrentStatusofCompletion' | translate }}</label>
+                                                <!-- <div class="col-sm-3 input-group"> -->
+                                                    <select [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)"
+                                                    [ngClass]="{'is-invalid' : GenInfoProjCompStatus_vs}"
+                                                    (change)="GenInfoProjCompStatus_vs = false; startedFilling = 1"
+                                                    [(ngModel)]="inputs.GenInfoProjCompStatus.ProjCompStatusDesc"
+                                                    name="GenInfoProjCompStatus" class="col-md-6 form-control"
+                                                    style="height: 23px !important;">
+                                                    <option *ngFor="let item of project_completion_status_desc_list">{{item}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 row"></div>
+                                        </div>
+        
+                                        <div class="form-group row">
+                                            <label for="license_end_date" class="col-sm-12 col-form-label-2"
+                                                style="text-align: left;">
+                                                {{
+                                                'PROJECT_INFORMATION.ExpectedOrActualTrialRunPeriodfromCompleteProjectImplementationtillstartofCommercialProduction'
+                                                | translate }}</label>
+                                        </div>
+        
+        
+                                        <div class="col-md-12 form-group row">
+                                            <div class="col-md-6 row">
+                                                <label for="il_date123" class="col-md-12 col-form-label-2"
+                                                    style="text-align: left"><span class="required-pf">* </span>{{ 'PROJECT_INFORMATION.From' | translate
+                                                    }}</label>
+                                                <div class="col-md-11 row input-group" style="margin-left: 0px;">
+                                                    <input [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)" type="text"
+                                                    [ngClass]="{'is-invalid' : il_date123_vs}" onkeydown="return false;"
+                                                    [(ngModel)]="inputs.TrailRunFrom" class="form-control"
+                                                    #il_date123="bsDatepicker" bsDatepicker placement="bottom"
+                                                    name="il_date123"
+                                                    [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                                                    placeholder="YYYY-MM-DD" style="cursor: pointer;">
+                                                    <div class="input-group-append">
+                                                        <button
+                                                            [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)"
+                                                            class="more ion-calendar"
+                                                            (click)="il_date123.toggle(); il_date123_vs = false; startedFilling = 1"
+                                                            type="button"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <div class="col-md-6 row">
+        
+                                                <label for="il_date124" class="col-md-12 col-form-label-2"
+                                                    style="text-align: left"><span class="required-pf">*
+                                                    </span>{{ 'PROJECT_INFORMATION.To' | translate }}</label>
+                                                <div class="col-md-11 row input-group" style="margin-left: 0px;">
+                                                    <input [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)" type="text"
+                                                        [ngClass]="{'is-invalid' : il_date124_vs}" onkeydown="return false;"
+                                                        [(ngModel)]="inputs.TrailRunTo" class="form-control"
+                                                        #il_date124="bsDatepicker" bsDatepicker placement="bottom"
+                                                        name="il_date124"
+                                                        [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                                                        placeholder="YYYY-MM-DD" style="cursor: pointer;">
+                                                    <div class="input-group-append">
+                                                        <button
+                                                            [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)"
+                                                            class="more ion-calendar"
+                                                            (click)="il_date124.toggle(); il_date124_vs = false; startedFilling = 1"
+                                                            type="button"></button>
+                                                    </div>
+                                                </div>
+        
+                                            </div>
+        
+                                        </div>
+                                        <div class="col-md-12 form-group row">
+        
+                                            <div class="col-md-6 row">
+        
+                                                <label for="est_comm_startup_date" class="col-md-12 col-form-label-2"
+                                                    style="text-align: left"><span class="required-pf">* </span>{{
+                                                    'PROJECT_INFORMATION.EstimatedCommercialStartUpDate' | translate }}</label>
+                                                <div class="col-md-11 input-group row" style="margin-left: 0px;">
+                                                    <input [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)" type="text"
+                                                        [ngClass]="{'is-invalid' : est_comm_startup_date_vs}"
+                                                        onkeydown="return false;" [(ngModel)]="inputs.CrStartDate"
+                                                        class="form-control" #est_comm_startup_date="bsDatepicker" bsDatepicker
+                                                        placement="bottom" name="est_comm_startup_date"
+                                                        [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                                                        placeholder="YYYY-MM-DD" style="cursor: pointer;">
+                                                    <div class="input-group-append">
+                                                        <button
+                                                            [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)"
+                                                            class="more ion-calendar"
+                                                            (click)="est_comm_startup_date.toggle(); est_comm_startup_date_vs = false; startedFilling = 1"
+                                                            type="button"></button>
+                                                    </div>
+                                                </div>
+        
+                                            </div>
+                                            <div class="col-md-6 row">
+                                                <label for="exp_pro_compl_date" class="col-md-12 col-form-label-2"
+                                                    style="text-align: left"><span class="required-pf">* </span>{{
+                                                    'PROJECT_INFORMATION.ExpectedOrActualDateforProjectCompletion' | translate
+                                                    }}</label>
+                                                <div class="col-md-11 input-group row" style="margin-left: 0px;">
+                                                    <input [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)" type="text"
+                                                        [ngClass]="{'is-invalid' : exp_pro_compl_date_vs}"
+                                                        onkeydown="return false;" [(ngModel)]="inputs.ExpCompDate"
+                                                        class="form-control" #exp_pro_compl_date="bsDatepicker" bsDatepicker
+                                                        placement="bottom" name="exp_pro_compl_date"
+                                                        [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                                                        placeholder="YYYY-MM-DD" style="cursor: pointer;">
+                                                    <div class="input-group-append">
+                                                        <button
+                                                            [disabled]="returnDisabledStateBasedOnCommunication(general_information_comments)"
+                                                            class="more ion-calendar"
+                                                            (click)="exp_pro_compl_date.toggle(); exp_pro_compl_date_vs = false; startedFilling = 1"
+                                                            type="button"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                        </div>
+        
+        
+                                    </form>
+        
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+                                        <button type="button"
+                                            style="cursor: pointer;" class="more" (click)="nextPanelStep(1);">{{
+                                            'COMMON.Next' | translate }}</button>
+                                    </mat-action-row>
+        
+                                </mat-expansion-panel>
+        
+                                <mat-expansion-panel id="tourStep6" [expanded]="panelStep === 2 || allPanelsExpanded === true"
+                                    (opened)="setPanelStep(2)">
+        
+                                    <mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            {{ 'PROJECT_INFORMATION.ProjectProfile' | translate }}
+                                        </mat-panel-title>
+        
+                                        <common-comments *ngIf="comments_show" [comments]="project_profile_comments">
+                                        </common-comments>
+        
+                                    </mat-expansion-panel-header>
+        
+                                    <!-- <nb-alert outline="warning">
+                                        <div class="row show-grid">
+                                            <div class="col-md-0">
+        
+                                                <div class="icon" style="padding-left:10px; padding-top:5px">
+                                                    <i class="ion-alert-circled"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <p>Enter a Brief on the Project in about <strong>300 to 500 words</strong> stating the
+                                                    Project's Idea, its Objectives and Rationales</p>
+                                            </div>
+                                        </div>
+                                    </nb-alert> -->
+        
+                                    <div class="input-group">
+                                        <textarea [disabled]="returnDisabledStateBasedOnCommunication(project_profile_comments)"
+                                            [ngClass]="{'is-invalid' : ProjectProfile_vs}"
+                                            (change)="ProjectProfile_vs = false; startedFilling = 1" type="text" rows="5"
+                                            [(ngModel)]="inputs.ProjProfile" name="ProjectProfile"
+                                            placeholder="{{ 'PROJECT_INFORMATION.EnterProjectProfile' | translate }}"
+                                            class="form-control"></textarea>
+                                    </div>
+        
+                                    <div class="input-group" style="margin-top: 20px;">
+        
+                                        <!-- <label for="ProjectDescriptionDocuments" class="col-sm-4 col-form-label" style="text-align: left"><span
+                                                class="required-pf">* </span>Project Description Documents</label> -->
+        
+                                        <label for="ProjectDescriptionDocuments" class="col-sm-4 col-form-label"
+                                            style="text-align: left"><span class="required-pf">* </span>{{
+                                            'PROJECT_INFORMATION.ProjectDescriptionDocumentOrProjectFeasibilityReport' |
+                                            translate }}</label>
+                                        <div class="col-sm-6 input-group">
+                                            <input [disabled]="returnDisabledStateBasedOnCommunication(project_profile_comments)"
+                                                [ngClass]="{'is-invalid' : projectDescriptionDocuments_vs}"
+                                                #projectDescriptionDocuments multiple="multiple" (change)="onFileChange($event)"
+                                                name="projectDescriptionDocuments" id="projectDescriptionDocuments" type="file"
+                                                class="form-control">
+                                        </div>
+        
+                                    </div>
+        
+                                    <div style="margin-top: 20px;">
+        
+                                        <document-list [documents]="projectProfileDocuments"></document-list>
+        
+                                    </div>
+        
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+        
+                                        <button type="button"
+                                            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                            (click)="prevPanelStep(2);">{{ 'COMMON.Previous' | translate
+                                            }}</button>
+                                        <button type="button"
+                                            style="cursor: pointer;" class="more" (click)="nextPanelStep(2);">{{
+                                            'COMMON.Next' | translate }}</button>
+                                    </mat-action-row>
+        
+                                </mat-expansion-panel>
+        
+                                <mat-expansion-panel id="tourStep7" [expanded]="panelStep === 3 || allPanelsExpanded === true"
+                                    (opened)="setPanelStep(3)">
+        
+                                    <mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            {{ 'PROJECT_INFORMATION.ProjectOwnership' | translate }}
+                                        </mat-panel-title>
+        
+                                        <common-comments *ngIf="comments_show" [comments]="project_ownership_comments">
+                                        </common-comments>
+        
+                                    </mat-expansion-panel-header>
+        
+                                    <nb-card-body>
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'" [settings]="settings_en"
+                                            [source]="project_ownership_source"></ng2-smart-table>
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'" [settings]="settings_ar"
+                                            [source]="project_ownership_source"></ng2-smart-table>
+        
+                                    </nb-card-body>
+        
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+                                        <button type="button"
+                                            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                            (click)="prevPanelStep(3);">{{ 'COMMON.Previous' | translate
+                                            }}</button>
+                                        <button type="button"
+                                            style="cursor: pointer;" class="more" (click)="nextPanelStep(3);">{{
+                                            'COMMON.Next' | translate }}</button>
+                                    </mat-action-row>
+        
+                                </mat-expansion-panel>
+        
+                                <mat-expansion-panel id="tourStep8" [expanded]="panelStep === 4 || allPanelsExpanded === true"
+                                    (opened)="setPanelStep(4)">
+        
+                                    <mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            {{ 'PROJECT_INFORMATION.Guarantors' | translate }}
+                                        </mat-panel-title>
+        
+                                        <common-comments *ngIf="comments_show" [comments]="guarantors_comments">
+                                        </common-comments>
+        
+                                    </mat-expansion-panel-header>
+        
+                                    <div style="text-align: center;"  *ngIf="add_edit_delete_show || guarantors_comments.hasComments">
+        
+                                        <button type="button"
+                                            style="margin-bottom: 10px; cursor: pointer; text-align: center;"
+                                            class="more" (click)="onAdd('source_of_finance_cofinancer')">{{
+                                            'PROJECT_INFORMATION.AddGuarantors' | translate }}</button>
+        
+                                    </div>
+        
+                                    <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                        [settings]="source_of_finance_settings_en" [source]="source_of_finance_source"
+                                        (edit)="onEdit($event, 'source_of_finance_cofinancer')"
+                                        (delete)="onDelete(delete_cancel_modal, $event, 'source_of_finance_cofinancer')"
+                                        (userRowSelect)="onView($event, 'source_of_finance_cofinancer')">
+                                    </ng2-smart-table>
+        
+                                    <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                        [settings]="source_of_finance_settings_ar" [source]="source_of_finance_source"
+                                        (edit)="onEdit($event, 'source_of_finance_cofinancer')"
+                                        (delete)="onDelete(delete_cancel_modal, $event, 'source_of_finance_cofinancer')"
+                                        (userRowSelect)="onView($event, 'source_of_finance_cofinancer')">
+                                    </ng2-smart-table>
+        
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+                                        <button type="button"
+                                            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                            (click)="prevPanelStep(4);">{{ 'COMMON.Previous' | translate
+                                            }}</button>
+                                        <button type="button"
+                                            style="cursor: pointer;" class="more" (click)="nextPanelStep(4);">{{
+                                            'COMMON.Next' | translate }}</button>
+                                    </mat-action-row>
+        
+                                </mat-expansion-panel>
+        
+                                <mat-expansion-panel id="tourStep9" [expanded]="panelStep === 5 || allPanelsExpanded === true"
+                                    (opened)="setPanelStep(5)">
+        
+                                    <mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            {{ 'PROJECT_INFORMATION.ListofRealEstatesOwned' | translate }}
+                                        </mat-panel-title>
+        
+                                        <common-comments *ngIf="comments_show" [comments]="real_estates_comments">
+                                        </common-comments>
+        
+                                    </mat-expansion-panel-header>
+        
+                                    <nb-card-body>
+        
+                                        <div style="text-align: center;" *ngIf="add_edit_delete_show || real_estates_comments.hasComments">
+        
+                                            <button type="button"
+                                                style="margin-bottom: 10px; cursor: pointer;" class="more"
+                                                (click)="onAdd('real_est')">{{ 'PROJECT_INFORMATION.AddRealEstatesOwned' |
+                                                translate }}</button>
+        
+                                        </div>
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                            [settings]="settings_real_est_en" [source]="real_estate_source"
+                                            (edit)="onEdit($event, 'real_est')"
+                                            (delete)="onDelete(delete_cancel_modal, $event, 'real_est')"
+                                            (userRowSelect)="onView($event, 'real_est')">
+                                        </ng2-smart-table>
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                            [settings]="settings_real_est_ar" [source]="real_estate_source"
+                                            (edit)="onEdit($event, 'real_est')"
+                                            (delete)="onDelete(delete_cancel_modal, $event, 'real_est')"
+                                            (userRowSelect)="onView($event, 'real_est')">
+                                        </ng2-smart-table>
+        
+                                    </nb-card-body>
+        
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+                                        <button type="button"
+                                            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                            (click)="prevPanelStep(5);">{{ 'COMMON.Previous' | translate
+                                            }}</button>
+                                        <button type="button"
+                                            style="cursor: pointer;" class="more" (click)="nextPanelStep(5);">{{
+                                            'COMMON.Next' | translate }}</button>
+                                    </mat-action-row>
+        
+                                </mat-expansion-panel>
+        
+                                <mat-expansion-panel id="tourStep10" [expanded]="panelStep === 6 || allPanelsExpanded === true"
+                                    (opened)="setPanelStep(6)">
+        
+                                    <mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            {{ 'PROJECT_INFORMATION.ListofCompanies' | translate }}
+                                        </mat-panel-title>
+        
+                                        <common-comments *ngIf="comments_show" [comments]="list_of_companies_comments">
+                                        </common-comments>
+        
+                                    </mat-expansion-panel-header>
+        
+                                    <nb-card-body>
+        
+                                        <div style="text-align: center;" *ngIf="add_edit_delete_show || list_of_companies_comments.hasComments">
+        
+                                            <button type="button"
+                                                style="margin-bottom: 20px; cursor: pointer;" class="more"
+                                                (click)="onAdd('list_comp')">{{ 'PROJECT_INFORMATION.AddCompanies' | translate
+                                                }}</button>
+        
+                                            <nb-alert outline="warning">
+                                                <div class="row show-grid">
+                                                    <div class="col-md-0">
+        
+                                                        <div class="icon" style="padding-left:10px; padding-top:0px">
+                                                            <i class="ion-alert-circled"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-11">
+                                                        <strong>{{ 'PROJECT_INFORMATION.EnterListofCompanies' | translate }}</strong>
+        
+                                                    </div>
+                                                </div>
+                                            </nb-alert>
+        
+                                        </div>
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                            [settings]="settings_companies_en" [source]="list_companies_source"
+                                            (edit)="onEdit($event, 'list_comp')"
+                                            (delete)="onDelete(delete_cancel_modal, $event, 'list_comp')"
+                                            (userRowSelect)="onView($event, 'list_comp')">
+                                        </ng2-smart-table>
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                            [settings]="settings_companies_ar" [source]="list_companies_source"
+                                            (edit)="onEdit($event, 'list_comp')"
+                                            (delete)="onDelete(delete_cancel_modal, $event, 'list_comp')"
+                                            (userRowSelect)="onView($event, 'list_comp')">
+                                        </ng2-smart-table>
+        
+                                    </nb-card-body>
+        
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+                                        <button type="button"
+                                            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                            (click)="prevPanelStep(6);">{{ 'COMMON.Previous' | translate
+                                            }}</button>
+                                        <button type="button"
+                                            style="cursor: pointer;" class="more" (click)="nextPanelStep(6);">{{
+                                            'COMMON.Next' | translate }}</button>
+                                    </mat-action-row>
+        
+                                </mat-expansion-panel>
+        
+                                <mat-expansion-panel id="tourStep11" [expanded]="panelStep === 7 || allPanelsExpanded === true"
+                                    (opened)="setPanelStep(7)">
+        
+                                    <mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            {{ 'PROJECT_INFORMATION.OtherInvestments' | translate }}
+                                        </mat-panel-title>
+        
+                                        <common-comments *ngIf="comments_show" [comments]="other_investments_comments">
+                                        </common-comments>
+        
+                                    </mat-expansion-panel-header>
+        
+                                    <nb-card-body>
+        
+                                        <div style="text-align: center;" *ngIf="add_edit_delete_show || other_investments_comments.hasComments">
+        
+                                            <button type="button"
+                                                style="margin-bottom: 20px; cursor: pointer;" class="more"
+                                                (click)="onAdd('other_inv')">{{ 'PROJECT_INFORMATION.AddOtherInvestments' |
+                                                translate }}</button>
+        
+                                            <nb-alert outline="warning">
+                                                <div class="row show-grid">
+                                                    <div class="col-md-0">
+        
+                                                        <div class="icon" style="padding-left:10px; padding-top:0px">
+                                                            <i class="ion-alert-circled"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-11">
+                                                        <strong>{{ 'PROJECT_INFORMATION.EnterOtherInvestments' | translate }}</strong>
+                                                    </div>
+                                                </div>
+                                            </nb-alert>
+        
+                                        </div>
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                            [settings]="settings_other_inv_en" [source]="other_investments_source"
+                                            (edit)="onEdit($event, 'other_inv')"
+                                            (delete)="onDelete(delete_cancel_modal, $event, 'other_inv')"
+                                            (userRowSelect)="onView($event, 'other_inv')">
+                                        </ng2-smart-table>
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                            [settings]="settings_other_inv_ar" [source]="other_investments_source"
+                                            (edit)="onEdit($event, 'other_inv')"
+                                            (delete)="onDelete(delete_cancel_modal, $event, 'other_inv')"
+                                            (userRowSelect)="onView($event, 'other_inv')">
+                                        </ng2-smart-table>
+        
+                                    </nb-card-body>
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+                                        <button type="button"
+                                            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                            (click)="prevPanelStep(7);">{{ 'COMMON.Previous' | translate
+                                            }}</button>
+                                        <button type="button"
+                                            style="cursor: pointer;" class="more" (click)="nextPanelStep(7);">{{
+                                            'COMMON.Next' | translate }}</button>
+                                    </mat-action-row>
+        
+                                </mat-expansion-panel>
+        
+                                <mat-expansion-panel id="tourStep12" *ngIf="nonSaudiOwnersListNames.length > 0"
+                                    [expanded]="panelStep === 8 || allPanelsExpanded === true" (opened)="setPanelStep(8)">
+        
+                                    <mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            {{ 'PROJECT_INFORMATION.BankDetails' | translate }}
+                                        </mat-panel-title>
+        
+                                        <common-comments *ngIf="comments_show" [comments]="bank_details_comments">
+                                        </common-comments>
+        
+                                    </mat-expansion-panel-header>
+        
+                                    <nb-card-body>
+        
+                                        <!-- <div style="text-align: center;" *ngIf="add_edit_delete_show">
+        
+                                            <button type="button" style="margin-bottom: 10px; cursor: pointer;"
+                                                class="more" (click)="onAdd('bank_info')">{{ 'PROJECT_INFORMATION.AddBankDetails' |
+                                                translate }}</button>
+        
+                                        </div> -->
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                            [settings]="settings_bank_info_en" [source]="bank_details_source"
+                                            (userRowSelect)="onView($event, 'bank_info')"></ng2-smart-table>
+                                        <!-- (edit)="onEdit($event, 'bank_info')"
+                                            (delete)="onDelete(delete_cancel_modal, $event, 'bank_info')">
+                                        </ng2-smart-table> -->
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                            [settings]="settings_bank_info_ar" [source]="bank_details_source"
+                                            (userRowSelect)="onView($event, 'bank_info')"></ng2-smart-table>
+                                        <!-- (edit)="onEdit($event, 'bank_info')"
+                                            (delete)="onDelete(delete_cancel_modal, $event, 'bank_info')">
+                                        </ng2-smart-table> -->
+        
+                                    </nb-card-body>
+        
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+                                        <button type="button"
+                                            style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                            (click)="prevPanelStep(8);">{{ 'COMMON.Previous' | translate
+                                            }}</button>
+                                        <button type="button"
+                                            style="cursor: pointer;" class="more" (click)="nextPanelStep(8);">{{
+                                            'COMMON.Next' | translate }}</button>
+                                    </mat-action-row>
+        
+                                </mat-expansion-panel>
+        
+                                <mat-expansion-panel id="tourStep13" [expanded]="panelStep === 9 || allPanelsExpanded === true"
+                                    (opened)="setPanelStep(9)">
+        
+                                    <mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            {{ 'PROJECT_INFORMATION.KeyProfessionalManagementResources' | translate }}
+                                        </mat-panel-title>
+        
+                                        <common-comments *ngIf="comments_show" [comments]="kpmr_comments"></common-comments>
+        
+                                    </mat-expansion-panel-header>
+        
+                                    <nb-card-body>
+        
+                                        <div style="text-align: center;" *ngIf="add_edit_delete_show || kpmr_comments.hasComments">
+        
+                                            <button type="button"
+                                                style="margin-bottom: 10px; cursor: pointer;" class="more"
+                                                (click)="onAdd('kpmr')">{{
+                                                'PROJECT_INFORMATION.AddKeyProfessionalManagementResources' | translate }}</button>
+        
+                                        </div>
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'"
+                                            [settings]="kpmr_settings_en" [source]="kpmr_source" (edit)="onEdit($event, 'kpmr')"
+                                            (delete)="onDelete(delete_cancel_modal, $event, 'kpmr')"
+                                            (userRowSelect)="onView($event, 'kpmr')">
+                                        </ng2-smart-table>
+        
+                                        <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                            [settings]="kpmr_settings_ar" [source]="kpmr_source" (edit)="onEdit($event, 'kpmr')"
+                                            (delete)="onDelete(delete_cancel_modal, $event, 'kpmr')"
+                                            (userRowSelect)="onView($event, 'kpmr')">
+                                        </ng2-smart-table>
+        
+                                    </nb-card-body>
+        
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+                                        <button type="button"
+                                            style="cursor: pointer;" class="more" (click)="prevPanelStep(9);">{{
+                                            'COMMON.Previous' | translate
+                                            }}</button>
+                                    </mat-action-row>
+        
+                                </mat-expansion-panel>
+        
+                                <!-- <mat-expansion-panel [expanded]="panelStep === 8 || allPanelsExpanded === true" (opened)="setPanelStep(8)">
+        
+                                    mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            Project Documents
+                                        </mat-panel-title>
+        
+                                    </mat-expansion-panel-header>
+        
+                                    <nb-card-body>
+                                        <ng2-smart-table [settings]="settings_proj_doc" [source]="project_documents_source" (create)="onAdd('proj_doc')" 
+                                        (edit)="onEdit($event, 'proj_doc')" (delete)="onDelete(delete_cancel_modal, $event, 'proj_doc')" (userRowSelect)="onView($event, 'proj_doc')">
+                                        </ng2-smart-table>
+                                    </nb-card-body>
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+                                        <button style="margin-right: 10px; cursor: pointer;"
+                                            class="more" (click)="prevPanelStep();">Previous</button>
+                                        <button style="cursor: pointer;"
+                                            class="more" (click)="nextPanelStep();">Next</button>
+                                    </mat-action-row>
+                                    
+        
+                                </mat-expansion-panel>
+        
+                                <mat-expansion-panel [expanded]="panelStep === 9 || allPanelsExpanded === true" (opened)="setPanelStep(9)">
+        
+                                    mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            Curriculum Vitae of Owners / Shareholders / Guarantors
+                                        </mat-panel-title>
+        
+                                    </mat-expansion-panel-header>
+                                    <nb-alert outline="warning">
+                                        <div class="row show-grid">
+                                            <div class="col-md-0">
+        
+                                                <div class="icon" style="padding-left:10px; padding-top:15px">
+                                                    <i class="ion-alert-circled"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <strong>Please attach the Curriculum Vitae (CV) of the Owners / Shareholders
+                                                    (Board Members) indicating their Education, Professional Qualifications,
+                                                    Work Experience, etc. Also, please provide brief Profile of Corporate
+                                                    Guarantors, including Background Information, Business Commencement Date,
+                                                    Products, Areas of Operations, Associated Companies, etc.</strong>
+                                            </div>
+                                        </div>
+                                    </nb-alert>
+                                    <nb-card-body>
+                                        <ng2-smart-table [settings]="settings_curr_vitae" [source]="curriculum_vitae_source" (create)="onAdd('curr_vitae')" 
+                                        (edit)="onEdit($event, 'curr_vitae')" (delete)="onDelete(delete_cancel_modal, $event, 'curr_vitae')" (userRowSelect)="onView($event, 'curr_vitae')">
+                                        </ng2-smart-table>
+                                    </nb-card-body>
+        
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+                                        <button style="margin-right: 10px; cursor: pointer;"
+                                            class="more" (click)="prevPanelStep();">Previous</button>
+                                        <button style="cursor: pointer;"
+                                            class="more" (click)="nextPanelStep();">Next</button>
+                                    </mat-action-row>
+        
+                                </mat-expansion-panel>
+        
+                                <mat-expansion-panel [expanded]="panelStep === 10 || allPanelsExpanded === true" (opened)="setPanelStep(10)">
+        
+                                    mat-expansion-panel-header>
+        
+                                        <mat-panel-title>
+                                            Proposed Loan Guarantees for SIDF Loan
+                                        </mat-panel-title>
+        
+                                    </mat-expansion-panel-header>
+        
+                                    <nb-card-body>
+                                        <ng2-smart-table [settings]="settings_prop_loan_guar" [source]="proposed_loan_source"
+                                        (create)="onAdd('prop_loan_guar')" (edit)="onEdit($event, 'prop_loan_guar')" (delete)="onDelete(delete_cancel_modal, $event, 'prop_loan_guar')" (userRowSelect)="onView($event, 'prop_loan_guar')">
+                                        </ng2-smart-table>
+                                    </nb-card-body>
+        
+                                    <mat-action-row *ngIf="allPanelsExpanded === false">
+                                        <button style="margin-right: 10px; cursor: pointer;"
+                                            class="more" (click)="prevPanelStep();">Previous</button>
+                                        <button style="cursor: pointer;"
+                                            class="more" (click)="nextPanelStep();">Next</button>
+                                    </mat-action-row>
+        
+                                </mat-expansion-panel> -->
+        
+                            </mat-accordion>
+        
+                            <div *ngIf="isSaveSubmitVisible()"style="margin-top: 20px; display: flex;">
+        
+                                <button id="tourStep14" style="cursor: pointer;" type="button"
+                                    class="more"
+                                    (click)="onBack(delete_cancel_modal, 1)">{{ "COMMON.Back" | translate }}</button>
+        
+                                <button id="tourStep15" type="button"
+                                    style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+                                    (click)="onSave();">{{ 'COMMON.Save' | translate }}</button>
+        
+                            </div>
+        
+                            <div *ngIf="!isSaveSubmitVisible()" style="margin-top: 20px;">
+        
+                                <button style="cursor: pointer;" type="button"
+                                    class="more"
+                                    (click)="onBack(delete_cancel_modal, 2)">{{ "COMMON.Back" | translate }}</button>
+        
+                            </div>
+        
+                        </nb-card-body>
+        
+                    </nb-card>
+        
+                </nb-card-body>
+        
+            </nb-card>
+        
+            <ng-template #delete_cancel_modal let-modal>
+        
+                <div class="modal-header">
+        
+                    <span>{{deleteCancelModalReference.action}} {{deleteCancelModalReference.table_name_display}}</span>
+        
+                    <button type="button" style="cursor: pointer;"
+                        class="close" aria-label="Close" (click)="onCloseDeleteCancelModal()">
+                        <span aria-hidden="true" class="ion-close-round"></span>
+                    </button>
+        
+                </div>
+        
+                <div class="modal-body">
+                    <h6>{{deleteCancelModalReference.error}}</h6>
+                </div>
+        
+                <div class="modal-footer">
+                    <button
+                        style="margin-right: 1%; margin-left: 1%; cursor: pointer;" type="button" class="more"
+                        (click)="onCloseDeleteCancelModal()">{{
+                        'COMMON.Cancel' | translate }}</button>
+                    <button style="cursor: pointer;" type="button"
+                        class="more" (click)="onDeleteConfirm()">{{
+                        'COMMON.Yes' | translate }}</button>
+                </div>
+        
+            </ng-template>
+        
+        </div>

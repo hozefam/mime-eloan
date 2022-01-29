@@ -1,0 +1,1417 @@
+<nb-layout>
+    <nb-layout-column>
+        <div>
+            <div class="login-pf-page">
+                <!-- <nb-card>
+                <nb-card-body> -->
+
+                <section class="mt-sm-20" id="first-section">
+                       
+                    <div class="container-fulid topfixid"></div>
+                    <Topmenu></Topmenu>
+                    <div class="main-container">
+                        <div class="container">
+                            <!-- Navigation bar -->
+
+                        
+                        </div>
+
+                    </div>
+                </section>
+
+                <div class="welcome-content" [hidden]="showRegisterationForm">
+                    <span class="welcome-sign-title">
+                        أهلاً بك
+                    </span>
+                    <span class="welcome-sign-desc">
+                        يرجى إختيار نوع الحساب
+                    </span>
+                    <form class="sign-form">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-4 rigester-category"
+                                    (click)="showRegisterationForm = true ">
+                                    <div class="profile-1">
+                                        <div class="pro-icon"></div>
+                                        <span class="profile-title">
+                                            مواطن / مقيم
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-4">
+                                                    <div  class="ribbon-content">
+                                                        <div class="ribbon text-white"><span>{{ "SIGNUP.Soon" | translate}}</span></div>
+                                                
+                                              <div class="profile-3">
+                                                      <div class="pro-icon"></div>
+                                                      <span class="profile-title">
+                                                              مواطن دول مجلس التعاون الأجنبي
+                                                          </span>
+                                              </div>    </div>
+                                          </div>
+                                          <div class="col-md-4"> <div  class="ribbon-content">
+                                                <div class="ribbon text-white"><span>{{ "SIGNUP.Soon" | translate}}</span></div>
+                                        
+                                                  <div class="profile-2">
+                                                          <div class="pro-icon"></div>
+                                                          <span class="profile-title">
+                                                                  مستثمر أجنبي
+                                                              </span>
+                                                  </div></div>
+                                              </div> -->
+
+                            </div>
+                        </div>
+
+
+
+                    </form>
+
+
+                </div>
+
+                <div class="container-fluid mb-10" [hidden]="!showRegisterationForm">
+                    <div class="row wizard-row">
+                        <section class="steps-section">
+                            <div class="wizard">
+                                <div class="wizard-inner">
+
+                                    <div class="row">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-pull-4">
+                                            <span class="welcome-sign-title">
+                                                <div class="pen-edit"></div>
+                                                إنشاء حساب جديد
+                                                <span id="account-type"> مواطن / مقيم </span>
+
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="connecting-line"></div>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <!-- First step tab -->
+                                        <li role="presentation" [ngClass]="{'active': isS1Active}">
+                                            <a data-toggle="tab" aria-controls="step1" role="tab"
+                                                title="Identification">
+                                                <span (click)="onFirstSpanClick(confirm1spanclick)" class="round-tab">
+
+                                                </span>
+                                            </a>
+
+                                        </li>
+                                        <!-- Second step tab-->
+                                        <li role="presentation" [ngClass]="{'active': isS2Active}">
+                                            <a data-toggle="tab" aria-controls="step2" role="tab" title="User Data">
+                                                <span (click)="onSecondSpanClick($event)" class="round-tab">
+
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <!-- Third step tab-->
+                                        <li role="presentation" [ngClass]="{'active': isS3Active}">
+                                            <a data-toggle="tab" aria-controls="step3" role="tab"
+                                                title="National Address">
+                                                <span class="round-tab" (click)="onThirdSpanClick($event)">
+
+                                                </span>
+                                            </a>
+
+                                        </li>
+                                        <!-- Fourth step tab -->
+                                        <li role="presentation" [ngClass]="{'active': isS4Active}">
+                                            <a data-toggle="tab" aria-controls="step4" role="tab"
+                                                title="Verification Detail">
+                                                <span class="round-tab" (click)="onFourthSpanClick($event)"
+                                                    fa-flip-horizontal>
+
+                                                </span>
+                                            </a>
+
+                                        </li>
+
+
+                                        <!-- Fifth complete step tab -->
+                                        <li role="presentation" [ngClass]="{'active': isS5Active}">
+                                            <a data-toggle="tab" aria-controls="complete" role="tab" title="Password">
+                                                <span class="round-tab" (click)="onFifthSpanClick($event)">
+
+                                                </span>
+                                            </a>
+
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div style="margin-right:20px;" class="row">
+                                    <p class="navtitle">{{ "SIGNUP.lIdentification" | translate}}</p>
+                                    <p class="navtitle">{{ "SIGNUP.lUserData" | translate}}</p>
+                                    <p class="navtitle">{{ "SIGNUP.lNationalAddress" | translate}}</p>
+                                    <p class="navtitle">{{ "SIGNUP.lVerificationDetail" | translate}}</p>
+                                    <p class="navtitle">{{ "SIGNUP.lPassword" | translate}}</p>
+                                </div>
+
+
+
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- hfhyjfyhgfkug -->
+                    <form role="form" class="catselection">
+
+                        <!-- All tab content from step 1 to last step -->
+
+                        <div class="tab-content">
+
+                            <!-- 1st step starts -->
+
+                            <div class="tab-pane active" role="tabpanel" id="step1" [hidden]="hIsStep1">
+
+                                <div [formGroup]="step1Shift" class="flex-container">
+
+                                    <div class="hsep" [hidden]="true">
+
+
+
+                                        <label><input type="radio" class="radio-inline" class="form-control"
+                                                formControlName="radiosStep1" (change)="onChangeradio($event)"
+                                                id="radioResidentCitizen" name="radiosStep1" value="ResidentCitizen"
+                                                checked="checked"><span class="outside"><span
+                                                    class="inside"></span></span>{{ "SIGNUP.lResident" | translate}}</label>
+
+                                        <label><input type="radio" class="radio-inline" class="form-control"
+                                                formControlName="radiosStep1" (change)="onChangeradio($event)"
+                                                id="radioForeignInvestor" name="radiosStep1"
+                                                value="ForeignInvestor"><span class="outside"><span
+                                                    class="inside"></span></span>{{ "SIGNUP.lForeignInvestor" | translate}}</label>
+
+                                        <label><input type="radio" class="radio-inline" class="form-control"
+                                                formControlName="radiosStep1" (change)="onChangeradio($event)"
+                                                id="radioGccNational" name="radiosStep1" value="GCCNational"><span
+                                                class="outside"><span
+                                                    class="inside"></span></span>{{ "SIGNUP.lGCCNational" | translate}}</label>
+
+
+                                    </div>
+
+                                    <div style="height: 20px;"></div>
+
+                                    <ng-template #navigateLogin let-modal>
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Alert</h4>
+                                            <button class="close" aria-label="Close" (click)="closeModal()">
+
+                                                <span aria-hidden="true"><img
+                                                        src="../../../assets/images/sidf/cancel.svg"
+                                                        class="modaliconstyle pull-right"></span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><strong>Are you sure you want to navigate to <span
+                                                        class="text-primary">"Login"</span>
+                                                </strong></p>
+                                            <p>All information entered will be cleared.
+                                                <span class="text-danger">This operation can not be undone.</span>
+                                            </p>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="more" (click)="closeModal()">الغاء</button>
+
+                                            <button type="button" class="more"
+                                                (click)="onnavigateConfirm()">موافق</button>
+                                        </div>
+                                    </ng-template>
+                                    <!-- Content of radio buttons -->
+
+                                    <!-- Start of the radio button switch -->
+
+                                    <!-- START Nationl ID RADIO 1-->
+
+                                    <div [formGroup]="s11FormGroup" id="divResidentCitizen" class="radioopt"
+                                        [hidden]="hIsResidentHidden">
+                                        <div class="row">
+                                            <div class="col-md-4 radionational">
+                                                <label
+                                                    class="noradionational">{{ "SIGNUP.lSelectthetypeofRegistration" | translate}}</label>
+                                                <div class="hsep">
+                                                    <label><input type="radio" class="radio-inline" class="form-control"
+                                                            formControlName="radiosStep11"
+                                                            (change)="onChangeradio1($event)" id="radioNationalId"
+                                                            name="radiosStep11" value="NationalId"><span
+                                                            class="outside"><span
+                                                                class="inside"></span></span>{{ "SIGNUP.lNationalID" | translate}}</label>
+
+                                                    <label><input type="radio" class="radio-inline" class="form-control"
+                                                            formControlName="radiosStep11"
+                                                            (change)="onChangeradio1($event)" id="radioIqamaId"
+                                                            name="radiosStep11" value="IqamaId"><span
+                                                            class="outside"><span
+                                                                class="inside"></span></span>{{ "SIGNUP.lIqamaID" | translate}}</label>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputNationalId" [hidden]="hIsNationalId"><span
+                                                            class="required-pf">*
+                                                        </span>{{ "SIGNUP.lNationalID" | translate}}</label>
+                                                    <label for="inputNationalId" [hidden]="hIsIqamaId"><span
+                                                            class="required-pf">*
+                                                        </span>{{ "SIGNUP.lIqamaID" | translate}}</label>
+                                                    <input (keypress)="numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="nationalId"
+                                                        [ngClass]="{'is-invalid' : next1 && residentCitizenData.nationalId.errors}"
+                                                        id="inputNationalId" placeholder="" />
+
+                                                    <div class="invalid-feedback">
+                                                        <div *ngIf="residentCitizenData.nationalId.errors != null">
+                                                            <div
+                                                                *ngIf="residentCitizenData.nationalId.errors.required !== null && residentCitizenData.nationalId.errors.required">
+                                                                {{ "SIGNUP.validID" | translate}}</div>
+
+                                                            <div
+                                                                *ngIf="!(residentCitizenData.nationalId.errors.required)">
+                                                                <div
+                                                                    *ngIf="residentCitizenData.nationalId.errors.idValidator !== null && residentCitizenData.nationalId.errors.idValidator">
+                                                                    {{ "SIGNUP.NationalIdTenDigits" | translate}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputdateofbirth"><span
+                                                            class="required-pf">*</span>{{ "SIGNUP.lDateofBirth" | translate}}</label>
+                                                    <!-- <input type="text" (input)="onKey($event.target.value)" class="form-control" formControlName="nationalIdDob" id="inputdateofbirth" placeholder="YYYY/MM/DD" [ngClass]="{'is-invalid' : next1 && residentCitizenData.nationalIdDob.errors}"> -->
+                                                    <!-- <hijri-custom  class="form-control" #hjValidityDate [ngClass]="{'is-invalid' : next1 && residentCitizenData.nationalIdDob.errors}"></hijri-custom> -->
+                                                    <!--        code for hijiri                  -->
+                                                    <div class="input-group">
+                                                        <input class="form-control" placeholder="yyyy-mm-dd"
+                                                            (click)="nationalDobbutton.toggle()" name="dp"
+                                                            placement="right" formControlName="nationalIdDob"
+                                                            ngbDatepicker #nationalDobbutton="ngbDatepicker"
+                                                            [ngClass]="{'is-invalid' : next1 && residentCitizenData.nationalIdDob.errors}"
+                                                            [minDate]="minDate">
+                                                        <div class="input-group-append">
+                                                            <button class="btn ion-calendar"
+                                                                (click)="nationalDobbutton.toggle()"
+                                                                type="button"></button>
+                                                        </div>
+                                                        <div class="invalid-feedback">
+                                                            <div *ngIf="residentCitizenData.nationalIdDob.errors">
+                                                                {{ "SIGNUP.validDate" | translate}}</div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label
+                                                        for="inputdateofbirth">{{ "SIGNUP.lTypeofUser" | translate}}</label>
+                                                    <select style="height:36px" name="category"
+                                                        [(ngModel)]="selectedType" (change)="onChangeType(selectedType)"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option disabled>{{ "SIGNUP.lselectType" | translate}}</option>
+                                                        <option value="E">{{ "SIGNUP.lEmployee" | translate}}</option>
+                                                        <option value="S">{{ "SIGNUP.lShareholder" | translate}}
+                                                        </option>
+                                                        <option value="C">{{ "SIGNUP.lConsultingCompany" | translate}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" [hidden]="hIsConsultancy">
+                                            <div class="col-md-12">
+                                                <hr style="color:white ">
+                                            </div>
+                                            <div class="col-md-12" style="font-size: 18px; padding-bottom: 15px;">
+                                                {{ "SIGNUP.tEnterConsultancyDetails" | translate}}</div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputConsultancyName"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lConsultancyName" | translate}}</label>
+                                                    <input type="text" class="form-control"
+                                                        formControlName="consultancyName"
+                                                        [ngClass]="{'is-invalid' : next1 && residentCitizenData.consultancyName.errors}"
+                                                        id="inputConsultancyNameForeign" placeholder="">
+
+                                                    <div class="invalid-feedback">
+                                                        <div *ngIf="residentCitizenData.consultancyName.errors != null">
+                                                            <div
+                                                                *ngIf="residentCitizenData.consultancyName.errors.required !== null && residentCitizenData.consultancyName.errors.required">
+                                                                Enter Consultancy Name</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputCrNumber"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lCRNumber" | translate}}</label>
+                                                    <input (keypress)="numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="crNumber"
+                                                        [ngClass]="{'is-invalid' : next1 && residentCitizenData.crNumber.errors}"
+                                                        id="inputCrNumberForeign" placeholder="">
+
+                                                    <div class="invalid-feedback">
+                                                        <div *ngIf="residentCitizenData.crNumber.errors != null">
+                                                            <div
+                                                                *ngIf="residentCitizenData.crNumber.errors.required !== null && residentCitizenData.crNumber.errors.required">
+                                                                {{ "SIGNUP.validID" | translate}}</div>
+
+                                                            <div
+                                                                *ngIf="!(residentCitizenData.crNumber.errors.required)">
+                                                                <div
+                                                                    *ngIf="residentCitizenData.crNumber.errors.idValidator !== null && residentCitizenData.crNumber.errors.idValidator">
+                                                                    {{ "SIGNUP.NationalIdTenDigits" | translate}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputCrExpiry"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lCRExpiry" | translate}}</label>
+                                                    <!-- <input type="date" class="form-control" formControlName="crExpiry" [ngClass]="{'is-invalid' : next1 && residentCitizenData.crExpiry.errors}"
+                                                            id="inputCrExpiryForeign" placeholder=""> -->
+
+                                                    <div class="input-group">
+                                                        <input class="form-control" placeholder="yyyy-mm-dd"
+                                                            (click)="crExpiry1button.toggle()" name="dp"
+                                                            formControlName="crExpiry" ngbDatepicker
+                                                            #crExpiry1button="ngbDatepicker"
+                                                            [ngClass]="{'is-invalid' : next1 && residentCitizenData.crExpiry.errors}">
+                                                        <div class="input-group-append">
+                                                            <button class="btn ion-calendar"
+                                                                (click)="crExpiry1button.toggle()"
+                                                                type="button"></button>
+                                                        </div>
+
+                                                        <div class="invalid-feedback">
+                                                            <div *ngIf="residentCitizenData.crExpiry.errors != null">
+                                                                <div
+                                                                    *ngIf="residentCitizenData.crExpiry.errors.required !== null && residentCitizenData.crExpiry.errors.required">
+                                                                    {{ "SIGNUP.validDate" | translate}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <!-- END Nationl ID -->
+
+                                    <!-- START SAGIA RADIO 2-->
+
+                                    <div [formGroup]="s12FormGroup" id="divForeignInvestor" class="radioopt"
+                                        [hidden]="hIsForeignInvestorHidden">
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputSagiaNo"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lSAGIALicenseNumber" | translate}}</label>
+                                                    <input (keypress)="numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="sagiaId"
+                                                        [ngClass]="{'is-invalid' : next1 && foreignInvestorData.sagiaId.errors}"
+                                                        id="inputSagiaNo" placeholder="">
+
+                                                    <div class="invalid-feedback">
+                                                        <div *ngIf="foreignInvestorData.sagiaId.errors != null">
+                                                            <div
+                                                                *ngIf="foreignInvestorData.sagiaId.errors.required !== null && foreignInvestorData.sagiaId.errors.required">
+                                                                {{ "SIGNUP.validID" | translate}}</div>
+
+                                                            <div *ngIf="!(foreignInvestorData.sagiaId.errors.required)">
+                                                                <div
+                                                                    *ngIf="foreignInvestorData.sagiaId.errors.idValidator2 !== null && foreignInvestorData.sagiaId.errors.idValidator2">
+                                                                    ID should be of length 10 to 15</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputsagiavalidity"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lLicenseValidityDate" | translate}}</label>
+                                                    <!-- <input type="date" class="form-control" formControlName="sagiaIdValidity" id="inputsagiavalidity" [ngClass]="{'is-invalid' : next1 && foreignInvestorData.sagiaIdValidity.errors}" placeholder=""> -->
+
+                                                    <!-- <div class="input-group">
+                                                            <input class="form-control" placeholder="yyyy-mm-dd" id="inputsagiavalidity" [ngClass]="{'is-invalid' : next1 && foreignInvestorData.sagiaIdValidity.errors}"
+                                                                   name="dp" formControlName="sagiaIdValidity" ngbDatepicker #d1="ngbDatepicker"  readonly>
+                                                            <div class="input-group-append">
+                                                              <button class="btn-style btn ion-calendar" (click)="d1.toggle()" type="button"></button>
+                                                            </div>
+                                                          </div> -->
+
+                                                    <div class="input-group">
+                                                        <input class="form-control"
+                                                            #sagiaIdValidityButton="bsDatepicker" bsDatepicker
+                                                            formControlName="sagiaIdValidity"
+                                                            [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                                                            [attr.value]="s12FormGroup.value.sagiaIdValidity"
+                                                            [ngClass]="{'is-invalid' : next1 && foreignInvestorData.sagiaIdValidity.errors}"
+                                                            placement="right" placeholder="YYYY-MM-DD">
+
+                                                        <div class="input-group-append">
+                                                            <button class="btn ion-calendar"
+                                                                (click)="sagiaIdValidityButton.toggle()"
+                                                                type="button"></button>
+                                                        </div>
+
+                                                        <div class="invalid-feedback">
+                                                            <div *ngIf="foreignInvestorData.sagiaIdValidity.errors">
+                                                                {{ "SIGNUP.validDate" | translate}}</div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label
+                                                        for="inputdateofbirth">{{ "SIGNUP.lTypeofUser" | translate}}</label>
+                                                    <select style="height:36px" name="category"
+                                                        [(ngModel)]="selectedType" (change)="onChangeType(selectedType)"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option disabled>{{ "SIGNUP.lselectType" | translate}}</option>
+                                                        <option value="E">{{ "SIGNUP.lEmployee" | translate}}</option>
+                                                        <option value="S">{{ "SIGNUP.lShareholder" | translate}}
+                                                        </option>
+                                                        <option value="C">{{ "SIGNUP.lConsultingCompany" | translate}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row" [hidden]="hIsConsultancy">
+                                            <div class="col-md-12">
+                                                <hr style="color:white ">
+                                            </div>
+                                            <div class="col-md-12" style="font-size: 18px; padding-bottom: 15px;">
+                                                {{ "SIGNUP.tEnterConsultancyDetails" | translate}}</div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputConsultancyName"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lConsultancyName" | translate}}</label>
+                                                    <input type="text" class="form-control"
+                                                        formControlName="consultancyName"
+                                                        [ngClass]="{'is-invalid' : next1 && foreignInvestorData.consultancyName.errors}"
+                                                        id="inputConsultancyNamesagia" placeholder="">
+
+                                                    <div class="invalid-feedback">
+                                                        <div *ngIf="foreignInvestorData.consultancyName.errors != null">
+                                                            <div
+                                                                *ngIf="foreignInvestorData.consultancyName.errors.required !== null && foreignInvestorData.consultancyName.errors.required">
+                                                                Enter Consultancy Name</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputCrNumber"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lCRNumber" | translate}}</label>
+                                                    <input (keypress)="numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="crNumber"
+                                                        [ngClass]="{'is-invalid' : next1 && foreignInvestorData.crNumber.errors}"
+                                                        id="inputCrNumbersagia" placeholder="">
+
+                                                    <div class="invalid-feedback">
+                                                        <div *ngIf="foreignInvestorData.crNumber.errors != null">
+                                                            <div
+                                                                *ngIf="foreignInvestorData.crNumber.errors.required !== null && foreignInvestorData.crNumber.errors.required">
+                                                                {{ "SIGNUP.validID" | translate}}</div>
+
+                                                            <div
+                                                                *ngIf="!(foreignInvestorData.crNumber.errors.required)">
+                                                                <div
+                                                                    *ngIf="foreignInvestorData.crNumber.errors.idValidator !== null && foreignInvestorData.crNumber.errors.idValidator">
+                                                                    {{ "SIGNUP.NationalIdTenDigits" | translate}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputCrExpiry"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lCRExpiry" | translate}}</label>
+                                                    <!-- <input type="date" class="form-control" formControlName="crExpiry" [ngClass]="{'is-invalid' : next1 && foreignInvestorData.crExpiry.errors}"
+                                                            id="inputCrExpirysagia" placeholder=""> -->
+
+                                                    <div class="input-group">
+                                                        <input class="form-control" placeholder="yyyy-mm-dd"
+                                                            (click)="crExpiry2button.toggle()" name="dp"
+                                                            formControlName="crExpiry" ngbDatepicker
+                                                            #crExpiry2button="ngbDatepicker"
+                                                            [ngClass]="{'is-invalid' : next1 && foreignInvestorData.crExpiry.errors}">
+
+                                                        <div class="input-group-append">
+                                                            <button class="btn ion-calendar"
+                                                                (click)="crExpiry2button.toggle()"
+                                                                type="button"></button>
+                                                        </div>
+
+                                                        <div class="invalid-feedback">
+                                                            <div *ngIf="foreignInvestorData.crExpiry.errors != null">
+                                                                <div
+                                                                    *ngIf="foreignInvestorData.crExpiry.errors.required !== null && foreignInvestorData.crExpiry.errors.required">
+                                                                    {{ "SIGNUP.validDate" | translate}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <!-- END SAGIA -->
+
+
+                                    <!-- START GCC NATIONAL -->
+
+                                    <div [formGroup]="s13FormGroup" id="divGccNational" class="radioopt"
+                                        [hidden]="hIsGccHidden">
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputGccNationalId"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lGCCNationalID" | translate}}</label>
+                                                    <input (keypress)="numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="gccNationalId"
+                                                        [ngClass]="{'is-invalid' : next1 && gccNationalData.gccNationalId.errors}"
+                                                        id="inputGccNationalId" placeholder="">
+
+                                                    <div class="invalid-feedback">
+                                                        <div *ngIf="gccNationalData.gccNationalId.errors != null">
+                                                            <div
+                                                                *ngIf="gccNationalData.gccNationalId.errors.required !== null && gccNationalData.gccNationalId.errors.required">
+                                                                {{ "SIGNUP.validID" | translate}}</div>
+
+                                                            <div
+                                                                *ngIf="!(gccNationalData.gccNationalId.errors.required)">
+                                                                <div
+                                                                    *ngIf="gccNationalData.gccNationalId.errors.idValidator !== null && gccNationalData.gccNationalId.errors.idValidator">
+                                                                    {{ "SIGNUP.NationalIdTenDigits" | translate}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputGccproof"><span
+                                                            class="required-pf">*</span>{{ "SIGNUP.lIDProof" | translate}}</label>
+                                                    <input type="file" class="form-control"
+                                                        (change)="onFileChange($event)"
+                                                        formControlName="gccNationalIdProof"
+                                                        [ngClass]="{'is-invalid' : next1 && gccNationalData.gccNationalIdProof.errors}"
+                                                        id="inputGccproof" placeholder="">
+
+                                                    <div class="invalid-feedback">
+                                                        <div *ngIf="gccNationalData.gccNationalIdProof.errors">Please
+                                                            attach a proof</div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label
+                                                        for="inputdateofbirth">{{ "SIGNUP.lTypeofUser" | translate}}</label>
+                                                    <select style="height:36px" name="category"
+                                                        [(ngModel)]="selectedType" (change)="onChangeType(selectedType)"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option value="E">{{ "SIGNUP.lEmployee" | translate}}</option>
+                                                        <option value="S">{{ "SIGNUP.lShareholder" | translate}}
+                                                        </option>
+                                                        <option value="C">{{ "SIGNUP.lConsultingCompany" | translate}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" [hidden]="hIsConsultancy">
+                                            <div class="col-md-12">
+                                                <hr style="color:white ">
+                                            </div>
+                                            <div class="col-md-12" style="font-size: 18px; padding-bottom: 15px;">
+                                                {{ "SIGNUP.tEnterConsultancyDetails" | translate}}</div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputConsultancyName"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lConsultancyName" | translate}}</label>
+                                                    <input type="text" class="form-control"
+                                                        formControlName="consultancyName"
+                                                        [ngClass]="{'is-invalid' : next1 && gccNationalData.consultancyName.errors}"
+                                                        id="inputConsultancyName" placeholder="">
+
+                                                    <div class="invalid-feedback">
+                                                        <div *ngIf="gccNationalData.consultancyName.errors != null">
+                                                            <div
+                                                                *ngIf="gccNationalData.consultancyName.errors.required !== null && gccNationalData.consultancyName.errors.required">
+                                                                Enter Consultancy Name</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputCrNumber"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lCRNumber" | translate}}</label>
+                                                    <input (keypress)="numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="crNumber"
+                                                        [ngClass]="{'is-invalid' : next1 && gccNationalData.crNumber.errors}"
+                                                        id="inputCrNumber" placeholder="">
+
+                                                    <div class="invalid-feedback">
+                                                        <div *ngIf="gccNationalData.crNumber.errors != null">
+                                                            <div
+                                                                *ngIf="gccNationalData.crNumber.errors.required !== null && gccNationalData.crNumber.errors.required">
+                                                                {{ "SIGNUP.validID" | translate}}</div>
+
+                                                            <div *ngIf="!(gccNationalData.crNumber.errors.required)">
+                                                                <div
+                                                                    *ngIf="gccNationalData.crNumber.errors.idValidator !== null && gccNationalData.crNumber.errors.idValidator">
+                                                                    {{ "SIGNUP.NationalIdTenDigits" | translate}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputCrExpiry"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lCRExpiry" | translate}}</label>
+                                                    <!-- <input type="date" class="form-control" formControlName="crExpiry" [ngClass]="{'is-invalid' : next1 && gccNationalData.crExpiry.errors}"
+                                                            id="inputCrExpiry" placeholder=""> -->
+
+                                                    <div class="input-group">
+                                                        <input class="form-control" placeholder="yyyy-mm-dd"
+                                                            (click)="crExpiry3button.toggle()" name="dp"
+                                                            formControlName="crExpiry" ngbDatepicker
+                                                            #crExpiry3button="ngbDatepicker"
+                                                            [ngClass]="{'is-invalid' : next1 && gccNationalData.crExpiry.errors}">
+
+                                                        <div class="input-group-append">
+                                                            <button class="btn ion-calendar"
+                                                                (click)="crExpiry3button.toggle()"
+                                                                type="button"></button>
+                                                        </div>
+
+                                                        <div class="invalid-feedback">
+                                                            <div *ngIf="gccNationalData.crExpiry.errors != null">
+                                                                <div
+                                                                    *ngIf="gccNationalData.crExpiry.errors.required !== null && gccNationalData.crExpiry.errors.required">
+                                                                    {{ "SIGNUP.validDate" | translate}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <p class="remarque"><b>{{ "SIGNUP.tnote" | translate}}</b>
+                                            {{ "SIGNUP.lNote1" | translate}}</p>
+                                    </div>
+
+                                    <!-- END GCC Nationl -->
+                                    <hr>
+                                    <div class="pull-right">
+                                        <button type="button" (click)="onFirstPreClick($event)" id="bFirstPrevStep"
+                                            class="prev-prog">{{ "SIGNUP.bprevious" | translate}}</button>
+
+                                        <button type="button" (click)="onFirstNextClick($event)" id="bFirstNextStep"
+                                            class="next-prog">{{ "SIGNUP.bnext" | translate}}</button>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+                            <!-- 1st step Ends -->
+
+                            <ng-template #confirm1spanclick let-modal>
+                                <div class="modal-header">
+                                    <h4 class="modal-title col-md-10 col-sm-10">{{"SIGNUP.Alert"| translate }}</h4>
+                                    <button style="cursor: pointer;" class="close" aria-label="Close"
+                                        (click)="closeModal()">
+                                        <span aria-hidden="true" class="ion-close-round"></span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-danger">{{"SIGNUP.goBack"| translate }}
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="more" (click)="closeModal()">الغاء</button>
+
+                                    <button type="button" class="more" (click)="onSpan1ClickVerify()">موافق</button>
+                                </div>
+                            </ng-template>
+
+                            <!-- ------------------------------------------------------------ -->
+                            <!-- 2nd step starts -->
+
+                            <div class="tab-pane active" role="tabpanel" id="step2" [hidden]="hIsStep2">
+
+                                <div class="flex-container">
+
+
+
+                                    <div [formGroup]="s2FormGroup" id="divStep2" class="radioopt">
+
+                                        <div class="row">
+
+                                            <div class="col-md-12" style="font-size: 18px; padding-bottom: 15px;">
+                                                {{ "SIGNUP.tEnteryourDetails" | translate}}</div>
+
+                                            <div class="col-md-3" [hidden]="hIsForeignInvestorDropdown">
+                                                <div class="form-group">
+                                                    <label
+                                                        for="inputShareholderName">{{ "SIGNUP.lShareholder" | translate}}</label>
+                                                    <select style="height:36px" [(ngModel)]="selectedShareholderName"
+                                                        [ngModelOptions]="{standalone: true}" (change)="onChangeSagia()"
+                                                        name="inputShareholderName" class="form-control">
+                                                        <option *ngFor="let shareholderName of shareholderNameList"
+                                                            [value]="shareholderName.FullName">
+                                                            {{shareholderName.FullName}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputFirstName"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lFirstNamearb" | translate}}</label>
+                                                    <input (keypress)="!numberOnly($event)" spellcheck="false"
+                                                        type="text" class="form-control" formControlName="firstName"
+                                                        [ngClass]="{'is-invalid' : next1 && step2Data.firstName.errors}"
+                                                        id="inputFirstName" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputMiddleName"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lMiddleNamearb" | translate}}</label>
+                                                    <input (keypress)="!numberOnly($event)" spellcheck="false"
+                                                        type="text" class="form-control" formControlName="middleName"
+                                                        [ngClass]="{'is-invalid' : next1 && step2Data.middleName.errors}"
+                                                        id="inputMiddleName" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputLastName"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lLastNamearb" | translate}}</label>
+                                                    <input (keypress)="!numberOnly($event)" spellcheck="false"
+                                                        type="text" class="form-control" formControlName="lastName"
+                                                        [ngClass]="{'is-invalid' : next1 && step2Data.lastName.errors}"
+                                                        id="inputLastName" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+
+                                            <!-- <div class="col-md-12">
+                                                    <hr style="color:white ">
+                                                </div> -->
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputfirstNameEng"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lFirstNameeng" | translate}}</label>
+                                                    <input (keypress)="!numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="firstNameEng"
+                                                        [ngClass]="{'is-invalid' : next1 && step2Data.firstNameEng.errors}"
+                                                        id="inputfirstNameEng" placeholder="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputmiddleNameEng"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lMiddleNameeng" | translate}}</label>
+                                                    <input (keypress)="!numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="middleNameEng"
+                                                        [ngClass]="{'is-invalid' : next1 && step2Data.middleNameEng.errors}"
+                                                        id="inputmiddleNameEng" placeholder="">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputlastNameEng"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lLastNameeng" | translate}}</label>
+                                                    <input (keypress)="!numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="lastNameEng"
+                                                        [ngClass]="{'is-invalid' : next1 && step2Data.lastNameEng.errors}"
+                                                        id="inputlastNameEng" placeholder="">
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputEmailAddress"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lEmailAddress" | translate}}</label>
+                                                    <input type="text" class="form-control" formControlName="emailId"
+                                                        [ngClass]="{'is-invalid' : next1 && step2Data.emailId.errors}"
+                                                        id="inputEmailAddress" placeholder="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputtelcode"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lCountrycode" | translate}}</label>
+                                                    <input type="text" class="form-control" id="inputtelcode"
+                                                        formControlName="telephoneNumberCode" placeholder=""
+                                                        [ngClass]="{'is-invalid' : next1 && step2Data.telephoneNumberCode.errors}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputTelephone"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lMobilenumber" | translate}}</label>
+                                                    <input (keypress)="numberOnly($event)" type="text" maxlength="10"
+                                                        class="form-control" formControlName="telephoneNumber"
+                                                        [ngClass]="{'is-invalid' : next1 && step2Data.telephoneNumber.errors}"
+                                                        id="inputTelephone" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputdateofbirth"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lCommunication" | translate}}</label>
+                                                    <select style="height:36px" name="category"
+                                                        [(ngModel)]="selectedcommType"
+                                                        (change)="onChangeType1(selectedType)"
+                                                        [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        <option disabled>
+                                                            {{ "SIGNUP.lCommunicationLanguage" | translate}}</option>
+                                                        <option value="A">{{ "SIGNUP.larabic" | translate}}</option>
+                                                        <option value="E">{{ "SIGNUP.lenglish" | translate}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div class="row" [hidden]="hIsGccNationalPassportInfo">
+
+
+                                            <div class="col-md-12">
+                                                <hr style="color:white ">
+                                            </div>
+                                            <div class="col-md-12" style="font-size: 18px; padding-bottom: 15px;">
+                                                {{ "SIGNUP.tEnteryourPassportDetails" | translate}}</div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputPassportNumber"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lPassportNumber" | translate}}</label>
+                                                    <input type="text" class="form-control"
+                                                        style="text-transform:uppercase;"
+                                                        formControlName="passportNumber"
+                                                        [ngClass]="{'is-invalid' : next1 && step2Data.passportNumber.errors}"
+                                                        id="inputPassportNumber" placeholder="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputPassportExpiry"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lPassportExpiry" | translate}}</label>
+                                                    <!-- <input type="date" class="form-control" formControlName="passportExpiry" [ngClass]="{'is-invalid' : next1 && step2Data.passportExpiry.errors}"
+                                                        id="inputPassportExpiry" placeholder=""> -->
+
+                                                    <!-- <div class="input-group">
+                                                                <input class="form-control" placeholder="yyyy-mm-dd" id="inputPassportExpiry" [ngClass]="{'is-invalid' : next1 && step2Data.passportExpiry.errors}"
+                                                                       name="dp" formControlName="passportExpiry" ngbDatepicker #d="ngbDatepicker" readonly>
+                                                                <div class="input-group-append">
+                                                                  <button class="btn-style btn ion-calendar" (click)="d.toggle()" type="button"></button>
+                                                                </div>
+                                                              </div> -->
+
+                                                    <!-- code for gregorian -->
+
+                                                    <div class="input-group">
+                                                        <input class="form-control" #passportExpiryButton="bsDatepicker"
+                                                            bsDatepicker formControlName="passportExpiry"
+                                                            [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                                                            [attr.value]="s2FormGroup.value.passportExpiry"
+                                                            [ngClass]="{'is-invalid' : next1 && step2Data.passportExpiry.errors}"
+                                                            placement="right" placeholder="YYYY-MM-DD">
+
+                                                        <div class="input-group-append">
+                                                            <button class="btn ion-calendar"
+                                                                (click)="passportExpiryButton.toggle()"
+                                                                type="button"></button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="row">
+                                            <p><span class="required-pf">* </span> {{ "SIGNUP.lNote2" | translate}}
+                                            </p>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <hr>
+                                    <div class="pull-right">
+                                        <button type="button" (click)="onSecondPreClick(confirm1spanclick)"
+                                            id="bsecondPrevStep"
+                                            class="prev-prog">{{ "SIGNUP.bprevious" | translate}}</button>
+
+                                        <button type="button" (click)="onSecondNextClick($event)" id="bsecondNextStep"
+                                            class="next-prog">{{ "SIGNUP.bnext" | translate}}</button>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- 2nd step Ends -->
+
+                            <!-- ------------------------------------------------------------ -->
+                            <!-- 3rd step starts -->
+
+                            <div class="tab-pane active" role="tabpanel" id="step3" [hidden]="hIsStep3">
+
+                                <div class="flex-container">
+
+
+
+                                    <div [formGroup]="s3FormGroup" id="divStep3" class="radioopt">
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputBuildingNumber"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lBuildingNumber" | translate}}</label>
+                                                    <input (keypress)="numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="buildingNumber"
+                                                        id="inputBuildingNumber" placeholder=""
+                                                        [ngClass]="{'is-invalid' : next1 && step3Data.buildingNumber.errors}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputUnitNumber"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lUnitNumber" | translate}}</label>
+                                                    <input (keypress)="numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="unitNumber"
+                                                        id="inputUnitNumber" placeholder=""
+                                                        [ngClass]="{'is-invalid' : next1 && step3Data.unitNumber.errors}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label
+                                                        for="inputAdditionalNumber">{{ "SIGNUP.lAdditionalNumber" | translate}}</label>
+                                                    <input (keypress)="numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="additionalNumber"
+                                                        id="inputAdditionalNumber" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputStreet"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lStreet" | translate}}</label>
+                                                    <input type="text" class="form-control" formControlName="street"
+                                                        id="inputStreet" placeholder=""
+                                                        [ngClass]="{'is-invalid' : next1 && step3Data.street.errors}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label
+                                                        for="inputNeighbourhood">{{ "SIGNUP.lNeighbourhood" | translate}}</label>
+                                                    <!-- <input (keypress)="ValidateAlpha($event)" type="text" class="form-control" formControlName="neighbourhood" id="inputNeighbourhood" placeholder=""> old Hisham has bug //BUG: ecsepts only english latters  -->
+                                                    <input type="text" class="form-control"
+                                                        formControlName="neighbourhood" id="inputNeighbourhood"
+                                                        placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputCity"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lCity" | translate}}</label>
+                                                    <input (keypress)="ValidateAlpha($event)" type="text"
+                                                        class="form-control" formControlName="city" id="inputCity"
+                                                        placeholder=""
+                                                        [ngClass]="{'is-invalid' : next1 && step3Data.city.errors}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputZipCode"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lZipcode" | translate}}</label>
+                                                    <input (keypress)="numberOnly($event)" type="text"
+                                                        class="form-control" formControlName="zipCode" id="inputZipCode"
+                                                        placeholder=""
+                                                        [ngClass]="{'is-invalid' : next1 && step3Data.zipCode.errors}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="inputCountry"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lCountry" | translate}}</label>
+                                                    <select style="height:36px" [(ngModel)]="selectedCountry"
+                                                        [ngModelOptions]="{standalone: true}" name="inputCountry"
+                                                        class="form-control">
+                                                        <option *ngFor="let country of countryList"
+                                                            [value]="country.Code">{{country.Name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <hr>
+                                    <div class="pull-right">
+                                        <button type="button" (click)="onThirdPreClick($event)" id="bThirdPrevStep"
+                                            class="prev-prog">{{ "SIGNUP.bprevious" | translate}}</button>
+
+                                        <button type="button" (click)="onThirdNextClick($event)" id="bThirdNextStep"
+                                            class="next-prog">{{ "SIGNUP.bnext" | translate}}</button>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- 3rd step Ends -->
+
+                            <!-- 4th step starts -->
+
+
+                            <div class="tab-pane active" role="tabpanel" id="step4" [hidden]="hIsStep4">
+
+                                <div class="flex-container">
+
+
+
+                                    <div [formGroup]="s4FormGroup" id="divStep4" class="radioopt">
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+
+                                                    <label for="inputPhoneOtp"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lPhoneOTP" | translate}}</label>
+                                                    <div class="input-group">
+                                                        <input (keypress)="numberOnly($event)" type={{textOrPassword}}
+                                                            class="form-control" formControlName="phoneOtp"
+                                                            id="inputPhoneOtp" placeholder=""
+                                                            [ngClass]="{'is-invalid' : next1 && step4Data.phoneOtp.errors}"><span
+                                                            class="input-group-btn"><button class="btn more ion-ios-eye"
+                                                                type="button"
+                                                                (click)="OnPasswordToggle();"></button></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputEmailOtp"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lEmailOTP" | translate}}</label>
+                                                    <div class="input-group">
+                                                        <input (keypress)="numberOnly($event)" type={{textOrPassword}}
+                                                            class="form-control" formControlName="emailOtp"
+                                                            id="inputEmailOtp" placeholder=""
+                                                            [ngClass]="{'is-invalid' : next1 && step4Data.emailOtp.errors}"><span
+                                                            class="input-group-btn"><button class="btn more ion-ios-eye"
+                                                                type="button"
+                                                                (click)="OnPasswordToggle();"></button></span></div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <hr>
+                                    <div class="pull-right">
+                                        <button type="button" (click)="onFourthPreClick($event)" id="bFourthPrevStep"
+                                            class="prev-prog">{{ "SIGNUP.bprevious" | translate}}</button>
+
+                                        <button type="button" (click)="onFourthNextClick($event)" id="bFourthNextStep"
+                                            class="next-prog">{{ "SIGNUP.bnext" | translate}}</button>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- 4th step Ends -->
+
+
+                            <!-- last 5th step starts -->
+
+                            <div class="tab-pane active" role="tabpanel" id="step5" [hidden]="hIsStep5">
+
+                                <div class="flex-container">
+
+
+
+                                    <div [formGroup]="s5FormGroup" id="divStep5" class="radioopt">
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputPassword"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lPassword" | translate}}</label>
+                                                    <div class="input-group">
+                                                        <input type={{textOrPassword}} class="form-control"
+                                                            formControlName="password"
+                                                            [ngClass]="{'is-invalid' : next1 && (s5FormGroup.errors || step5Data.password.errors)}"
+                                                            id="inputPassword" placeholder=""><span
+                                                            class="input-group-btn"><button class="btn more ion-ios-eye"
+                                                                type="button"
+                                                                (click)="OnPasswordToggle();"></button></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="inputConfirmPassword"><span class="required-pf">*
+                                                        </span>{{ "SIGNUP.lcnfrmpassword" | translate}}</label>
+                                                    <div class="input-group">
+
+                                                        <input type={{textOrPassword}} class="form-control"
+                                                            formControlName="confirmPassword"
+                                                            [ngClass]="{'is-invalid' : next1 && (s5FormGroup.errors || step5Data.confirmPassword.errors)}"
+                                                            id="inputConfirmPassword" placeholder=""><span
+                                                            class="input-group-btn"><button class="btn more ion-ios-eye"
+                                                                type="button"
+                                                                (click)="OnPasswordToggle();"></button></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="regpass-rules">
+                                            <h4>{{ "SIGNUP.lpasswordhead" | translate}}</h4>
+
+                                            <ul>
+                                                <li>{{ "SIGNUP.lpasswordrule1" | translate}}</li>
+                                                <li>{{ "SIGNUP.lpasswordrule2" | translate}}</li>
+                                                <li>{{ "SIGNUP.lpasswordrule3" | translate}}</li>
+                                                <li>{{ "SIGNUP.lpasswordrule4" | translate}}</li>
+                                            </ul>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <hr>
+                                    <div class="pull-right">
+
+
+
+
+                                        <ng-template #content let-modal>
+                                            <div class="modal-header">
+                                                <h4 class="modal-title  col-md-10 col-sm-10">
+                                                    {{ "SIGNUP.tmodalTermsandConditions" | translate}}</h4>
+                                                <button style="cursor: pointer;" class="close" aria-label="Close"
+                                                    (click)="closeModal()">
+                                                    <span aria-hidden="true" class="ion-close-round"></span>
+                                                </button>
+
+
+                                            </div>
+                                            <div class="modal-body tocmodal">
+                                                <div
+                                                    style="white-space: pre-line; font-family: 'DroidKufi' !important;font-size: 12px;line-height: 2;">
+                                                    {{"SIGNUP.terms1" | translate}}
+                                                </div>
+                                                <!-- <p>One fine body&hellip;</p> -->
+
+                                                <!-- <label> PLEASE READ THE FOLLOWING POINTS CAREFULLY BEFORE APPLYING:</label>
+                                                <ul style="list-style-type:none"> <label> 1. Prepare electronic copies
+                                                        of the following documents
+                                                        before applying:</label>
+                                                    <li><label> i. National ID/Iqama for all the shareholders</label></li>
+                                                    <li><label> ii. Industrial License of the project</label></li>
+                                                    <li><label> iii. Feasibility Study completed within the last three
+                                                            months</label></li>
+
+                                                    <label> 2. Each owner/guarantor has to complete the personal
+                                                        networth statement included in the
+                                                        application form</label>
+                                                    <label> 3. The application should be completed in full and will not
+                                                        be accepted by
+                                                        SIDF before pressing the Submit Request button.</label>
+                                                    <label>4. The system will automatically delete incomplete
+                                                        applications
+                                                        after 30 days from application initiation date.</label>
+                                                    <label>5. The application should be completed based upon the
+                                                        selected
+                                                        Language.</label><br>
+                                                </ul>
+                                            -->
+                                                <br>
+                                                <label> {{"SIGNUP.AGREEMENT" | translate}} </label>
+                                                <div
+                                                    style="white-space: pre-line; font-family: 'DroidKufi' !important;font-size: 12px;line-height: 2;">
+                                                    {{"SIGNUP.terms2" | translate}}
+                                                </div>
+                                                <!--
+                                                <ul style="list-style-type:none">
+                                                    <label> 1. I hereby confirm that I am the
+                                                        owner/authorized representative of all the shareholders to deal
+                                                        with
+                                                        SIDF in respect of this loan application and with the powers
+                                                        vested
+                                                        under this authority, I do hereby consent to the following:</label>
+                                                    <label> 2. I hereby authorize the Saudi Industrial
+                                                        Development Fund (The Fund) to obtain any information from any
+                                                        source as it deems necessary for its assessment of shareholders
+                                                        solvency and creditworthiness.</label>
+                                                    <label> 3. I also promise to provide the Fund with any information
+                                                        it requests me
+                                                        to furnish in this connection.</label>
+                                                    <label> 4. I further confirm my prior knowledge of and consent to
+                                                        disclose and
+                                                        exchange any information with the Saudi Credit Bureau (SIMAH),
+                                                        and/or any other party duly recognized by the Saudi Arabian
+                                                        Monetary
+                                                        Agency (SAMA) including SAMA itself.</label>
+                                                    <label> 5. I hereby agree to the Terms of use of the SIDF website.</label>
+                                                </ul> -->
+                                                <nb-checkbox (change)="changeCheckTerms($event)">
+                                                    {{"SIGNUP.agreeCheckbox" | translate}}
+                                                </nb-checkbox>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="more"
+                                                    (click)="closeModal()">{{ "SIGNUP.bCANCEL" | translate}}</button>
+
+                                                <button type="button" class="more"
+                                                    [attr.disabled]="disabledAgreement? true : null"
+                                                    (click)="regSubmit()">{{ "SIGNUP.bsubmit" | translate}}</button>
+                                            </div>
+                                        </ng-template>
+
+                                        <button type="button" (click)="onFifthPreClick($event)" id="bFifthPrevStep"
+                                            class="prev-prog">{{ "SIGNUP.bprevious" | translate}}</button>
+
+                                        <button type="button" (click)="onFifthSubmitClick(content)" id="bFifthSubmit"
+                                            class="next-prog">{{ "SIGNUP.bsubmit" | translate}}</button>
+
+                                        <!-- <button type="button" (click)="onFifthCancelClick($event)" id="bFifthCancel" class="btn btn-primary btnsize">{{ "SIGNUP.bCANCEL" | translate}}</button> -->
+
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- last 5th step Ends -->
+
+
+                        </div>
+                    </form>
+                    <!-- </nb-card-body>
+            </nb-card> -->
+                </div>
+
+                <footer class="foot">
+                    © صندوق التنمية الصناعية السعودي. جميع الحقوق محفوظة 2019</footer>
+            </div>
+        </div>
+
+    </nb-layout-column>
+
+</nb-layout>

@@ -1,0 +1,269 @@
+<div class="modal-header">
+
+    <span>{{techInfoModalsForm.header}}</span>
+
+    <button style="cursor: pointer;" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="ion-close-round"></span>
+    </button>
+
+</div>
+
+<div class="modal-body">
+
+    <form>
+
+        <div class="form-group row" *ngFor="let input of techInfoModalsForm.inputs;">
+            <label for="{{input.name}}" [hidden]="input.hideable ? input.hideable : false"
+                class="col-sm-3 col-form-label"><span *ngIf="input.required === 'true'" class="required-pf">*
+                </span>{{input.name}}</label>
+
+            <div class="col-sm-7">
+                <div *ngIf="input.type === 'multiselect' && input.disabled === undefined"
+                    [ngClass]="{'is-invalid-multiselect': input.validation_status == 'true'}">
+                    <angular2-multiselect [data]="input.dropdownList" [(ngModel)]="input.value"
+                        [settings]="input.dropdownSettings" name="input.selItems"
+                        (ngModelChange)="onChange(input, techInfoModalsForm, $event)"></angular2-multiselect>
+                </div>
+
+                <div *ngIf="input.type === 'multiselect' && input.disabled === true"
+                    [ngClass]="{'is-invalid-multiselect': input.validation_status == 'true'}">
+                    <angular2-multiselect [data]="input.dropdownList" [(ngModel)]="input.value"
+                        [settings]="input.dropdownSettings" name="input.selItems"
+                        (ngModelChange)="onChange(input, techInfoModalsForm, $event)"></angular2-multiselect>
+                </div>
+
+                <input [hidden]="input.hideable ? input.hideable : false" (keypress)="numberOnly($event, input)"
+                    *ngIf="(input.type != 'text_disabled') &&(input.cost === 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'textarea') "
+                    [name]="input.id" min="0" oninput="validity.valid || value==''"
+                    [ngModel]="input.value | currency:input.currency:'code':'2.2'"
+                    [ngModelOptions]="{updateOn:'blur', debounce:0}"
+                    (ngModelChange)="input.value=$event; onngmodelchange(input, techInfoModalsForm); onChange(input, techInfoModalsForm, $event)"
+                    id="{{input.id}}" type="{{input.type}}" placeholder="{{input.name}}" class="form-control"
+                    [ngClass]="{'is-invalid': input.validation_status == 'true'}">
+
+                <input (keypress)="numberOnly($event, input)"
+                    *ngIf="(input.type != 'text_disabled') &&(input.cost === 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'textarea') "
+                    [name]="input.id" min="0" oninput="validity.valid || value==''"
+                    [ngModel]="input.value | currency:input.currency:'code':'2.2'"
+                    [ngModelOptions]="{updateOn:'blur', debounce:0}"
+                    (ngModelChange)="input.value=$event; onngmodelchange(input, techInfoModalsForm); onChange(input, techInfoModalsForm, $event)"
+                    id="{{input.id}}" type="{{input.type}}" placeholder="{{input.name}}" class="form-control">
+                <input (keypress)="numberOnly($event, input)"
+                    *ngIf="(input.type === 'text_disabled') &&(input.cost === 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'textarea') "
+                    [name]="input.id" min="0" oninput="validity.valid || value==''"
+                    [ngModel]="input.value | currency:input.currency:'code':'2.2'"
+                    [ngModelOptions]="{updateOn:'blur', debounce:0}"
+                    (ngModelChange)="input.value=$event; onngmodelchange(input, techInfoModalsForm); onChange(input, techInfoModalsForm, $event)"
+                    id="{{input.id}}" type="text" placeholder="{{input.name}}" class="form-control" disabled>
+                <input [hidden]="input.hideable ? input.hideable : false"
+                    *ngIf="(input.type != 'checkbox') && (input.type != 'table') && (input.type != 'multiselect') && (input.type != 'file_single') && (input.type != 'file_multiple') && (input.cost != 'true') && (input.type != 'calendar') && (input.placeholder === undefined) && (input.type != 'select') && (input.type != 'text_disabled') && (input.type != 'email') && (techInfoModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || value==''" [(ngModel)]="input.value"
+                    id="{{input.id}}" type="{{input.type}}" (change)="onChange(input, techInfoModalsForm, $event)"
+                    placeholder="{{input.name}}" class="form-control"
+                    [ngClass]="{'is-invalid': input.validation_status == 'true'}">
+                <input [hidden]="input.hideable ? input.hideable : false"
+                    *ngIf="(input.type != 'checkbox') && (input.type != 'table') && (input.type != 'multiselect') && (input.type != 'file_multiple') && (input.cost != 'true') && (input.type != 'calendar') && (input.placeholder != undefined) && (input.type != 'select') && (input.type != 'text_disabled') && (input.type != 'email') && (techInfoModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || value==''" [(ngModel)]="input.value"
+                    id="{{input.id}}" type="{{input.type}}" (change)="onChange(input, techInfoModalsForm, $event)"
+                    placeholder="{{input.placeholder}}" class="form-control"
+                    [ngClass]="{'is-invalid': input.validation_status == 'true'}" step="0.01">
+
+                <select *ngIf="input.type === 'select' && input.disabled === undefined"
+                    (ngModelChange)="onChange(input, techInfoModalsForm, $event)" [(ngModel)]="input.selected"
+                    name="{{input.id}}" class="form-control">
+                    <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                </select>
+                <select *ngIf="input.type === 'select'  && input.disabled === 'true'"
+                    (ngModelChange)="onChange(input, techInfoModalsForm, $event)" [(ngModel)]="input.selected"
+                    name="{{input.id}}" class="form-control" disabled>
+                    <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                </select>
+
+                <input *ngIf="input.type === 'email'" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}"
+                    type="{{input.type}}" placeholder="{{input.name}}" class="form-control">
+                <input [hidden]="input.hideable ? input.hideable : false"
+                    *ngIf="(input.type != 'checkbox') && (input.type != 'table') && (input.type != 'multiselect') && (input.type != 'file_single') && (input.type != 'file_multiple') && (input.type != 'text_disabled') && (input.type != 'select') && (input.type != 'email') && (techInfoModalsForm.method === 'view')"
+                    [name]="input.id" min="0" oninput="validity.valid || value==''" [(ngModel)]="input.value"
+                    id="{{input.id}}" type="text" placeholder="{{input.name}}" class="form-control" disabled>
+                <input [hidden]="input.hideable ? input.hideable : false"
+                    *ngIf="(input.type != 'checkbox') && (input.type != 'table') && (input.type != 'multiselect') && (input.cost != 'true') && (input.type === 'text_disabled') "
+                    [name]="input.id" min="0" oninput="validity.valid || value==''" [(ngModel)]="input.value"
+                    id="{{input.id}}" type="text" placeholder="{{input.name}}" class="form-control" disabled>
+
+                <!-- <div class="input-group" *ngIf="(input.type === 'calendar')">
+                        <input class="form-control" placeholder="{{input.placeholder}}" (change)="onChange(input, techInfoModalsForm, $event)"
+                               name="dp" [(ngModel)]="input.value" ngbDatepicker #d="ngbDatepicker" readonly>
+                        <div class="input-group-append">
+                          <button class="btn ion-calendar" (click)="d.toggle()" type="button">
+                           
+                          </button>
+                        </div>
+                      </div> -->
+
+                <div class="input-group" *ngIf="(input.type === 'calendar')">
+                    <input class="form-control" [(ngModel)]="input.value" name="dp"
+                        #sagiaIdValidityButton="bsDatepicker" bsDatepicker
+                        [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                        (ngModelChange)="onChange(input, techInfoModalsForm, $event)" placement="bottom"
+                        placeholder="YYYY-MM-DD">
+
+                    <div class="input-group-append">
+                        <button class="more ion-calendar" (click)="sagiaIdValidityButton.toggle()"
+                            type="button"></button>
+                    </div>
+
+                    <div class="invalid-feedback">
+                        <div>{{ "TECHNICAL_INFORMATION.Entervaliddate" | translate}}Enter a valid date</div>
+                    </div>
+                </div>
+                <input #form [hidden]="input.hideable ? input.hideable : false" *ngIf="input.type == 'file_multiple'"
+                    multiple="multiple" (change)="onFileChange($event, input.name, techInfoModalsForm, input)"
+                    [name]="input.id" id="{{input.id}}" type="file" placeholder="{{input.name}}" class="form-control">
+                <input [hidden]="input.hideable ? input.hideable : false" *ngIf="(input.type == 'file_single')"
+                    (change)="onFileChange($event, input.name, techInfoModalsForm, input)" [name]="input.id"
+                    id="{{input.id}}" type="file" placeholder="{{input.name}}" class="form-control">
+                <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" *ngIf="input.type == 'table'"
+                    style="cursor: pointer;" class="more"
+                    (click)="onTableAdd(input)">{{'MARKETING_INFORMATION.Add' | translate }} {{input.name}}</button>
+
+
+                <nb-checkbox *ngIf="input.type == 'checkbox'" (change)="onChange(input, techInfoModalsForm, $event)"
+                    status="success" class="col-sm-3" [(value)]="input.value"></nb-checkbox>
+
+            </div>
+
+            <div class="col-sm-12" style="margin-top: 20px" *ngIf="input.type == 'table'">
+                <ng2-smart-table #smartTable style="width: 100%; margin-top: 20px" [settings]="input.settings"
+                    [source]="input.source" (deleteConfirm)="onDeleteConfirm($event)"
+                    (createConfirm)="onChange(input, techInfoModalsForm, $event)"
+                    (editConfirm)="onChangeEdit(input, techInfoModalsForm, $event)">
+                </ng2-smart-table>
+            </div>
+
+        </div>
+
+        <!-- <div class="form-group row" *ngIf="techInfoModalsForm.alert === 'true - ME'">
+            <div class="col-sm-12">
+                <nb-alert outline="warning">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>Documents to be attached : </strong><br>
+                            <strong>1. Custom Clearance </strong><br>
+                            <strong>2. Machinery Layout </strong><br>
+                            <strong>3. Machinery Raw material Warehouses </strong><br>
+                            <strong>4. Machinery Finished Goods </strong>
+                        </div>
+                    </div>
+                </nb-alert>
+            </div>
+        </div> -->
+        <div class="form-group row" style="text-align: center;" *ngIf="techInfoModalsForm.alert === 'true - BC'">
+            <div class="col-sm-12">
+                <nb-alert outline="warning">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: left">
+                            <strong>{{ "TECHNICAL_INFORMATION.CivilWorksCanBe:" | translate}}</strong><br>
+                            <strong>1. {{ "TECHNICAL_INFORMATION.SitePreparationandLeveling" | translate}}</strong><br>
+                            <strong>2. {{ "TECHNICAL_INFORMATION.BoundaryWall" | translate}}</strong><br>
+                            <strong>3. {{ "TECHNICAL_INFORMATION.AsphaltingWorks" | translate}}</strong><br>
+                            <strong>4. {{ "TECHNICAL_INFORMATION.UndergroundWaterTanks" | translate}} </strong><br>
+                            <strong>5. {{ "TECHNICAL_INFORMATION.SilosFoundations" | translate}} </strong><br>
+                            <strong>6. {{ "TECHNICAL_INFORMATION.Others" | translate}} </strong><br>
+
+                        </div>
+                    </div>
+                </nb-alert>
+            </div>
+        </div>
+        <div class="form-group row" *ngIf="techInfoModalsForm.alert === 'true - BC'">
+            <div class="col-sm-12">
+                <nb-alert outline="warning">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>{{ "TECHNICAL_INFORMATION.Civilitemscanbe" | translate}}</strong><br>
+                            <strong>1.
+                                {{ "TECHNICAL_INFORMATION.ExternalSiteWorksProductionBuildings" | translate}}</strong><br>
+                            <strong>2. {{ "TECHNICAL_INFORMATION.AdministrationBuildings" | translate}}</strong><br>
+                            <strong>3. {{ "TECHNICAL_INFORMATION.FinishedProductBuilding" | translate}} </strong><br>
+                            <strong>4. {{ "TECHNICAL_INFORMATION.RawMaterialBuilding" | translate}} </strong><br>
+                            <strong>5. {{ "TECHNICAL_INFORMATION.AncillaryBuilding" | translate}} </strong><br>
+                            <strong>6. {{ "TECHNICAL_INFORMATION.Others" | translate}} </strong><br>
+
+                        </div>
+                    </div>
+                </nb-alert>
+            </div>
+        </div>
+
+        <div class="form-group row" *ngIf="techInfoModalsForm.manpower === 'Note'">
+            <div class="col-sm-12">
+                <nb-alert outline="warning">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>{{ "TECHNICAL_INFORMATION.Provideonedirectindirectlabourtype" | translate}}</strong><br>
+
+                        </div>
+                    </div>
+                </nb-alert>
+            </div>
+        </div>
+
+        <div class="form-group row" *ngIf="techInfoModalsForm.alert === 'true - BCW - Attachment'">
+            <div class="col-sm-12">
+                <nb-alert outline="warning">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>{{ "TECHNICAL_INFORMATION.nodisburifleasenotattach" | translate}}</strong><br>
+                            <!-- <strong>1. Land Lease Agreement </strong><br>
+                                <strong>2. General Site Layout </strong><br>
+                                <strong>3. Bulding and Civil Works Diagrams </strong><br>
+                                <strong>4. Design and Supervision Contracts </strong><br>
+                                <strong>5. Machinery Finished Goods BOQ </strong><br>
+                                <strong>6. Permit to Build and Operate </strong><br>
+                                <strong>7. Selected Quotation </strong> -->
+                        </div>
+                    </div>
+                </nb-alert>
+            </div>
+        </div>
+        <div *ngIf="techInfoModalsForm.documentjson && techInfoModalsForm.method != 'view'">
+            <document-list [documents]="documents"></document-list>
+        </div>
+        <div class="form-group row" *ngFor="let table of techInfoModalsForm.tables">
+
+            <label class="col-sm-3 col-form-label"><span *ngIf="table.required === 'true'" class="required-pf">*
+                </span>{{table.heading}}</label>
+
+            <ng2-smart-table style="margin-left: 17px; margin-right: 17px;" [settings]="table.settings"
+                [source]="table.source" (deleteConfirm)="onDelete($event)"></ng2-smart-table>
+
+        </div>
+
+        <div *ngIf="techInfoModalsForm.documentjson && techInfoModalsForm.method === 'view'">
+            <nb-card accent="success">
+                <document-list [documents]="documents"></document-list>
+                <!-- <nb-card-body>
+                <ul class="traffic-list" style="padding: 5px 5px 5px 5px">
+                    <li>
+                        <div class="text" style="color: #696969; width :20%; text-align: center;"><strong>Document Name</strong></div>
+                        <div class="text" style="color: #696969; width :80%; text-align: center;"><strong>Document Type</strong></div>
+                    </li>
+                    <li *ngFor="let doc2 of documents2">
+                        <div class="text" style="text-align: center;">{{doc2.documentname}}</div>
+                        <div class="text" style="text-align: center;">{{doc2.documenttype}}</div>
+                    </li>
+                </ul>
+            </nb-card-body> -->
+            </nb-card>
+        </div>
+    </form>
+
+</div>
+
+<div class="modal-footer">
+
+    <button style="cursor: pointer;" class="more"
+        (click)="closeModal()">{{ "TECHNICAL_INFORMATION.Cancel" | translate}}</button>
+    <button style="cursor: pointer;" type="{{button.type}}" *ngFor="let button of techInfoModalsForm.buttons;"
+        class="btn {{button.class}}" (click)="onSubmit(button, techInfoModalsForm)">{{button.name}}</button>
+</div>

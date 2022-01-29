@@ -1,0 +1,52 @@
+
+/* bootstrap calling  */
+
+@import url('../../bootstrap-5.0.2/dist/css/bootstrap.min.css');
+@import url('../../plugins/OwlCarousel2-2.3.4/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css');
+@import url('./animate.css');
+@import url('./main.css');
+
+
+/* general  styles  */
+:root{
+    --mn-primary:#1AD9C7;
+    --m-primarytext:#413157;
+
+}
+body {
+    font-family: "lyon";
+    color: var(--m-primarytext);
+    background-color: #F2F5F5;
+    min-height: 100%;
+}
+@font-face {
+    font-family: "lyon";
+    src: url("../fonts/Lyon/LyonArabicText-Regular.eot");
+    src: url("../fonts/Lyon/LyonArabicText-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Lyon/LyonArabicText-Regular.woff2") format("woff2"), url("../fonts/Lyon/LyonArabicText-Regular.woff") format("woff"), url("../fonts/Lyon/LyonArabicText-Regular.svg#SSTArabic-Bold") format("svg");
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "diodrom";
+    src: url("../fonts/Diodrom/DiodrumArabic-Medium.eot");
+    src: url("../fonts/Diodrom/DiodrumArabic-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/Diodrom/DiodrumArabic-Medium.woff2") format("woff2"), url("../fonts/Diodrom/DiodrumArabic-Medium.woff") format("woff"), url("../fonts/Diodrom/DiodrumArabic-Medium.svg#SSTArabic-Medium") format("svg");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "lyonbold";
+    src: url("../fonts/Lyon/LyonArabicText-Bold.eot");
+    src: url("../fonts/Lyon/LyonArabicText-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Lyon/LyonArabicText-Bold.woff2") format("woff2"), url("../fonts/Lyon/LyonArabicText-Bold.woff") format("woff"), url("../fonts/Lyon/LyonArabicText-Bold.svg#SSTArabic-Medium") format("svg");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+.btn{
+    border-radius: 12px;
+}
+.search{
+    width: 55%;
+}

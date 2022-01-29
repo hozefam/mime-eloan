@@ -1,0 +1,136 @@
+<div class="modal-header">
+
+    <span *ngIf="commonService.defaultLanguage == 'en'">{{machQuotModalsForm.header}}</span>
+    <span *ngIf="commonService.defaultLanguage == 'ar'">{{machQuotModalsForm.headerAr}}</span>
+    <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" class="close" aria-label="Close" (click)="closeModal(machQuotModalsForm)">
+        <span aria-hidden="true" class="ion-close-round"></span>
+    </button>
+
+</div>
+
+<div class="modal-body">
+
+    <form>
+
+        <div class="form-group row" style="text-align: center;" *ngFor="let input of machQuotModalsForm.inputs;">
+            <div class="col-sm-1"></div>
+            <label for="{{input.name}}" style="text-align: left" class="col-sm-3 col-form-label"><span *ngIf="input.required === 'true'"
+                    class="required-pf">*
+                </span>{{input.name}}</label>
+            <div class="col-sm-7">
+                <input (keypress)="numberOnly($event, input)" *ngIf="(input.type != 'text_disabled') && (input.cost === 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'textarea') && (machQuotModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:input.currency:'symbol':'2.2'"
+                    [ngModelOptions]="{updateOn:'blur', debounce:0}" (ngModelChange)="input.value=$event; onngmodelchange(input);"
+                    id="{{input.id}}" type="{{input.type}}" placeholder="{{input.name}}" class="form-control" [ngClass]="{'is-invalid': input.validation_status == 'true'}">
+                <input (keypress)="numberOnly($event, input)" *ngIf="(input.type === 'text_disabled') && (input.cost === 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'textarea') && (machQuotModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:input.currency:'symbol':'2.2'"
+                    [ngModelOptions]="{updateOn:'blur', debounce:0}" (ngModelChange)="input.value=$event; onngmodelchange(input); "
+                    id="{{input.id}}" type="text" placeholder="{{input.name}}" class="form-control" disabled>
+                <input *ngIf="(input.type != 'file_multiple') && (input.cost != 'true') && (input.type != 'select') && (input.type != 'text_disabled') && (input.type != 'email') && (machQuotModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}"
+                    type="{{input.type}}" placeholder="{{input.name}}" class="form-control" [ngClass]="{'is-invalid': input.validation_status == 'true'}" (ngModelChange)="input.value=$event; onngmodelchange(input); " [ngClass]="{'is-invalid': input.validation_status == 'true'}">
+                <select *ngIf="input.type === 'select' && input.disabled === undefined" [(ngModel)]="input.selected" name="{{input.id}}" class="form-control" (ngModelChange)="onngmodelchange(input)" [ngClass]="{'is-invalid': input.validation_status == 'true'}">
+                    <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                </select>
+                <select *ngIf="input.type === 'select' && input.disabled === 'true'" [(ngModel)]="input.selected" name="{{input.id}}" (ngModelChange)="onngmodelchange(input)" class="form-control" disabled>
+                        <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                    </select>
+              
+                <input *ngIf="input.type === 'email'" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}"
+                    type="{{input.type}}" placeholder="{{input.name}}" class="form-control" [ngClass]="{'is-invalid': input.validation_status == 'true'}" (ngModelChange)="input.value=$event; onngmodelchange(input); ">
+                <input *ngIf="(input.type != 'file_multiple') && (input.type != 'select') && (input.type != 'email') && (machQuotModalsForm.method === 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}"
+                    type="text" placeholder="{{input.name}}" class="form-control" disabled>
+                <input *ngIf="(input.cost != 'true') && (input.type === 'text_disabled') " [name]="input.id" min="0"
+                    oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="text"
+                    placeholder="{{input.name}}" class="form-control" disabled>
+
+                <input #form *ngIf="input.disabled === 'false' && input.type == 'file_multiple'" [(ngModel)]="input.value"
+                    multiple="multiple" (change)="onFileChange($event, input.name, machQuotModalsForm)" [name]="input.id"
+                    id="{{input.id}}" type="file" placeholder="{{input.name}}" class="form-control"  [ngClass]="{'is-invalid': input.validation_status == 'true'}" (ngModelChange)="input.value=$event; onngmodelchange(input); ">
+                <input *ngIf="input.disabled === 'false' && input.type == 'file_single'" (change)="onFileChange($event, input.name, machQuotModalsForm)"
+                    [name]="input.id" id="{{input.id}}" type="file" placeholder="{{input.name}}" class="form-control" [ngClass]="{'is-invalid': input.validation_status == 'true'}" (ngModelChange)="input.value=$event; onngmodelchange(input); "> 
+
+                <input #form *ngIf="input.disabled === 'true' && input.type == 'file_multiple'" [(ngModel)]="input.value"
+                    multiple="multiple" (change)="onFileChange($event, input.name, machQuotModalsForm)" [name]="input.id"
+                    id="{{input.id}}" type="file" placeholder="{{input.name}}" class="form-control" disabled>
+                <input *ngIf="input.disabled === 'true' && input.type == 'file_single'" (change)="onFileChange($event, input.name, machQuotModalsForm)"
+                    [name]="input.id" id="{{input.id}}" type="file" placeholder="{{input.name}}" class="form-control"
+                    disabled>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+                <div *ngFor="let button of machQuotModalsForm.buttons;">
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" [nbSpinner]="spinner_status" nbSpinnerSize="xsmall" nbSpinnerMessage="" style="cursor: pointer;"
+                            *ngIf="button.state != 'disabled' && button.true_name != 'Delete' && button.true_name==='Clear'" type="{{button.type}}" class="btn {{button.class}}"
+                            (click)="onSubmit(button, machQuotModalsForm, $event)">{{button.name}}</button>
+                    </div>
+            <div *ngFor="let button of machQuotModalsForm.buttons;">
+                <button matRipple matRippleColor="rgba(255,239,20,0.15)" [nbSpinner]="spinner_status" nbSpinnerSize="xsmall" nbSpinnerMessage="" style="cursor: pointer;"
+                    *ngIf="button.state != 'disabled' && button.true_name != 'Delete' && button.true_name!='Clear'" type="{{button.type}}" class="btn {{button.class}}"
+                    (click)="onSubmit(button, machQuotModalsForm, $event)">{{button.name}}</button>
+            </div>
+        </div>
+
+        <nb-card [nbSpinner]="spinner_status_2" nbSpinnerSize="xxlarge">
+            <nb-card-body>
+
+        <div class="form-group row" style="text-align: center;" *ngFor="let table of machQuotModalsForm.tables">
+
+            <div class="col-sm-1"></div>
+
+            <label style="text-align: left" class="col-sm-3 col-form-label"><span *ngIf="table.required === 'true'"
+                    class="required-pf">* </span>{{table.heading}}</label>
+
+            <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'" style="margin-left: 5%; margin-right: 5%"
+                [settings]="table.settings" [source]="table.source" (delete)="onDelete(delete_cancel_modal, $event, 'mach_quot', machQuotModalsForm)"
+                (edit)="onEdit($event, machQuotModalsForm, item_temp)" (userRowSelect)="onView($event, machQuotModalsForm)"></ng2-smart-table>
+
+            <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'" style="margin-left: 5%; margin-right: 5%"
+                [settings]="table.settings_ar" [source]="table.source" (delete)="onDelete(delete_cancel_modal, $event, 'mach_quot', machQuotModalsForm)"
+                (edit)="onEdit($event, machQuotModalsForm, item_temp)" (userRowSelect)="onView($event, machQuotModalsForm)"></ng2-smart-table>
+
+        </div>
+        </nb-card-body>
+        </nb-card>
+        <nb-card [nbSpinner]="spinner_status" nbSpinnerSize="xxlarge">
+            <nb-card-body>
+                <document-list [documents]="documents"></document-list>
+            </nb-card-body>
+        </nb-card>
+    </form>
+
+</div>
+
+<div class="modal-footer">
+
+    <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" class="more" (click)="closeModal(machQuotModalsForm)">{{
+        "TECHNICAL_INFORMATION.Cancel" | translate}}</button>
+</div>
+
+<ng-template #delete_cancel_modal let-modal>
+
+    <div class="modal-header">
+
+        <span>{{deleteCancelModalReference.action}} {{deleteCancelModalReference.table_name_display}}</span>
+
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" class="close" aria-label="Close" (click)="onCloseDeleteCancelModal()">
+            <span aria-hidden="true" class="ion-close-round"></span>
+        </button>
+
+    </div>
+
+    <div class="modal-body">
+        <h6>{{ "TECHNICAL_INFORMATION.Areyousure" | translate}}</h6>
+    </div>
+
+    <div class="modal-footer">
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" type="button" class="more" (click)="onCloseDeleteCancelModal()">{{
+            "TECHNICAL_INFORMATION.Cancel" | translate}}</button>
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" type="button" class="more" (click)="onDeleteConfirm()">{{
+            "TECHNICAL_INFORMATION.Yes" | translate}}</button>
+    </div>
+
+</ng-template>

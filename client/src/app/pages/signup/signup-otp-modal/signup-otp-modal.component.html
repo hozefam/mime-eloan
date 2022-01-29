@@ -1,0 +1,58 @@
+<div class="modal-header">
+    
+        <span>{{SignupOtpModalForm.header}}</span>
+    
+            <!-- <button class="close" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button> -->
+            <button style="cursor: pointer;"  class="close" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true" class="ion-close-round"></span>
+                </button>
+    
+    </div>
+        
+    <div class="modal-body">
+
+        <form>
+            <div *ngIf="SignupOtpModalForm.method === 'nicotp'">
+
+            <div class="form-group row" *ngFor="let input of SignupOtpModalForm.inputs;">
+                <!-- <label for="{{input.name}}" class="col-sm-3 col-form-label">{{input.name}}</label> -->
+                <div class="col-md-12">
+
+                    <input (keypress)="numberOnly($event)" autocomplete="off" *ngIf="input.type != 'select'" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}" type={{textOrPassword}} placeholder="{{input.name}}" class="form-control">
+                    <span class="passwordtoggle {{icontype}}" (click)="OnPasswordToggle();"></span>
+                    
+                </div>
+                
+            </div>
+
+            </div>
+
+            <div style = "text-align: -webkit-center;" *ngIf="SignupOtpModalForm.method === 'previewDetails'">
+
+                    <div *ngFor="let input of SignupOtpModalForm.inputs;">
+                        <div class="col-md-12 form-group row" *ngIf="input.value != ''">
+                        <!-- <label for="{{input.name}}" class="col-sm-3 col-form-label">{{input.name}}</label> -->
+                        <label for="{{input.name}}" style = "font-weight: bold;" class="col-sm-5 col-form-label">{{input.name}}</label>
+
+                        <label for="{{input.name}}" style = "font-weight: bold;" class="col-sm-2 col-form-label">:</label>
+                        
+                        <label class="col-sm-5 col-form-label" style = "text-align: center;" for="{{input.name}}">{{input.value}}</label>
+                        <!-- <input [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}" class="form-control"> -->
+                        </div>
+                        
+                    </div>
+        
+            </div>
+            
+        </form>
+    
+    </div>
+    
+    <div class="modal-footer" *ngFor="let button of SignupOtpModalForm.buttons;">
+        
+        <button class="more" (click)="closeModal()">{{ "SIGNUP.bCANCEL" | translate}}</button>
+        <button type="{{button.type}}" class="more" (click)="onSubmit(button.action)">{{ "SIGNUP.bsubmit" | translate}}</button>
+        
+    </div>

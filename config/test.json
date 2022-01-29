@@ -1,0 +1,9 @@
+{
+        // "timezone": "UTC+0",
+        "tokenKey": "Kaar@123",
+        "sidfHostUrl": "http://sidfpoqas.sidf.gov.sa:51000/lms-service/rest",
+        "sidfAuthentication": { "username": "lmsqas", "password": "Lms1234!" },
+        "cpKey": "123456", //KLSidf@2018  Hexa
+        "downloadDocmHostURL": "https://swdd.sidf.gov.sa:221/lms-service/rest",
+        "backEndUrl": "http://localhost:6444/api"
+}

@@ -1,0 +1,43 @@
+<form [formGroup]="newUserForm">
+    <nb-card>
+        <nb-card-header>New User Form</nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="lblFirstName">First Name</label>
+                        <input type="text" class="form-control" id="inpFirstName" placeholder="First Name" formControlName="firstname">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="lblLastName">Last Name</label>
+                        <input type="text" class="form-control" id="inpLastName" placeholder="Last Name" formControlName="lastname">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="lblMobile">Mobile</label>
+                        <input type="email" class="form-control" id="inpmobileno" placeholder="Mobile Number" formControlName="mobileNo">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" formControlName="status">
+                 <option>Active</option>
+                 <option>Inactive</option>
+               </select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="more" (click)="onSubmit()">ارسال</button>
+        </nb-card-body>
+    </nb-card>
+</form>

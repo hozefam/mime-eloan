@@ -1,0 +1,134 @@
+<ng-template #CommentToolTip>Comments</ng-template>
+<button [ngbTooltip]="CommentToolTip" matRipple matRippleColor="rgba(255,239,20,0.15)"
+    style="cursor: pointer; margin-right: 15px; padding: 5px; margin-left: 15px" class="close" aria-label="Open"
+    (click)="onCommonCommentClick(openCommentModal)">
+
+    <span aria-hidden="true"
+        [ngClass]="{'unread-comment ion-email-unread' : comments.anyOpenComments, 'ion-email' : !comments.anyOpenComments}"></span>
+
+</button>
+
+<ng-template #openCommentModal let-modal>
+
+    <div class="modal-header">
+
+        <span>{{ "COMMON.Comments" | translate }}</span>
+
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;" class="close"
+            aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true" class="ion-close-round"></span>
+        </button>
+
+    </div>
+
+    <div class="modal-body">
+
+        <ckeditor *ngIf="comments.anyOpenComments == true" [(ngModel)]="currentComment" [config]="configForCkEditor"
+            debounce="500"></ckeditor>
+        <!-- <app-ngx-editor *ngIf="comments.anyOpenComments" [placeholder]="'COMMON.EnterComment' | translate"
+            height="100px" [spellcheck]="true" [(ngModel)]="currentComment"></app-ngx-editor> -->
+
+        <div class="form-group row" style="margin-top: 10px; text-align: center;">
+
+            <div class="col-sm-1"></div>
+
+            <label for="fileUpload" style="text-align: left"
+                class="col-sm-3 col-form-label">{{ "COMMON.Attachments" | translate }}</label>
+
+            <input multiple="multiple" (change)="onFileChange($event)" [name]="fileUpload" id="fileUpload" type="file"
+                class="form-control col-sm-7">
+
+        </div>
+
+        <div *ngIf="comments.anyOpenComments == true"
+            style="margin-top: 10px; margin-bottom: 20px; text-align: center;">
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" (click)="onSubmitComment()"
+                style="cursor: pointer;" class="btn btn-primary">{{ "COMMON.Submit" | translate }}</button>
+        </div>
+
+        <nb-card style="max-height: 300px !important" accent="success">
+
+            <nb-card-header>{{ "COMMON.CommentHistory" | translate }}</nb-card-header>
+
+            <nb-card-body>
+
+                <ul type="none" style="padding: 5px 5px 5px 5px">
+
+                    <div *ngFor="let comment of comments.commentArray" class="col-md-12 row"
+                        style="margin-bottom: 10px;">
+
+                        <div *ngIf="comment.Indicator == 'CP'" class="col-md-6">
+
+                            <li *ngIf="!comment.IsFile">
+
+                                <div class="text" style="color:black; font-weight: 600;">
+                                    <span>{{comment.CommentedBy}}</span></div>
+                                <div class="text" style="color:black;"><span [innerHTML]="comment.CommentText"></span>
+                                </div>
+                                <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                            </li>
+
+                            <li *ngIf="comment.IsFile">
+
+                                <div class="text" style="color:black; font-weight: 600;">
+                                    <span>{{comment.CommentedBy}}</span></div>
+                                <div><span style="font-size: 20px; font-weight: 600; margin-right: 2%; margin-left: 2%;"
+                                        aria-hidden="true" class="ion-document"></span><span><a class="documentName"
+                                            style="color: black; cursor: pointer !important;"
+                                            (click)="getDocument(comment);">{{comment.CommentText}}</a></span></div>
+                                <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                            </li>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                        </div>
+
+                        <div *ngIf="comment.Indicator == 'UP'" class="col-md-6">
+
+                            <li *ngIf="!comment.IsFile" style="text-align: right;">
+
+                                <div class="text" style="color:black; font-weight: 600; text-align: right;">
+                                    <span>{{comment.CommentedBy}}</span></div>
+                                <div class="text" style="color: black; text-align: right;"><span
+                                        [innerHTML]="comment.CommentText"></span></div>
+                                <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                            </li>
+
+                            <li *ngIf="comment.IsFile" style="text-align: right;">
+
+                                <div class="text" style="color:black; font-weight: 600; text-align: right;">
+                                    <span>{{comment.CommentedBy}}</span></div>
+                                <div><span style="font-size: 20px; font-weight: 600; margin-right: 2%; margin-left: 2%;"
+                                        aria-hidden="true" class="ion-document"></span><span><a class="documentName"
+                                            style="color: black; text-align: right; cursor: pointer !important;"
+                                            (click)="getDocument(comment);">{{comment.CommentText}}</a></span></div>
+                                <!-- <div class="text" style="color:black; font-size: 0.7rem;"><span>{{comment.TimeStamp}}</span></div> -->
+
+                            </li>
+
+                        </div>
+
+                    </div>
+
+                </ul>
+
+            </nb-card-body>
+
+        </nb-card>
+
+    </div>
+
+    <div class="modal-footer">
+
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;"
+            class="btn btn-success" (click)="closeModal()">{{ "COMMON.Close"
+            | translate }}</button>
+
+    </div>
+
+</ng-template>

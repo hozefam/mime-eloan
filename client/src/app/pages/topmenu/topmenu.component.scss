@@ -1,0 +1,76 @@
+
+@font-face{font-family:'DroidKufi-bold';
+    src:url('assets/fonts/DroidKufi-Bold.ttf') format('truetype'),    
+url('assets/fonts/DroidArabicKufi-Bold.woff') format('woff'), 
+url('assets/fonts/DroidArabicKufi-Bold.otf') format('opentype'),
+   url('assets/fonts/DroidKufi-Bold.woff2') format('woff2');} 
+
+   @font-face{font-family:'DroidKufi';
+src:url('assets/fonts/DroidKufi-Regular.ttf') format('truetype'),    
+url('assets/fonts/DroidArabicKufi.woff') format('woff'), 
+url('assets/fonts/DroidArabicKufi.otf') format('opentype'),
+url('assets/fonts/DroidKufi-Regular.woff2') format('woff2');}  
+
+@import "assets/styles/aos.css";
+@import "assets/styles/svganimation.css";
+ 
+@font-face{font-family:'icomoon';
+    src:url('assets/fonts/IcoMoon-Free.ttf') format('truetype')}
+ 
+.rtl {
+    @import "assets/styles/styles.scss";
+}
+.topfixid{
+    z-index: 0!important;
+    background-color: #413157!important;
+}
+   
+.ltr {
+    @import "assets/styles/styles-ltr.scss";
+}
+.footer__socials {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    margin-bottom: 0;
+}
+.footer__socialIcon {
+    display: block;
+    position: relative;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    -webkit-transition: color .3s,-webkit-transform .3s;
+    transition: color .3s,transform .3s,-webkit-transform .3s;
+    color: #00000085!important;
+}
+.footer__socials li {
+    padding-right: 0;
+    padding-left: 8px;
+    list-style-type: none;
+}
+.level-header {
+    padding: 8px 15px;
+    border: 1px solid #dedede;
+    margin: 0 20px 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: -1px 4px 11px -5px ;
+    width: 100%;
+}
+.headertitle {
+    font: 22px "DIN Next LT Arabic"!important;
+    line-height: 15px;
+    color: #404040;
+}
+.dfwp-list {
+    list-style: none;
+     
+}

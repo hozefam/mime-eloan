@@ -1,0 +1,158 @@
+<div class="col-md-12">
+  <!--Start bread crumbs-->
+  <div class="container bread_crumbs">
+    <div class="row">
+      <div class="col">
+        <a href="#"><span>{{ "DASHBOARD.Home" | translate}}</span></a>
+        <span><img src="assets/images/arrow-l.png" alt="img"></span>
+        <span>{{ "DASHBOARD.ApplicationDetails" | translate}}</span>
+      </div>
+    </div>
+  </div>
+  <!--End bread crumbs-->
+
+  <!--Start Title-->
+  <div class="container-fulid margwid">
+    <div class="row title_01">
+      <div class="col">
+        <img src="assets/images/pen.png" alt="img">
+        {{ "DASHBOARD.ApplicationDetails" | translate}}
+      </div>
+    </div>
+  </div>
+  <!--End Title-->
+
+  <nb-card accent="success">
+    <nb-card-body>
+      <div class="row">
+        <div class="col-xxxl-3 col-xxl-3 col-md-3 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(4)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; cursor: pointer;">
+            المعلومات الشخصية
+          </div>
+          <div style="width: 80%;
+                                          margin: 0 auto;
+                                          margin-bottom: 10px;">
+            <!-- <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar> -->
+          </div>
+
+        </div>
+        <div class="col-xxxl-3 col-xxl-3 col-md-3 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(5)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; cursor: pointer;">
+            {{ "DASHBOARD.LandRequirments" | translate}}
+          </div>
+          <div style="width: 80%;
+                                  margin: 0 auto;
+                                  margin-bottom: 10px;">
+            <!-- <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar> -->
+
+          </div>
+
+        </div>
+        <div class="col-xxxl-3 col-xxl-3 col-md-3 loan-percentage-current wizard2"
+          (click)="onClickLoanApplicationTab(6)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; cursor: pointer;">
+            {{ "DASHBOARD.Survey" | translate}}
+          </div>
+          <div style="width: 80%;
+                              margin: 0 auto;
+                              margin-bottom: 10px;">
+            <!-- <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar> -->
+          </div>
+
+        </div>
+        <div class="col-xxxl-3 col-xxl-3 col-md-3 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(7)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px; cursor: pointer;">
+            القرارات
+          </div>
+          <div style="width: 80%;
+                                                  margin: 0 auto;
+                                                  margin-bottom: 10px;">
+            <!-- <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar> -->
+          </div>
+
+        </div>
+      </div>
+
+
+      <nb-card accent="success" style="border-top-width:2px !important; border-radius: 0; border-color: #8dd27a">
+
+        <nb-card-header style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;
+          cursor: pointer;">
+          القرار
+        </nb-card-header>
+
+        <nb-card-body style="text-align: center;">
+
+          <mat-accordion multi="true">
+
+            <mat-expansion-panel [expanded]="true">
+              <form>
+                <div class="form-group row">
+
+                  <label class="col-xxxl-4 form-check-inline">
+                    <h2>موافقة</h2>
+                    <input class="col-sm-6 form-check-input" type="radio" name="approve" [value]="10"
+                      [(ngModel)]="input.decesion">
+                  </label>
+
+                </div>
+                <div class="form-group row">
+                  <label class="col-xxxl-4 form-check-inline">
+                    <h2>رفض</h2>
+                    <input class="col-sm-6 form-check-input" type="radio" name="reject" [value]="9"
+                      [(ngModel)]="input.decesion">
+                  </label>
+                </div>
+
+                <div *ngIf="input.decesion == 9" class="form-group row">
+
+                  <label for="RejectionReason " class="col-sm-2 col-form-label" style="text-align: left">
+                    <h2>السبب</h2>
+                  </label>
+
+                  <div class="col-sm-6 input-group">
+
+                    <input requiredIf="input.decesion == 9" [(ngModel)]="input.RejectionReason " type="text"
+                      class="form-control" name="RejectionReason " placeholder="الرجاء ادخال السبب ...">
+
+                  </div>
+
+                </div>
+
+                <!-- <label class="col-sm-6 col-form-label"><input type="radio" class="radio-inline" class="form-control"
+                              [(ngModel)]="input.approve = true" />
+                            موافقة</label>
+        
+                          <label class="col-sm-6 col-form-label"><input type="radio" class="radio-inline" class="form-control"
+                              [(ngModel)]="input.reject = false" />
+                            رفض</label> -->
+                <!-- <button type="button" style=" margin-right: 150px;" class="btn col-md-2"
+                            (click)="ApprovreReject(1);">حفظ</button> -->
+
+                <!-- <button type="button" style="margin-right: 10px;" class="btn col-md-3"
+                            (click)="ExportToExcel();">إنشاء ملف اكسل</button> -->
+
+
+
+                <div *ngIf="isSubmitted">
+                  <p>لم يتم تحديد اي خيار</p>
+                </div>
+
+                <div *ngIf="showReasonmessage">
+                  <p>الرجاء ادخل السبب</p>
+                </div>
+
+                <button type="button" style=" margin-right: 150px;" class="btn col-md-2"
+                  (click)="ApprovreReject();">حفظ</button>
+              </form>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </nb-card-body>
+
+      </nb-card>
+    </nb-card-body>
+  </nb-card>
+</div>

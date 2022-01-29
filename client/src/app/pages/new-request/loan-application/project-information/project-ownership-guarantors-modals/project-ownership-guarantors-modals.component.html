@@ -1,0 +1,108 @@
+<div class="modal-header">
+
+    <span>{{projectOwnershipGuarantorsModalsForm.header}}</span>
+
+    <button type="button" style="cursor: pointer;" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="ion-close-round"></span>
+    </button>
+
+</div>
+
+<div class="modal-body">
+
+    <form>
+
+        <div class="form-group row" *ngFor="let input of projectOwnershipGuarantorsModalsForm.inputs;">
+            <label for="{{input.name}}" class="col-sm-3 col-form-label"><span *ngIf="input.required === 'true' && projectOwnershipGuarantorsModalsForm.method != 'view'"
+                    class="required-pf">* </span>{{input.name}}</label>
+            <div class="col-sm-7">
+
+                <div *ngIf="input.type == 'greg_date'" class="input-group">
+                    <input onkeydown="return false;" [(ngModel)]="input.value" class="form-control" #greg_date="bsDatepicker"
+                        bsDatepicker placement="right" name="{{input.name}}" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                        placeholder="YYYY-MM-DD">
+                    <div class="input-group-append">
+                        <button class="more ion-calendar" (click)="greg_date.toggle()" type="button"></button>
+                    </div>
+                </div>
+                <input (keypress)="numberOnly($event)" *ngIf="(input.type != 'number') && (input.id != 'alert') && (input.type != 'text_disabled') && (input.cost === 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'textarea') && (projectOwnershipGuarantorsModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:input.currency:'code':'2.2'"
+                    [ngModelOptions]="{updateOn:'blur', debounce:0}" (ngModelChange)="input.value=$event; onngmodelchange(input, projectOwnershipGuarantorsModalsForm);"
+                    id="{{input.id}}" type="{{input.type}}" placeholder="{{input.name}}" class="form-control">
+                <input (keypress)="numberOnly($event)" *ngIf="(input.type != 'number') && (input.id != 'alert') && (input.type === 'text_disabled') &&(input.cost === 'true') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'textarea') && (projectOwnershipGuarantorsModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [ngModel]="input.value | currency:input.currency:'code':'2.2'"
+                    [ngModelOptions]="{updateOn:'blur', debounce:0}" (ngModelChange)="input.value=$event; onngmodelchange(input, projectOwnershipGuarantorsModalsForm);"
+                    id="{{input.id}}" type="text" placeholder="Enter {{input.name}}" class="form-control" disabled>
+                <input *ngIf="(input.type != 'file_multiple') && (input.id != 'alert') && (input.cost != 'true') && (input.type != 'greg_date') && (input.type != 'text_disabled') && (input.type != 'textarea_disabled') && (input.type != 'textarea') && (input.type != 'number_no_decimal') && (input.type != 'number') && (input.type != 'select') && (input.type != 'email') && (projectOwnershipGuarantorsModalsForm.method != 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}"
+                    type="{{input.type}}" placeholder="Enter {{input.name}}" class="form-control">
+                <input *ngIf="input.type == 'text_disabled'" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}"
+                    type="text" placeholder="Enter {{input.name}}" class="form-control" disabled>
+                <select *ngIf="input.type === 'select'" [(ngModel)]="input.selected" name="{{input.id}}" class="form-control">
+                    <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                </select>
+                <input *ngIf="input.type == 'number'" [name]="input.id" min="0" step=".0001" oninput="validity.valid || (value='')"
+                    [(ngModel)]="input.value" id="{{input.id}}" type="number" placeholder="Enter {{input.name}}" class="form-control">
+                <input *ngIf="input.type === 'email'" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}"
+                    type="{{input.type}}" placeholder="Enter {{input.name}}" class="form-control">
+                <textarea *ngIf="input.type === 'textarea'" rows="5" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}"
+                    placeholder="Enter {{input.name}}" class="form-control"></textarea>
+                <textarea *ngIf="input.type === 'textarea_disabled'" rows="5" [name]="input.id" [(ngModel)]="input.value"
+                    id="{{input.id}}" placeholder="Enter {{input.name}}" class="form-control" disabled></textarea>
+                <input *ngIf="input.type == 'number_no_decimal'" [name]="input.id" min="0" step="1" oninput="validity.valid || (value='')"
+                    [(ngModel)]="input.value" id="{{input.id}}" type="number" placeholder="Enter {{input.name}}" class="form-control">
+                <input *ngIf="(input.type != 'file_multiple') && (input.id != 'alert') && (input.type != 'greg_date') && (input.type != 'text_disabled') && (input.type != 'textarea_disabled') && (input.type != 'textarea') && (input.type != 'number_no_decimal') && (input.type != 'number') && (input.type != 'select') && (input.type != 'email') && (projectOwnershipGuarantorsModalsForm.method === 'view') "
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}"
+                    type="{{input.type}}" placeholder="Enter {{input.name}}" class="form-control" disabled>
+                <input *ngIf="input.type == 'file_multiple'" multiple="multiple" (change)="onFileChange($event, input.name)" [name]="input.id" id="{{input.id}}" type="file" placeholder="{{input.name}}" class="form-control">
+
+                <nb-alert *ngIf="(input.id == 'attachments') && (input.id != 'alert')" style="margin-top: 15px;" outline="warning">
+                    <div class="row show-grid">
+                        <div class="col-sm-0">
+
+                            <div class="icon" style="padding-left: 10px; padding-top:5px">
+                                <i class="ion-alert-circled"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-11">
+                            <p>Attach both the <strong>Commercial Registration Document</strong> and the <strong>Article of
+                                    Association /
+                                    Shareholder Resolution (Other Owner's Companies)</strong>
+                            </p>
+                        </div>
+                    </div>
+                </nb-alert>
+
+                <div class="form-group row" *ngIf="input.id == 'alert'">
+                        <div class="col-sm-12">
+                            <nb-alert outline="warning">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <strong>ID Number can be : </strong><br>
+                                        <strong>1. Commercial Register Number</strong><br>
+                                        <strong>2. GCC ID </strong><br>
+                                        <strong>3. Iqama ID </strong><br>
+                                        <strong>4. Natinal ID </strong><br>
+                                        <strong>5. Passport Number </strong><br>
+                                        <strong>6. SAGIA ID </strong><br>
+                                        
+                                    </div>
+                                </div>
+                            </nb-alert>
+                        </div>
+                    </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<div class="modal-footer">
+
+    <button type="button" style="cursor: pointer;" class="more" (click)="closeModal()">الغاء</button>
+    <button style="cursor: pointer;" type="{{button.type}}" *ngFor="let button of projectOwnershipGuarantorsModalsForm.buttons;"
+        class="btn {{button.class}}" (click)="onSubmit()">{{button.name}}</button>
+</div>

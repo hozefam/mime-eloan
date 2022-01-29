@@ -1,0 +1,48 @@
+<div class="col-sm-12">
+
+    <nav aria-label="breadcrumb" class="breadcrumbCustomOverall">
+        <ol class="breadcrumb breadcrumbCustomItem">
+            <li class="breadcrumb-item">{{ "DASHBOARD.Communications" | translate }}</li>
+            <li class="breadcrumb-item active">{{ "RECEIVE_REQUEST.ReceiveRequest" | translate}}</li>
+        </ol>
+    </nav>
+
+    <nb-card accent="success" *ngIf="activeModal === 1">
+
+        <nb-card-header>{{ "RECEIVE_REQUEST.ReceiveRequest" | translate}}</nb-card-header>
+
+        <nb-card-body style="text-align: center;">
+
+            <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEdit($event)"
+                (delete)="onLoanApp($event)" (custom)="onDoc($event)">
+            </ng2-smart-table>
+
+            <!-- <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'" [settings]="settings_ar" [source]="source"
+                    (edit)="onEdit($event)" (delete)="onLoanApp($event)" (custom)="onDoc($event)">
+                </ng2-smart-table> -->
+
+        </nb-card-body>
+
+    </nb-card>
+
+    <nb-card accent="success" *ngIf="activeModal === 2">
+
+
+
+        <nb-card-header>{{ "RECEIVE_REQUEST.ReceiveRequest" | translate}}</nb-card-header>
+
+        <nb-card-body style="text-align: center;">
+
+            <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEdit($event)"
+                (delete)="onLoanApp($event)" (custom)="onDoc($event)">
+            </ng2-smart-table>
+
+            <!-- <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'" [settings]="settings_ar" [source]="source"
+                    (edit)="onEdit($event)" (delete)="onLoanApp($event)" (custom)="onDoc($event)">
+                </ng2-smart-table> -->
+
+        </nb-card-body>
+
+    </nb-card>
+
+</div>

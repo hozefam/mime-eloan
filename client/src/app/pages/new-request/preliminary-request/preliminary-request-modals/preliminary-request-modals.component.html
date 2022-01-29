@@ -1,0 +1,327 @@
+<div class="modal-header">
+
+    <span>{{PreliminaryRequestModalsForm.header}}</span>
+
+    <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;" class="close"
+        aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="ion-close-round"></span>
+    </button>
+
+</div>
+
+<div class="modal-body">
+
+    <form *ngFor="let input of PreliminaryRequestModalsForm.inputs;">
+        <div class="form-group row" style="text-align: center;"
+            *ngIf="input.visible === true && PreliminaryRequestModalsForm.form_number === input.form_number">
+
+            <div class="col-sm-1"></div>
+
+            <label *ngIf="input.combo === true" for="{{input.name}}" class="col-sm-3 col-form-label"
+                style="text-align: left">
+                <span *ngIf="input.required === 'true' && PreliminaryRequestModalsForm.method != 'view'"
+                    class="required-pf">*
+                </span>{{input.name}}
+            </label>
+            <!-- </div> -->
+            <div *ngIf="input.combo === true && PreliminaryRequestModalsForm.method != 'view'" class="col-sm-3"
+                style="cursor: pointer;">
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+            </div>
+            <div *ngIf="input.combo === true && PreliminaryRequestModalsForm.method != 'view'" class="col-sm-3"
+                style="float: right;">
+                <select [ngClass]="{'is-invalid' : input.validation_status_unit}"
+                    (change)="changeSelectOptionCombo(input.selected_unit, input.id_unit)"
+                    *ngIf="input.type_unit === 'select'" [(ngModel)]="input.selected_unit" name="{{input.id_unit}}"
+                    class="form-control">
+                    <option value="" disabled selected hidden>
+                        {{'COMMON.Select' | translate }}
+                        {{ input.name_unit }}</option>
+                    <option *ngFor="let unit of input.dropdown_list_unit;" [value]="unit">{{unit}}
+                    </option>
+                </select>
+            </div>
+
+            <div *ngIf="input.combo === true && PreliminaryRequestModalsForm.method === 'view'" class="col-sm-3"
+                style="cursor: pointer;">
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control" disabled>
+            </div>
+
+            <div *ngIf="input.combo === true && PreliminaryRequestModalsForm.method === 'view'" class="col-sm-3"
+                style="cursor: pointer;">
+                <input (change)="onInputChange(input.id_unit)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    [name]="input.id_unit" [(ngModel)]="input.selected_unit" id="{{input.id_unit}}"
+                    type="{{input.type_unit}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name_unit}}"
+                    class="form-control" disabled>
+            </div>
+
+            <label *ngIf="input.type != 'checkbox' && (input.combo ? !input.combo : true)" for="{{input.name}}"
+                style="cursor: pointer;" class="col-sm-3 col-form-label"><span
+                    *ngIf="input.required === 'true' && PreliminaryRequestModalsForm.method != 'view'"
+                    class="required-pf">*
+                </span>{{input.name}}</label>
+
+            <div *ngIf="input.type != 'checkbox' && (input.combo ? !input.combo : true)" class="col-sm-7">
+
+                <div *ngIf="input.type == 'harmonized_code_pop_up'" style="cursor: pointer;"
+                    class="input-group mail-btn-group"
+                    (click)="onOpenHarmonizedCodePopUp(harmonized_code_pop_up, input.code)">
+                    <input [ngClass]="{'is-invalid' : input.validation_status}" name="harmonized_code"
+                        [(ngModel)]="input.selected" type="text" class="form-control"
+                        placeholder="{{ input.placeholder }}" readonly="readonly" />
+                    <span class="input-group-append">
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                            class="btn more input-group-text">
+                            <i class="nb-search" style="font-size: 25px;"></i>
+                        </button>
+                    </span>
+                </div>
+
+                <div *ngIf="input.type == 'hijri_date'" style="cursor: pointer;" class="input-group">
+                    <input [ngClass]="{'is-invalid' : input.validation_status}" nbInput
+                        (change)="input.value = commonService.onChangeHijriDate($event, input.value)"
+                        [(ngModel)]="input.value" placeholder="YYYY-MM-DD" class="form-control"
+                        (click)="hijri_date.toggle(); onInputChange(input.id)" name="{{input.name}}" placement="bottom"
+                        ngbDatepicker #hijri_date="ngbDatepicker" [minDate]="minDate" [maxDate]="maxDate">
+                    <div class="input-group-append">
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" class="btn more ion-calendar"
+                            (click)="hijri_date.toggle(); onInputChange(input.id)" type="button"></button>
+                    </div>
+                </div>
+
+                <div *ngIf="input.type == 'greg_date'" class="input-group" style="cursor: pointer;">
+                    <input [ngClass]="{'is-invalid' : input.validation_status}" onkeydown="return false;"
+                        [(ngModel)]="input.value" class="form-control" #greg_date="bsDatepicker" bsDatepicker
+                        placement="bottom" name="{{input.name}}"
+                        [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }" placeholder="YYYY-MM-DD">
+                    <div class="input-group-append">
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" class="btn more ion-calendar"
+                            (click)="greg_date.toggle(); onInputChange(input.id)" type="button"></button>
+                    </div>
+                </div>
+
+                <div *ngIf="input.id == 'NoObjectionLetter'" class="input-group" style="cursor: pointer;">
+                    <input multiple="multiple" (change)="onFileChange($event, input.id)" [name]="input.id"
+                        id="{{input.id}}" type="file" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                        class="form-control">
+                    <div class="input-group-append">
+                        <button matRipple matRippleColor="rgba(255,239,20,0.15)" class="btn btn-info" type="button"
+                            onclick="window.open('../../../../../assets/files/SIDF_NOL_Form.pdf')">{{
+                            'PRELIMINARY_REQUEST.DownloadForm' | translate }}</button>
+                    </div>
+                </div>
+
+                <input *ngIf="input.type == 'text_disabled'" [name]="input.id" [(ngModel)]="input.value"
+                    id="{{input.id}}" type="text" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control" disabled>
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.id != 'NoObjectionLetter' && (input.type != 'checkbox') && (input.type != 'harmonized_code_pop_up') && (input.type != 'greg_date') && (input.type != 'hijri_date') && (input.type != 'text_disabled') && (input.type != 'file_single') && (input.type != 'file_multiple') && (input.type != 'number') && (input.type != 'number_no_decimal') && (input.type != 'number_three_decimal') && (input.type != 'radio') && (input.type != 'textarea') && (input.type != 'select') && (input.type != 'da_select') && (input.type != 'cc_select') && (input.type != 'email') && (PreliminaryRequestModalsForm.method != 'view')"
+                    [name]="input.id" min="0" step=".0001" oninput="validity.valid || (value='')"
+                    [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+                <select [ngClass]="{'is-invalid' : input.validation_status}" class="styled-select"
+                    (change)="changeSelectOption(input.selected, input.id)" *ngIf="input.type === 'select'"
+                    [(ngModel)]="input.selected" name="{{input.id}}" class="form-control">
+                    <option value="" disabled selected hidden>{{'COMMON.Select' | translate }} {{input.name}}</option>
+                    <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                </select>
+                <select [ngClass]="{'is-invalid' : input.validation_status}"
+                    (change)="changeDivisionActivitySelectOption(input.selected, input.id)"
+                    *ngIf="input.type === 'da_select'" [(ngModel)]="input.selected" name="{{input.id}}"
+                    class="form-control">
+                    <option value="" disabled selected hidden>{{'COMMON.Select' | translate }} {{input.name}}</option>
+                    <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                </select>
+                <select [ngClass]="{'is-invalid' : input.validation_status}"
+                    (change)="changeCountryCitySelectOption(input.selected , '', input.id)"
+                    *ngIf="input.type === 'cc_select'" [(ngModel)]="input.selected" name="{{input.id}}"
+                    class="form-control">
+                    <option value="" disabled selected hidden>{{'COMMON.Select' | translate }} {{input.name}}</option>
+                    <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                </select>
+                <div *ngIf="input.type === 'radio'">
+                    <label *ngFor="let id_type_item of input.value" class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" name="{{input.id}}"
+                            (change)="changeRadioOption(id_type_item)" (click)="input.selected = id_type_item"
+                            [checked]="id_type_item === input.selected">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">{{id_type_item}}</span>
+                    </label>
+                </div>
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type === 'email'" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}"
+                    type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control">
+                <textarea (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type === 'textarea' && (PreliminaryRequestModalsForm.method != 'view')" rows="5"
+                    [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control"></textarea>
+                <textarea (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type === 'textarea' && (PreliminaryRequestModalsForm.method === 'view')" rows="5"
+                    [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control"
+                    disabled></textarea>
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.id != 'NoObjectionLetter' && (input.type != 'checkbox') && (input.type != 'harmonized_code_pop_up') && (input.type != 'greg_date') && (input.type != 'hijri_date') && (input.type != 'text_disabled') && (input.type != 'file_single') && (input.type != 'file_multiple') && (input.type != 'number') && (input.type != 'number_no_decimal') && (input.type != 'number_three_decimal') && (input.type != 'radio') && (input.type != 'textarea') && (input.type != 'select') && (input.type != 'da_select') && (input.type != 'cc_select') && (input.type != 'email') && (PreliminaryRequestModalsForm.method === 'view')"
+                    [name]="input.id" min="0" step=".0001" oninput="validity.valid || (value='')"
+                    [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control" disabled>
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type == 'number'" [name]="input.id" min="0" step=".0001"
+                    oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="number"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type == 'number_three_decimal'" [name]="input.id" min="0" step=".001"
+                    oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="number"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type == 'number_no_decimal'" [name]="input.id" min="0" step="1"
+                    oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="number"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+                <input [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.id != 'NoObjectionLetter' && input.type == 'file_multiple'" multiple="multiple"
+                    (change)="onFileChange($event, input.id)" [name]="input.id" id="{{input.id}}" type="file"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+                <input [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type == 'file_single'"
+                    (change)="onFileChange($event, input.id)" [name]="input.id" id="{{input.id}}" type="file"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+
+            </div>
+
+            <label *ngIf="input.type == 'checkbox'" for="{{input.name}}" class="col-sm-11 col-form-label"><span
+                    *ngIf="input.required === 'true' && PreliminaryRequestModalsForm.method != 'view'"
+                    class="required-pf">* </span>{{input.name}}</label>
+            <nb-checkbox (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                *ngIf="input.type == 'checkbox'" class="col-sm-11" id="{{input.id}}" [name]="input.id"
+                [(ngModel)]="input.value">{{input.text}}</nb-checkbox>
+
+        </div>
+
+    </form>
+
+    <nb-alert *ngIf="this.PreliminaryRequestModalsForm.inputs[0].id == 'type_of_document'" outline="warning"
+        style="margin-top: 20px; text-align: center">
+        <div class="row show-grid">
+            <div class="col-md-0">
+
+                <div class="icon" style="padding-left: 10px; padding-top: 5px">
+                    <i class="ion-alert-circled"></i>
+                </div>
+            </div>
+            <div class="col-md-11">
+                <strong>{{ 'PRELIMINARY_REQUEST.DocumentsWarning' | translate }}</strong>
+            </div>
+        </div>
+    </nb-alert>
+
+    <nb-alert outline="warning" *ngIf="(this.PreliminaryRequestModalsForm.inputs[22] && 
+    this.PreliminaryRequestModalsForm.inputs[22].id == 'NoObjectionLetter' &&
+    this.PreliminaryRequestModalsForm.inputs[22].form_number == this.PreliminaryRequestModalsForm.form_number) || 
+    (this.PreliminaryRequestModalsForm.inputs[24] && this.PreliminaryRequestModalsForm.inputs[24].id == 'NoObjectionLetter' && 
+    this.PreliminaryRequestModalsForm.inputs[24].form_number == this.PreliminaryRequestModalsForm.form_number)"
+        style="margin-top: 20px; text-align: center">
+        <div class="row show-grid">
+            <div class="col-md-0">
+
+                <div class="icon" style="padding-left: 10px; padding-top: 5px">
+                    <i class="ion-alert-circled"></i>
+                </div>
+            </div>
+            <div class="col-md-11">
+                <strong>{{ 'PRELIMINARY_REQUEST.OwnerDocumentsWarning' | translate }}</strong>
+            </div>
+        </div>
+    </nb-alert>
+
+    <div
+        *ngIf="this.PreliminaryRequestModalsForm.documents && this.PreliminaryRequestModalsForm.documents != 'no_documents'">
+        <document-list [documents]="this.PreliminaryRequestModalsForm.documents"></document-list>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+
+    <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;"
+        class="btn btn-md more" (click)="closeModal()">{{
+        'COMMON.Cancel' | translate }}</button>
+    <div *ngFor="let button of PreliminaryRequestModalsForm.buttons;">
+        <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;"
+            *ngIf="PreliminaryRequestModalsForm.form_number === button.form_number" type="{{button.type}}"
+            class="btn {{button.class}}" (click)="onSubmit(button.form_number)">{{button.name}}</button>
+    </div>
+</div>
+
+<ng-template #harmonized_code_pop_up let-modal>
+
+    <div class="modal-content" style="border-color: black;">
+
+        <div class="modal-header">
+
+            <span *ngIf="fieldForSearchInput === 'HSCode'">{{ 'PRELIMINARY_REQUEST.harmonizedCode' | translate }}</span>
+            <span *ngIf="fieldForSearchInput === 'mainActivity'"> {{ 'PRELIMINARY_REQUEST.mainActivity' | translate }}</span>
+            <span *ngIf="fieldForSearchInput === 'subActivity'"> {{ 'PRELIMINARY_REQUEST.subActivity' | translate }}</span>
+
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;"
+                class="close" aria-label="Close" (click)="onCloseHarmonizedCodePopUp()">
+                <span aria-hidden="true" class="ion-close-round"></span>
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="col-sm-12 input-group mail-btn-group">
+                <input name="harmonized_code" type="text" [(ngModel)]="searchText"
+                    (input)="onSearchHarmonizedCodePopUpItem(fieldForSearchInput)" class="form-control"
+                    placeholder="{{'COMMON.Search' | translate }}" />
+                <span class="input-group-append" (click)="onResetHarmonizedCodePopUpSearch(fieldForSearchInput)">
+                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;"
+                        class="btn more input-group-text">
+                        <i class="nb-close-circled" style="font-size: 25px;"></i>
+                    </button>
+                </span>
+            </div>
+
+            <nb-card [size]="'small'" style='margin-top: 20px; margin-right: 2%; margin-left: 2%;'>
+                <nb-list *ngIf="fieldForSearchInput === 'HSCode'">
+                    <nb-list-item style="font-size: 25px;"
+                        *ngFor="let harmonized_code_item of harmonized_code_pop_up_array"
+                        (click)="onClickHarmonizedCodePopUpItem(harmonized_code_item, fieldForSearchInput)">
+                        
+                        <span *ngIf="language==='ar'">{{ harmonized_code_item.hsCode }} - {{ harmonized_code_item.hsDespAr }}</span>
+                        <span *ngIf="language==='en'">{{ harmonized_code_item.hsCode }} - {{ harmonized_code_item.hsDespEn }}</span>
+                    </nb-list-item>
+                </nb-list>
+                <nb-list *ngIf="fieldForSearchInput === 'mainActivity'">
+                    <nb-list-item style="font-size: 25px;" *ngFor="let main_activity_item of main_activity_pop_up_array"
+                        (click)="onClickHarmonizedCodePopUpItem(main_activity_item, fieldForSearchInput)">
+                        <span *ngIf="language==='ar'">{{ main_activity_item.id }} - {{ main_activity_item.divisionNameAr }}</span>
+                        <span *ngIf="language==='en'">{{ main_activity_item.id }} - {{ main_activity_item.divisionName }}</span>
+                    </nb-list-item>
+                </nb-list>
+                <nb-list *ngIf="fieldForSearchInput === 'subActivity'">
+                    <nb-list-item style="font-size: 25px;" *ngFor="let sub_activity_item of sub_activity_pop_up_array"
+                        (click)="onClickHarmonizedCodePopUpItem(sub_activity_item, fieldForSearchInput)">
+                        
+                        <span *ngIf="language==='ar'">{{ sub_activity_item.activityId }} - {{ sub_activity_item.activityNameAr }}</span>
+                        <span *ngIf="language==='en'">{{ sub_activity_item.activityId }} - {{ sub_activity_item.activityName }}</span>
+                    </nb-list-item>
+                </nb-list>
+            </nb-card>
+
+        </div>
+
+        <div class="modal-footer">
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="button" style="cursor: pointer;"
+                class="btn more" (click)="onCloseHarmonizedCodePopUp()">{{
+                'COMMON.Cancel' | translate }}</button>
+        </div>
+
+    </div>
+
+</ng-template>

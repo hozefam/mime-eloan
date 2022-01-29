@@ -1,0 +1,513 @@
+<div class="col-md-12">
+<!--Start bread crumbs-->
+<div class="container-fulid margwid bread_crumbs">
+    <div class="row">
+        <div class="col">
+            <a><span>{{ "DASHBOARD.Home" | translate }}</span></a>
+            <span><img src="assets/images/arrow-l.png" alt="img"></span>
+            <span>{{ "DASHBOARD.MyServices" | translate }}</span>
+        </div>
+    </div>
+</div>
+<!--End bread crumbs-->
+
+<!--Start Title-->
+<div class="container-fulid margwid">
+    <div class="row title_01">
+        <div class="col">
+            <img src="assets/images/pen.png" alt="img">
+            {{ "DASHBOARD.MyServices" | translate }}
+        </div>
+    </div>
+</div>
+<!--End Title-->
+
+<!---->
+<!-- <div class="container-fulid margwid">
+      <div class="row title_02">
+          <div class="col-4">
+              <img src="assets/images/icon-1.png" alt="img">
+                     أرض وقرض صناعي ( الجبيل )</div>      
+          <div class="col-2"></div>
+                     <div class="col-2 subtitle-1 curs"><a  [routerLink]="['/product-description']" >
+             <img src="assets/images/icon-1-1.png" alt="img">
+              وصف الخدمة</a></div>
+          <div class="col-2 subtitle-1 curs"><a   [routerLink]="['/product-conditions']" >
+             <img src="assets/images/icon-1-2.png" alt="img">
+              شروط الحصول على منتج</a></div>
+      
+          <div class="col-2 subtitle-1 curs"><a (click)="setProductId(9)">
+             <img src="assets/images/icon-1-3.png" alt="img">
+              ابدأ مصنعك الأن
+      </a></div>
+      </div>
+  </div> -->
+<!---->
+<div class="container-fulid margwid">
+<div class="row">
+
+    <div class="col-md-8">
+
+        
+        <dashboard-transactions [requests]="lastrequests"></dashboard-transactions>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <dashboard-rating></dashboard-rating>
+
+    </div>
+
+</div>
+</div>
+<!---->
+<div class="container-fulid margwid">
+    <div class="row title_02">
+        <div class="col-6">
+            <img src="assets/images/icon-3.png" alt="img">
+            {{ "HOME.LLModonTitle" | translate }} </div>
+      
+
+        <div class="col-2 subtitle-1 curs"><a  href="/product-description/7" >
+                <img src="assets/images/icon-1-1.png" alt="img">
+                {{ "HOME.ServiceDescription" | translate }} </a></div>
+        <div class="col-2 subtitle-1 curs"><a href="/product-conditions/7">
+                <img src="assets/images/icon-1-2.png" alt="img">
+               {{ "HOME.ProductConditions" | translate }} </a></div>
+
+        <div (click)="setProductId(7)" class="col-2 subtitle-1 curs"><a>
+                <img src="assets/images/icon-1-3.png" alt="img">
+                {{ "HOME.WebsiteSlogan" | translate }} 
+            </a></div>
+    </div>
+</div>
+<!---->
+
+<!---->
+<div class="container-fulid margwid">
+    <div class="row title_02">
+        <div class="col-6">
+            <img src="assets/images/icon-2.png" alt="img">
+            {{ "HOME.FLModonTitle" | translate }}</div>
+     
+        <div class="col-2 subtitle-1 curs"><a href="/product-description/8" >
+                <img src="assets/images/icon-1-1.png" alt="img">
+                {{ "HOME.ServiceDescription" | translate }}</a></div>
+        <div class="col-2 subtitle-1 curs"><a href="/product-conditions/8">
+                <img src="assets/images/icon-1-2.png" alt="img">
+                {{ "HOME.ProductConditions" | translate }}</a></div>
+
+        <div (click)="setProductId(8)" class="col-2 subtitle-1 curs"><a>
+                <img src="assets/images/icon-1-3.png" alt="img">
+                {{ "HOME.WebsiteSlogan" | translate }} 
+            </a></div>
+    </div>
+</div>
+<!-- ECA -->
+<div class="container-fulid margwid">
+    <div class="row title_02">
+        <div class="col-4">
+            <img src="assets/images/icon-1.png" alt="img">
+            {{ "HOME.LLECATitle" | translate }} </div>
+        <div class="col-2"></div>
+        <div class="col-2 subtitle-1 curs"><a  href="/product-description/11" >
+                <img src="assets/images/icon-1-1.png" alt="img">
+                {{ "HOME.ServiceDescription" | translate }} </a></div>
+
+        <div class="col-2 subtitle-1 curs"><a href="/product-conditions/11">
+                <img src="assets/images/icon-1-2.png" alt="img">
+                {{ "HOME.ProductConditions" | translate }}</a></div>
+
+
+        <div (click)="setProductId(11)" class="col-2 subtitle-1 curs"><a>
+                <img src="assets/images/icon-1-3.png" alt="img">
+                {{ "HOME.WebsiteSlogan" | translate }}
+            </a></div>
+    </div>
+</div>
+<!---->
+<div class="container-fulid margwid">
+    <div class="row title_02">
+        <div class="col-4">
+            <img src="assets/images/icon-1.png" alt="img">
+            {{ "HOME.LLRCJTitle" | translate }}</div>
+        <div class="col-2"></div>
+        <div class="col-2 subtitle-1 curs"><a  href="/product-description/11" >
+                <img src="assets/images/icon-1-1.png" alt="img">
+                {{ "HOME.ServiceDescription" | translate }}</a></div>
+
+        <div class="col-2 subtitle-1 curs"><a href="/product-conditions/11">
+                <img src="assets/images/icon-1-2.png" alt="img">
+                {{ "HOME.ProductConditions" | translate }}</a></div>
+
+        <div (click)="setProductId(11)" class="col-2 subtitle-1 curs"><a>
+                <img src="assets/images/icon-1-3.png" alt="img">
+                {{ "HOME.WebsiteSlogan" | translate }}
+            </a></div>
+    </div>
+</div>
+<!---->
+<!---->
+<div class="container-fulid margwid">
+    <div class="row title_02">
+        <div class="col-4">
+            <img src="assets/images/icon-1.png" alt="img">
+            {{ "HOME.LLLogistics" | translate }}</div>
+        <div class="col-2"></div>
+        <div class="col-2 subtitle-1 curs"><a  href="/product-description/12" >
+                <img src="assets/images/icon-1-1.png" alt="img">
+                {{ "HOME.ServiceDescription" | translate }}</a></div>
+
+        <div class="col-2 subtitle-1 curs"><a href="/product-conditions/12">
+                <img src="assets/images/icon-1-2.png" alt="img">
+                {{ "HOME.ProductConditions" | translate }}</a></div>
+
+        <div (click)="setProductId(12)" class="col-2 subtitle-1 curs"><a>
+                <img src="assets/images/icon-1-3.png" alt="img">
+                {{ "HOME.WebsiteSlogan" | translate }}
+            </a></div>
+    </div>
+</div>
+
+<div class="container-fulid margwid">
+    <div class="row title_02">
+        <div class="col-4">
+            <img src="assets/images/icon-1.png" alt="img">
+            {{ "HOME.LLLogisticsRCYJ" | translate }}</div>
+        <div class="col-2"></div>
+        <div class="col-2 subtitle-1 curs"><a  href="/product-description/13" >
+                <img src="assets/images/icon-1-1.png" alt="img">
+                {{ "HOME.ServiceDescription" | translate }}</a></div>
+
+        <div class="col-2 subtitle-1 curs"><a href="/product-conditions/12">
+                <img src="assets/images/icon-1-2.png" alt="img">
+                {{ "HOME.ProductConditions" | translate }}</a></div>
+
+        <div (click)="setProductId(13)" class="col-2 subtitle-1 curs"><a>
+                <img src="assets/images/icon-1-3.png" alt="img">
+                {{ "HOME.WebsiteSlogan" | translate }}
+            </a></div>
+    </div>
+</div>
+<!---->
+<div class="container-fulid margwid">
+    <div class="row title_02">
+        <div class="col-4">
+            <img src="assets/images/icon-1.png" alt="img">
+            {{ "HOME.LLLogisticsECA" | translate }}</div>
+        <div class="col-2"></div>
+        <div class="col-2 subtitle-1 curs"><a  href="/product-description/15" >
+                <img src="assets/images/icon-1-1.png" alt="img">
+                {{ "HOME.ServiceDescription" | translate }}</a></div>
+
+        <div class="col-2 subtitle-1 curs"><a href="/product-conditions/12">
+                <img src="assets/images/icon-1-2.png" alt="img">
+                {{ "HOME.ProductConditions" | translate }}</a></div>
+
+        <div (click)="setProductId(15)" class="col-2 subtitle-1 curs"><a>
+                <img src="assets/images/icon-1-3.png" alt="img">
+                {{ "HOME.WebsiteSlogan" | translate }}
+            </a></div>
+    </div>
+</div>
+<!---->
+<div class="container-fulid margwid allitems" >
+    <div class="row" style="display: none;">
+        <!---->
+        <div class="col-sm marg">
+            <div class="item-1"><img src="assets/images/icon33.png" alt="img"></div>
+            <div> {{ "HOME.LLModonTitle" | translate }}</div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a (click)="setProductId(7)">
+                        <img src="assets/images/firsticon.png" alt="img">
+                        
+                        {{ "HOME.SentPreliminaryRequest" | translate }}
+                    </a></div>
+                <div class="col-2 item-no"> {{ ( requests && requests[7] )?  requests[7].SubmittedPreliminary : 0}}
+                </div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a [routerLink]="['/pages/new-request/loan-application']">
+                        <img src="assets/images/okicon.png" alt="img">
+                        {{ "HOME.ApprovedPreliminaryRequest" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests[7] )? requests[7].ApprovedPreliminaryRequests:0}}
+                </div>
+            </div>
+
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                         
+                        {{ "HOME.TotalRequestedLandLoan" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests[7] )? requests[7].LandLoanRequests : 0 }}</div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.SentRequestedLandLoan" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests[7] )? requests[7].SubmittedLandLoanRequests :0}}
+                </div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.ApprovedRequest" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests[7] )? requests[7].ApprovedRequests : 0 }}</div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                         
+                        {{ "HOME.inbox" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">0</div>
+            </div>
+        </div>
+
+        <!-- <div class="col-sm marg">
+                <div class="item-1"><img src="assets/images/icon11.png" alt="img"></div>
+                <div>أرض وقرض صناعي ( هيئة المدن الإقتصادية) </div>
+                <div class="row item-title">
+                    <div class="col-10">
+                <a (click)="setProductId(7)">
+               <img src="assets/images/firsticon.png" alt="img">
+                الطلبات المبدئية
+                     </a></div>
+                    <div class="col-2 item-no">0</div>
+                </div>
+                <div class="row item-title">
+                    <div class="col-10">
+                <a [routerLink]="['/pages/new-request/loan-application']">
+               <img src="assets/images/okicon.png" alt="img">
+                الطلبات المعتمدة
+                     </a></div>
+                    <div class="col-2 item-no">0</div>
+                </div>
+                <div class="row item-title">
+                    <div class="col-10">
+                <a href="#">
+               <img src="assets/images/mailicon.png" alt="img">
+                البريد الوارد
+                     </a></div>
+                    <div class="col-2 item-no">0</div>
+                </div>                    
+            </div> -->
+        <!---->
+        <div class="col-sm ">
+            <div class="item-1"><img src="assets/images/icon22.png" alt="img"></div>
+            <div> 
+
+                {{ "HOME.FLModonTitle" | translate }}
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a (click)="setProductId(8)">
+                        <img src="assets/images/firsticon.png" alt="img">
+                        
+                        {{ "HOME.SentRequestedLandLoan" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests['8'] ) ?requests['8'].SubmittedPreliminary : 0}}
+                </div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a [routerLink]="['/pages/new-request/loan-application']">
+                        <img src="assets/images/okicon.png" alt="img">
+                        
+                        {{ "HOME.ApprovedPreliminaryRequest" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">
+                    {{( requests && requests['8'] )? requests['8'].ApprovedPreliminaryRequests:0}}</div>
+            </div>
+
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.TotalRequestedFactoryLoan" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests['8'] )? requests['8'].LandLoanRequests : 0 }}</div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                         
+                        {{ "HOME.SentRequestedFactoryLoan" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">
+                    {{( requests && requests['8'] )? requests['8'].SubmittedLandLoanRequests : 0}}</div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.ApprovedRequest" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests['8'] )? requests['8'].ApprovedRequests : 0 }}</div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.inbox" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">0</div>
+            </div>
+        </div>
+        <!-- RCJ -->
+        <div class="col-sm ">
+            <div class="item-1"><img src="assets/images/icon22.png" alt="img"></div>
+            <div> 
+
+                {{ "HOME.JICModonTitle" | translate }}
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a (click)="setProductId(9)">
+                        <img src="assets/images/firsticon.png" alt="img">
+                        
+                        {{ "HOME.SentPreliminaryRequest" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests['9'] ) ?requests['9'].SubmittedPreliminary : 0}}
+                </div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a [routerLink]="['/pages/new-request/loan-application']">
+                        <img src="assets/images/okicon.png" alt="img">
+                        
+                        {{ "HOME.ApprovedPreliminaryRequest" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">
+                    {{( requests && requests['9'] )? requests['9'].ApprovedPreliminaryRequests:0}}</div>
+            </div>
+
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.TotalRequestedFactoryLoan" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests['9'] )? requests['9'].LandLoanRequests : 0 }}</div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.SentRequestedFactoryLoan" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">
+                    {{( requests && requests['9'] )? requests['9'].SubmittedLandLoanRequests : 0}}</div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.ApprovedRequest" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests['9'] )? requests['9'].ApprovedRequests : 0 }}</div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.inbox" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">0</div>
+            </div>
+        </div>
+        <!-- ECA -->
+        <div class="col-sm marg">
+            <div class="item-1"><img src="assets/images/icon33.png" alt="img"></div>
+            <div> 
+                {{ "HOME.LLECATitle" | translate }}
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a (click)="setProductId(11)">
+                        <img src="assets/images/firsticon.png" alt="img">
+                        
+                        {{ "HOME.SentPreliminaryRequest" | translate }}
+                    </a></div>
+                <div class="col-2 item-no"> {{ ( requests && requests[11] )?  requests[11].SubmittedPreliminary : 0}}
+                </div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a [routerLink]="['/pages/new-request/loan-application']">
+                        <img src="assets/images/okicon.png" alt="img">
+                        
+                        {{ "HOME.ApprovedPreliminaryRequest" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests[11] )? requests[11].ApprovedPreliminaryRequests:0}}
+                </div>
+            </div>
+
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.TotalRequestedLandLoan" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests[11] )? requests[11].LandLoanRequests : 0 }}</div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.SentRequestedLandLoan" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests[11] )? requests[11].SubmittedLandLoanRequests :0}}
+                </div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.ApprovedRequest" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">{{( requests && requests[11] )? requests[11].ApprovedRequests : 0 }}</div>
+            </div>
+            <div class="row item-title">
+                <div class="col-10">
+                    <a>
+                        <img src="assets/images/mailicon.png" alt="img">
+                        
+                        {{ "HOME.inbox" | translate }}
+                    </a></div>
+                <div class="col-2 item-no">0</div>
+            </div>
+        </div>
+
+        <!---->
+
+
+    </div>
+</div>
+
+
+</div>

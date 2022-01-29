@@ -1,0 +1,420 @@
+<div class="col-md-12">
+
+  <div class="container bread_crumbs">
+    <div class="row">
+      <div class="col">
+        <a href="#"><span>{{ "DASHBOARD.Home" | translate}}</span></a>
+        <span><img src="assets/images/arrow-l.png" alt="img"></span>
+        <span> {{ "FactoryLoan.RequestDetails" | translate}}</span>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container-fulid margwid">
+    <div class="row title_01">
+      <div class="col">
+        <img src="assets/images/pen.png" alt="img">
+        {{ "FactoryLoan.RequestDetails" | translate}}
+      </div>
+    </div>
+  </div>
+
+
+  <nb-card accent="success">
+
+    <!-- NationalAttachment / 5
+    DelegateIDCopy (Modified)  5 
+    AgreementAttachement / 6 
+    PartnerAttachement  /1 
+    FactoryLayoutAttachment  /5
+    TimePlanAttachment  /5  --> 
+    <nb-card-body> 
+      <div class="col-xxxl-12 col-xxl-12 col-md-12" style="text-align: center; margin-bottom: 20px;">
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(0)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ 'COMMON.ProjectInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 10px;">
+            <nb-progress-bar [value]="GenInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+
+        </div>
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(1)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ 'COMMON.MarketingInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 10px;">
+            <nb-progress-bar [value]="MarkInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+        </div>
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(2)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ 'COMMON.TechnicalInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 10px;">
+            <nb-progress-bar [value]="TechInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+
+        </div>
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(3)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ 'COMMON.FinancialInformation' | translate }}
+          </div>
+          <div style="width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 10px;">
+            <nb-progress-bar [value]="FinInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+
+        </div>
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+          (click)="onClickLoanApplicationTab(5)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ "COMMON.FactoryData" | translate}}
+          </div>
+          <div style="width: 80%;
+                        margin: 0 auto;
+                        margin-bottom: 10px;">
+            <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+
+          </div>
+
+        </div>
+
+        <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+          (click)="onClickLoanApplicationTab(4)">
+          <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+            {{ 'COMMON.Checklist' | translate }}
+          </div>
+          <div style="width: 80%;
+                            margin: 0 auto;
+                            margin-bottom: 10px;">
+            <nb-progress-bar [value]="ChecklistPer" status="warning" [displayValue]="true"></nb-progress-bar>
+          </div>
+
+        </div>
+
+      </div>
+
+      <nb-card accent="success" style="border-top-width:2px !important; border-radius: 0; border-color: #8dd27a">
+
+        <nb-card-header
+          style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;">
+          {{ "COMMON.FactoryData" | translate}}</nb-card-header>
+
+        <nb-card-body style="text-align: center;">
+
+          <div style="margin-bottom: 20px; text-align: right;">
+
+            <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === false" class="more"
+              (click)="expandAllPanels(0);">{{'COMMON.ExpandAllPanels' | translate }}</button>
+            <button type="button" style="cursor: pointer;" *ngIf="allPanelsExpanded === true" class="more"
+              (click)="expandAllPanels(1);">{{ 'COMMON.CollapseAllPanels' | translate }}</button>
+
+
+          </div>
+
+          <mat-accordion multi="true">
+
+
+            <mat-expansion-panel [expanded]="true">
+
+              <mat-expansion-panel-header>
+
+                <mat-panel-title>
+                  {{ "COMMON.FactoryData" | translate}} </mat-panel-title>
+
+              </mat-expansion-panel-header>
+              <form ngNativeValidate #modonForm5="ngForm">
+                <div class="form-group row">
+                  <input [disabled]="add_edit_delete_show" type="checkbox" [(ngModel)]="input.IsAwaitingSIDFFinance">
+                  <label for="IsAwaitingSIDFFinance">
+                    {{ "COMMON.FeerentTerms" | translate}} 
+                  </label>
+
+                </div>
+                <div class="form-group row">
+
+                  <label for="Activitie" class="col-sm-2 col-form-label" style="text-align: left"><span
+                      class="required-pf">* </span>  {{ "COMMON.MainActivity" | translate}}  </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <select [disabled]="add_edit_delete_show" [(ngModel)]="input.ILActivityClassification" required
+                      class="form-control" (ngModelChange)="getModonSubActivety($event)" name="Activitie"
+                      placeholder="">
+                      <option *ngFor="let item of Activities" [value]="item.code"> {{item.value}}
+                      </option>
+                    </select>
+
+                  </div>
+
+
+                  <label for="ApplicantStatus" class="col-sm-2 col-form-label" style="text-align: left"> {{ "COMMON.MainActivity" | translate}} </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <select [disabled]="add_edit_delete_show" [(ngModel)]="input.SubActivitie" class="form-control"
+                      name="ApplicantStatus" placeholder=" ">
+                      <option *ngFor="let item of SubActivities" [value]="item.Id"> {{item.Name}}</option>
+                    </select>
+
+                  </div>
+
+                </div>
+
+
+                <div class="form-group row">
+
+                  <label for="RequesterName" class="col-sm-2 col-form-label" style="text-align: left"><span
+                      class="required-pf">* </span>{{ "PRELIMINARY_REQUEST.IndustrialCityName" | translate}}  </label>
+
+                  <div class="col-sm-3 input-group">
+                    <select [disabled]="add_edit_delete_show" [(ngModel)]="input.ReadyFactoryCity" class="form-control"
+                      required name="ReadyFactoryCity" (change)="checkCityAreaAvailability()"
+                      placeholder="  ">
+                      <option *ngFor="let item of readyFactoryCities" [value]="item.code">{{item.value}} </option>
+                    </select>
+                  </div>
+
+
+                  <label for="ApplicantStatus" class="col-sm-2 col-form-label" style="text-align: left"><span
+                      class="required-pf">* </span>{{ "PRELIMINARY_REQUEST.UnitsCount" | translate}} </label>
+
+                  <div class="col-sm-3 input-group">
+
+
+                    <select [disabled]="add_edit_delete_show" [(ngModel)]="input.UnitsNumber" class="form-control"
+                      required name="UnitsNumber" placeholder="     ">
+                      <option
+                        *ngFor="let item of [{'code': '503' , 'value': 'وحدة واحدة' } , {'code': '501' , 'value': 'وحدتان' }]"
+                        [value]="item.code">{{item.value}} </option>
+                    </select>
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                  <label for="RequiredAreaWithoutRebounds" class="col-sm-2 col-form-label"
+                    style="text-align: left"><span class="required-pf">* </span> {{'TECHNICAL_INFORMATION.Rawmaterials' | translate }}  </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" [(ngModel)]="input.RawMaterials" required type="number"
+                      class="form-control" name="RawMaterials" placeholder="   ">
+
+                  </div>
+
+
+                  <label for="RequiredAreaWithRebounds" class="col-sm-2 col-form-label" style="text-align: left"><span
+                      class="required-pf">* </span>{{ "TECHNICAL_INFORMATION.Factorytype" | translate}}  </label>
+
+                  <div class="col-sm-3 input-group">
+
+
+                    <select [disabled]="add_edit_delete_show" [(ngModel)]="input.ReadyFactoryType" class="form-control"
+                      required name="ReadyFactoryType" placeholder="">
+                      <option *ngFor="let item of [{'code': '1190' , 'value': 'أخرى'}]" [value]="item.code">
+                        {{item.value}} </option>
+                    </select>
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                  <label for="WaterNeeds" class="col-sm-2 col-form-label" style="text-align: left"><span
+                      class="required-pf">* </span>{{ "TECHNICAL_INFORMATION.factoryaily" | translate}}</label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" [(ngModel)]="input.WaterNeeds" type="number" required
+                      class="form-control" name="ReboundsArea" placeholder=" ">
+
+                  </div>
+
+                  <label for="Waste" class="col-sm-2 col-form-label" style="text-align: left"><span
+                      class="required-pf">* </span>{{ "TECHNICAL_INFORMATION.Waste" | translate}} </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" [(ngModel)]="input.Waste" required type="number"
+                      class="form-control" name="Waste" placeholder="">
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                  <label for="ElectricalNeeds" class="col-sm-2 col-form-label" style="text-align: left"><span
+                      class="required-pf">* </span>{{ "TECHNICAL_INFORMATION.Waste" | translate}} 
+                  </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" [(ngModel)]="input.ElectricalNeeds" type="number"
+                      class="form-control" name="ElectricalNeeds" placeholder=" ">
+
+                  </div>
+
+                  <label for="WaterConsumption" class="col-sm-2 col-form-label" style="text-align: left"><span
+                      class="required-pf">* </span>{{ "TECHNICAL_INFORMATION.Waterconsumption" | translate}} </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" [(ngModel)]="input.WaterConsumption" type="number" required
+                      class="form-control" name="WaterConsumption" placeholder="">
+
+                  </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                  <label for="NationalSource" class="col-sm-2 col-form-label" style="text-align: left"><span
+                      class="required-pf">* </span> {{ "TECHNICAL_INFORMATION.NationalSource" | translate}}  <span class="required-pf">* </span></label>
+
+                  <div class="col-sm-3 input-group">
+                    <select [disabled]="add_edit_delete_show" [(ngModel)]="input.NationalSource" class="form-control"
+                      required name="NationalSource" placeholder=" ">
+                      <option *ngFor="let item of nationalSources" [value]="item.code">{{item.value}} </option>
+                    </select>
+
+
+                  </div>
+
+
+                  <label for="Area" class="col-sm-2 col-form-label" style="text-align: left"><span class="required-pf">*
+                    </span>{{ "TECHNICAL_INFORMATION.Area" | translate}}  </label>
+
+                  <div class="col-sm-3 input-group">
+
+
+                    <select [disabled]="add_edit_delete_show" [(ngModel)]="input.Area" class="form-control" required
+                      name="Area" (change)="checkCityAreaAvailability()" placeholder=" ">
+                      <option
+                        *ngFor="let item of [{'code': '1500' , 'value': '1500' } , {'code': '700' , 'value': '700' }]"
+                        [value]="item.code">{{item.value}} </option>
+                    </select>
+                  </div>
+
+                </div>
+
+
+                <div class="form-group row">
+
+                  <!-- <label for="NationalAttachment" class="col-sm-2 col-form-label"
+                    style="text-align: left"> <span class="required-pf">* </span>نسخة من الهوية الوطنية / الاقامة </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [(ngModel)]="tempAttachments.NationalAttachment"  required type="file" class="form-control"
+                      name="NationalAttachment" placeholder="نسخة من الهوية "  (change)="uploadFile($event, 'NationalAttachment')" >
+
+                  </div> -->
+
+                  <!-- <label for="PollutionClass" class="col-sm-2 col-form-label" style="text-align: left"><span class="required-pf">* </span> فئة التلوث</label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <select [(ngModel)]="input.PollutionClass"  required  class="form-control" name="PollutionClass"
+                      placeholder="فئة التلوث ">
+                    <option *ngFor="let item  of pollutionType " value=" {{item.code}}"> {{item.value}}  </option>
+                    </select> 
+                      
+
+                  </div> -->
+                  <label for="RequiredAreaWithoutRebounds" class="col-sm-2 col-form-label"
+                    style="text-align: left"><span class="required-pf">* </span> {{'TECHNICAL_INFORMATION.products' | translate }} </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [disabled]="add_edit_delete_show" [(ngModel)]="input.Products" required type="text"
+                      class="form-control" name="Products" placeholder=" ">
+
+                  </div>
+
+
+                </div>
+
+                <!--           
+                <div class="form-group row">
+
+   
+
+
+                  <label for="TimePlanAttachment" class="col-sm-2 col-form-label" style="text-align: left"> <span class="required-pf">* </span>مخطط المصنع </label>
+
+                  <div class="col-sm-3 input-group">
+
+                    <input [(ngModel)]="tempAttachments.FactoryLayoutAttachment" type="file"  required class="form-control" name="TimePlanAttachment"
+                      placeholder="مخطط المصنع " (change)="uploadFile($event , 'FactoryLayoutAttachment')" > 
+
+                  </div>
+              
+                </div> -->
+
+
+                <div style="margin-top: 20px;">
+
+                  <input *ngIf="!add_edit_delete_show" type="submit" style="cursor: pointer;" class="more" value="حفظ "
+                    (click)="modonForm5.form.valid?  onSave():invalidForm()">
+                  <!-- <input  type="submit" style="cursor: pointer;"  *ngIf="!modonForm5.form.valid" class="more"   value="حفظ "   > -->
+                </div>
+
+              </form>
+
+              <mat-action-row>
+
+
+                <!-- <button type="button" style="margin-right: 10px; cursor: pointer;" *ngIf="allPanelsExpanded === false"
+                  class="more" (click)="nextPanelStep();">{{'COMMON.Next' | translate }</button>
+                             -->
+              </mat-action-row>
+
+            </mat-expansion-panel>
+
+
+
+
+
+          </mat-accordion>
+          <!-- 
+                <div *ngIf="add_edit_delete_show" style="margin-top: 20px;">
+
+                    <input type="submit" style="cursor: pointer;" class="more" (click)="onSave();" value="حفظ " >
+
+                </div> -->
+
+        </nb-card-body>
+
+      </nb-card>
+
+    </nb-card-body>
+
+  </nb-card>
+
+
+
+</div>

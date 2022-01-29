@@ -1,0 +1,296 @@
+<div class="modal-header">
+
+    <span>{{MarketingInformationModalsForm.header}}</span>
+
+    <button type="button" style="cursor: pointer;" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="ion-close-round"></span>
+    </button>
+
+</div>
+
+<div class="modal-body">
+
+    <form *ngFor="let input of MarketingInformationModalsForm.inputs;">
+
+        <div *ngIf="input.type === 'select' && input.visible === true && MarketingInformationModalsForm.method != 'view'"
+            class="form-group row" style="text-align: center;">
+
+            <div class="col-sm-1"></div>
+
+            <label for="{{input.name}}" style="text-align: left" class="col-sm-3 col-form-label"><span
+                    *ngIf="input.required === 'true' && MarketingInformationModalsForm.method != 'view'"
+                    class="required-pf">*
+                </span>{{input.name}}</label>
+
+            <div class="col-sm-7">
+                <select [ngClass]="{'is-invalid' : input.validation_status}"
+                    (change)="changeSelectOption(input.id, input.selected)" [(ngModel)]="input.selected"
+                    name="{{input.id}}" class="form-control">
+                    <option *ngFor="let input_values of input.value;" [value]="input_values">{{input_values}}</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div *ngIf="input.type === 'text_cost' && MarketingInformationModalsForm.method != 'view'"
+            class="form-group row">
+
+            <div class="col-sm-1"></div>
+
+            <label for="{{input.name}}" style="text-align: left" class="col-sm-3 col-form-label"><span
+                    *ngIf="input.required === 'true' && MarketingInformationModalsForm.method != 'view'"
+                    class="required-pf">*
+                </span>{{input.name}}</label>
+
+            <div class="col-sm-5">
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    (keypress)="numberOnly($event, input);"
+                    *ngIf="(input.type === 'text_cost') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'email') && (MarketingInformationModalsForm.method != 'view')"
+                    [name]="input.id" min="0" oninput="validity.valid || (value='')"
+                    [ngModel]="input.value | currency:'SAR ':'code':'2.4'"
+                    [ngModelOptions]="{updateOn:'blur', debounce:0}"
+                    (ngModelChange)="input.value=$event; parseTextToInt();" id="{{input.id}}" type="text"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+            </div>
+
+            <div class="col-sm-2" style="float: right;">
+                <select [ngClass]="{'is-invalid' : input.validation_status}" [(ngModel)]="input.UOM_selected"
+                    name="input.UOM_id" style="height: 45px;" class="form-control">
+                    <option *ngFor="let unit of input.UOM_value;" [value]="unit">{{unit}}</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div *ngIf="input.type === 'text_cost_range' && MarketingInformationModalsForm.method != 'view'">
+
+            <div class="form-group row" style="text-align: center;">
+
+                <div class="col-sm-1"></div>
+
+                <label for="{{input.name}}" style="text-align: left" class="col-sm-3 col-form-label"><span
+                        *ngIf="input.required === 'true' && MarketingInformationModalsForm.method != 'view'"
+                        class="required-pf">* </span>{{input.name}}</label>
+
+                <div class="col-sm-5">
+                    <input (change)="onInputChangeRange(input.id_1)"
+                        [ngClass]="{'is-invalid' : input.validation_status_1}" (keypress)="numberOnly($event, input);"
+                        *ngIf="(input.type === 'text_cost_range') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'email') && (MarketingInformationModalsForm.method != 'view')"
+                        [name]="input.id_1" min="0" oninput="validity.valid || (value_1='')"
+                        [ngModel]="input.value_1 | currency:'SAR ':'code':'2.4'"
+                        [ngModelOptions]="{updateOn:'blur', debounce:0}"
+                        (ngModelChange)="input.value_1=$event; parseTextToInt();" id="{{input.id_1}}" type="text"
+                        placeholder="{{'COMMON.Enter' | translate }} {{input.name}} From" class="form-control">
+                </div>
+
+                <div class="col-sm-2" style="float: right;">
+                    <select [ngClass]="{'is-invalid' : input.validation_status_1}" [(ngModel)]="input.UOM_selected"
+                        name="input.UOM_id" style="height: 45px;" class="form-control">
+                        <option *ngFor="let unit of input.UOM_value;" [value]="unit">{{unit}}</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group row" style="text-align: center;">
+
+                <div class="col-sm-1"></div>
+
+                <label for="{{input.name}}" style="text-align: left" class="col-sm-3 col-form-label"></label>
+
+                <div class="col-sm-5">
+                    <input (change)="onInputChangeRange(input.id_2)"
+                        [ngClass]="{'is-invalid' : input.validation_status_2}" (keypress)="numberOnly($event, input);"
+                        *ngIf="(input.type === 'text_cost_range') && (input.type != 'number_disabled') && (input.type != 'select') && (input.type != 'email') && (MarketingInformationModalsForm.method != 'view')"
+                        [name]="input.id_2" min="0" oninput="validity.valid || (value='')"
+                        [ngModel]="input.value_2 | currency:'SAR ':'code':'2.4'"
+                        [ngModelOptions]="{updateOn:'blur', debounce:0}"
+                        (ngModelChange)="input.value_2=$event; parseTextToInt();" id="{{input.id_2}}" type="text"
+                        placeholder="{{'COMMON.Enter' | translate }} {{input.name}} To" class="form-control">
+                </div>
+
+            </div>
+
+        </div>
+
+        <div *ngIf="input.type === 'table'">
+
+            <div class="form-group row" style="text-align: center;" *ngIf="input.visible == true">
+
+                <div class="col-sm-1"></div>
+
+                <label style="text-align: left" class="col-sm-3 col-form-label"><span *ngIf="input.required === 'true'"
+                        class="required-pf">*
+                    </span>{{ input.heading }}</label>
+
+                <div *ngIf="MarketingInformationModalsForm.method != 'view'" class="col-sm-7" style="text-align: center;">
+
+                    <button type="button" style="cursor: pointer;" class="morer"
+                        (click)="onTableAdd(input)">{{'MARKETING_INFORMATION.Add' | translate }}
+                        {{ input.heading }}</button>
+
+                </div>
+
+            </div>
+
+            <div class="form-group row" style="text-align: center;" *ngIf="input.visible == true">
+
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-12 smart-table-container">
+                    <ng2-smart-table #smartTable (createConfirm)="onAdd($event)" (editConfirm)="onEdit($event)"
+                        [settings]="input.settings" [source]="input.source"
+                        (deleteConfirm)="onDelete($event, input.heading, delete_modal)">
+                    </ng2-smart-table>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div *ngIf="input.type != 'table' && input.type != 'select' && input.type != 'text_cost' && input.type != 'text_cost_range' && MarketingInformationModalsForm.method != 'view'"
+            class="form-group row" style="text-align: center;">
+
+            <div class="col-sm-1"></div>
+
+            <label for="{{input.name}}" style="text-align: left" class="col-sm-3 col-form-label"><span
+                    *ngIf="input.required === 'true' && MarketingInformationModalsForm.method != 'view'"
+                    class="required-pf">*
+                </span>{{input.name}}</label>
+
+            <div class="col-sm-7">
+
+                <input [ngClass]="{'is-invalid' : input.validation_status}" (change)="calculateValueSum(input.id)"
+                    *ngIf="(input.type != 'checkbox') && (input.type != 'file_multiple') && (input.type != 'number_disabled') && (input.type != 'text_cost') && (input.type != 'select') && (input.type != 'email') && (MarketingInformationModalsForm.method != 'view') "
+                    [name]="input.id" min="0" step=".0001" oninput="validity.valid || (value='')"
+                    [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+                <input *ngIf="input.type == 'number_disabled'" [name]="input.id" min="0" step=".0001"
+                    oninput="validity.valid || (value='')" [(ngModel)]="input.value" id="{{input.id}}" type="number"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control" disabled>
+                <input [ngClass]="{'is-invalid' : input.validation_status}" *ngIf="input.type == 'file_multiple'"
+                    multiple="multiple" (change)="onFileChange($event, input.id)" [name]="input.id" id="{{input.id}}"
+                    type="file" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control">
+                <input (change)="onInputChange(input.id)" [ngClass]="{'is-invalid' : input.validation_status}"
+                    *ngIf="input.type === 'email'" [name]="input.id" [(ngModel)]="input.value" id="{{input.id}}"
+                    type="{{input.type}}" placeholder="{{'COMMON.Enter' | translate }} {{input.name}}"
+                    class="form-control">
+                <input
+                    *ngIf="(input.visible === true) && (input.type != 'checkbox') && (input.type != 'file_multiple') && (input.type != 'number_disabled') && (input.type != 'text_cost') && (input.type != 'select') && (input.type != 'email') && (MarketingInformationModalsForm.method === 'view') "
+                    [name]="input.id" min="0" step=".0001" oninput="validity.valid || (value='')"
+                    [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control" disabled>
+                <nb-checkbox [ngClass]="{'is-invalid' : input.validation_status}"
+                    (change)="onCheckboxChange(input.value)" *ngIf="input.type == 'checkbox'" id="{{input.id}}"
+                    [name]="input.id" [(ngModel)]="input.value"></nb-checkbox>
+
+            </div>
+
+        </div>
+
+        <div *ngIf="input.type != 'table' && MarketingInformationModalsForm.method === 'view' && input.visible === true"
+            class="form-group row" style="text-align: center;">
+
+            <div class="col-sm-1"></div>
+
+            <label for="{{input.name}}" style="text-align: left" class="col-sm-3 col-form-label"><span
+                    *ngIf="input.required === 'true' && MarketingInformationModalsForm.method != 'view'"
+                    class="required-pf">*
+                </span>{{input.name}}</label>
+
+            <div class="col-sm-7">
+                <input
+                    *ngIf="(input.type != 'checkbox') && (input.type != 'file_multiple') && (input.type != 'number_disabled') && (input.type != 'text_cost') && (input.type != 'select') && (input.type != 'email') && (MarketingInformationModalsForm.method === 'view') "
+                    [name]="input.id" min="0" step=".0001" oninput="validity.valid || (value='')"
+                    [(ngModel)]="input.value" id="{{input.id}}" type="{{input.type}}"
+                    placeholder="{{'COMMON.Enter' | translate }} {{input.name}}" class="form-control" disabled>
+            </div>
+
+        </div>
+
+    </form>
+
+    <div *ngIf="MarketingInformationModalsForm.tables">
+
+        <form *ngFor="let table of MarketingInformationModalsForm.tables">
+
+            <div class="form-group row" style="text-align: center;" *ngIf="table.visible == true">
+
+                <div class="col-sm-1"></div>
+
+                <label style="text-align: left" class="col-sm-3 col-form-label"><span *ngIf="table.required === 'true'"
+                        class="required-pf">*
+                    </span>{{ table.heading }}</label>
+
+                <div *ngIf="MarketingInformationModalsForm.method != 'view'" class="col-sm-7" style="text-align: center;">
+
+                    <button type="button" style="cursor: pointer;" class="more"
+                        (click)="onTableAdd(table)">{{'MARKETING_INFORMATION.Add' | translate }}
+                        {{ table.heading }}</button>
+
+                </div>
+
+            </div>
+
+            <div class="form-group row" style="text-align: center;" *ngIf="table.visible == true">
+
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-12 smart-table-container">
+                    <ng2-smart-table #smartTable [settings]="table.settings" [source]="table.source"
+                        (deleteConfirm)="onDelete($event, table.heading, delete_modal)">
+                    </ng2-smart-table>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <div *ngIf="MarketingInformationModalsForm.documents">
+        <document-list [documents]="this.MarketingInformationModalsForm.documents"></document-list>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+
+    <button type="button" style="margin-right: 1%; margin-left: 1%; cursor: pointer;" class="more"
+        (click)="closeModal()">{{ 'COMMON.Cancel' | translate }}</button>
+    <button style="cursor: pointer;" type="{{button.type}}"
+        *ngFor="let button of MarketingInformationModalsForm.buttons;" class="btn {{button.class}}"
+        (click)="onSubmit()">{{button.name}}</button>
+
+</div>
+
+<ng-template #delete_modal let-modal>
+
+    <div class="modal-content" style="border-color: black;">
+
+        <div class="modal-header">
+
+            <span>{{deleteModalReference.action}} {{deleteModalReference.table_name}}</span>
+
+            <button type="button" style="cursor: pointer;" class="close" aria-label="Close"
+                (click)="onCloseDeleteModal()">
+                <span aria-hidden="true" class="ion-close-round"></span>
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+            <h6>{{ 'COMMON.AreYouSure' | translate }}</h6>
+        </div>
+
+        <div class="modal-footer">
+            <button style="margin-right: 1%; margin-left: 1%; cursor: pointer;" type="button" class="more"
+                (click)="onCloseDeleteModal()">{{
+            'COMMON.Cancel' | translate }}</button>
+            <button style="cursor: pointer;" type="button" class="more" (click)="onDeleteConfirm()">{{
+            'COMMON.Yes' | translate }}</button>
+        </div>
+
+    </div>
+
+</ng-template>

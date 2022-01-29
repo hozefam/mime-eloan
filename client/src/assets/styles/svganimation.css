@@ -1,0 +1,100 @@
+
+.svg-div-1 g#Layer_3 {
+    -ms-animation: orangetube 3s ease infinite alternate;
+}
+.svg-div-1 g#Layer_8 {
+    animation:yellowtool 3s ease infinite alternate;
+}
+.svg-div-1 g#Layer_4 {
+  animation: train 3s ease infinite alternate;
+}
+.svg-div-1 g#Layer_7 {
+   animation:greentool 3s ease infinite alternate;
+
+}
+.svg-div-1 g#Layer_5 {   
+animation:greentoolsmall 3s ease infinite alternate;
+
+}
+.svg-div-1 g#Layer_6 {
+ animation:greentoolbig 3s ease infinite alternate;
+}
+
+.svg-div-2 g#Layer_5 {
+    animation: swing 3s ease infinite alternate;
+}
+.svg-div-2 g#Layer_3 {
+ animation: swinglong 3s ease infinite alternate;
+}
+.svg-div-2 g#Layer_6 {
+ animation: yellowtool2 3s ease infinite alternate;
+}
+.svg-div-2 g#Layer_7 {
+  animation: swingshort 3s  infinite alternate;
+}
+.svg-div-2 g#Layer_2-2 {
+  animation: elevator 3s  infinite alternate;
+}
+@keyframes orangetube {
+  0%{transform: translateY(0px);}
+  50%{ transform: translateY(30px);}
+  100%{transform: translateY(0px);}
+}
+@-ms-keyframes orangetube {
+    0%{-ms-transform: translateY(0px);}
+    50%{ -ms-transform: translateY(30px);}
+    100%{-ms-transform: translateY(0px);}
+  }
+@keyframes yellowtool {
+  0%{transform: translateX(0px)translateY(0px);}
+  50%{ transform: translateX(10px)translateY(15px);}
+  100%{transform: translateX(0px);}
+}
+@keyframes train {
+  0%{transform: translateX(0px)translateY(0px);}
+  50%{ transform: translateX(-40px)translateY(-25px);}
+  100%{transform: translateX(0px);}
+}
+@keyframes greentool {
+  0%{transform:rotateZ(0) translateY(0px)translateX(0px);}
+  50%{ transform:rotateZ(-17deg) translateY(6px)translateX(-64px);}
+  100%{transform:rotateZ(0deg) translateY(0px)translateX(0px);}
+}
+@keyframes greentoolsmall {
+  0%{transform:rotateZ(0) translateY(0px)translateX(0px);}
+  50%{ transform: rotateZ(-22deg) translateY(17px)translateX(-92px);}
+  100%{transform:rotateZ(0deg) translateY(0px)translateX(0px);}
+}
+@keyframes greentoolbig {
+  0%{transform:rotateZ(0) translateY(0px)translateX(0px);}
+  50%{  transform: rotateZ(20deg) translateY(-23px)translateX(65px);}
+  100%{transform:rotateZ(0deg) translateY(0px)translateX(0px);}
+}
+@keyframes swing {
+    0%{transform:rotateZ(0) translateY(0px)translateX(0px);}
+    50%{transform: rotateZ(18deg) translateY(-13px)translateX(69px);}
+    100%{transform:rotateZ(0deg) translateY(0px)translateX(0px);}
+  }
+  @keyframes swingshort {
+    0%{transform:rotateZ(0) translateY(0px)translateX(0px);}
+    50%{transform: rotateZ(18deg) translateY(-142px)translateX(40px);}
+    100%{transform:rotateZ(0deg) translateY(0px)translateX(0px);}
+  }
+  
+  @keyframes swinglong {
+    0%{ transform: translateY(0px);}
+    50%{transform: translateY(-30px);}
+    100%{ transform: translateY(0px);}
+  }
+  @keyframes yellowtool2 {
+    0%{transform: translateX(0px)translateY(0px);}
+    50%{transform: translateX(5px)translateY(6px);}
+    100%{transform: translateX(0px);}
+  }
+  @keyframes elevator {
+    0%{transform: translateX(0px)translateY(0px);}
+    50%{transform:translateY(20px);}
+    100%{transform: translateX(0px);}
+  }
+  
+  

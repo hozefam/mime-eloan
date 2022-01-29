@@ -1,0 +1,758 @@
+<!-- <ng-template #StartTour>{{ "COMMON.StartTour" | translate}}</ng-template> -->
+
+<div class="col-md-12">
+
+    <!--Start bread crumbs-->
+    <div class="container bread_crumbs">
+        <div class="row">
+            <div class="col">
+                <a href="#"><span>{{ "DASHBOARD.Home" | translate}}</span></a>
+                <span><img src="assets/images/arrow-l.png" alt="img"></span>
+                <span>{{ "DASHBOARD.ApplicationDetails" | translate}}</span>
+            </div>
+        </div>
+    </div>
+    <!--End bread crumbs-->
+
+    <!--Start Title-->
+    <div class="container-fulid margwid">
+        <div class="row title_01">
+            <div class="col">
+                <img src="assets/images/pen.png" alt="img">
+                {{ "DASHBOARD.ApplicationDetails" | translate}}
+            </div>
+        </div>
+    </div>
+    <!--End Title-->
+
+
+
+    <nb-card accent="success" style="border-top-color:#fff !important;">
+
+        <!-- <nb-card-header style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;">{{ "TECHNICAL_INFORMATION.CreateLoanApplication" | translate}}</nb-card-header>-->
+
+        <nb-card-body>
+
+            <!-- <h5 *ngIf="requestId != 0" style="margin-bottom: 20px;">{{ "TECHNICAL_INFORMATION.requestid" | translate}} - {{requestId}}</h5> -->
+
+            <!-- <h5 *ngIf="projId != 0" style="margin-bottom: 20px;">{{ "TECHNICAL_INFORMATION.projectId" | translate}} - {{projId}}</h5> -->
+
+            <div *ngIf="isClaims != 'true'" class="col-xxxl-12 col-xxl-12 col-md-12"
+                style="text-align: center; margin-bottom: 20px;">
+
+                <div id="tourStep1" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" matRipple
+                    matRippleColor="rgba(255,239,20,0.15)" (click)="onClickLoanApplicationTab(0)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "TECHNICAL_INFORMATION.projectinformation" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="GenInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                        <span aria-hidden="true" class="ion-information"></span>
+                    </div> -->
+                </div>
+
+                <div id="tourStep2" *ngIf="loanTypeValues.selectedLoanTypeOperation != 'hide_mkt'"
+                    class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" matRipple
+                    matRippleColor="rgba(255,239,20,0.15)" (click)="onClickLoanApplicationTab(1)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "TECHNICAL_INFORMATION.MarketingInformation" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="MarkInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                        <span aria-hidden="true" class="nb-bar-chart"></span>
+                    </div> -->
+                </div>
+
+                <div class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select" matRipple
+                    matRippleColor="rgba(255,239,20,0.15)" (click)="onClickLoanApplicationTab(2)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "TECHNICAL_INFORMATION.TechnicalInformation" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="TechInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                        <span aria-hidden="true" class="ion-clipboard"></span>
+                    </div> -->
+                </div>
+
+                <div v class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" matRipple
+                    matRippleColor="rgba(255,239,20,0.15)" (click)="onClickLoanApplicationTab(3)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "TECHNICAL_INFORMATION.FinancialInformation" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="FinInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                        <span aria-hidden="true" class="nb-e-commerce"></span>
+                    </div> -->
+                </div>
+
+                <div *ngIf="serviceId==9 || serviceId==10 || serviceId==13 || serviceId==14" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(5)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "DASHBOARD.LandRequirments" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                    margin: 0 auto;
+                                    margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                            <span aria-hidden="true" class="nb-compose"></span>
+                        </div> -->
+                </div>
+
+                <div *ngIf="serviceId==9 || serviceId==10 || serviceId==13 || serviceId==14" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(6)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "DASHBOARD.Survey" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                        margin: 0 auto;
+                                        margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                                <span aria-hidden="true" class="nb-compose"></span>
+                            </div> -->
+                </div>
+                <div *ngIf="serviceId==81" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2"
+                    (click)="onClickLoanApplicationTab(8)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "COMMON.FactoryData" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                        margin: 0 auto;
+                                        margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                                <span aria-hidden="true" class="nb-compose"></span>
+                            </div> -->
+                </div>
+                <div *ngIf="serviceId== 7||serviceId== 8"
+                    class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+                    (click)="onClickLoanApplicationTab(5)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "DASHBOARD.LandRequirments" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                      margin: 0 auto;
+                                      margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+
+                    </div>
+
+                </div>
+                <div *ngIf="serviceId== 12"
+                class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-current wizard2 wiz-select"
+                (click)="onClickLoanApplicationTab(5)">
+                <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                    {{ "DASHBOARD.LandRequirments" | translate}}
+                </div>
+                <div style="width: 80%;
+                                  margin: 0 auto;
+                                  margin-bottom: 10px;">
+                    <nb-progress-bar [value]="RCJInfoPer" status="warning" [displayValue]="true"></nb-progress-bar>
+
+                </div>
+
+            </div>
+                <div *ngIf="serviceId== 7" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" style="display:none"
+                    (click)="onClickLoanApplicationTab(6)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "MARKETING_INFORMATION.TargetMarket" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                  margin: 0 auto;
+                                  margin-bottom: 10px;">
+                        <nb-progress-bar [value]="RCJQuesPer" status="warning" [displayValue]="true"></nb-progress-bar>
+                    </div>
+                </div>
+                <div id="tourStep4" class="col-xxxl-2 col-xxl-2 col-md-2 loan-percentage-others wizard2" matRipple
+                    matRippleColor="rgba(255,239,20,0.15)" (click)="onClickLoanApplicationTab(4)">
+                    <div style="padding-top: 20px; text-align: center; margin-bottom: 10px;">
+                        {{ "TECHNICAL_INFORMATION.Checklist" | translate}}
+                    </div>
+                    <div style="width: 80%;
+                                margin: 0 auto;
+                                margin-bottom: 10px;">
+                        <nb-progress-bar [value]="ChecklistPer" status="warning" [displayValue]="true">
+                        </nb-progress-bar>
+                    </div>
+                    <!-- <div style="padding-bottom: 20px; text-align: center;">
+                        <span aria-hidden="true" class="ion-flag"></span>
+                    </div> -->
+                </div>
+
+
+            </div>
+
+            <nb-card accent="success" style="border-top-width:2px !important; border-radius: 0; border-color: #8dd27a">
+
+
+                <nb-card-header
+                    style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;">
+                    {{ "TECHNICAL_INFORMATION.TechnicalInformation" | translate}}</nb-card-header>
+
+                <nb-card-body style="text-align: center;">
+
+                    <div style="margin-bottom: 20px; text-align: right;">
+                        <ng-template #editTotalCost>
+                            <div class="p-4">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" name="Cost"
+                                            [ngModel]="Bcw_Item_Global.totalcost2 | currency: 'SAR ' :'code':'2.2'"
+                                            [ngModelOptions]="{updateOn:'blur', debounce:0}"
+                                            (ngModelChange)="TotalCost=$event" class="form-control"
+                                            placeholder="Total Cost">
+                                    </div>
+                                    <button matRipple matRippleColor="rgba(255,239,20,0.15)" type="submit" class="more "
+                                        (click)="onEditBcwTotalCost(Bcw_Item_Global, TotalCost, editTotalCost)">{{
+                                        "TECHNICAL_INFORMATION.Save" | translate}}</button>
+                                </form>
+                            </div>
+                        </ng-template>
+
+                        <ng-template #buildingHint>
+                            <nb-card class="margin-bottom-0">
+                                <nb-card-header>{{ "TECHNICAL_INFORMATION.BuildingsCanBe:" | translate}}
+                                </nb-card-header>
+                                <nb-list>
+                                    <nb-list-item>1. {{ "TECHNICAL_INFORMATION.ProductionBuildings" | translate}}
+                                    </nb-list-item>
+                                    <nb-list-item>2. {{ "TECHNICAL_INFORMATION.AdministrationBuildings" | translate}}
+                                    </nb-list-item>
+                                    <nb-list-item>3. {{ "TECHNICAL_INFORMATION.FinishedProductBuilding" | translate}}
+                                    </nb-list-item>
+                                    <nb-list-item>4. {{ "TECHNICAL_INFORMATION.RawMaterialBuilding" | translate}}
+                                    </nb-list-item>
+                                    <nb-list-item>5. {{ "TECHNICAL_INFORMATION.AncillaryBuilding" | translate}}
+                                    </nb-list-item>
+                                    <nb-list-item>6. {{ "TECHNICAL_INFORMATION.Others" | translate}}</nb-list-item>
+                                </nb-list>
+                            </nb-card>
+                        </ng-template>
+
+                        <ng-template #civilHint>
+                            <nb-card class="margin-bottom-0">
+                                <nb-card-header>{{ "TECHNICAL_INFORMATION.CivilWorksCanBe:" | translate}}
+                                </nb-card-header>
+                                <nb-list>
+                                    <nb-list-item>1. {{ "TECHNICAL_INFORMATION.SitePreparationandLeveling" |
+                                        translate}}</nb-list-item>
+                                    <nb-list-item>2. {{ "TECHNICAL_INFORMATION.BoundaryWall" | translate}}
+                                    </nb-list-item>
+                                    <nb-list-item>3. {{ "TECHNICAL_INFORMATION.AsphaltingWorks" | translate}}
+                                    </nb-list-item>
+                                    <nb-list-item>4. {{ "TECHNICAL_INFORMATION.UndergroundWaterTanks" | translate}}
+                                    </nb-list-item>
+                                    <nb-list-item>5. {{ "TECHNICAL_INFORMATION.SilosFoundations" | translate}}
+                                    </nb-list-item>
+                                    <nb-list-item>6. {{ "TECHNICAL_INFORMATION.Others" | translate}}</nb-list-item>
+                                </nb-list>
+                            </nb-card>
+                        </ng-template>
+
+                        <div *ngIf="(statusCode != 'P' && statusCode != 'A') || isClaims === 'true' "
+                            class="form-group row">
+
+                            <label for="Type" style="margin-top: 1%" class="col-sm-2 col-form-label; text-align: left">{{
+                                "TECHNICAL_INFORMATION.Typeofcomponent" | translate}}</label>
+                            <div id="tourStep5" class="col-sm-6">
+                                <select [disabled]="returnAddDisabledStateBasedOnCommunication()" [(ngModel)]="techOptionSelected"
+                                    name="techoption" class="form-control" placeholder="Select Type">
+                                    <option disabled>{{ "TECHNICAL_INFORMATION.ChooseComponent" | translate}}</option>
+                                    <option *ngFor="let techoption of technical_list2" [value]="techoption">
+                                        {{techoption}}</option>
+                                </select>
+                            </div> <span class="md-add-circle"></span>
+                            <button [disabled]="returnAddDisabledStateBasedOnCommunication()" id="tourStep6" matRipple
+                                matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" class=" more"
+                                (click)="component_click(target1)">{{
+                                "TECHNICAL_INFORMATION.add" | translate}}</button>
+
+                            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                style="cursor: pointer; margin-left: 5%;" *ngIf="allPanelsExpanded === false"
+                                class=" more" (click)="expandAllPanels(0);">{{
+                                "TECHNICAL_INFORMATION.ExpandAllPanels" | translate}}</button>
+                            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                style="cursor: pointer; margin-left: 5%;  margin-right: 2%;"
+                                *ngIf="allPanelsExpanded === true" class=" more" (click)="expandAllPanels(1);">{{
+                                "TECHNICAL_INFORMATION.CollapseAllPanels" | translate}}</button>
+                            <!-- <span *ngIf="showTour && isClaims != 'true'" id="startTour" [ngbTooltip]="StartTour"
+                                placement="left"
+                                style="vertical-align: middle; margin-left: 1%; margin-right: 1%; color: #006e42; cursor: pointer; font-size: 35px; font-weight: 600;"
+                                class="col-sm-0 nb-help" (click)="startTour()"></span> -->
+
+                        </div>
+
+                        <div *ngIf="isClaims === undefined && (statusCode === 'P' || statusCode === 'A')"
+                            style="margin-bottom: 20px; text-align: right;">
+                            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                style="cursor: pointer; margin-left: 5%;" *ngIf="allPanelsExpanded === false"
+                                class="more" (click)="expandAllPanels(0);">{{
+                                "TECHNICAL_INFORMATION.ExpandAllPanels" | translate}}</button>
+                            <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                style="cursor: pointer; margin-left: 5%;" *ngIf="allPanelsExpanded === true"
+                                class="more" (click)="expandAllPanels(1);">{{
+                                "TECHNICAL_INFORMATION.CollapseAllPanels" | translate}}</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px; text-align: right;">
+
+
+
+                    </div>
+
+                    <mat-accordion multi="true" id="tourStep7">
+
+                        <mat-expansion-panel *ngFor="let item of panel_items"
+                            [expanded]="panelStep === item.panelStep || allPanelsExpanded === true"
+                            (opened)="setPanelStep(item.panelStep)">
+
+                            <mat-expansion-panel-header>
+
+                                <!-- <mat-panel-title class="col-sm-3 col-form-label">{{item.uniqname}}</mat-panel-title> -->
+                                <mat-panel-title class="col-sm-5 col-form-label">
+                                    {{ "TECHNICAL_INFORMATION.Type" | translate}} : {{item.typeselname}}
+                                </mat-panel-title>
+                                <!-- <label class="col-sm-4 col-form-label" style="margin-right: -8px; text-align:left; padding-left: 0px">{{ "TECHNICAL_INFORMATION.Type" | translate}}
+                                    : {{item.typeselname}}</label> -->
+                                <label class="col-sm-4 col-form-label"
+                                    style="margin-right: 0%; text-align:left; padding-left: 0px">{{
+                                    "TECHNICAL_INFORMATION.TotalCost" | translate}} : {{ "TECHNICAL_INFORMATION.SAR" |
+                                    translate}} {{item.totalcost}}</label>
+                                <!-- <ng-template #deletetipContent>{{ "TECHNICAL_INFORMATION.Deletecomponentanditscontents" | translate}}</ng-template>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)" *ngIf="statusCode != 'P' && statusCode != 'A'" style="cursor: pointer; margin-right: 25px; margin-top: 5px; margin-left: 5%" class="close"
+                                    aria-label="Close" [ngbTooltip]="deletetipContent" (click)="onDeleteComponent(item, delete_cancel_modal)">
+                                    <span aria-hidden="true" class="nb-trash"></span>
+                                </button> -->
+                                <common-comments class="col-sm-3" *ngIf="statusCode == 'Q'"
+                                    [comments]="item.panel_comment"></common-comments>
+                                <!-- Jai add here the message button -->
+                            </mat-expansion-panel-header>
+
+                            <div *ngIf="(statusCode != 'P' && statusCode != 'A') || isClaims === 'true'"
+                                style="display:flex;">
+                                <button [disabled]="returnDisabledStateBasedOnCommunication(item.panel_comment)" matRipple
+                                    matRippleColor="rgba(255,239,20,0.15)" *ngIf="item.typesel != 'BC'"
+                                    style="margin-bottom: 10px; cursor: pointer;" class="more" (click)="onAdd(item)">{{ "TECHNICAL_INFORMATION.add" |
+                                    translate}}
+                                    {{item.typeselname}}</button>
+
+                                <button [disabled]="!add_edit_delete_show" matRipple
+                                    matRippleColor="rgba(255,239,20,0.15)"
+                                    *ngIf="item.typesel === 'BC' && item.building_state === 'Yes'"
+                                    style="margin-bottom: 10px; cursor: pointer; " class="more"
+                                    [nbPopover]="buildingHint" nbPopoverMode="hint" (click)="onAddBcw(item, 'B')">{{
+                                    "TECHNICAL_INFORMATION.Add" | translate}}
+                                    {{ "TECHNICAL_INFORMATION.Buildings" | translate}}</button>
+                                <button [disabled]="!add_edit_delete_show" matRipple
+                                    matRippleColor="rgba(255,239,20,0.15)"
+                                    *ngIf="item.typesel === 'BC' && item.civil_state === 'Yes'"
+                                    style="margin-bottom: 10px; cursor: pointer; " class="more"
+                                    (click)="onAddBcw(item, 'C')" [nbPopover]="civilHint"
+                                    nbPopoverMode="hint">{{ "TECHNICAL_INFORMATION.Add" | translate}}
+                                    {{ "TECHNICAL_INFORMATION.CivilWorks" | translate}}</button>
+                                <button [disabled]="!add_edit_delete_show" matRipple
+                                    matRippleColor="rgba(255,239,20,0.15)" *ngIf="item.typesel === 'BC'"
+                                    style="margin-bottom: 10px; cursor: pointer;" class="more"
+                                    (click)="onAddProfFees(item)">{{
+                                    "TECHNICAL_INFORMATION.ProfessionalFees" | translate}}</button>
+                                <button [disabled]="!add_edit_delete_show" matRipple
+                                    matRippleColor="rgba(255,239,20,0.15)" *ngIf="item.typesel === 'BC'"
+                                    style="margin-bottom: 10px; cursor: pointer;" class="more"
+                                    (click)="onAttachClick(item)">
+                                    {{ "TECHNICAL_INFORMATION.Attachments" | translate}}
+                                </button>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                    *ngIf="item.typesel === 'BC' && item.isCost === 'Y'"
+                                    style="margin-bottom: 10px; cursor: pointer; " class="more"
+                                    [nbPopover]="editTotalCost">{{ "TECHNICAL_INFORMATION.Edit"
+                                    | translate}}
+                                    {{ "TECHNICAL_INFORMATION.TotalCost" | translate}}
+                                </button>
+
+
+                                <!-- <ng-template #addquot>Click 
+                                    <i class="nb-plus"></i>
+                                    To Add Quotation
+                            </ng-template> -->
+                                <!-- <button matRipple matRippleColor="rgba(255,239,20,0.15)" *ngIf="item.typesel === 'ME'" style="margin-bottom: 10px; margin-left: 5%; cursor: pointer; margin-right: 2%;" [ngbTooltip]="addquot" class="more">
+                                    <i class="fa fa-info"></i>
+                            </button> -->
+
+                                <!-- <select *ngIf="item.typesel === 'MA'" style="margin-bottom: 10px; margin-left: 3%; cursor: pointer;" class="form-control" [(ngModel)]="input_MA_Selected">
+                                         <option *ngFor="let input_values of input_MA;" [value]="input_values">{{input_values}}</option>
+                           </select> -->
+
+                            </div>
+                            <!-- <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="margin-bottom: 10px; cursor: pointer; margin-left: 50px" class="more" (click)="onAdd(item)">Delete {{item.typesel}}</button> -->
+                            <!-- *ngIf ="commonService.defaultLanguage==='en'" -->
+                            <ng2-smart-table
+                                *ngIf="commonService.defaultLanguage == 'en' && item.typesel == 'ME' && item.typesel != 'MA' && item.typesel != 'BC'"
+                                [settings]="item.settings" [source]="item.source"
+                                (delete)="onDelete(delete_cancel_modal, $event, item.typeselname, item.typesel, item)"
+                                (edit)="onEdit($event, item.typesel, item)"
+                                (userRowSelect)="onView($event, item.typesel, item.typeselname)"
+                                (custom)="onQuotAdd(item, $event)">
+                            </ng2-smart-table>
+
+                            <ng2-smart-table
+                                *ngIf="commonService.defaultLanguage == 'ar' && item.typesel == 'ME' && item.typesel != 'MA' && item.typesel != 'BC'"
+                                [settings]="item.settings_ar" [source]="item.source"
+                                (delete)="onDelete(delete_cancel_modal, $event, item.typeselname, item.typesel, item)"
+                                (edit)="onEdit($event, item.typesel, item)"
+                                (userRowSelect)="onView($event, item.typesel, item.typeselname)"
+                                (custom)="onQuotAdd(item, $event)">
+                            </ng2-smart-table>
+
+                            <ng2-smart-table
+                                *ngIf="item.typesel != 'ME' && item.typesel != 'MA' && item.typesel != 'BC'"
+                                [settings]="item.settings" [source]="item.source"
+                                (delete)="onDelete(delete_cancel_modal, $event, item.typeselname, item.typesel, item)"
+                                (edit)="onEdit($event, item.typesel, item)"
+                                (userRowSelect)="onView($event, item.typesel, item.typeselname)"
+                                (custom)="onQuotAdd(item, $event)">
+                            </ng2-smart-table>
+
+                            <div *ngIf="item.typesel === 'MA' && item.source1.data.length">
+                                <nb-card>
+                                    <nb-card-header>{{ "TECHNICAL_INFORMATION.DirectLabour" | translate}}
+                                    </nb-card-header>
+                                    <!-- <label class="col-sm-7 col-form-label">Direct Labour Type</label> -->
+                                    <ng2-smart-table [settings]="item.settings" [source]="item.source1"
+                                        (delete)="onDelete(delete_cancel_modal, $event, item.typeselname, item.typesel, item)"
+                                        (edit)="onEdit($event, item.typesel, item)"
+                                        (userRowSelect)="onView($event, item.typesel, item.typeselname)"
+                                        (custom)="onQuotAdd(item, $event)">
+                                    </ng2-smart-table>
+                                </nb-card>
+                            </div>
+
+                            <div *ngIf="item.typesel === 'MA'">
+                                <div *ngIf="item.source2.data.length">
+                                    <nb-card>
+                                        <nb-card-header>{{ "TECHNICAL_INFORMATION.IndirectLabour" | translate}}
+                                        </nb-card-header>
+                                        <ng2-smart-table [settings]="item.settings" [source]="item.source2"
+                                            (delete)="onDelete(delete_cancel_modal, $event, item.typeselname, item.typesel, item)"
+                                            (edit)="onEdit($event, item.typesel, item)"
+                                            (userRowSelect)="onView($event, item.typesel, item.typeselname)"
+                                            (custom)="onQuotAdd(item, $event)">
+                                        </ng2-smart-table>
+                                    </nb-card>
+                                </div>
+                            </div>
+
+                            <div *ngIf="item.typesel === 'BC'">
+                                <div *ngIf="item.source1.data.length">
+                                    <nb-card>
+                                        <nb-card-header>{{ "TECHNICAL_INFORMATION.BuildingItems" | translate}}
+                                        </nb-card-header>
+                                        <ng2-smart-table [settings]="item.settings" [source]="item.source1"
+                                            (delete)="onDelete(delete_cancel_modal, $event, item.typeselname, item.typesel, item)"
+                                            (edit)="onEditBcw(item, $event, 'B')"
+                                            (userRowSelect)="onViewBcw(item, $event, 'B')"
+                                            (custom)="onQuotAdd(item, $event)">
+                                        </ng2-smart-table>
+                                    </nb-card>
+                                </div>
+                            </div>
+
+                            <div *ngIf="item.typesel === 'BC'">
+                                <div *ngIf="item.source2.data.length">
+                                    <nb-card>
+                                        <nb-card-header>{{ "TECHNICAL_INFORMATION.CivilWorks" | translate}}
+                                        </nb-card-header>
+                                        <ng2-smart-table [settings]="item.settings2" [source]="item.source2"
+                                            (delete)="onDelete(delete_cancel_modal, $event, item.typeselname, item.typesel, item)"
+                                            (edit)="onEditBcw(item, $event, 'C')"
+                                            (userRowSelect)="onViewBcw(item, $event, 'C')"
+                                            (custom)="onQuotAdd(item, $event)">
+                                        </ng2-smart-table>
+                                    </nb-card>
+                                </div>
+                            </div>
+
+                            <mat-action-row>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                    style="margin-right: 10px; cursor: pointer;" *ngIf="allPanelsExpanded === false"
+                                    class="more" (click)="prevPanelStep();">
+                                    {{ "TECHNICAL_INFORMATION.Previous" | translate}}</button>
+                                <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                    style="margin-right: 10px; cursor: pointer;" *ngIf="allPanelsExpanded === false"
+                                    class="more" (click)="nextPanelStep();">
+                                    {{ "TECHNICAL_INFORMATION.Next" | translate}}</button>
+                            </mat-action-row>
+                            <!-- <div #{{item.scroll_name}}><p>PSW</p></div> -->
+                            <div #item.scroll_name></div>
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+                    <div #target1></div>
+                    &nbsp;
+                    <nb-card accent="success" *ngIf="isClaims != 'true'"
+                        style="border-top-width:2px !important; border-radius: 0; border-color: #8dd27a">
+
+                        <!-- <nb-card-header>{{ "TECHNICAL_INFORMATION.CapitalCostSummary" | translate}}</nb-card-header> -->
+
+                        <nb-card-body style="text-align: center;">
+
+                            <mat-accordion multi="true">
+
+                                <mat-expansion-panel id="tourStep8" [expanded]="allPanelsExpanded === true">
+
+                                    <mat-expansion-panel-header>
+
+                                        <!-- <mat-panel-title class="col-sm-3 col-form-label">{{item.uniqname}}</mat-panel-title> -->
+                                        <mat-panel-title class="col-sm-10 col-form-label">
+                                            {{ "TECHNICAL_INFORMATION.ManufacturingStages" | translate}}
+                                        </mat-panel-title>
+
+                                        <common-comments class="col-sm-1" *ngIf="statusCode == 'Q'"
+                                            [comments]="manufac_stages_comments"></common-comments>
+
+                                    </mat-expansion-panel-header>
+
+                                    <!-- <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems" 
+                                    [settings]="dropdownSettings" name="selItems"
+                                    ></angular2-multiselect> -->
+                                    <div *ngIf="(statusCode != 'P' && statusCode != 'A') || isClaims === 'true'">
+                                        <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                            style="margin-bottom: 10px; cursor: pointer;" class="more"
+                                            (click)="onAddMachExtra($event, 'ManufacturingStages')">{{
+                                            "TECHNICAL_INFORMATION.Add" | translate}}
+                                            {{ "TECHNICAL_INFORMATION.ManufacturingStages" | translate}}</button>
+                                    </div>
+                                    <!-- <ng2-smart-table id="tourStep8_1" *ngIf="commonService.defaultLanguage == 'en'"
+                                        [settings]="manufacturing_stages_settings"
+                                        [source]="manufacturing_stages_source"
+                                        (edit)="onEditMachExtra($event, 'ManufacturingStages')"
+                                        (delete)="onDeleteMachExtra(delete_cancel_modal, $event, 'Manufacturing Stages')"
+                                        (userRowSelect)="onViewMachExtra($event, 'ManufacturingStages')">
+                                    </ng2-smart-table> -->
+
+                                    <ng2-smart-table id="tourStep8_1" [settings]="manufacturing_stages_settings_c"
+                                        [source]="manufacturing_stages_source"
+                                        (edit)="onEditMachExtra($event, 'ManufacturingStages')"
+                                        (delete)="onDeleteMachExtra(delete_cancel_modal, $event, 'Manufacturing Stages')"
+                                        (userRowSelect)="onViewMachExtra($event, 'ManufacturingStages')">
+                                    </ng2-smart-table>
+                                </mat-expansion-panel>
+
+                                <mat-expansion-panel id="tourStep9" [expanded]="allPanelsExpanded === true">
+
+                                    <mat-expansion-panel-header>
+
+                                        <!-- <mat-panel-title class="col-sm-3 col-form-label">{{item.uniqname}}</mat-panel-title> -->
+                                        <mat-panel-title class="col-sm-10 col-form-label">
+                                            {{ "TECHNICAL_INFORMATION.InstalledCapacities" | translate}}
+                                        </mat-panel-title>
+
+                                        <common-comments class="col-sm-1" *ngIf="statusCode == 'Q'"
+                                            [comments]="prod_line_comments"></common-comments>
+
+                                    </mat-expansion-panel-header>
+                                    <div *ngIf="(statusCode != 'P' && statusCode != 'A') || isClaims === 'true'">
+                                        <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                            style="margin-bottom: 10px; cursor: pointer;" class="more"
+                                            (click)="onAddMachExtra($event, 'ProductionLines')">{{
+                                            "TECHNICAL_INFORMATION.Add" | translate}}
+                                            {{ "TECHNICAL_INFORMATION.InstalledCapacities" | translate}}</button>
+                                    </div>
+                                    <!-- <ng2-smart-table id="tourStep9_1" *ngIf="commonService.defaultLanguage == 'en'"
+                                        [settings]="production_lines_settings" [source]="production_lines_source"
+                                        (edit)="onEditMachExtra($event, 'ProductionLines')"
+                                        (delete)="onDeleteMachExtra(delete_cancel_modal, $event, 'Production Lines')"
+                                        (userRowSelect)="onViewMachExtra($event, 'ProductionLines')">
+                                    </ng2-smart-table> -->
+
+                                    <ng2-smart-table id="tourStep9_1" [settings]="production_lines_settings_c"
+                                        [source]="production_lines_source"
+                                        (edit)="onEditMachExtra($event, 'ProductionLines')"
+                                        (delete)="onDeleteMachExtra(delete_cancel_modal, $event, 'Production Lines')"
+                                        (userRowSelect)="onViewMachExtra($event, 'ProductionLines')">
+                                    </ng2-smart-table>
+                                </mat-expansion-panel>
+                                <!-- Logistics Panels -->
+
+                                <mat-expansion-panel *ngIf="isLogistics === true"
+                                    [expanded]="allPanelsExpanded === true">
+
+                                    <mat-expansion-panel-header>
+
+                                        <mat-panel-title class="col-sm-10 col-form-label">
+                                            {{ "TECHNICAL_INFORMATION.ApplicableStandardSpecification" | translate}}
+                                        </mat-panel-title>
+
+                                    </mat-expansion-panel-header>
+
+                                    <div class="input-group">
+                                        <textarea [disabled]="!showTour"
+                                            [ngClass]="{'is-invalid' : applicableSpec_logistics_emptyIndicator}"
+                                            (change)="applicableSpec_logistics_emptyIndicator = false;" type="text"
+                                            rows="5" class="form-control" [(ngModel)]="applicableSpec_logistics"
+                                            name="applicableSpecLogistics"
+                                            placeholder="{{ 'TECHNICAL_INFORMATION.EnterApplicableStandardSpecification' | translate}}"></textarea>
+                                    </div>
+
+                                    <div style="margin-top: 20px; text-align: center;">
+
+                                        <button matRipple matRippleColor="rgba(255,239,20,0.15)"
+                                            style="cursor: pointer;" type="button" class="btn btn-danger"
+                                            (click)="onSubmitAppSpecLogistic()">{{
+                                                                                    "COMMON.Submit" | translate }}
+                                        </button>
+
+                                    </div>
+
+                                </mat-expansion-panel>
+
+                                <!-- -Logistics Panels -->
+                            </mat-accordion>
+                        </nb-card-body>
+
+                    </nb-card>
+
+                    <nb-card id="tourStep10" accent="success" *ngIf="isClaims != 'true'">
+
+                        <nb-card-header>{{ "TECHNICAL_INFORMATION.CapitalCostSummary" | translate}}</nb-card-header>
+
+                        <nb-card-body style="text-align: center;">
+
+                            <!-- <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'" [settings]="financeSettings"
+                                [source]="financeCapitalCostSource">
+                            </ng2-smart-table> -->
+                            <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'" [settings]="financeSettings"
+                                [source]="financeCapitalCostSource">
+                            </ng2-smart-table>
+
+                            <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                [settings]="financeSettings_ar" [source]="financeCapitalCostSource_ar">
+                            </ng2-smart-table>
+
+                        </nb-card-body>
+
+                    </nb-card>
+                    <nb-card id="tourStep11" accent="success" *ngIf="isClaims != 'true'">
+
+                        <nb-card-header
+                            style="background-color: #f9f9f9 !important; box-shadow:0 !important; font-family: DroidKufi !important;">
+                            {{ "TECHNICAL_INFORMATION.OperationalCostSummary" | translate}}</nb-card-header>
+
+                        <nb-card-body style="text-align: center;">
+
+                            <ng2-smart-table *ngIf="commonService.defaultLanguage == 'en'" [settings]="financeSettings"
+                                [source]="financeOperationalCostSource">
+                            </ng2-smart-table>
+
+                            <ng2-smart-table *ngIf="commonService.defaultLanguage == 'ar'"
+                                [settings]="financeSettings_ar" [source]="financeOperationalCostSource_ar">
+                            </ng2-smart-table>
+
+
+
+                        </nb-card-body>
+
+                    </nb-card>
+
+                    <nb-card id="tourStep12" accent="success" *ngIf="isClaims != 'true'">
+
+                        <nb-card-header>{{ "TECHNICAL_INFORMATION.TotalCost" | translate}} :
+                            {{ "TECHNICAL_INFORMATION.SAR" | translate}} {{Total_Cost_OC_CC}}</nb-card-header>
+
+                    </nb-card>
+
+                    <div *ngIf="isClaims != 'true'" class="col-12"
+                        style="margin-top: 20px;  text-align: center; display: flex;">
+
+                        <button id="tourStep13" matRipple matRippleColor="rgba(255,239,20,0.15)"
+                            style="cursor: pointer;" type="button" class=" more" (click)="onBack()">{{
+                            "COMMON.Back" | translate }}</button>
+
+                        <button id="tourStep14" matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                            style="cursor: pointer;" class="more"
+                            (click)="onClickLoanApplicationTab(1)">{{ 'COMMON.Previous' | translate }}</button>
+
+                        <button id="tourStep15" matRipple matRippleColor="rgba(255,239,20,0.15)" type="button"
+                            style="cursor: pointer;" class="more"
+                            (click)="onClickLoanApplicationTab(3)">{{ 'COMMON.Next' | translate }}</button>
+
+                    </div>
+
+                    <div *ngIf="isClaims === 'true'" class="col-12"
+                        style="margin-top: 20px;  text-align: center; display: flex;">
+
+                        <button id="tourStep13" matRipple matRippleColor="rgba(255,239,20,0.15)"
+                            style="cursor: pointer;" type="button" class=" more" (click)="onBackisClaims()">{{
+                            "COMMON.Back" | translate }}</button>
+
+                        <button id="tourStep15" matRipple matRippleColor="rgba(255,239,20,0.15)"
+                            style="cursor: pointer;" type="button" class="btn btn-danger"
+                            (click)=" onSubmitisClaimsConfirm(delete_cancel_modal)">{{
+                                                        "COMMON.Submit" | translate }}</button>
+
+                    </div>
+
+                    <!-- 
+                    <div style="margin-top: 20px;" *ngIf="statusCode != 'P' && statusCode != 'A'">
+                        <button style="margin-right: 10px; cursor: pointer;" class="btn more" (click)="onSaveValidation();">{{ "TECHNICAL_INFORMATION.Save" | translate}}</button>
+                    </div> -->
+
+                </nb-card-body>
+
+            </nb-card>
+
+        </nb-card-body>
+
+    </nb-card>
+
+    <ng-template #delete_cancel_modal let-modal>
+
+        <div class="modal-header">
+
+            <span>{{deleteCancelModalReference.action}} {{deleteCancelModalReference.table_name_display}}</span>
+
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" class="close"
+                aria-label="Close" (click)="onCloseDeleteCancelModal()">
+                <span aria-hidden="true" class="ion-close-round"></span>
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+            <h6>{{ "TECHNICAL_INFORMATION.Areyousure" | translate}}</h6>
+            <h6 *ngIf="isClaims === 'true' && deleteCancelModalReference.items === 'Submit'">
+                {{ "MY_LOANS.SubmittedNonEnvisageItemsCannotBeEditedOrDeleted" | translate}}
+                !</h6>
+        </div>
+
+        <div class="modal-footer">
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" type="button" class="more"
+                (click)="onCloseDeleteCancelModal()">{{ "TECHNICAL_INFORMATION.Cancel" | translate}}</button>
+            <button matRipple matRippleColor="rgba(255,239,20,0.15)" style="cursor: pointer;" type="button" class="more"
+                (click)="onDeleteConfirm(deleteCancelModalReference.item)">{{ "TECHNICAL_INFORMATION.Yes" | translate}}</button>
+        </div>
+
+    </ng-template>
+
+
+</div>
