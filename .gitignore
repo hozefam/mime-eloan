@@ -13,6 +13,4 @@ client/node_modules/
 client/node_modules/node-sass/
 client/src/app/pages/new-request/loan-application/financial-information/financial-information.component - Copy.html
 node_modules/
-client/package-lock.json
-client/package.json
-client/package-lock.json
+
